@@ -1,10 +1,4 @@
-//
-//  GameViewController.swift
-//  Phantom iOS
-//
-//  Created by haijian on 2018/03/10.
-//  Copyright © 2018年 haijian. All rights reserved.
-//
+// Copyright © haijian. All rights reserved.
 
 import UIKit
 import MetalKit

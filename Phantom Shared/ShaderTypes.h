@@ -1,11 +1,4 @@
-//
-//  ShaderTypes.h
-//  Phantom Shared
-//
-//  Created by haijian on 2018/03/10.
-//  Copyright © 2018年 haijian. All rights reserved.
-//
-
+// Copyright © haijian. All rights reserved.
 //
 //  Header containing types and enum constants shared between Metal shaders and Swift/ObjC source
 //
