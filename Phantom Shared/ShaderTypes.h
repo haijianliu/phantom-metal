@@ -1,7 +1,7 @@
 // Copyright © haijian. All rights reserved.
-//
+
 // Header containing types and enum constants shared between Metal shaders and Swift/ObjC source
-//
+
 #ifndef ShaderTypes_h
 #define ShaderTypes_h
 
@@ -23,13 +23,13 @@ typedef NS_ENUM(NSInteger, BufferIndex)
 
 typedef NS_ENUM(NSInteger, VertexAttribute)
 {
-	VertexAttributePosition  = 0,
-	VertexAttributeTexcoord  = 1,
+	VertexAttributePosition = 0,
+	VertexAttributeTexcoord = 1,
 };
 
 typedef NS_ENUM(NSInteger, TextureIndex)
 {
-	TextureIndexColor    = 0,
+	TextureIndexColor = 0,
 };
 
 typedef struct
