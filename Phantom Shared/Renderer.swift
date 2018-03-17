@@ -50,7 +50,8 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		self.dynamicUniformBuffer.label = "UniformBuffer"
 
-		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to:Uniforms.self, capacity:1)
+		// uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to:Uniforms.self, capacity:1)
+		uniforms = dynamicUniformBuffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
 
 		metalKitView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
 		metalKitView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
