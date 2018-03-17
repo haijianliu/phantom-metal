@@ -119,8 +119,10 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		let library = device.makeDefaultLibrary()
 
-		let vertexFunction = library?.makeFunction(name: "vertexShader")
-		let fragmentFunction = library?.makeFunction(name: "fragmentShader")
+		// let vertexFunction = library?.makeFunction(name: "vertexShader")
+		// let fragmentFunction = library?.makeFunction(name: "fragmentShader")
+		let vertexFunction = library!.makeFunction(name: "vertexShader")
+		let fragmentFunction = library!.makeFunction(name: "fragmentShader")
 
 		let pipelineDescriptor = MTLRenderPipelineDescriptor()
 		pipelineDescriptor.label = "RenderPipeline"
