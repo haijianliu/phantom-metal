@@ -82,15 +82,15 @@
 		607206DD20538ABE0068F691 = {
 			isa = PBXGroup;
 			children = (
-				607206E220538ABE0068F691 /* Phantom Shared */,
-				607206ED20538ABE0068F691 /* Phantom iOS */,
-				607206FE20538ABE0068F691 /* Phantom tvOS */,
-				6072070C20538ABE0068F691 /* Phantom macOS */,
+				607206E220538ABE0068F691 /* Shared */,
+				607206ED20538ABE0068F691 /* iOS */,
+				607206FE20538ABE0068F691 /* tvOS */,
+				6072070C20538ABE0068F691 /* macOS */,
 				607206EC20538ABE0068F691 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		607206E220538ABE0068F691 /* Phantom Shared */ = {
+		607206E220538ABE0068F691 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				607206E320538ABE0068F691 /* Shaders.metal */,
@@ -98,7 +98,7 @@
 				607206E520538ABE0068F691 /* ShaderTypes.h */,
 				607206E620538ABE0068F691 /* Assets.xcassets */,
 			);
-			path = "Phantom Shared";
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		607206EC20538ABE0068F691 /* Products */ = {
@@ -111,7 +111,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		607206ED20538ABE0068F691 /* Phantom iOS */ = {
+		607206ED20538ABE0068F691 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				607206EE20538ABE0068F691 /* AppDelegate.swift */,
@@ -120,10 +120,10 @@
 				607206F520538ABE0068F691 /* LaunchScreen.storyboard */,
 				607206F820538ABE0068F691 /* Info.plist */,
 			);
-			path = "Phantom iOS";
+			path = iOS;
 			sourceTree = "<group>";
 		};
-		607206FE20538ABE0068F691 /* Phantom tvOS */ = {
+		607206FE20538ABE0068F691 /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				607206FF20538ABE0068F691 /* AppDelegate.swift */,
@@ -131,10 +131,10 @@
 				6072070320538ABE0068F691 /* Main.storyboard */,
 				6072070620538ABE0068F691 /* Info.plist */,
 			);
-			path = "Phantom tvOS";
+			path = tvOS;
 			sourceTree = "<group>";
 		};
-		6072070C20538ABE0068F691 /* Phantom macOS */ = {
+		6072070C20538ABE0068F691 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				6072070D20538ABE0068F691 /* AppDelegate.swift */,
@@ -142,7 +142,7 @@
 				6072071120538ABE0068F691 /* Main.storyboard */,
 				6072071420538ABE0068F691 /* Info.plist */,
 			);
-			path = "Phantom macOS";
+			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,13 +456,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = "Phantom iOS/Info.plist";
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Phantom Shared/ShaderTypes.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -475,13 +475,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = "Phantom iOS/Info.plist";
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Phantom Shared/ShaderTypes.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -495,12 +495,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "tvOS LaunchImage";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = "Phantom tvOS/Info.plist";
+				INFOPLIST_FILE = tvOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Phantom Shared/ShaderTypes.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
@@ -514,12 +514,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "tvOS LaunchImage";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = "Phantom tvOS/Info.plist";
+				INFOPLIST_FILE = tvOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Phantom Shared/ShaderTypes.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
@@ -535,13 +535,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = "Phantom macOS/Info.plist";
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "Phantom Shared/ShaderTypes.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -554,13 +554,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = "Phantom macOS/Info.plist";
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "Phantom Shared/ShaderTypes.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

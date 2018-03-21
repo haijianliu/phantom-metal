@@ -229,8 +229,8 @@ class Renderer: NSObject, MTKViewDelegate {
 
 				renderEncoder.setDepthStencilState(depthState)
 
-				renderEncoder.setVertexBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
-				renderEncoder.setFragmentBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+				renderEncoder.setVertexBuffer(dynamicUniformBuffer, offset: uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+				renderEncoder.setFragmentBuffer(dynamicUniformBuffer, offset: uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
 
 				for (index, element) in mesh.vertexDescriptor.layouts.enumerated() {
 					guard let layout = element as? MDLVertexBufferLayout else {
@@ -239,7 +239,7 @@ class Renderer: NSObject, MTKViewDelegate {
 
 					if layout.stride != 0 {
 						let buffer = mesh.vertexBuffers[index]
-						renderEncoder.setVertexBuffer(buffer.buffer, offset:buffer.offset, index: index)
+						renderEncoder.setVertexBuffer(buffer.buffer, offset: buffer.offset, index: index)
 					}
 				}
 
