@@ -50,15 +50,16 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		self.dynamicUniformBuffer.label = "UniformBuffer"
 
-		// uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to:Uniforms.self, capacity:1)
 		uniforms = dynamicUniformBuffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
 
 		metalKitView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
 		metalKitView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
 		metalKitView.sampleCount = 1
 
+		// vertex descriptor
 		let mtlVertexDescriptor = Renderer.buildMetalVertexDescriptor()
-
+		
+		// pipeline state
 		do {
 			pipelineState = try Renderer.buildRenderPipelineWithDevice(device: device, metalKitView: metalKitView, mtlVertexDescriptor: mtlVertexDescriptor)
 		} catch {
@@ -66,12 +67,14 @@ class Renderer: NSObject, MTKViewDelegate {
 			return nil
 		}
 
+		// depth descriptor
 		let depthStateDesciptor = MTLDepthStencilDescriptor()
 		depthStateDesciptor.depthCompareFunction = MTLCompareFunction.less
 		depthStateDesciptor.isDepthWriteEnabled = true
 		guard let state = device.makeDepthStencilState(descriptor:depthStateDesciptor) else { return nil }
 		depthState = state
 
+		// mesh
 		do {
 			mesh = try Renderer.buildMesh(device: device, mtlVertexDescriptor: mtlVertexDescriptor)
 		} catch {
@@ -119,10 +122,8 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		let library = device.makeDefaultLibrary()
 
-		// let vertexFunction = library?.makeFunction(name: "vertexShader")
-		// let fragmentFunction = library?.makeFunction(name: "fragmentShader")
-		let vertexFunction = library!.makeFunction(name: "vertexShader")
-		let fragmentFunction = library!.makeFunction(name: "fragmentShader")
+		let vertexFunction = library?.makeFunction(name: "vertexShader")
+		let fragmentFunction = library?.makeFunction(name: "fragmentShader")
 
 		let pipelineDescriptor = MTLRenderPipelineDescriptor()
 		pipelineDescriptor.label = "RenderPipeline"
@@ -143,7 +144,7 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		let metalAllocator = MTKMeshBufferAllocator(device: device)
 
-		let mdlMesh = MDLMesh.newBox(withDimensions: float3(4, 4, 4), segments: uint3(2, 2, 2), geometryType: MDLGeometryType.triangles, inwardNormals:false, allocator: metalAllocator)
+		let mdlMesh = MDLMesh.newBox(withDimensions: float3(4, 4, 4), segments: uint3(2, 2, 2), geometryType: MDLGeometryType.triangles, inwardNormals: false, allocator: metalAllocator)
 
 		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(mtlVertexDescriptor)
 
@@ -155,7 +156,7 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		mdlMesh.vertexDescriptor = mdlVertexDescriptor
 
-		return try MTKMesh(mesh:mdlMesh, device:device)
+		return try MTKMesh(mesh: mdlMesh, device: device)
 	}
 
 	class func loadTexture(device: MTLDevice, textureName: String) throws -> MTLTexture {
