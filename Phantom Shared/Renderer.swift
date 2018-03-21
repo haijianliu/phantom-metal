@@ -50,7 +50,7 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		self.dynamicUniformBuffer.label = "UniformBuffer"
 
-		uniforms = dynamicUniformBuffer.contents().bindMemory(to: Uniforms.self, capacity: 1)
+		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
 
 		metalKitView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
 		metalKitView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
@@ -190,7 +190,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		let rotationAxis = float3(1, 1, 0)
 		let modelMatrix = matrix4x4_rotation(radians: rotation, axis: rotationAxis)
 		let viewMatrix = matrix4x4_translation(0.0, 0.0, -8.0)
-		uniforms[0].modelViewMatrix = simd_mul(viewMatrix, modelMatrix)
+		uniforms[0].modelViewMatrix = viewMatrix * modelMatrix;
 		rotation += 0.01
 	}
 
