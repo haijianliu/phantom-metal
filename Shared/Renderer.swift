@@ -187,8 +187,8 @@ class Renderer: NSObject, MTKViewDelegate {
 		uniforms[0].projectionMatrix = projectionMatrix
 
 		let rotationAxis = float3(1, 1, 0)
-		let modelMatrix = Math.matrix4x4_rotation(radians: rotation, axis: rotationAxis)
-		let viewMatrix = Math.matrix4x4_translation(0.0, 0.0, -8.0)
+		let modelMatrix = Math.rotate(radians: rotation, axis: rotationAxis)
+		let viewMatrix = Math.translate(0.0, 0.0, -8.0)
 		uniforms[0].modelViewMatrix = viewMatrix * modelMatrix;
 		rotation += 0.01
 	}
@@ -265,7 +265,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		// Respond to drawable size or orientation changes here
 
 		let aspect = Float(size.width) / Float(size.height)
-		projectionMatrix = Math.matrix_perspective_right_hand(fovyRadians: Math.radians_from_degrees(65), aspectRatio:aspect, nearZ: 0.1, farZ: 100.0)
+		projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
 	}
 }
 
