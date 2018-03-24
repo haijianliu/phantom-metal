@@ -90,6 +90,7 @@
 		607206DD20538ABE0068F691 = {
 			isa = PBXGroup;
 			children = (
+				607206E620538ABE0068F691 /* Assets.xcassets */,
 				607206E220538ABE0068F691 /* Shared */,
 				607206ED20538ABE0068F691 /* iOS */,
 				607206FE20538ABE0068F691 /* tvOS */,
@@ -106,7 +107,6 @@
 				60ABA0D52066580E00ED9ECA /* Scene.swift */,
 				605F2C2A206641F200C534C8 /* Math.swift */,
 				607206E520538ABE0068F691 /* ShaderTypes.h */,
-				607206E620538ABE0068F691 /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
