@@ -32,6 +32,9 @@
 		6072071E20538ABE0068F691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		6072071F20538ABE0068F691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		6072072020538ABE0068F691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
+		60ABA0D62066580E00ED9ECA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ABA0D52066580E00ED9ECA /* Scene.swift */; };
+		60ABA0D72066586F00ED9ECA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ABA0D52066580E00ED9ECA /* Scene.swift */; };
+		60ABA0D82066587000ED9ECA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60ABA0D52066580E00ED9ECA /* Scene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,7 @@
 		6072070F20538ABE0068F691 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6072071220538ABE0068F691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6072071420538ABE0068F691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60ABA0D52066580E00ED9ECA /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 			children = (
 				607206E320538ABE0068F691 /* Shaders.metal */,
 				607206E420538ABE0068F691 /* Renderer.swift */,
+				60ABA0D52066580E00ED9ECA /* Scene.swift */,
 				605F2C2A206641F200C534C8 /* Math.swift */,
 				607206E520538ABE0068F691 /* ShaderTypes.h */,
 				607206E620538ABE0068F691 /* Assets.xcassets */,
@@ -289,6 +294,7 @@
 			files = (
 				6072071820538ABE0068F691 /* Renderer.swift in Sources */,
 				6072071520538ABE0068F691 /* Shaders.metal in Sources */,
+				60ABA0D62066580E00ED9ECA /* Scene.swift in Sources */,
 				607206F120538ABE0068F691 /* GameViewController.swift in Sources */,
 				607206EF20538ABE0068F691 /* AppDelegate.swift in Sources */,
 				605F2C2B206641F200C534C8 /* Math.swift in Sources */,
@@ -301,6 +307,7 @@
 			files = (
 				6072071920538ABE0068F691 /* Renderer.swift in Sources */,
 				6072071620538ABE0068F691 /* Shaders.metal in Sources */,
+				60ABA0D72066586F00ED9ECA /* Scene.swift in Sources */,
 				6072070220538ABE0068F691 /* GameViewController.swift in Sources */,
 				6072070020538ABE0068F691 /* AppDelegate.swift in Sources */,
 				605F2C2C206644A300C534C8 /* Math.swift in Sources */,
@@ -313,6 +320,7 @@
 			files = (
 				6072071A20538ABE0068F691 /* Renderer.swift in Sources */,
 				6072071720538ABE0068F691 /* Shaders.metal in Sources */,
+				60ABA0D82066587000ED9ECA /* Scene.swift in Sources */,
 				6072071020538ABE0068F691 /* GameViewController.swift in Sources */,
 				6072070E20538ABE0068F691 /* AppDelegate.swift in Sources */,
 				605F2C2D206644A400C534C8 /* Math.swift in Sources */,
