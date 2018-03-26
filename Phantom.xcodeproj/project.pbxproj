@@ -45,7 +45,7 @@
 		605F2C2A206641F200C534C8 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		607206E320538ABE0068F691 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		607206E420538ABE0068F691 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		607206E520538ABE0068F691 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
+		607206E520538ABE0068F691 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ShaderTypes.h; path = Shared/ShaderTypes.h; sourceTree = SOURCE_ROOT; };
 		607206E620538ABE0068F691 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		607206EB20538ABE0068F691 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phantom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607206EE20538ABE0068F691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		603F760A20694C2A00E9922F /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				607206E320538ABE0068F691 /* Shaders.metal */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
 		607206DD20538ABE0068F691 = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +114,7 @@
 		607206E220538ABE0068F691 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				607206E320538ABE0068F691 /* Shaders.metal */,
+				603F760A20694C2A00E9922F /* Metal */,
 				607206E420538ABE0068F691 /* Renderer.swift */,
 				60ABA0D52066580E00ED9ECA /* Scene.swift */,
 				605F2C2A206641F200C534C8 /* Math.swift */,
