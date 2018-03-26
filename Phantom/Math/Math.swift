@@ -10,11 +10,6 @@ class Math {
 	/// The mathematical constant pi.
 	/// pi = 3.14159265358979
 	public static let pi = Float.pi;
-
-	/// Converts degrees to radians and returns the result.
-	public static func radians(_ degrees: Float) -> Float {
-		return (degrees / 180) * self.pi
-	}
 }
 
 
