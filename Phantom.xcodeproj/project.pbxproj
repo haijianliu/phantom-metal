@@ -107,6 +107,14 @@
 			path = Bridging;
 			sourceTree = "<group>";
 		};
+		603F760C206952BE00E9922F /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				605F2C2A206641F200C534C8 /* Math.swift */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
 		607206DD20538ABE0068F691 = {
 			isa = PBXGroup;
 			children = (
@@ -124,9 +132,9 @@
 		607206E220538ABE0068F691 /* Phantom */ = {
 			isa = PBXGroup;
 			children = (
+				603F760C206952BE00E9922F /* Math */,
 				607206E420538ABE0068F691 /* Renderer.swift */,
 				60ABA0D52066580E00ED9ECA /* Scene.swift */,
-				605F2C2A206641F200C534C8 /* Math.swift */,
 				6053011720665F4000AAAF1F /* Application.swift */,
 			);
 			path = Phantom;
