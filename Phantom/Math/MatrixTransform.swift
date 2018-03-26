@@ -1,6 +1,6 @@
 // Copyright © haijian. All rights reserved.
 
-// Generic matrix math utility functions
+// Defines functions that generate common transformation matrices
 extension Math {
 	
 	/// Creates a matrix for a symetric perspective-view frustum. (Right hand)
