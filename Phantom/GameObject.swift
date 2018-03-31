@@ -1,5 +1,6 @@
 // Copyright © haijian. All rights reserved.
 
-class GameObject {
+import MetalKit
 
+class GameObject {
 }
