@@ -15,19 +15,8 @@ class GameViewController: NSViewController {
 			return
 		}
 		
-		// Select the device to render with.  We choose the default device
-		guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
-			print("Metal is not supported on this device")
-			return
-		}
-		
-		mtkView.device = defaultDevice
-		
-		let test = MetalDevice.sharedInstance
-				let test3 = MetalDevice.sharedInstance
-//		MetalDevice.sharedInstance = test
+		mtkView.device = MetalDevice.sharedInstance.device
 
-		
 		guard let newRenderer = Renderer(metalKitView: mtkView) else {
 			print("Renderer cannot be initialized")
 			return
