@@ -82,7 +82,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		}
 
 		do {
-			colorMap = try Renderer.loadTexture(device: device, textureName: "ColorMap")
+			colorMap = try Renderer.loadTexture(device: device, textureName: "UV_Grid_Sm")
 		} catch {
 			print("Unable to load texture. Error info: \(error)")
 			return nil
