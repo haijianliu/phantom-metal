@@ -5,6 +5,7 @@ import MetalKit
 class Application {
 
 	var renderer: Renderer?
+	var resources = Resources.sharedInstance
 
 	init?(mtkView: MTKView) {
 
@@ -14,6 +15,7 @@ class Application {
 			return
 		}
 		mtkView.device = defaultDevice
+		resources.setDevice(device: defaultDevice)
 
 		renderer = Renderer(metalKitView: mtkView)
 		guard (renderer != nil) else {
