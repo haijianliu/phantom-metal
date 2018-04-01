@@ -5,10 +5,11 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	
-	var application: Application?
+	var application = Application()
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Insert code here to initialize your application
+		application.launch()
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {
