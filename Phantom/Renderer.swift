@@ -10,10 +10,6 @@ let alignedUniformsSize = (MemoryLayout<Uniforms>.size & ~0xFF) + 0x100
 
 let maxBuffersInFlight = 3
 
-enum RendererError: Error {
-	case badVertexDescriptor
-}
-
 class Renderer: NSObject, MTKViewDelegate {
 
 	let device: MTLDevice
