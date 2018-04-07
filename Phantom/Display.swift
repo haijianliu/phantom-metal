@@ -10,17 +10,19 @@ class Display {
 	
 	/// The list of currently connected Displays. Contains at least one (main) display.
 	private var displays = [MTKView]()
-	private var currentIndex: Int?
+	private var currentDisplayIndex: Int?
 	
 	/// Main Display.
-	static var main: MTKView? {
-		guard let currentIndex = Display.sharedInstance.currentIndex else { return nil }
-		return Display.sharedInstance.displays[currentIndex]
+	/// (Force wrapped. If there is not a display, this will get a run time error)
+	static var main: MTKView {
+		// guard let currentIndex = Display.sharedInstance.currentIndex else { return nil }
+		let index = Display.sharedInstance.currentDisplayIndex!
+		return Display.sharedInstance.displays[index]
 	}
 	
 	/// Add a mtkView to displays and set it as the current active display (since only supported for one display by now)
 	static func addDisplay(mtkView: MTKView) {
 		Display.sharedInstance.displays.append(mtkView)
-		Display.sharedInstance.currentIndex = Display.sharedInstance.displays.startIndex
+		Display.sharedInstance.currentDisplayIndex = Display.sharedInstance.displays.startIndex
 	}
 }

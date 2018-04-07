@@ -38,8 +38,8 @@ class Renderer: NSObject, MTKViewDelegate {
 	var mesh: MTKMesh
 
 	init?(metalKitView: MTKView) {
-		// MetalDevice
-		guard let device = MetalDevice.sharedInstance.device else { return nil }
+		// Set device
+		guard let device = Display.main.device else { return nil }
 		self.device = device
 		
 		guard let queue = self.device.makeCommandQueue() else { return nil }
