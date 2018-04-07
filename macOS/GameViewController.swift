@@ -30,7 +30,7 @@ class GameViewController: NSViewController {
 		Display.addDisplay(mtkView: mtkView)
 
 		// Create Renderer
-		guard let newRenderer = Renderer(metalKitView: mtkView) else {
+		guard let newRenderer = Renderer(mtkView: mtkView) else {
 			print("Renderer cannot be initialized")
 			return
 		}

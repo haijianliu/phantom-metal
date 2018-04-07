@@ -37,7 +37,7 @@ class Renderer: NSObject, MTKViewDelegate {
 
 	var mesh: MTKMesh
 
-	init?(metalKitView: MTKView) {
+	init?(mtkView: MTKView) {
 		// Set device
 		guard let device = Display.main.device else { return nil }
 		self.device = device
@@ -54,16 +54,16 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
 
-		metalKitView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
-		metalKitView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
-		metalKitView.sampleCount = 1
+		mtkView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
+		mtkView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
+		mtkView.sampleCount = 1
 
 		// vertex descriptor
 		let mtlVertexDescriptor = Renderer.buildMetalVertexDescriptor()
 		
 		// pipeline state
 		do {
-			pipelineState = try Renderer.buildRenderPipelineWithDevice(device: device, metalKitView: metalKitView, mtlVertexDescriptor: mtlVertexDescriptor)
+			pipelineState = try Renderer.buildRenderPipelineWithDevice(device: device, metalKitView: mtkView, mtlVertexDescriptor: mtlVertexDescriptor)
 		} catch {
 			print("Unable to compile render pipeline state.  Error info: \(error)")
 			return nil
