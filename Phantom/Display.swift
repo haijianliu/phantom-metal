@@ -2,6 +2,9 @@
 
 import MetalKit
 
+/// Provides access to an application view for rendering operations.
+///
+/// Multi-display rendering is unavailable by now
 class Display {
 	
 	/// Singleton
