@@ -17,6 +17,9 @@ class GameViewController: NSViewController {
 			return
 		}
 		
+		// add this mtkview and set it as the current active display
+		Display.addDisplay(mtkView: mtkView)
+		
 		// Set MetalDevice Singleton
 		mtkView.device = MetalDevice.sharedInstance.device
 

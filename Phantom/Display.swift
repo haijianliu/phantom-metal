@@ -17,4 +17,10 @@ class Display {
 		guard let currentIndex = Display.sharedInstance.currentIndex else { return nil }
 		return Display.sharedInstance.displays[currentIndex]
 	}
+	
+	/// Add a mtkView to displays and set it as the current active display (since only supported for one display by now)
+	static func addDisplay(mtkView: MTKView) {
+		Display.sharedInstance.displays.append(mtkView)
+		Display.sharedInstance.currentIndex = Display.sharedInstance.displays.startIndex
+	}
 }
