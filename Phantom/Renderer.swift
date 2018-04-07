@@ -16,7 +16,7 @@ enum RendererError: Error {
 
 class Renderer: NSObject, MTKViewDelegate {
 
-	public let device: MTLDevice
+	let device: MTLDevice
 	let commandQueue: MTLCommandQueue
 	var dynamicUniformBuffer: MTLBuffer
 	var pipelineState: MTLRenderPipelineState
@@ -38,7 +38,7 @@ class Renderer: NSObject, MTKViewDelegate {
 	var mesh: MTKMesh
 
 	init?(metalKitView: MTKView) {
-		self.device = metalKitView.device!
+		self.device = MetalDevice.sharedInstance.device!
 		guard let queue = self.device.makeCommandQueue() else { return nil }
 		self.commandQueue = queue
 
@@ -87,6 +87,7 @@ class Renderer: NSObject, MTKViewDelegate {
 			print("Unable to load texture. Error info: \(error)")
 			return nil
 		}
+		
 
 		super.init()
 	}
