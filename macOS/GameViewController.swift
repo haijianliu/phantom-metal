@@ -5,8 +5,6 @@ import MetalKit
 
 /// macOS specific view controller
 class GameViewController: NSViewController {
-
-	var renderer: Renderer?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -28,17 +26,5 @@ class GameViewController: NSViewController {
 		
 		// add this mtkview and set it as the current active display
 		Display.addDisplay(mtkView: mtkView)
-
-		// Create Renderer
-		guard let newRenderer = Renderer(mtkView: mtkView) else {
-			print("Renderer cannot be initialized")
-			return
-		}
-		renderer = newRenderer
-		// Set MTKViewDelegate to current Renderer instance
-		mtkView.delegate = renderer
-		// initiate view
-		renderer?.mtkView(mtkView, drawableSizeWillChange: mtkView.drawableSize)
 	}
-
 }
