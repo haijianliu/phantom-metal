@@ -19,6 +19,8 @@ class GameViewController: NSViewController {
 		
 		// Set MetalDevice Singleton
 		mtkView.device = MetalDevice.sharedInstance.device
+		
+		let tex: MetalDevice
 
 		// Create Renderer
 		guard let newRenderer = Renderer(metalKitView: mtkView) else {
