@@ -21,7 +21,6 @@ class Renderer: NSObject, MTKViewDelegate {
 	var dynamicUniformBuffer: MTLBuffer
 	var pipelineState: MTLRenderPipelineState
 	var depthState: MTLDepthStencilState
-	var colorMap: MTLTexture
 
 	let inFlightSemaphore = DispatchSemaphore(value: maxBuffersInFlight)
 
@@ -36,6 +35,8 @@ class Renderer: NSObject, MTKViewDelegate {
 	var rotation: Float = 0
 	
 	var mesh: Mesh
+	
+	var texture: Texture = Texture()
 
 	init?(mtkView: MTKView) {
 		// Set device
@@ -83,7 +84,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		mesh = newMesh
 
 		do {
-			colorMap = try Renderer.loadTexture(device: device, textureName: "UV_Grid_Sm")
+			texture.mtlTexture = try Texture.load(textureName: "UV_Grid_Sm")
 		} catch {
 			print("Unable to load texture. Error info: \(error)")
 			return nil
@@ -138,19 +139,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
 
 		return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-	}
-
-	class func loadTexture(device: MTLDevice, textureName: String) throws -> MTLTexture {
-		// Load texture data with optimal parameters for sampling
-
-		let textureLoader = MTKTextureLoader(device: device)
-
-		let textureLoaderOptions = [
-			MTKTextureLoader.Option.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
-			MTKTextureLoader.Option.textureStorageMode: NSNumber(value: MTLStorageMode.private.rawValue)
-		]
-
-		return try textureLoader.newTexture(name: textureName, scaleFactor: 1.0, bundle: nil, options: textureLoaderOptions)
 	}
 
 	private func updateDynamicBufferState() {
@@ -224,7 +212,7 @@ class Renderer: NSObject, MTKViewDelegate {
 					}
 				}
 
-				renderEncoder.setFragmentTexture(colorMap, index: TextureIndex.color.rawValue)
+				renderEncoder.setFragmentTexture(texture.mtlTexture, index: TextureIndex.color.rawValue)
 
 				for submesh in mesh.mtkMesh.submeshes {
 						renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
