@@ -34,8 +34,8 @@ class Renderer: NSObject, MTKViewDelegate {
 	var projectionMatrix: Matrix4x4 = matrix_float4x4()
 
 	var rotation: Float = 0
-
-	var mesh: MTKMesh
+	
+	var mesh: Mesh
 
 	init?(mtkView: MTKView) {
 		// Set device
@@ -75,14 +75,12 @@ class Renderer: NSObject, MTKViewDelegate {
 		depthStateDesciptor.isDepthWriteEnabled = true
 		guard let state = device.makeDepthStencilState(descriptor:depthStateDesciptor) else { return nil }
 		depthState = state
-
+		
 		// mesh
-		do {
-			mesh = try Renderer.buildMesh(device: device, mtlVertexDescriptor: mtlVertexDescriptor)
-		} catch {
-			print("Unable to build MetalKit Mesh. Error info: \(error)")
+		guard let newMesh = Mesh.init(vertexDescriptor: mtlVertexDescriptor) else {
 			return nil
 		}
+		mesh = newMesh
 
 		do {
 			colorMap = try Renderer.loadTexture(device: device, textureName: "UV_Grid_Sm")
@@ -140,26 +138,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
 
 		return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-	}
-
-	class func buildMesh(device: MTLDevice, mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTKMesh {
-		// Create and condition mesh data to feed into a pipeline using the given vertex descriptor
-
-		let metalAllocator = MTKMeshBufferAllocator(device: device)
-
-		let mdlMesh = MDLMesh.newBox(withDimensions: float3(4, 4, 4), segments: uint3(2, 2, 2), geometryType: MDLGeometryType.triangles, inwardNormals: false, allocator: metalAllocator)
-
-		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(mtlVertexDescriptor)
-
-		guard let attributes = mdlVertexDescriptor.attributes as? [MDLVertexAttribute] else {
-			throw RendererError.badVertexDescriptor
-		}
-		attributes[VertexAttribute.position.rawValue].name = MDLVertexAttributePosition
-		attributes[VertexAttribute.texcoord.rawValue].name = MDLVertexAttributeTextureCoordinate
-
-		mdlMesh.vertexDescriptor = mdlVertexDescriptor
-
-		return try MTKMesh(mesh: mdlMesh, device: device)
 	}
 
 	class func loadTexture(device: MTLDevice, textureName: String) throws -> MTLTexture {
@@ -235,20 +213,20 @@ class Renderer: NSObject, MTKViewDelegate {
 				renderEncoder.setVertexBuffer(dynamicUniformBuffer, offset: uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
 				renderEncoder.setFragmentBuffer(dynamicUniformBuffer, offset: uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
 
-				for (index, element) in mesh.vertexDescriptor.layouts.enumerated() {
+				for (index, element) in mesh.mtkMesh.vertexDescriptor.layouts.enumerated() {
 					guard let layout = element as? MDLVertexBufferLayout else {
 						return
 					}
 
 					if layout.stride != 0 {
-						let buffer = mesh.vertexBuffers[index]
+						let buffer = mesh.mtkMesh.vertexBuffers[index]
 						renderEncoder.setVertexBuffer(buffer.buffer, offset: buffer.offset, index: index)
 					}
 				}
 
 				renderEncoder.setFragmentTexture(colorMap, index: TextureIndex.color.rawValue)
 
-				for submesh in mesh.submeshes {
+				for submesh in mesh.mtkMesh.submeshes {
 						renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
 				}
 
