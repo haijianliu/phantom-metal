@@ -5,34 +5,17 @@
 import Metal
 import MetalKit
 
-// The 256 byte aligned size of our uniform structure
-let alignedUniformsSize = (MemoryLayout<Uniforms>.size & ~0xFF) + 0x100
-
-let maxBuffersInFlight = 3
-
 class Renderer: NSObject, MTKViewDelegate {
 
 	let device: MTLDevice
 	
 	let commandQueue: MTLCommandQueue
-	var dynamicUniformBuffer: MTLBuffer
 	var pipelineState: MTLRenderPipelineState
 	var depthState: MTLDepthStencilState
-
-	let inFlightSemaphore = DispatchSemaphore(value: maxBuffersInFlight)
-
-	var uniformBufferOffset = 0
-
-	var uniformBufferIndex = 0
-
-	var uniforms: UnsafeMutablePointer<Uniforms>
-
-	var projectionMatrix: Matrix4x4 = Matrix4x4()
-
-	var rotation: Float = 0
 	
 	var mesh: Mesh
 	var texture: Texture = Texture()
+	var transform: Transform
 
 	init?(mtkView: MTKView) {
 		// Set device
@@ -41,15 +24,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		
 		guard let queue = self.device.makeCommandQueue() else { return nil }
 		self.commandQueue = queue
-
-		let uniformBufferSize = alignedUniformsSize * maxBuffersInFlight
-
-		guard let buffer = self.device.makeBuffer(length: uniformBufferSize, options: MTLResourceOptions.storageModeShared) else { return nil }
-		dynamicUniformBuffer = buffer
-
-		self.dynamicUniformBuffer.label = "UniformBuffer"
-
-		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
 
 		// vertex descriptor
 		let mtlVertexDescriptor = Mesh.buildVertexDescriptor()
@@ -69,18 +43,23 @@ class Renderer: NSObject, MTKViewDelegate {
 		guard let state = device.makeDepthStencilState(descriptor:depthStateDesciptor) else { return nil }
 		depthState = state
 		
-		// mesh
+		// Mesh
 		guard let newMesh = Mesh.init(vertexDescriptor: mtlVertexDescriptor) else {
 			return nil
 		}
 		mesh = newMesh
 
+		// Texture
 		do {
 			texture.mtlTexture = try Texture.load(textureName: "UV_Grid_Sm")
 		} catch {
 			print("Unable to load texture. Error info: \(error)")
 			return nil
 		}
+		
+		// Transform
+		guard let newTransform = Transform() else { return nil }
+		transform = newTransform
 		
 
 		super.init()
@@ -108,43 +87,22 @@ class Renderer: NSObject, MTKViewDelegate {
 		return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
 	}
 
-	private func updateDynamicBufferState() {
-		/// Update the state of our uniform buffers before rendering
-
-		uniformBufferIndex = (uniformBufferIndex + 1) % maxBuffersInFlight
-
-		uniformBufferOffset = alignedUniformsSize * uniformBufferIndex
-
-		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents() + uniformBufferOffset).bindMemory(to:Uniforms.self, capacity:1)
-	}
-
-	private func updateGameState() {
-		// Update any game state before rendering
-
-		uniforms[0].projectionMatrix = projectionMatrix
-
-		let rotationAxis = float3(1, 1, 0)
-		let modelMatrix = Math.rotate(radians: rotation, axis: rotationAxis)
-		let viewMatrix = Math.translate(0.0, 0.0, -8.0)
-		uniforms[0].modelViewMatrix = viewMatrix * modelMatrix;
-		rotation += 0.01
-	}
 
 	func draw(in view: MTKView) {
 		// Per frame updates hare
 
-		_ = inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
+		_ = transform.inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
 
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 
-			let semaphore = inFlightSemaphore
+			let semaphore = transform.inFlightSemaphore
 			commandBuffer.addCompletedHandler {
 				(_ commandBuffer)-> Swift.Void in semaphore.signal()
 			}
 
-			self.updateDynamicBufferState()
+			transform.updateDynamicBufferState()
 
-			self.updateGameState()
+			transform.updateGameState()
 
 			// Delay getting the currentRenderPassDescriptor until we absolutely need it to avoid
 			//   holding onto the drawable and blocking the display pipeline any longer than necessary
@@ -165,8 +123,8 @@ class Renderer: NSObject, MTKViewDelegate {
 
 				renderEncoder.setDepthStencilState(depthState)
 
-				renderEncoder.setVertexBuffer(dynamicUniformBuffer, offset: uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
-				renderEncoder.setFragmentBuffer(dynamicUniformBuffer, offset: uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+				renderEncoder.setVertexBuffer(transform.dynamicUniformBuffer, offset: transform.uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+				renderEncoder.setFragmentBuffer(transform.dynamicUniformBuffer, offset: transform.uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
 
 				for (index, element) in mesh.mtkMesh.vertexDescriptor.layouts.enumerated() {
 					guard let layout = element as? MDLVertexBufferLayout else {
@@ -202,7 +160,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		// Respond to drawable size or orientation changes here
 
 		let aspect = Float(size.width) / Float(size.height)
-		projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
+		transform.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
 	}
 }
 
