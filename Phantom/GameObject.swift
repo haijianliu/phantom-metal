@@ -3,4 +3,6 @@
 import MetalKit
 
 class GameObject {
+	var transform = Transform()
+	
 }
