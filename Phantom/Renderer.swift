@@ -36,7 +36,7 @@ class Renderer: NSObject, MTKViewDelegate {
 
 	init?(mtkView: MTKView) {
 		// Set device
-		guard let device = Display.main.device else { return nil }
+		guard let device = mtkView.device else { return nil }
 		self.device = device
 		
 		guard let queue = self.device.makeCommandQueue() else { return nil }
@@ -50,10 +50,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		self.dynamicUniformBuffer.label = "UniformBuffer"
 
 		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
-
-		mtkView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
-		mtkView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
-		mtkView.sampleCount = 1
 
 		// vertex descriptor
 		let mtlVertexDescriptor = Renderer.buildMetalVertexDescriptor()
