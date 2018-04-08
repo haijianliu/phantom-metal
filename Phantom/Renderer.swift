@@ -13,6 +13,7 @@ let maxBuffersInFlight = 3
 class Renderer: NSObject, MTKViewDelegate {
 
 	let device: MTLDevice
+	
 	let commandQueue: MTLCommandQueue
 	var dynamicUniformBuffer: MTLBuffer
 	var pipelineState: MTLRenderPipelineState
@@ -26,12 +27,11 @@ class Renderer: NSObject, MTKViewDelegate {
 
 	var uniforms: UnsafeMutablePointer<Uniforms>
 
-	var projectionMatrix: Matrix4x4 = matrix_float4x4()
+	var projectionMatrix: Matrix4x4 = Matrix4x4()
 
 	var rotation: Float = 0
 	
 	var mesh: Mesh
-	
 	var texture: Texture = Texture()
 
 	init?(mtkView: MTKView) {
