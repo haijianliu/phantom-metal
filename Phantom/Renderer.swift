@@ -52,7 +52,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
 
 		// vertex descriptor
-		let mtlVertexDescriptor = Renderer.buildMetalVertexDescriptor()
+		let mtlVertexDescriptor = Mesh.buildVertexDescriptor()
 		
 		// pipeline state
 		do {
@@ -84,31 +84,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		
 
 		super.init()
-	}
-
-	class func buildMetalVertexDescriptor() -> MTLVertexDescriptor {
-		// Creete a Metal vertex descriptor specifying how vertices will by laid out for input into our render
-		// pipeline and how we'll layout our Model IO vertices
-
-		let mtlVertexDescriptor = MTLVertexDescriptor()
-
-		mtlVertexDescriptor.attributes[VertexAttribute.position.rawValue].format = MTLVertexFormat.float3
-		mtlVertexDescriptor.attributes[VertexAttribute.position.rawValue].offset = 0
-		mtlVertexDescriptor.attributes[VertexAttribute.position.rawValue].bufferIndex = BufferIndex.meshPositions.rawValue
-
-		mtlVertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].format = MTLVertexFormat.float2
-		mtlVertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].offset = 0
-		mtlVertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].bufferIndex = BufferIndex.meshGenerics.rawValue
-
-		mtlVertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stride = 12
-		mtlVertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepRate = 1
-		mtlVertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepFunction = MTLVertexStepFunction.perVertex
-
-		mtlVertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stride = 8
-		mtlVertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stepRate = 1
-		mtlVertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stepFunction = MTLVertexStepFunction.perVertex
-
-		return mtlVertexDescriptor
 	}
 
 	class func buildRenderPipelineWithDevice(device: MTLDevice, metalKitView: MTKView, mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTLRenderPipelineState {
