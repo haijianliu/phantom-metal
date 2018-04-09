@@ -5,7 +5,8 @@ import MetalKit
 class Transform {
 	
 	// The 256 byte aligned size of our uniform structure
-	var uniformBufferIndex = 0
+	let uniformBufferSize = (MemoryLayout<Uniforms>.size & ~0xFF) + 0x100
+	
 	var uniforms: UnsafeMutablePointer<Uniforms>
 	var projectionMatrix: Matrix4x4 = Matrix4x4()
 	var rotation: Float = 0
@@ -13,9 +14,6 @@ class Transform {
 	var dynamicUniformBuffer: MTLBuffer
 	
 	init?() {
-		
-		
-		let uniformBufferSize = (MemoryLayout<Uniforms>.size & ~0xFF) + 0x100
 		
 		guard let buffer = Display.main.device?.makeBuffer(length: uniformBufferSize, options: MTLResourceOptions.storageModeShared) else { return nil }
 		dynamicUniformBuffer = buffer
