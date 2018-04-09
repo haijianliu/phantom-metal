@@ -91,7 +91,7 @@ class Renderer: NSObject, MTKViewDelegate {
 	func draw(in view: MTKView) {
 		// Per frame updates hare
 		
-		transform.updateGameState()
+		transform.update()
 
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 

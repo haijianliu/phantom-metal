@@ -24,7 +24,7 @@ class Transform {
 	}
 	
 	
-	func updateGameState() {
+	func update() {
 		// Update any game state before rendering
 		
 		uniforms[0].projectionMatrix = projectionMatrix
@@ -34,10 +34,6 @@ class Transform {
 		let viewMatrix = Math.translate(0.0, 0.0, -8.0)
 		uniforms[0].modelViewMatrix = viewMatrix * modelMatrix;
 		rotation += 0.01
-	}
-	
-	func update() {
-		
 	}
 
 }
