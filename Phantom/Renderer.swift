@@ -90,19 +90,12 @@ class Renderer: NSObject, MTKViewDelegate {
 
 	func draw(in view: MTKView) {
 		// Per frame updates hare
-
-		_ = transform.inFlightSemaphore.wait(timeout: DispatchTime.distantFuture)
+		
+		transform.updateGameState()
 
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 
-			let semaphore = transform.inFlightSemaphore
-			commandBuffer.addCompletedHandler {
-				(_ commandBuffer)-> Swift.Void in semaphore.signal()
-			}
 
-			transform.updateDynamicBufferState()
-
-			transform.updateGameState()
 
 			// Delay getting the currentRenderPassDescriptor until we absolutely need it to avoid
 			//   holding onto the drawable and blocking the display pipeline any longer than necessary
