@@ -95,8 +95,6 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 
-
-
 			// Delay getting the currentRenderPassDescriptor until we absolutely need it to avoid
 			//   holding onto the drawable and blocking the display pipeline any longer than necessary
 			let renderPassDescriptor = view.currentRenderPassDescriptor
@@ -117,8 +115,7 @@ class Renderer: NSObject, MTKViewDelegate {
 				renderEncoder.setDepthStencilState(depthState)
 
 				renderEncoder.setVertexBuffer(transform.dynamicUniformBuffer, offset: 0, index: BufferIndex.uniforms.rawValue)
-				renderEncoder.setFragmentBuffer(transform.dynamicUniformBuffer, offset: 0, index: BufferIndex.uniforms.rawValue)
-
+				
 				for (index, element) in mesh.mtkMesh.vertexDescriptor.layouts.enumerated() {
 					guard let layout = element as? MDLVertexBufferLayout else {
 						return
