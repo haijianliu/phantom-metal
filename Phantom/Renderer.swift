@@ -29,28 +29,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		super.init()
 	}
 
-	class func buildRenderPipelineWithDevice(device: MTLDevice, metalKitView: MTKView, mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTLRenderPipelineState {
-		// Build a render state pipeline object
-
-		let library = device.makeDefaultLibrary()
-
-		let vertexFunction = library?.makeFunction(name: "vertexShader")
-		let fragmentFunction = library?.makeFunction(name: "fragmentShader")
-
-		let pipelineDescriptor = MTLRenderPipelineDescriptor()
-		pipelineDescriptor.label = "RenderPipeline"
-		pipelineDescriptor.sampleCount = metalKitView.sampleCount
-		pipelineDescriptor.vertexFunction = vertexFunction
-		pipelineDescriptor.fragmentFunction = fragmentFunction
-		pipelineDescriptor.vertexDescriptor = mtlVertexDescriptor
-
-		pipelineDescriptor.colorAttachments[0].pixelFormat = metalKitView.colorPixelFormat
-		pipelineDescriptor.depthAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-		pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-
-		return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-	}
-
 
 	func draw(in view: MTKView) {
 		// Per frame updates hare
@@ -114,6 +92,30 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		let aspect = Float(size.width) / Float(size.height)
 		gameObject?.transform?.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
+	}
+}
+
+extension Renderer {
+	class func buildRenderPipelineWithDevice(device: MTLDevice, metalKitView: MTKView, mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTLRenderPipelineState {
+		// Build a render state pipeline object
+		
+		let library = device.makeDefaultLibrary()
+		
+		let vertexFunction = library?.makeFunction(name: "vertexShader")
+		let fragmentFunction = library?.makeFunction(name: "fragmentShader")
+		
+		let pipelineDescriptor = MTLRenderPipelineDescriptor()
+		pipelineDescriptor.label = "RenderPipeline"
+		pipelineDescriptor.sampleCount = metalKitView.sampleCount
+		pipelineDescriptor.vertexFunction = vertexFunction
+		pipelineDescriptor.fragmentFunction = fragmentFunction
+		pipelineDescriptor.vertexDescriptor = mtlVertexDescriptor
+		
+		pipelineDescriptor.colorAttachments[0].pixelFormat = metalKitView.colorPixelFormat
+		pipelineDescriptor.depthAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
+		pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
+		
+		return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
 	}
 }
 
