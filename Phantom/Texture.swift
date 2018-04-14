@@ -6,6 +6,15 @@ class Texture {
 	
 	var mtlTexture: MTLTexture?
 	
+	init?(name: String) {
+		do {
+			mtlTexture = try Texture.load(textureName: name)
+		} catch {
+			print("Unable to load texture. Error info: \(error)")
+			return nil
+		}
+	}
+	
 	static func load(textureName: String) throws -> MTLTexture {
 		// Load texture data with optimal parameters for sampling
 		

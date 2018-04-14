@@ -19,20 +19,13 @@ class Application {
 		// GameObject
 		let gameObject = GameObject()
 		// MeshRenderer
-		let meshRenderer: MeshRenderer? = gameObject.addComponent()
+		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return }
 		// Attach Mesh
 		guard let mesh = Mesh() else { return }
-		meshRenderer?.mesh = mesh
+		meshRenderer.mesh = mesh
 		// Attach Texture
-		// Texture
-		let texture = Texture()
-		do {
-			texture.mtlTexture = try Texture.load(textureName: "UV_Grid_Sm")
-		} catch {
-			print("Unable to load texture. Error info: \(error)")
-			return
-		}
-		meshRenderer?.texture = texture
+		guard let texture = Texture(name: "U_Grid_Sm") else { return }
+		meshRenderer.texture = texture
 		// Add GameObject
 		gameObjects.append(gameObject)
 		
