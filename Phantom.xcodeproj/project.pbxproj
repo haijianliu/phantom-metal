@@ -37,6 +37,9 @@
 		6054B2112081DB140052E413 /* MeshRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B2102081DB140052E413 /* MeshRenderer.swift */; };
 		6054B2122081DB140052E413 /* MeshRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B2102081DB140052E413 /* MeshRenderer.swift */; };
 		6054B2132081DB140052E413 /* MeshRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B2102081DB140052E413 /* MeshRenderer.swift */; };
+		6054B219208203750052E413 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B218208203750052E413 /* Camera.swift */; };
+		6054B21A208204030052E413 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B218208203750052E413 /* Camera.swift */; };
+		6054B21B208204030052E413 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B218208203750052E413 /* Camera.swift */; };
 		605F2C2B206641F200C534C8 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F2C2A206641F200C534C8 /* Math.swift */; };
 		605F2C2C206644A300C534C8 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F2C2A206641F200C534C8 /* Math.swift */; };
 		605F2C2D206644A400C534C8 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F2C2A206641F200C534C8 /* Math.swift */; };
@@ -87,6 +90,7 @@
 		6054B2082081C68D0052E413 /* CommandBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBuffer.swift; sourceTree = "<group>"; };
 		6054B20C2081C9270052E413 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		6054B2102081DB140052E413 /* MeshRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshRenderer.swift; sourceTree = "<group>"; };
+		6054B218208203750052E413 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		605F2C2A206641F200C534C8 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		606B711220787E02004EFF95 /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
 		606B711E2078B92C004EFF95 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				6054B2082081C68D0052E413 /* CommandBuffer.swift */,
 				6054B20C2081C9270052E413 /* Component.swift */,
 				6054B2102081DB140052E413 /* MeshRenderer.swift */,
+				6054B218208203750052E413 /* Camera.swift */,
 			);
 			path = Phantom;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				607206F120538ABE0068F691 /* GameViewController.swift in Sources */,
 				604F12B0206F6355003CE7D1 /* Resources.swift in Sources */,
 				607206EF20538ABE0068F691 /* AppDelegate.swift in Sources */,
+				6054B219208203750052E413 /* Camera.swift in Sources */,
 				606B711320787E02004EFF95 /* Display.swift in Sources */,
 				606B712320791905004EFF95 /* Error.swift in Sources */,
 				605F2C2B206641F200C534C8 /* Math.swift in Sources */,
@@ -423,6 +429,7 @@
 				6072070220538ABE0068F691 /* GameViewController.swift in Sources */,
 				604F12B1206F66D1003CE7D1 /* Resources.swift in Sources */,
 				6072070020538ABE0068F691 /* AppDelegate.swift in Sources */,
+				6054B21A208204030052E413 /* Camera.swift in Sources */,
 				606B711420787E02004EFF95 /* Display.swift in Sources */,
 				606B712420791905004EFF95 /* Error.swift in Sources */,
 				605F2C2C206644A300C534C8 /* Math.swift in Sources */,
@@ -449,6 +456,7 @@
 				6072071020538ABE0068F691 /* GameViewController.swift in Sources */,
 				604F12B2206F66D2003CE7D1 /* Resources.swift in Sources */,
 				6072070E20538ABE0068F691 /* AppDelegate.swift in Sources */,
+				6054B21B208204030052E413 /* Camera.swift in Sources */,
 				606B711520787E02004EFF95 /* Display.swift in Sources */,
 				606B712520791905004EFF95 /* Error.swift in Sources */,
 				605F2C2D206644A400C534C8 /* Math.swift in Sources */,
