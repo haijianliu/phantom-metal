@@ -8,14 +8,10 @@ import MetalKit
 class Renderer: NSObject, MTKViewDelegate {
 
 	let device: MTLDevice
-	
 	let commandQueue: MTLCommandQueue
-	var pipelineState: MTLRenderPipelineState
 	var depthState: MTLDepthStencilState
 	
-	var mesh: Mesh
-	var texture: Texture = Texture()
-	var transform: Transform
+	var gameObject: GameObject?
 
 	init?(mtkView: MTKView) {
 		// Set device
@@ -25,17 +21,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		guard let queue = self.device.makeCommandQueue() else { return nil }
 		self.commandQueue = queue
 
-		// vertex descriptor
-		let mtlVertexDescriptor = Mesh.buildVertexDescriptor()
-		
-		// pipeline state
-		do {
-			pipelineState = try Renderer.buildRenderPipelineWithDevice(device: device, metalKitView: mtkView, mtlVertexDescriptor: mtlVertexDescriptor)
-		} catch {
-			print("Unable to compile render pipeline state.  Error info: \(error)")
-			return nil
-		}
-
 		// depth descriptor
 		let depthStateDesciptor = MTLDepthStencilDescriptor()
 		depthStateDesciptor.depthCompareFunction = MTLCompareFunction.less
@@ -43,25 +28,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		guard let state = device.makeDepthStencilState(descriptor:depthStateDesciptor) else { return nil }
 		depthState = state
 		
-		// Mesh
-		guard let newMesh = Mesh.init(vertexDescriptor: mtlVertexDescriptor) else {
-			return nil
-		}
-		mesh = newMesh
-
-		// Texture
-		do {
-			texture.mtlTexture = try Texture.load(textureName: "UV_Grid_Sm")
-		} catch {
-			print("Unable to load texture. Error info: \(error)")
-			return nil
-		}
-		
-		// Transform
-		guard let newTransform = Transform() else { return nil }
-		transform = newTransform
-		
-
 		super.init()
 	}
 
@@ -91,12 +57,10 @@ class Renderer: NSObject, MTKViewDelegate {
 	func draw(in view: MTKView) {
 		// Per frame updates hare
 		
-		transform.update()
+		gameObject?.transform?.update()
 
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
-
-			// Delay getting the currentRenderPassDescriptor until we absolutely need it to avoid
-			//   holding onto the drawable and blocking the display pipeline any longer than necessary
+			
 			let renderPassDescriptor = view.currentRenderPassDescriptor
 
 			if let renderPassDescriptor = renderPassDescriptor, let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
@@ -110,26 +74,27 @@ class Renderer: NSObject, MTKViewDelegate {
 
 				renderEncoder.setFrontFacing(.counterClockwise)
 
-				renderEncoder.setRenderPipelineState(pipelineState)
+				let meshRenderer: MeshRenderer? = gameObject?.getComponent()
+				renderEncoder.setRenderPipelineState((meshRenderer?.pipelineState)!)
 
 				renderEncoder.setDepthStencilState(depthState)
 
-				renderEncoder.setVertexBuffer(transform.dynamicUniformBuffer, offset: 0, index: BufferIndex.uniforms.rawValue)
+				renderEncoder.setVertexBuffer(gameObject?.transform?.dynamicUniformBuffer, offset: 0, index: BufferIndex.uniforms.rawValue)
 				
-				for (index, element) in mesh.mtkMesh.vertexDescriptor.layouts.enumerated() {
+				for (index, element) in (meshRenderer?.mesh?.mtkMesh.vertexDescriptor.layouts.enumerated())! {
 					guard let layout = element as? MDLVertexBufferLayout else {
 						return
 					}
 
 					if layout.stride != 0 {
-						let buffer = mesh.mtkMesh.vertexBuffers[index]
-						renderEncoder.setVertexBuffer(buffer.buffer, offset: buffer.offset, index: index)
+						let buffer = meshRenderer?.mesh?.mtkMesh.vertexBuffers[index]
+						renderEncoder.setVertexBuffer(buffer?.buffer, offset: (buffer?.offset)!, index: index)
 					}
 				}
 
-				renderEncoder.setFragmentTexture(texture.mtlTexture, index: TextureIndex.color.rawValue)
+				renderEncoder.setFragmentTexture(meshRenderer?.texture?.mtlTexture, index: TextureIndex.color.rawValue)
 
-				for submesh in mesh.mtkMesh.submeshes {
+				for submesh in (meshRenderer?.mesh?.mtkMesh.submeshes)! {
 						renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
 				}
 
@@ -150,7 +115,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		// Respond to drawable size or orientation changes here
 
 		let aspect = Float(size.width) / Float(size.height)
-		transform.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
+		gameObject?.transform?.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
 	}
 }
 
