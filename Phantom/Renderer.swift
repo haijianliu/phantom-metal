@@ -7,7 +7,6 @@ import MetalKit
 
 class Renderer: NSObject, MTKViewDelegate {
 
-	let device: MTLDevice
 	let commandQueue: MTLCommandQueue
 	var depthState: MTLDepthStencilState
 	
@@ -16,9 +15,8 @@ class Renderer: NSObject, MTKViewDelegate {
 	init?(mtkView: MTKView) {
 		// Set device
 		guard let device = mtkView.device else { return nil }
-		self.device = device
 		
-		guard let queue = self.device.makeCommandQueue() else { return nil }
+		guard let queue = mtkView.device?.makeCommandQueue() else { return nil }
 		self.commandQueue = queue
 
 		// depth descriptor
