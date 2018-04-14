@@ -7,6 +7,10 @@ class GameObject {
 	
 	private var components = [String: Component]()
 	
+	init() {
+		
+	}
+	
 	/// Adds a component class named type name to the game object.
 	///
 	/// If there is already a same type of componet added, this function will do nothing, and return a nil
@@ -14,7 +18,10 @@ class GameObject {
 	func addComponent<T: Component>() -> T? {
 		let typeName = String(describing: T.self)
 		if components[typeName] == nil {
-			components[typeName] = T()
+			var componet = T()
+			componet.gameObject = self
+			componet.transform = transform
+			components[typeName] = componet
 			return components[typeName] as? T
 		} else {
 			return nil
