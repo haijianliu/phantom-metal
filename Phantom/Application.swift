@@ -8,13 +8,6 @@ class Application {
 	
 
 	func launch() {
-		// Create Renderer
-		guard let newRenderer = Renderer(mtkView: Display.main) else {
-			print("Renderer cannot be initialized")
-			return
-		}
-		renderer = newRenderer
-		
 
 		// GameObject
 		let gameObject = GameObject()
@@ -24,10 +17,18 @@ class Application {
 		guard let mesh = Mesh() else { return }
 		meshRenderer.mesh = mesh
 		// Attach Texture
-		guard let texture = Texture(name: "U_Grid_Sm") else { return }
+		guard let texture = Texture(name: "UV_Grid_Sm") else { return }
 		meshRenderer.texture = texture
 		// Add GameObject
 		gameObjects.append(gameObject)
+		
+		
+		// Create Renderer
+		guard let newRenderer = Renderer(mtkView: Display.main) else {
+			print("Renderer cannot be initialized")
+			return
+		}
+		renderer = newRenderer
 		
 		renderer?.gameObject = gameObject
 		
