@@ -6,11 +6,11 @@ import Metal
 import MetalKit
 
 class Renderer: NSObject, MTKViewDelegate {
-
+	
 	let commandQueue: MTLCommandQueue
 	var depthState: MTLDepthStencilState
 	
-	var gameObject: GameObject?
+	var application: Application?
 
 	init?(mtkView: MTKView) {
 		// Set device
@@ -32,66 +32,73 @@ class Renderer: NSObject, MTKViewDelegate {
 
 	func draw(in view: MTKView) {
 		// Per frame updates hare
-		
-		gameObject?.transform?.update()
-
-		if let commandBuffer = commandQueue.makeCommandBuffer() {
-			
-			let renderPassDescriptor = view.currentRenderPassDescriptor
-
-			if let renderPassDescriptor = renderPassDescriptor, let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
-
-				/// Final pass rendering code here
-				renderEncoder.label = "Primary Render Encoder"
-
-				renderEncoder.pushDebugGroup("Draw Box")
-
-				renderEncoder.setCullMode(.back)
-
-				renderEncoder.setFrontFacing(.counterClockwise)
-
-				let meshRenderer: MeshRenderer? = gameObject?.getComponent()
-				renderEncoder.setRenderPipelineState((meshRenderer?.pipelineState)!)
-
-				renderEncoder.setDepthStencilState(depthState)
-
-				renderEncoder.setVertexBuffer(gameObject?.transform?.dynamicUniformBuffer, offset: 0, index: BufferIndex.uniforms.rawValue)
-				
-				for (index, element) in (meshRenderer?.mesh?.mtkMesh.vertexDescriptor.layouts.enumerated())! {
-					guard let layout = element as? MDLVertexBufferLayout else {
-						return
-					}
-
-					if layout.stride != 0 {
-						let buffer = meshRenderer?.mesh?.mtkMesh.vertexBuffers[index]
-						renderEncoder.setVertexBuffer(buffer?.buffer, offset: (buffer?.offset)!, index: index)
-					}
-				}
-
-				renderEncoder.setFragmentTexture(meshRenderer?.texture?.mtlTexture, index: TextureIndex.color.rawValue)
-
-				for submesh in (meshRenderer?.mesh?.mtkMesh.submeshes)! {
-						renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
-				}
-
-				renderEncoder.popDebugGroup()
-
-				renderEncoder.endEncoding()
-
-				if let drawable = view.currentDrawable {
-					commandBuffer.present(drawable)
-				}
-			}
-
-			commandBuffer.commit()
+		guard let gameObjects = application?.gameObjects else { return }
+		for gameObject in gameObjects {
+			drawGameObject(gameObject: gameObject, view: view)
 		}
 	}
 
 	func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
 		// Respond to drawable size or orientation changes here
 
+		// TODO: Camera
 		let aspect = Float(size.width) / Float(size.height)
-		gameObject?.transform?.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
+		application?.gameObjects[0].transform?.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
+	}
+	
+	private func drawGameObject(gameObject: GameObject, view: MTKView) {
+		gameObject.transform?.update()
+		
+		if let commandBuffer = commandQueue.makeCommandBuffer() {
+			
+			let renderPassDescriptor = view.currentRenderPassDescriptor
+			
+			if let renderPassDescriptor = renderPassDescriptor, let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
+				
+				/// Final pass rendering code here
+				renderEncoder.label = "Primary Render Encoder"
+				
+				renderEncoder.pushDebugGroup("Draw Box")
+				
+				renderEncoder.setCullMode(.back)
+				
+				renderEncoder.setFrontFacing(.counterClockwise)
+				
+				let meshRenderer: MeshRenderer? = gameObject.getComponent()
+				renderEncoder.setRenderPipelineState((meshRenderer?.pipelineState)!)
+				
+				renderEncoder.setDepthStencilState(depthState)
+				
+				renderEncoder.setVertexBuffer(gameObject.transform?.dynamicUniformBuffer, offset: 0, index: BufferIndex.uniforms.rawValue)
+				
+				for (index, element) in (meshRenderer?.mesh?.mtkMesh.vertexDescriptor.layouts.enumerated())! {
+					guard let layout = element as? MDLVertexBufferLayout else {
+						return
+					}
+					
+					if layout.stride != 0 {
+						let buffer = meshRenderer?.mesh?.mtkMesh.vertexBuffers[index]
+						renderEncoder.setVertexBuffer(buffer?.buffer, offset: (buffer?.offset)!, index: index)
+					}
+				}
+				
+				renderEncoder.setFragmentTexture(meshRenderer?.texture?.mtlTexture, index: TextureIndex.color.rawValue)
+				
+				for submesh in (meshRenderer?.mesh?.mtkMesh.submeshes)! {
+					renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
+				}
+				
+				renderEncoder.popDebugGroup()
+				
+				renderEncoder.endEncoding()
+				
+				if let drawable = view.currentDrawable {
+					commandBuffer.present(drawable)
+				}
+			}
+			
+			commandBuffer.commit()
+		}
 	}
 }
 

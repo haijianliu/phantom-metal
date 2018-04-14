@@ -31,7 +31,7 @@ class Application {
 			print("Renderer cannot be initialized")
 			return
 		}
-		newRenderer.gameObject = gameObjects[0]
+		newRenderer.application = self
 		renderer = newRenderer
 		
 		// TODO: This will be a Display process
