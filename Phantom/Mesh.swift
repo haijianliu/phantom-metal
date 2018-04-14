@@ -4,10 +4,12 @@ import MetalKit
 
 class Mesh {
 	var mtkMesh: MTKMesh
+	let mtlVertexDescriptor: MTLVertexDescriptor
 	
-	init?(vertexDescriptor: MTLVertexDescriptor) {
+	init?() {
+		mtlVertexDescriptor = Mesh.buildVertexDescriptor()
 		do {
-			mtkMesh = try Mesh.buildMesh(device: Display.main.device!, vertexDescriptor: vertexDescriptor)
+			mtkMesh = try Mesh.buildMesh(device: Display.main.device!, vertexDescriptor: mtlVertexDescriptor)
 		} catch {
 			print("Unable to build MetalKit Mesh. Error info: \(error)")
 			return nil
