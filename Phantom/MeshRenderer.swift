@@ -3,8 +3,6 @@
 import MetalKit
 
 class MeshRenderer: Component {
-	var gameObject: GameObject?
-	var transform: Transform?
 	
 	var pipelineState: MTLRenderPipelineState?
 	
@@ -21,8 +19,4 @@ class MeshRenderer: Component {
 	}
 	
 	var texture: Texture?
-	
-	required init() {
-		
-	}
 }
