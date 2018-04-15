@@ -75,7 +75,7 @@ class Renderer: NSObject, MTKViewDelegate {
 				
 				renderEncoder.setDepthStencilState(depthState)
 				
-				renderEncoder.setVertexBuffer(meshRenderer.transform?.dynamicUniformBuffer, offset: 0, index: BufferIndex.uniforms.rawValue)
+				renderEncoder.setVertexBuffer(meshRenderer.transform?.dynamicUniformBuffer, offset: (meshRenderer.transform?.uniformBufferOffset)!, index: BufferIndex.uniforms.rawValue)
 				
 				for (index, element) in (meshRenderer.mesh?.mtkMesh.vertexDescriptor.layouts.enumerated())! {
 					guard let layout = element as? MDLVertexBufferLayout else {
