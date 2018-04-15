@@ -43,11 +43,10 @@ class Renderer: NSObject, MTKViewDelegate {
 	}
 
 	func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-		// Respond to drawable size or orientation changes here
-
 		// TODO: Camera
 		let aspect = Float(size.width) / Float(size.height)
-		application?.gameObjects[0].transform.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
+		guard let camera: Camera = Camera.main else { return }
+		camera.projectionMatrix = Math.perspective(fovyRadians: camera.fieldOfView, aspect: aspect, near: camera.nearClipPlane, far: camera.farClipPlane)
 	}
 	
 	private func drawGameObject(meshRenderer: MeshRenderer, view: MTKView) {
