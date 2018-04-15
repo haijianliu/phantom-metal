@@ -8,11 +8,12 @@ class Component {
 	let gameObject: GameObject
 	
 	/// The Transform attached to this GameObject.
-	let transform: Transform
+	var transform: Transform {
+		return gameObject.transform
+	}
 	
 	required init(_ gameObject: GameObject) {
 		self.gameObject = gameObject
-		transform = gameObject.transform
 	}
 }
 
