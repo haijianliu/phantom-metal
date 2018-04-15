@@ -77,6 +77,9 @@
 		6072071E20538ABE0068F691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		6072071F20538ABE0068F691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		6072072020538ABE0068F691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
+		609064FD2083A58C0047D411 /* GameObjectTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609064FC2083A58C0047D411 /* GameObjectTag.swift */; };
+		609064FE2083A6560047D411 /* GameObjectTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609064FC2083A58C0047D411 /* GameObjectTag.swift */; };
+		609064FF2083A6570047D411 /* GameObjectTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609064FC2083A58C0047D411 /* GameObjectTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +119,7 @@
 		6072070F20538ABE0068F691 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6072071220538ABE0068F691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6072071420538ABE0068F691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		609064FC2083A58C0047D411 /* GameObjectTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,7 @@
 				6054B20C2081C9270052E413 /* Component.swift */,
 				6054B2102081DB140052E413 /* MeshRenderer.swift */,
 				6054B218208203750052E413 /* Camera.swift */,
+				609064FC2083A58C0047D411 /* GameObjectTag.swift */,
 			);
 			path = Phantom;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				603F76042069424200E9922F /* Application.swift in Sources */,
 				6072071520538ABE0068F691 /* Shaders.metal in Sources */,
 				6030BC84206FC00300918010 /* GameObject.swift in Sources */,
+				609064FD2083A58C0047D411 /* GameObjectTag.swift in Sources */,
 				606B71272079E27A004EFF95 /* Transform.swift in Sources */,
 				603F760E206953CE00E9922F /* MatrixTransform.swift in Sources */,
 				603F7616206958B300E9922F /* Constants.swift in Sources */,
@@ -421,6 +427,7 @@
 				603F76032069424100E9922F /* Application.swift in Sources */,
 				6072071620538ABE0068F691 /* Shaders.metal in Sources */,
 				6030BC85206FC00300918010 /* GameObject.swift in Sources */,
+				609064FE2083A6560047D411 /* GameObjectTag.swift in Sources */,
 				606B71282079E27A004EFF95 /* Transform.swift in Sources */,
 				603F760F206954E600E9922F /* MatrixTransform.swift in Sources */,
 				603F7617206958B800E9922F /* Constants.swift in Sources */,
@@ -448,6 +455,7 @@
 				6053011A206663C800AAAF1F /* Application.swift in Sources */,
 				6072071720538ABE0068F691 /* Shaders.metal in Sources */,
 				6030BC86206FC00300918010 /* GameObject.swift in Sources */,
+				609064FF2083A6570047D411 /* GameObjectTag.swift in Sources */,
 				606B71292079E27A004EFF95 /* Transform.swift in Sources */,
 				603F7610206954E900E9922F /* MatrixTransform.swift in Sources */,
 				603F7618206958B900E9922F /* Constants.swift in Sources */,
