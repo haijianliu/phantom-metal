@@ -34,7 +34,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		// Per frame updates hare
 		guard let gameObjects = application?.gameObjects else { return }
 		for gameObject in gameObjects {
-			gameObject.transform?.update()
 			guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
 			drawGameObject(meshRenderer: meshRenderer, view: view)
 		}
@@ -50,8 +49,14 @@ class Renderer: NSObject, MTKViewDelegate {
 	
 	private func drawGameObject(meshRenderer: MeshRenderer, view: MTKView) {
 
+		guard let semaphore = meshRenderer.transform?.inFlightSemaphore else { return }
+		semaphore.wait()
 		
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
+			
+			commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
+			
+			meshRenderer.transform?.update()
 			
 			let renderPassDescriptor = view.currentRenderPassDescriptor
 			

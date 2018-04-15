@@ -2,6 +2,10 @@
 
 import MetalKit
 
+// The 256 byte aligned size of our uniform structure
+let alignedUniformsSize = (MemoryLayout<Uniforms>.size & ~0xFF) + 0x100
+let maxBuffersInFlight = 1
+
 class Transform {
 	
 	var uniforms: UnsafeMutablePointer<Uniforms>
@@ -9,6 +13,10 @@ class Transform {
 	var rotation: Float = 0
 	
 	var dynamicUniformBuffer: MTLBuffer
+	
+	let inFlightSemaphore = DispatchSemaphore(value: maxBuffersInFlight)
+	var uniformBufferOffset = 0
+	var uniformBufferIndex = 0
 	
 	init?() {
 		
