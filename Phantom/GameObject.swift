@@ -2,14 +2,30 @@
 
 import MetalKit
 
+// Function(vertexShader): the offset into the buffer uniforms that is bound at buffer index must be a multiple of 256
+let alignedUniformsSize = (MemoryLayout<Uniforms>.size & ~0xFF) + 0x100
+let maxBuffersInFlight = 3
+
 class GameObject {
-	let transform: Transform
+	
+	var transform: Transform {
+		return components[String(describing: Transform.self)] as! Transform
+	}
+	
+	var uniforms: UnsafeMutablePointer<Uniforms>
+	var dynamicUniformBuffer: MTLBuffer
+	let inFlightSemaphore = DispatchSemaphore(value: maxBuffersInFlight)
+	var uniformBufferOffset = 0
+	var uniformBufferIndex = 0
 	
 	private var components = [String: Component]()
 	
 	init?() {
-		guard let transform = Transform() else { return nil }
-		self.transform = transform
+		let uniformBufferSize = alignedUniformsSize * maxBuffersInFlight
+		guard let buffer = Display.main.device?.makeBuffer(length: uniformBufferSize, options: MTLResourceOptions.storageModeShared) else { return nil }
+		dynamicUniformBuffer = buffer
+		self.dynamicUniformBuffer.label = "UniformBuffer"
+		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
 	}
 	
 	/// Adds a component class named type name to the game object.
@@ -31,6 +47,16 @@ class GameObject {
 	/// - Returns: Component instance of component type if the game object has one attached, nil if it doesn't.
 	func getComponent<T: Component>() -> T? {
 		return components[String(describing: T.self)] as? T
+	}
+	
+	
+	func updateDynamicBufferState() {
+		/// Update the state of our uniform buffers before rendering
+		uniformBufferIndex = (uniformBufferIndex + 1) % maxBuffersInFlight
+		
+		uniformBufferOffset = alignedUniformsSize * uniformBufferIndex
+		
+		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents() + uniformBufferOffset).bindMemory(to:Uniforms.self, capacity:1)
 	}
 }
 
