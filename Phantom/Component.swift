@@ -1,14 +1,18 @@
 // Copyright © haijian. All rights reserved.
 
-/// Protocol for everything attached to GameObject(s).
-protocol Component {
+/// Base class for everything attached to GameObject(s).
+class Component {
 	
 	/// The game object this component is attached to.
 	/// A component is always attached to a game object.
-	var gameObject: GameObject? { get set }
+	let gameObject: GameObject
 	
 	/// The Transform attached to this GameObject.
-	var transform: Transform? { get set }
+	let transform: Transform
 	
-	init()
+	required init(_ gameObject: GameObject) {
+		self.gameObject = gameObject
+		transform = gameObject.transform
+	}
 }
+
