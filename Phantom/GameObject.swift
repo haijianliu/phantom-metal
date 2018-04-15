@@ -8,6 +8,17 @@ let maxBuffersInFlight = 3
 
 class GameObject {
 	
+	// TODO: set mainCamera before add a camera component
+	/// The tag of this game object.
+	var tag: GameObjectTag {
+		didSet {
+			if tag == .mainCamera {
+				Camera.main = self.getComponent()
+			}
+		}
+	}
+	
+	/// The Transform attached to this GameObject.
 	var transform: Transform {
 		return components[String(describing: Transform.self)] as! Transform
 	}
@@ -26,7 +37,21 @@ class GameObject {
 		dynamicUniformBuffer = buffer
 		self.dynamicUniformBuffer.label = "UniformBuffer"
 		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
+		
+		tag = .untagged
 	}
+	
+	func updateDynamicBufferState() {
+		/// Update the state of our uniform buffers before rendering
+		uniformBufferIndex = (uniformBufferIndex + 1) % maxBuffersInFlight
+		
+		uniformBufferOffset = alignedUniformsSize * uniformBufferIndex
+		
+		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents() + uniformBufferOffset).bindMemory(to:Uniforms.self, capacity:1)
+	}
+}
+
+extension GameObject {
 	
 	/// Adds a component class named type name to the game object.
 	///
@@ -48,15 +73,4 @@ class GameObject {
 	func getComponent<T: Component>() -> T? {
 		return components[String(describing: T.self)] as? T
 	}
-	
-	
-	func updateDynamicBufferState() {
-		/// Update the state of our uniform buffers before rendering
-		uniformBufferIndex = (uniformBufferIndex + 1) % maxBuffersInFlight
-		
-		uniformBufferOffset = alignedUniformsSize * uniformBufferIndex
-		
-		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents() + uniformBufferOffset).bindMemory(to:Uniforms.self, capacity:1)
-	}
 }
-
