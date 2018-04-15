@@ -3,12 +3,13 @@
 import MetalKit
 
 class GameObject {
-	var transform = Transform()
+	let transform: Transform
 	
 	private var components = [String: Component]()
 	
-	init() {
-		
+	init?() {
+		guard let transform = Transform() else { return nil }
+		self.transform = transform
 	}
 	
 	/// Adds a component class named type name to the game object.
@@ -18,9 +19,7 @@ class GameObject {
 	func addComponent<T: Component>() -> T? {
 		let typeName = String(describing: T.self)
 		if components[typeName] == nil {
-			var componet = T()
-			componet.gameObject = self
-			componet.transform = transform
+			let componet = T(self)
 			components[typeName] = componet
 			return components[typeName] as? T
 		} else {
