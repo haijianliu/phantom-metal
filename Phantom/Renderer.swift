@@ -35,7 +35,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		guard let gameObjects = application?.gameObjects else { return }
 		for gameObject in gameObjects {
 			guard let meshRenderer: MeshRenderer = gameObject.getComponent() else {
-				gameObject.transform?.update()
+				gameObject.transform.update()
 				continue
 			}
 			drawGameObject(meshRenderer: meshRenderer, view: view)
@@ -47,19 +47,19 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		// TODO: Camera
 		let aspect = Float(size.width) / Float(size.height)
-		application?.gameObjects[0].transform?.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
+		application?.gameObjects[0].transform.projectionMatrix = Math.perspective(fovyRadians: Math.radians(65), aspect: aspect, near: 0.1, far: 100.0)
 	}
 	
 	private func drawGameObject(meshRenderer: MeshRenderer, view: MTKView) {
 
-		guard let semaphore = meshRenderer.transform?.inFlightSemaphore else { return }
+		let semaphore = meshRenderer.transform.inFlightSemaphore
 		_ = semaphore.wait(timeout: .distantFuture)
 		
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 			
 			commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
 			
-			meshRenderer.transform?.update()
+			meshRenderer.transform.update()
 			
 			let renderPassDescriptor = view.currentRenderPassDescriptor
 			
@@ -78,7 +78,7 @@ class Renderer: NSObject, MTKViewDelegate {
 				
 				renderEncoder.setDepthStencilState(depthState)
 				
-				renderEncoder.setVertexBuffer(meshRenderer.transform?.dynamicUniformBuffer, offset: (meshRenderer.transform?.uniformBufferOffset)!, index: BufferIndex.uniforms.rawValue)
+				renderEncoder.setVertexBuffer(meshRenderer.transform.dynamicUniformBuffer, offset: meshRenderer.transform.uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
 				
 				for (index, element) in (meshRenderer.mesh?.mtkMesh.vertexDescriptor.layouts.enumerated())! {
 					guard let layout = element as? MDLVertexBufferLayout else {
