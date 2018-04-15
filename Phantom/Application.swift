@@ -13,6 +13,8 @@ class Application {
 	private func createGameObjects() {
 		// GameObject
 		guard let gameObject = GameObject() else { return }
+		// Transform
+		guard let _: Transform = gameObject.addComponent() else { return }
 		// MeshRenderer
 		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return }
 		// Attach Mesh
