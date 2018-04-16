@@ -21,8 +21,8 @@ class GameObject {
 		return components[String(describing: Transform.self)] as! Transform
 	}
 	
+	// TODO: private
 	var transformUniformBuffer: GpuBuffer<Uniforms>
-
 	private var components = [String: Component]()
 	
 	// TODO: named name.
@@ -58,5 +58,25 @@ extension GameObject {
 	/// - Returns: Component instance of component type if the game object has one attached, nil if it doesn't.
 	func getComponent<ComponentType: Component>() -> ComponentType? {
 		return components[String(describing: ComponentType.self)] as? ComponentType
+	}
+}
+
+// MARK: - Update functions
+extension GameObject {
+	
+	// TODO: update command buffer in game object
+	func getSemaphore() -> DispatchSemaphore {
+		// TODO: wait in GpuBuffer
+		return transformUniformBuffer.semaphore
+	}
+	
+	func update() {
+		transformUniformBuffer.updateBufferState()
+		// TODO: in game object
+		transformUniformBuffer.pointer[0].projectionMatrix = (Camera.main?.projectionMatrix)!
+		// TODO: Camera set view matrix
+		transformUniformBuffer.pointer[0].modelViewMatrix = transform.viewMatrix * transform.modelMatrix;
+		
+		transform.update()
 	}
 }
