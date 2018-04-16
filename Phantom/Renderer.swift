@@ -49,17 +49,18 @@ class Renderer: NSObject, MTKViewDelegate {
 		camera.projectionMatrix = Math.perspective(fovyRadians: camera.fieldOfView, aspect: aspect, near: camera.nearClipPlane, far: camera.farClipPlane)
 	}
 	
+	// TODO: in CommandBuffer
 	private func drawGameObject(meshRenderer: MeshRenderer, view: MTKView) {
 
-		// TODO: wait in GpuBuffer
-		let semaphore = meshRenderer.gameObject.transformUniformBuffer.semaphore
+		// TODO: wait in game object
+		let semaphore = meshRenderer.gameObject.getSemaphore()
 		_ = semaphore.wait(timeout: .distantFuture)
 		
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 			
 			commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
 			
-			meshRenderer.transform.update()
+			meshRenderer.gameObject.update()
 			
 			let renderPassDescriptor = view.currentRenderPassDescriptor
 			
@@ -78,7 +79,8 @@ class Renderer: NSObject, MTKViewDelegate {
 				
 				renderEncoder.setDepthStencilState(depthState)
 				
-				// TODO: in GpuBuffer
+				// TODO: in game object
+				// TODO: BufferIndex
 				renderEncoder.setVertexBuffer(meshRenderer.gameObject.transformUniformBuffer.buffer, offset: meshRenderer.gameObject.transformUniformBuffer.offset, index: BufferIndex.uniforms.rawValue)
 				
 				for (index, element) in (meshRenderer.mesh?.mtkMesh.vertexDescriptor.layouts.enumerated())! {
