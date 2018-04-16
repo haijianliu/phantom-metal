@@ -2,10 +2,7 @@
 
 import MetalKit
 
-// Function(vertexShader): the offset into the buffer uniforms that is bound at buffer index must be a multiple of 256
-let alignedUniformsSize = (MemoryLayout<Uniforms>.size & ~0xFF) + 0x100
-let maxBuffersInFlight = 3
-
+// TODO: description
 class GameObject {
 	
 	// TODO: set mainCamera before add a camera component
@@ -23,31 +20,16 @@ class GameObject {
 		return components[String(describing: Transform.self)] as! Transform
 	}
 	
-	var uniforms: UnsafeMutablePointer<Uniforms>
-	var dynamicUniformBuffer: MTLBuffer
-	let inFlightSemaphore = DispatchSemaphore(value: maxBuffersInFlight)
-	var uniformBufferOffset = 0
-	var uniformBufferIndex = 0
-	
+	var transformUniformBuffer: GpuBuffer<Uniforms>
+
 	private var components = [String: Component]()
 	
 	init?() {
-		let uniformBufferSize = alignedUniformsSize * maxBuffersInFlight
-		guard let buffer = Display.main.device?.makeBuffer(length: uniformBufferSize, options: MTLResourceOptions.storageModeShared) else { return nil }
-		dynamicUniformBuffer = buffer
-		self.dynamicUniformBuffer.label = "UniformBuffer"
-		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents()).bindMemory(to: Uniforms.self, capacity: 1)
+		// TODO: init dynamic semaphore value
+		guard let newBuffer = GpuBuffer<Uniforms>(semaphoreValue: 2, options: MTLResourceOptions.storageModeShared) else { return nil }
+		transformUniformBuffer = newBuffer
 		
 		tag = .untagged
-	}
-	
-	func updateDynamicBufferState() {
-		/// Update the state of our uniform buffers before rendering
-		uniformBufferIndex = (uniformBufferIndex + 1) % maxBuffersInFlight
-		
-		uniformBufferOffset = alignedUniformsSize * uniformBufferIndex
-		
-		uniforms = UnsafeMutableRawPointer(dynamicUniformBuffer.contents() + uniformBufferOffset).bindMemory(to:Uniforms.self, capacity:1)
 	}
 }
 
@@ -57,12 +39,12 @@ extension GameObject {
 	///
 	/// If there is already a same type of componet added, this function will do nothing, and return a nil
 	/// - Returns: Componet instance if succeed, otherwise nil
-	func addComponent<T: Component>() -> T? {
-		let typeName = String(describing: T.self)
+	func addComponent<ComponentType: Component>() -> ComponentType? {
+		let typeName = String(describing: ComponentType.self)
 		if components[typeName] == nil {
-			let componet = T(self)
+			let componet = ComponentType(self)
 			components[typeName] = componet
-			return components[typeName] as? T
+			return components[typeName] as? ComponentType
 		} else {
 			return nil
 		}
@@ -70,7 +52,7 @@ extension GameObject {
 	
 	/// Get a component instance attached to the game object by component type.
 	/// - Returns: Component instance of component type if the game object has one attached, nil if it doesn't.
-	func getComponent<T: Component>() -> T? {
-		return components[String(describing: T.self)] as? T
+	func getComponent<ComponentType: Component>() -> ComponentType? {
+		return components[String(describing: ComponentType.self)] as? ComponentType
 	}
 }
