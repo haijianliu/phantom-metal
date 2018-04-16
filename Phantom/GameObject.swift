@@ -2,7 +2,8 @@
 
 import MetalKit
 
-// TODO: description
+// TODO: Inherits from:Obje
+/// Base class for all entities in scenes.
 class GameObject {
 	
 	// TODO: set mainCamera before add a camera component
@@ -24,15 +25,18 @@ class GameObject {
 
 	private var components = [String: Component]()
 	
+	// TODO: named name.
+	/// Creates a new game object.
 	init?() {
 		// TODO: init dynamic semaphore value
 		guard let newBuffer = GpuBuffer<Uniforms>(semaphoreValue: 2, options: MTLResourceOptions.storageModeShared) else { return nil }
 		transformUniformBuffer = newBuffer
-		
+		// Default tag: untagged
 		tag = .untagged
 	}
 }
 
+// MARK: - Extension functions for Component.
 extension GameObject {
 	
 	/// Adds a component class named type name to the game object.
