@@ -16,6 +16,7 @@ struct GpuBuffer<BufferType> {
 	/// Current data index.
 	var index = 0
 	
+	// TODO: private
 	let semaphore: DispatchSemaphore
 	var buffer: MTLBuffer
 	var pointer: UnsafeMutablePointer<BufferType>
