@@ -54,7 +54,7 @@ class Renderer: NSObject, MTKViewDelegate {
 
 		// TODO: wait in game object
 		let semaphore = meshRenderer.gameObject.getSemaphore()
-		_ = semaphore.wait(timeout: .distantFuture)
+		_ = semaphore.wait()
 		
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 			
