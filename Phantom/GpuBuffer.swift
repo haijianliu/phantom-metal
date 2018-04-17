@@ -8,13 +8,13 @@ import MetalKit
 /// TODO: adopt Uniform protocol.
 struct GpuBuffer<BufferType> {
 	// Function(vertexShader): the offset into the buffer uniforms that is bound at buffer index must be a multiple of 256.
-	let alignedSize = (MemoryLayout<BufferType>.size & ~0xFF) + 0x100
+	private let alignedSize = (MemoryLayout<BufferType>.size & ~0xFF) + 0x100
 	/// The number of copies of the buffer.
-	let max: Int
+	private let max: Int
 	/// Current data offer in bytes.
 	var offset = 0
 	/// Current data index.
-	var index = 0
+	private var index = 0
 	
 	// TODO: private
 	let semaphore: DispatchSemaphore
