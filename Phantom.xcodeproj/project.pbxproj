@@ -151,20 +151,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		603F760A20694C2A00E9922F /* Metal */ = {
+		603F760A20694C2A00E9922F /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
 				607206E320538ABE0068F691 /* Shaders.metal */,
 			);
-			path = Metal;
+			path = Shaders;
 			sourceTree = "<group>";
 		};
-		603F760B20694E1700E9922F /* Bridging */ = {
+		603F760B20694E1700E9922F /* Bridges */ = {
 			isa = PBXGroup;
 			children = (
 				607206E520538ABE0068F691 /* ShaderTypes.h */,
 			);
-			path = Bridging;
+			path = Bridges;
 			sourceTree = "<group>";
 		};
 		603F760C206952BE00E9922F /* Math */ = {
@@ -182,8 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				607206E620538ABE0068F691 /* Assets.xcassets */,
-				603F760B20694E1700E9922F /* Bridging */,
-				603F760A20694C2A00E9922F /* Metal */,
 				607206E220538ABE0068F691 /* Phantom */,
 				607206ED20538ABE0068F691 /* iOS */,
 				607206FE20538ABE0068F691 /* tvOS */,
@@ -195,6 +193,8 @@
 		607206E220538ABE0068F691 /* Phantom */ = {
 			isa = PBXGroup;
 			children = (
+				603F760B20694E1700E9922F /* Bridges */,
+				603F760A20694C2A00E9922F /* Shaders */,
 				603F760C206952BE00E9922F /* Math */,
 				607206E420538ABE0068F691 /* Renderer.swift */,
 				6053011720665F4000AAAF1F /* Application.swift */,
@@ -630,7 +630,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = Bridging/ShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/Bridges/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -649,7 +649,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = Bridging/ShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/Bridges/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -666,7 +666,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = Bridging/ShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/Bridges/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
@@ -683,7 +683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = Bridging/ShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/Bridges/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
@@ -705,7 +705,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = Bridging/ShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/Bridges/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -724,7 +724,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = Bridging/ShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/Bridges/ShaderTypes.h;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
