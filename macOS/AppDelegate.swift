@@ -1,6 +1,7 @@
 // Copyright © haijian. All rights reserved.
 
 import Cocoa
+import PhantomKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

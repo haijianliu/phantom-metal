@@ -2,6 +2,7 @@
 
 import Cocoa
 import MetalKit
+import PhantomKit
 
 /// macOS specific view controller
 class GameViewController: NSViewController {
