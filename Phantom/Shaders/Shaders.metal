@@ -5,7 +5,7 @@
 #include <metal_stdlib>
 
 // Including header shared between this Metal shader code and Swift/C code executing Metal API commands
-#import "BridgingHeaders/ShaderTypes.h"
+#import "Phantom/BridgingHeaders/Uniform.h"
 
 using namespace metal;
 
