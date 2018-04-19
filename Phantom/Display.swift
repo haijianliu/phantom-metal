@@ -5,7 +5,7 @@ import MetalKit
 /// Provides access to an application view for rendering operations.
 ///
 /// Multi-display rendering is unavailable by now
-class Display {
+public class Display {
 	
 	/// Singleton
 	static let sharedInstance: Display = Display()
@@ -24,7 +24,7 @@ class Display {
 	}
 	
 	/// Add a mtkView to displays and set it as the current active display (since only supported for one display by now)
-	static func addDisplay(mtkView: MTKView) {
+	public static func addDisplay(mtkView: MTKView) {
 		Display.sharedInstance.displays.append(mtkView)
 		Display.sharedInstance.currentDisplayIndex = Display.sharedInstance.displays.startIndex
 	}

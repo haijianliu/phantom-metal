@@ -1,11 +1,13 @@
 // Copyright © haijian. All rights reserved.
 
-class Application {
+public class Application {
 	
 	var renderer: Renderer?
 	var gameObjects = [GameObject]()
+	
+	public init() {}
 
-	func launch() {
+	public func launch() {
 		createGameObjects()
 		createMainCamera()
 		createRenderer()
