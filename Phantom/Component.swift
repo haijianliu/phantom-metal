@@ -1,7 +1,7 @@
 // Copyright © haijian. All rights reserved.
 
 /// Base class for everything attached to GameObject(s).
-class Component {
+public class Component {
 	
 	/// The game object this component is attached to.
 	/// A component is always attached to a game object.
@@ -12,7 +12,7 @@ class Component {
 		return gameObject.transform
 	}
 	
-	required init(_ gameObject: GameObject) {
+	required public init(_ gameObject: GameObject) {
 		self.gameObject = gameObject
 	}
 }
