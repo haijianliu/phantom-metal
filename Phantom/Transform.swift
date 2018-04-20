@@ -1,7 +1,17 @@
 // Copyright © haijian. All rights reserved.
 
-// TODO: ...
-class Transform: Component {
+/// Position, rotation and scale of an object.
+///
+/// Every object in a scene has a Transform. It's used to store and manipulate the position, rotation and scale of the object. Every Transform can have a parent, which allows you to apply position, rotation and scale hierarchically. This is the hierarchy seen in the Hierarchy pane. They also support enumerators so you can loop through children using:
+public class Transform: Component {
+
+	/// The position of the transform in world space.
+	///
+	/// The position member can be accessed by the Game code. Setting this value can be used to animate the GameObject. The example below makes an attached sphere bounce by updating the position. This bouncing slowly comes to an end. The position can also be use to determine where in 3D space the transform.
+	public var position: Vector3 = Vector3()
+	
+	// TODO: rotation ...
+	
 	
 	var rotation: Float = 0
 	
