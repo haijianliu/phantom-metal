@@ -4,7 +4,7 @@ import MetalKit
 
 // TODO: Inherits from:Obje
 /// Base class for all entities in scenes.
-class GameObject {
+public class GameObject {
 	
 	// TODO: set mainCamera before add a camera component
 	/// The tag of this game object.
