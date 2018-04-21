@@ -2,15 +2,17 @@
 
 public class Application {
 	
+	/// Singleton
+	static let sharedInstance: Application = Application()
+	private init() {}
+	
 	var renderer: Renderer?
 	var gameObjects = [GameObject]()
-	
-	public init() {}
 
-	public func launch() {
-		createGameObjects()
-		createMainCamera()
-		createRenderer()
+	public static func launch() {
+		Application.sharedInstance.createGameObjects()
+		Application.sharedInstance.createMainCamera()
+		Application.sharedInstance.createRenderer()
 	}
 	
 	private func createGameObjects() {
