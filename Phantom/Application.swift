@@ -1,49 +1,29 @@
 // Copyright © haijian. All rights reserved.
 
+// TODO: in Scene
+public func addGameObject(_ gameObjcet: GameObject) {
+	Application.sharedInstance.gameObjects.append(gameObjcet)
+}
+
+// TODO: public?
 public class Application {
 	
 	/// Singleton
 	static let sharedInstance: Application = Application()
 	private init() {}
 	
+	// Delegate
+	weak var delegate: ApplicationDelegate?
+	
 	var renderer: Renderer?
 	var gameObjects = [GameObject]()
 
-	public static func launch() {
-		Application.sharedInstance.createGameObjects()
-		Application.sharedInstance.createMainCamera()
+	public static func launch(application: ApplicationDelegate) {
+		Application.sharedInstance.delegate = application
+		Application.sharedInstance.delegate?.start()
 		Application.sharedInstance.createRenderer()
 	}
-	
-	private func createGameObjects() {
-		// GameObject
-		guard let gameObject = GameObject() else { return }
-		// Transform
-		guard let _: Transform = gameObject.addComponent() else { return }
-		// MeshRenderer
-		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return }
-		// Attach Mesh
-		guard let mesh = Mesh() else { return }
-		meshRenderer.mesh = mesh
-		// Attach Texture
-		guard let texture = Texture(name: "UV_Grid_Sm") else { return }
-		meshRenderer.texture = texture
-		// Add GameObject
-		gameObjects.append(gameObject)
-	}
-	
-	private func createMainCamera() {
-		// GameObject
-		guard let gameObject = GameObject() else { return }
-		// Transform
-		guard let _: Transform = gameObject.addComponent() else { return }
-		// Camera
-		guard let _: Camera = gameObject.addComponent() else { return }
-		gameObject.tag = .mainCamera // TODO: set mainCamera before add a camera component
-		// Add GameObject
-		gameObjects.append(gameObject)
-	}
-	
+
 	private func createRenderer() {
 		// Create Renderer
 		guard let newRenderer = Renderer(mtkView: Display.main) else {
