@@ -1,3 +1,5 @@
 // Copyright © haijian. All rights reserved.
 
-import Foundation
+public protocol ApplicationDelegate: AnyObject {
+	func start()
+}
