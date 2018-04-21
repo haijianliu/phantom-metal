@@ -265,6 +265,7 @@
 				603F760B20694E1700E9922F /* BridgingHeaders */,
 				603F760A20694C2A00E9922F /* Shaders */,
 				603F760C206952BE00E9922F /* Math */,
+				60E5CB18208AFFB400AE6090 /* Components */,
 				607206E420538ABE0068F691 /* Renderer.swift */,
 				6053011720665F4000AAAF1F /* Application.swift */,
 				60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */,
@@ -274,11 +275,7 @@
 				601E2DDC206F72CB00428A4D /* Texture.swift */,
 				604F12AF206F6355003CE7D1 /* Resources.swift */,
 				606B712220791905004EFF95 /* Error.swift */,
-				606B71262079E27A004EFF95 /* Transform.swift */,
 				6054B2082081C68D0052E413 /* CommandBuffer.swift */,
-				6054B20C2081C9270052E413 /* Component.swift */,
-				6054B2102081DB140052E413 /* MeshRenderer.swift */,
-				6054B218208203750052E413 /* Camera.swift */,
 				609064FC2083A58C0047D411 /* GameObjectTag.swift */,
 				6026CB8E2084E0DD00537B04 /* GpuBuffer.swift */,
 				60E5CB12208AEB9200AE6090 /* Object.swift */,
@@ -338,6 +335,17 @@
 				6074A5D4208A47E400F35A8F /* SampleApplication.swift */,
 			);
 			path = Sample;
+			sourceTree = "<group>";
+		};
+		60E5CB18208AFFB400AE6090 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6054B20C2081C9270052E413 /* Component.swift */,
+				606B71262079E27A004EFF95 /* Transform.swift */,
+				6054B2102081DB140052E413 /* MeshRenderer.swift */,
+				6054B218208203750052E413 /* Camera.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
