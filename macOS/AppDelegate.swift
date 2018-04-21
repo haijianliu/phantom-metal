@@ -5,10 +5,11 @@ import PhantomKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+	
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		// Insert code here to initialize your application
-		Application.launch()
+		let sampleApplication = SampleApplication()
+		Application.launch(application: sampleApplication)
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {
