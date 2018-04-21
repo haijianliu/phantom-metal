@@ -2,11 +2,11 @@
 
 import MetalKit
 
-class Texture {
+public class Texture {
 	
 	var mtlTexture: MTLTexture?
 	
-	init?(name: String) {
+	public init?(name: String) {
 		do {
 			mtlTexture = try Texture.load(textureName: name)
 		} catch {

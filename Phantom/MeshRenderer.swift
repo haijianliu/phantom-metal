@@ -2,11 +2,11 @@
 
 import MetalKit
 
-class MeshRenderer: Component {
+public class MeshRenderer: Component {
 	
 	var pipelineState: MTLRenderPipelineState?
 	
-	var mesh: Mesh? {
+	public var mesh: Mesh? {
 		didSet {
 			// pipeline state
 			do {
@@ -18,5 +18,5 @@ class MeshRenderer: Component {
 		}
 	}
 	
-	var texture: Texture?
+	public var texture: Texture? // TODO: Material
 }

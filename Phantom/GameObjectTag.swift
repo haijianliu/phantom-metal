@@ -5,7 +5,7 @@
 ///
 /// - untagged: default setting of a game object.
 /// - mainCamera: main camera in the scene. The last GameObject set to mainCamera will set static Camera.main property, Others will active as untagged.
-enum GameObjectTag {
+public enum GameObjectTag {
 	case untagged
 	case mainCamera
 }

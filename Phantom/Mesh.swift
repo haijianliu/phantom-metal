@@ -2,11 +2,11 @@
 
 import MetalKit
 
-class Mesh {
+public class Mesh {
 	var mtkMesh: MTKMesh
 	let mtlVertexDescriptor: MTLVertexDescriptor
 	
-	init?() {
+	public init?() {
 		mtlVertexDescriptor = Mesh.buildVertexDescriptor()
 		do {
 			mtkMesh = try Mesh.buildMesh(device: Display.main.device!, vertexDescriptor: mtlVertexDescriptor)

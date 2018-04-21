@@ -1,6 +1,6 @@
 // Copyright © haijian. All rights reserved.
 
-class Camera: Component {
+public class Camera: Component {
 	
 	/// The last enabled camera tagged GameObject.mainCamera (Read Only).
 	static var main: Camera?
