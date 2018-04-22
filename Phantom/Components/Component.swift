@@ -1,19 +1,19 @@
 // Copyright © haijian. All rights reserved.
 
 /// Base class for everything attached to GameObject(s).
-public class Component {
+open class Component: Object {
 	
 	/// The game object this component is attached to.
 	/// A component is always attached to a game object.
-	let gameObject: GameObject
+	public let gameObject: GameObject
 	
 	/// The Transform attached to this GameObject.
-	var transform: Transform {
+	public var transform: Transform {
 		return gameObject.transform
 	}
 	
+	// TODO: no public
 	required public init(_ gameObject: GameObject) {
 		self.gameObject = gameObject
 	}
 }
-
