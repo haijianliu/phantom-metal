@@ -50,6 +50,17 @@
 		601A9E3D2088F558002045DA /* Trigonometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F76112069577D00E9922F /* Trigonometry.swift */; };
 		601A9E3E2088F558002045DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F7615206958B300E9922F /* Constants.swift */; };
 		601A9E472088F8EE002045DA /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
+		6051E346208B1DCC00C4E8AA /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E344208B1D1300C4E8AA /* Space.swift */; };
+		6051E347208B1DCC00C4E8AA /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E344208B1D1300C4E8AA /* Space.swift */; };
+		6051E34A208B3F1700C4E8AA /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
+		6051E34B208B3F1700C4E8AA /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
+		6051E34D208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */; };
+		6051E34E208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */; };
+		6051E34F208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */; };
+		6051E359208B4FFC00C4E8AA /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
+		6051E35A208B4FFC00C4E8AA /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
+		6051E35B208B500400C4E8AA /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E355208B4F8B00C4E8AA /* Updatable.swift */; };
+		6051E35C208B500400C4E8AA /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E355208B4F8B00C4E8AA /* Updatable.swift */; };
 		607206EF20538ABE0068F691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206EE20538ABE0068F691 /* AppDelegate.swift */; };
 		607206F120538ABE0068F691 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206F020538ABE0068F691 /* GameViewController.swift */; };
 		607206F420538ABE0068F691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607206F220538ABE0068F691 /* Main.storyboard */; };
@@ -122,6 +133,11 @@
 		603F76112069577D00E9922F /* Trigonometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigonometry.swift; sourceTree = "<group>"; };
 		603F7615206958B300E9922F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		604F12AF206F6355003CE7D1 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		6051E344208B1D1300C4E8AA /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
+		6051E348208B3D4C00C4E8AA /* Quaternion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
+		6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBehaviour.swift; sourceTree = "<group>"; };
+		6051E351208B4F7E00C4E8AA /* Behaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behaviour.swift; sourceTree = "<group>"; };
+		6051E355208B4F8B00C4E8AA /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		6053011720665F4000AAAF1F /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		6054B2082081C68D0052E413 /* CommandBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBuffer.swift; sourceTree = "<group>"; };
 		6054B20C2081C9270052E413 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
@@ -240,8 +256,18 @@
 				603F760D206953CE00E9922F /* MatrixTransform.swift */,
 				603F76112069577D00E9922F /* Trigonometry.swift */,
 				603F7615206958B300E9922F /* Constants.swift */,
+				6051E348208B3D4C00C4E8AA /* Quaternion.swift */,
 			);
 			path = Math;
+			sourceTree = "<group>";
+		};
+		6051E350208B4ED200C4E8AA /* Behaviours */ = {
+			isa = PBXGroup;
+			children = (
+				6051E351208B4F7E00C4E8AA /* Behaviour.swift */,
+				6051E355208B4F8B00C4E8AA /* Updatable.swift */,
+			);
+			path = Behaviours;
 			sourceTree = "<group>";
 		};
 		607206DD20538ABE0068F691 = {
@@ -266,6 +292,7 @@
 				603F760A20694C2A00E9922F /* Shaders */,
 				603F760C206952BE00E9922F /* Math */,
 				60E5CB18208AFFB400AE6090 /* Components */,
+				6051E350208B4ED200C4E8AA /* Behaviours */,
 				607206E420538ABE0068F691 /* Renderer.swift */,
 				6053011720665F4000AAAF1F /* Application.swift */,
 				60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */,
@@ -279,6 +306,7 @@
 				609064FC2083A58C0047D411 /* GameObjectTag.swift */,
 				6026CB8E2084E0DD00537B04 /* GpuBuffer.swift */,
 				60E5CB12208AEB9200AE6090 /* Object.swift */,
+				6051E344208B1D1300C4E8AA /* Space.swift */,
 			);
 			path = Phantom;
 			sourceTree = "<group>";
@@ -333,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				6074A5D4208A47E400F35A8F /* SampleApplication.swift */,
+				6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -560,6 +589,7 @@
 				601A9E202088F54A002045DA /* Error.swift in Sources */,
 				601A9E3A2088F557002045DA /* Constants.swift in Sources */,
 				601A9E262088F54A002045DA /* GameObjectTag.swift in Sources */,
+				6051E34A208B3F1700C4E8AA /* Quaternion.swift in Sources */,
 				601A9E242088F54A002045DA /* MeshRenderer.swift in Sources */,
 				601A9E382088F557002045DA /* MatrixTransform.swift in Sources */,
 				601A9E222088F54A002045DA /* CommandBuffer.swift in Sources */,
@@ -570,11 +600,14 @@
 				60E5CB14208AEB9E00AE6090 /* Object.swift in Sources */,
 				601A9E192088F54A002045DA /* Renderer.swift in Sources */,
 				601A9E1C2088F54A002045DA /* Display.swift in Sources */,
+				6051E359208B4FFC00C4E8AA /* Behaviour.swift in Sources */,
 				601A9E1B2088F54A002045DA /* GameObject.swift in Sources */,
+				6051E346208B1DCC00C4E8AA /* Space.swift in Sources */,
 				601A9E252088F54A002045DA /* Camera.swift in Sources */,
 				601A9E212088F54A002045DA /* Transform.swift in Sources */,
 				601A9E392088F557002045DA /* Trigonometry.swift in Sources */,
 				601A9E272088F54A002045DA /* GpuBuffer.swift in Sources */,
+				6051E35B208B500400C4E8AA /* Updatable.swift in Sources */,
 				601A9E1D2088F54A002045DA /* Mesh.swift in Sources */,
 				601A9E372088F557002045DA /* Math.swift in Sources */,
 			);
@@ -586,6 +619,7 @@
 			files = (
 				601A9E362088F54E002045DA /* GpuBuffer.swift in Sources */,
 				601A9E2C2088F54E002045DA /* Mesh.swift in Sources */,
+				6051E35A208B4FFC00C4E8AA /* Behaviour.swift in Sources */,
 				601A9E322088F54E002045DA /* Component.swift in Sources */,
 				601A9E2B2088F54E002045DA /* Display.swift in Sources */,
 				601A9E302088F54E002045DA /* Transform.swift in Sources */,
@@ -595,7 +629,10 @@
 				601A9E352088F54E002045DA /* GameObjectTag.swift in Sources */,
 				601A9E292088F54E002045DA /* Application.swift in Sources */,
 				601A9E312088F54E002045DA /* CommandBuffer.swift in Sources */,
+				6051E35C208B500400C4E8AA /* Updatable.swift in Sources */,
+				6051E34B208B3F1700C4E8AA /* Quaternion.swift in Sources */,
 				601A9E282088F54E002045DA /* Renderer.swift in Sources */,
+				6051E347208B1DCC00C4E8AA /* Space.swift in Sources */,
 				601A9E3B2088F558002045DA /* Math.swift in Sources */,
 				601A9E332088F54E002045DA /* MeshRenderer.swift in Sources */,
 				601A9E2E2088F54E002045DA /* Resources.swift in Sources */,
@@ -612,6 +649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607206F120538ABE0068F691 /* GameViewController.swift in Sources */,
+				6051E34D208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */,
 				6074A5D5208A47E400F35A8F /* SampleApplication.swift in Sources */,
 				607206EF20538ABE0068F691 /* AppDelegate.swift in Sources */,
 			);
@@ -622,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6072070220538ABE0068F691 /* GameViewController.swift in Sources */,
+				6051E34E208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */,
 				6074A5D6208A47EB00F35A8F /* SampleApplication.swift in Sources */,
 				6072070020538ABE0068F691 /* AppDelegate.swift in Sources */,
 			);
@@ -635,6 +674,7 @@
 				60E5CB10208AE60500AE6090 /* AppDelegate.swift in Sources */,
 				6074A5D7208A47EC00F35A8F /* SampleApplication.swift in Sources */,
 				601A9E472088F8EE002045DA /* Shaders.metal in Sources */,
+				6051E34F208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
