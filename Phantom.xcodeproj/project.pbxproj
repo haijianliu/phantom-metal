@@ -61,6 +61,7 @@
 		6051E35A208B4FFC00C4E8AA /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
 		6051E35B208B500400C4E8AA /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E355208B4F8B00C4E8AA /* Updatable.swift */; };
 		6051E35C208B500400C4E8AA /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E355208B4F8B00C4E8AA /* Updatable.swift */; };
+		605B0540208CDE0C000AB25A /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB12208AEB9200AE6090 /* Object.swift */; };
 		607206EF20538ABE0068F691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206EE20538ABE0068F691 /* AppDelegate.swift */; };
 		607206F120538ABE0068F691 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206F020538ABE0068F691 /* GameViewController.swift */; };
 		607206F420538ABE0068F691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607206F220538ABE0068F691 /* Main.storyboard */; };
@@ -270,6 +271,15 @@
 			path = Behaviours;
 			sourceTree = "<group>";
 		};
+		605B053F208CDD75000AB25A /* GameObject */ = {
+			isa = PBXGroup;
+			children = (
+				6030BC83206FC00300918010 /* GameObject.swift */,
+				609064FC2083A58C0047D411 /* GameObjectTag.swift */,
+			);
+			path = GameObject;
+			sourceTree = "<group>";
+		};
 		607206DD20538ABE0068F691 = {
 			isa = PBXGroup;
 			children = (
@@ -290,22 +300,21 @@
 			children = (
 				603F760B20694E1700E9922F /* BridgingHeaders */,
 				603F760A20694C2A00E9922F /* Shaders */,
+				605B053F208CDD75000AB25A /* GameObject */,
 				603F760C206952BE00E9922F /* Math */,
 				60E5CB18208AFFB400AE6090 /* Components */,
 				6051E350208B4ED200C4E8AA /* Behaviours */,
 				607206E420538ABE0068F691 /* Renderer.swift */,
+				60E5CB12208AEB9200AE6090 /* Object.swift */,
 				6053011720665F4000AAAF1F /* Application.swift */,
 				60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */,
-				6030BC83206FC00300918010 /* GameObject.swift */,
 				606B711220787E02004EFF95 /* Display.swift */,
 				606B711E2078B92C004EFF95 /* Mesh.swift */,
 				601E2DDC206F72CB00428A4D /* Texture.swift */,
 				604F12AF206F6355003CE7D1 /* Resources.swift */,
 				606B712220791905004EFF95 /* Error.swift */,
 				6054B2082081C68D0052E413 /* CommandBuffer.swift */,
-				609064FC2083A58C0047D411 /* GameObjectTag.swift */,
 				6026CB8E2084E0DD00537B04 /* GpuBuffer.swift */,
-				60E5CB12208AEB9200AE6090 /* Object.swift */,
 				6051E344208B1D1300C4E8AA /* Space.swift */,
 			);
 			path = Phantom;
@@ -637,6 +646,7 @@
 				601A9E332088F54E002045DA /* MeshRenderer.swift in Sources */,
 				601A9E2E2088F54E002045DA /* Resources.swift in Sources */,
 				601A9E3E2088F558002045DA /* Constants.swift in Sources */,
+				605B0540208CDE0C000AB25A /* Object.swift in Sources */,
 				601A9E2D2088F54E002045DA /* Texture.swift in Sources */,
 				601A9E2F2088F54E002045DA /* Error.swift in Sources */,
 				601A9E342088F54E002045DA /* Camera.swift in Sources */,
