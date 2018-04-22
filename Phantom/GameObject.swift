@@ -24,6 +24,7 @@ public class GameObject {
 	// TODO: private
 	var transformUniformBuffer: GpuBuffer<Uniforms>
 	private var components = [String: Component]()
+	// TODO: delete
 	var updateBehaviours = [Updatable]()
 	
 	// TODO: named name.
@@ -50,6 +51,7 @@ extension GameObject {
 			let componet = ComponentType(self)
 			components[typeName] = componet
 			if let updateBehaviour = componet as? Updatable {
+				// TODO: set behaviours directly to application (scene)
 				updateBehaviours.append(updateBehaviour)
 			}
 			return components[typeName] as? ComponentType
