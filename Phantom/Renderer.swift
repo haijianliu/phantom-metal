@@ -31,14 +31,22 @@ class Renderer: NSObject, MTKViewDelegate {
 
 
 	func draw(in view: MTKView) {
-		// Per frame updates hare
-		guard let gameObjects = application?.gameObjects else { return }
-		for gameObject in gameObjects {
-			guard let meshRenderer: MeshRenderer = gameObject.getComponent() else {
-				gameObject.transform.update()
-				continue
+		// update Behaviours
+		// TODO: multi-thread update
+		if let updateBehaviours = application?.updateBehaviours {
+			for var updateBehaviour in updateBehaviours {
+				updateBehaviour.update()
 			}
-			drawGameObject(meshRenderer: meshRenderer, view: view)
+		}
+		
+		// update MeshRenderers
+		if let gameObjects = application?.gameObjects {
+			for gameObject in gameObjects {
+				// TODO: check dirty
+				gameObject.update()
+				guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
+				drawGameObject(meshRenderer: meshRenderer, view: view)
+			}
 		}
 	}
 
@@ -59,8 +67,6 @@ class Renderer: NSObject, MTKViewDelegate {
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 			
 			commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
-			
-			meshRenderer.gameObject.update()
 			
 			let renderPassDescriptor = view.currentRenderPassDescriptor
 			
