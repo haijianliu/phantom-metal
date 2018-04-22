@@ -11,14 +11,61 @@ extension Math {
 		return Matrix4x4.init(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
 	}
 	
-	/// Builds a rotation 4 * 4 matrix created from an axis of 3 scalars and an angle expressed in radians.
-	public static func rotate(radians: Float, axis: Vector3) -> Matrix4x4 {
-		let unitAxis = normalize(axis)
-		let ct = cosf(radians)
-		let st = sinf(radians)
-		let ci = 1 - ct
-		let x = unitAxis.x, y = unitAxis.y, z = unitAxis.z
-		return Matrix4x4.init(columns:(Vector4(ct + x * x * ci, y * x * ci + z * st, z * x * ci - y * st, 0), Vector4(x * y * ci - z * st, ct + y * y * ci, z * y * ci + x * st, 0), Vector4(x * z * ci + y * st, y * z * ci - x * st, ct + z * z * ci, 0), Vector4(0, 0, 0, 1)))
+	/// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
+	///
+	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
+	/// - Parameters:
+	///   - angle: Rotation angle expressed in radians.
+	///   - axis: Rotation axis, recommended to be normalized.
+	public static func rotate(_ angle: Radian, _ axis: Vector3) -> Matrix4x4 {
+		let a = angle
+		let c = cosf(a)
+		let s = sinf(a)
+		
+		var unitAxis = normalize(axis)
+		var temp = (1 - c) * axis
+		
+		var Rotate = simd_float4x4()
+		Rotate[0][0] = c + temp[0] * unitAxis[0]
+		Rotate[0][1] = temp[0] * unitAxis[1] + s * unitAxis[2]
+		Rotate[0][2] = temp[0] * unitAxis[2] - s * unitAxis[1]
+		Rotate[0][3] = 0
+		
+		Rotate[1][0] = temp[1] * unitAxis[0] - s * unitAxis[2]
+		Rotate[1][1] = c + temp[1] * unitAxis[1]
+		Rotate[1][2] = temp[1] * unitAxis[2] + s * unitAxis[0]
+		Rotate[1][3] = 0
+		
+		Rotate[2][0] = temp[2] * unitAxis[0] + s * unitAxis[1]
+		Rotate[2][1] = temp[2] * unitAxis[1] - s * unitAxis[0]
+		Rotate[2][2] = c + temp[2] * unitAxis[2]
+		Rotate[2][3] = 0
+		
+		Rotate[3][0] = 0
+		Rotate[3][1] = 0
+		Rotate[3][2] = 0
+		Rotate[3][3] = 1
+		
+		return Rotate
+	}
+	
+	/// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
+	///
+	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
+	/// - Parameters:
+	///   - matrix4x4: Input matrix multiplied by this rotation matrix.
+	///   - angle: Rotation angle expressed in radians.
+	///   - axis: Rotation axis, recommended to be normalized.
+	public static func rotate(_ matrix4x4: Matrix4x4, _ angle: Radian, _ axis: Vector3) -> Matrix4x4 {
+
+		let Rotate = Math.rotate(angle, axis)
+
+		var Result = simd_float4x4()
+		Result[0] = matrix4x4[0] * Rotate[0][0] + matrix4x4[1] * Rotate[0][1] + matrix4x4[2] * Rotate[0][2];
+		Result[1] = matrix4x4[0] * Rotate[1][0] + matrix4x4[1] * Rotate[1][1] + matrix4x4[2] * Rotate[1][2];
+		Result[2] = matrix4x4[0] * Rotate[2][0] + matrix4x4[1] * Rotate[2][1] + matrix4x4[2] * Rotate[2][2];
+		Result[3] = matrix4x4[3];
+		return Result;
 	}
 	
 	/// Builds a translation 4 * 4 matrix created from 3 scalars.
