@@ -17,19 +17,20 @@ public class GameObject {
 	}
 	
 	/// The Transform attached to this GameObject.
-	var transform: Transform {
+	public var transform: Transform {
 		return components[String(describing: Transform.self)] as! Transform
 	}
 	
 	// TODO: private
 	var transformUniformBuffer: GpuBuffer<Uniforms>
 	private var components = [String: Component]()
+	var updateBehaviours = [Updatable]()
 	
 	// TODO: named name.
 	/// Creates a new game object.
 	public init?() {
 		// TODO: init dynamic semaphore value
-		guard let newBuffer = GpuBuffer<Uniforms>(semaphoreValue: 2, options: MTLResourceOptions.storageModeShared) else { return nil }
+		guard let newBuffer = GpuBuffer<Uniforms>(semaphoreValue: 3, options: MTLResourceOptions.storageModeShared) else { return nil }
 		transformUniformBuffer = newBuffer
 		// Default tag: untagged
 		tag = .untagged
@@ -48,6 +49,9 @@ extension GameObject {
 		if components[typeName] == nil {
 			let componet = ComponentType(self)
 			components[typeName] = componet
+			if let updateBehaviour = componet as? Updatable {
+				updateBehaviours.append(updateBehaviour)
+			}
 			return components[typeName] as? ComponentType
 		} else {
 			return nil
@@ -70,13 +74,13 @@ extension GameObject {
 		return transformUniformBuffer.semaphore
 	}
 	
+	// TODO: delete this function
 	func update() {
+		// TODO: automatic
 		transformUniformBuffer.updateBufferState()
 		// TODO: in game object
 		transformUniformBuffer.pointer[0].projectionMatrix = (Camera.main?.projectionMatrix)!
 		// TODO: Camera set view matrix
 		transformUniformBuffer.pointer[0].modelViewMatrix = transform.viewMatrix * transform.modelMatrix;
-		
-		transform.update()
 	}
 }
