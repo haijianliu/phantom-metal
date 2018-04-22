@@ -18,18 +18,12 @@ public class Transform: Component {
 		// TODO: matrix to quaternion
 		return Quaternion()
 	}
-
-	// TODO: extension
-	var viewMatrix = Matrix4x4()
-	var modelMatrix = Matrix4x4(1)
 	
-	// TODO: refactor
-	func update() {
-		let rotationAxis = Vector3(1, 1, 0)
-		self.rotate(angle: 0.01, axis: rotationAxis)
+	// TODO: extension
+	var modelMatrix = Matrix4x4(1)
 
-		viewMatrix = Math.translate(0.0, 0.0, -8.0)
-	}
+	// TODO: will in camera. public temporarily
+	public var viewMatrix = Matrix4x4()
 }
 
 extension Transform {
