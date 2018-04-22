@@ -1,3 +1,3 @@
 // Copyright © haijian. All rights reserved.
 
-class Object {}
+protocol Object: AnyObject {}
