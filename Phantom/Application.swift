@@ -3,6 +3,9 @@
 // TODO: in Scene
 public func addGameObject(_ gameObjcet: GameObject) {
 	Application.sharedInstance.gameObjects.append(gameObjcet)
+	for updateBehaviour in gameObjcet.updateBehaviours {
+		Application.sharedInstance.updateBehaviours.append(updateBehaviour)
+	}
 }
 
 // TODO: public?
@@ -15,8 +18,10 @@ public class Application {
 	// Delegate
 	weak var delegate: ApplicationDelegate?
 	
+	// TODO: weak?
 	var renderer: Renderer?
 	var gameObjects = [GameObject]()
+	var updateBehaviours = [Updatable]()
 
 	public static func launch(application: ApplicationDelegate) {
 		Application.sharedInstance.delegate = application
