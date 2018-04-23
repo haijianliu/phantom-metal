@@ -33,6 +33,8 @@ public class GameObject {
 		transformUniformBuffer = newBuffer
 		// Default tag: untagged
 		tag = .untagged
+		// Transform
+		guard let _: Transform = self.addComponent() else { return nil }
 	}
 }
 
