@@ -1,15 +1,5 @@
 // Copyright © haijian. All rights reserved.
 
-// TODO: in Scene
-public func addGameObject(_ gameObjcet: GameObject) {
-	Application.sharedInstance.gameObjects.append(gameObjcet)
-	for component in gameObjcet.components {
-		if let updateBehaviour = component.value as? Updatable {
-			Application.sharedInstance.updateBehaviours.append(updateBehaviour)
-		}
-	}
-}
-
 // TODO: public?
 public class Application {
 	
@@ -29,6 +19,16 @@ public class Application {
 		Application.sharedInstance.delegate = application
 		Application.sharedInstance.delegate?.start()
 		Application.sharedInstance.createRenderer()
+	}
+	
+	// TODO: in Scene
+	public static func addGameObject(_ gameObjcet: GameObject) {
+		Application.sharedInstance.gameObjects.append(gameObjcet)
+		for component in gameObjcet.components {
+			if let updateBehaviour = component.value as? Updatable {
+				Application.sharedInstance.updateBehaviours.append(updateBehaviour)
+			}
+		}
 	}
 
 	private func createRenderer() {
