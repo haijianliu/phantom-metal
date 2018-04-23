@@ -11,3 +11,4 @@ public protocol Updatable where Self: Behaviour {
 }
 
 // TODO: Remove "redundant layout constraint" warning [SR-6265](https://bugs.swift.org/browse/SR-6265)
+// public protocol Updatable: AnyObject where Self: Behaviour
