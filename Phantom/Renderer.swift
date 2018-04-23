@@ -35,7 +35,7 @@ class Renderer: NSObject, MTKViewDelegate {
 		// TODO: multi-thread update
 		if let updateBehaviours = application?.updateBehaviours {
 			for var updateBehaviour in updateBehaviours {
-				updateBehaviour.update()
+				updateBehaviour?.update()
 			}
 		}
 		
@@ -43,8 +43,8 @@ class Renderer: NSObject, MTKViewDelegate {
 		if let gameObjects = application?.gameObjects {
 			for gameObject in gameObjects {
 				// TODO: check dirty
-				gameObject.update()
-				guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
+				gameObject.reference?.update()
+				guard let meshRenderer: MeshRenderer = gameObject.reference?.getComponent() else { continue }
 				drawGameObject(meshRenderer: meshRenderer, view: view)
 			}
 		}
