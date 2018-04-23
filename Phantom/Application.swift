@@ -2,9 +2,11 @@
 
 // TODO: in Scene
 public func addGameObject(_ gameObjcet: GameObject) {
-	Application.sharedInstance.gameObjects.append(gameObjcet)
-	for updateBehaviour in gameObjcet.updateBehaviours {
-		Application.sharedInstance.updateBehaviours.append(updateBehaviour)
+	Application.sharedInstance.gameObjects.append(Weak(reference: gameObjcet))
+	for component in gameObjcet.components {
+		if let updateBehaviour = component.value as? Updatable {
+			Application.sharedInstance.updateBehaviours.append(updateBehaviour)
+		}
 	}
 }
 
@@ -20,8 +22,8 @@ public class Application {
 	
 	// TODO: weak?
 	var renderer: Renderer?
-	var gameObjects = [GameObject]()
-	var updateBehaviours = [Updatable]()
+	var gameObjects = [Weak<GameObject>]()
+	var updateBehaviours = [Updatable?]()
 
 	public static func launch(application: ApplicationDelegate) {
 		Application.sharedInstance.delegate = application
