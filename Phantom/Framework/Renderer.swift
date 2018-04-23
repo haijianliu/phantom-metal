@@ -43,8 +43,8 @@ class Renderer: NSObject, MTKViewDelegate {
 		if let gameObjects = application?.gameObjects {
 			for gameObject in gameObjects {
 				// TODO: check dirty
-				gameObject.reference?.update()
-				guard let meshRenderer: MeshRenderer = gameObject.reference?.getComponent() else { continue }
+				gameObject.update()
+				guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
 				drawGameObject(meshRenderer: meshRenderer, view: view)
 			}
 		}
