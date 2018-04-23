@@ -76,6 +76,7 @@
 		6074A5D7208A47EC00F35A8F /* SampleApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074A5D4208A47E400F35A8F /* SampleApplication.swift */; };
 		608856B4208E232000F69621 /* GameObjectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B2208E22EC00F69621 /* GameObjectComponent.swift */; };
 		608856B5208E232100F69621 /* GameObjectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B2208E22EC00F69621 /* GameObjectComponent.swift */; };
+		608856B7208E25CC00F69621 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
 		60A0D4732089035500D08572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		60A0D4742089035600D08572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		60A0D4762089047300D08572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
@@ -308,14 +309,11 @@
 			children = (
 				603F760B20694E1700E9922F /* BridgingHeaders */,
 				603F760A20694C2A00E9922F /* Shaders */,
+				608856B6208E259E00F69621 /* Framework */,
 				603F760C206952BE00E9922F /* Math */,
 				605B053F208CDD75000AB25A /* GameObject */,
 				60E5CB18208AFFB400AE6090 /* Components */,
 				6051E350208B4ED200C4E8AA /* Behaviours */,
-				607206E420538ABE0068F691 /* Renderer.swift */,
-				6053011720665F4000AAAF1F /* Application.swift */,
-				60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */,
-				606B711220787E02004EFF95 /* Display.swift */,
 				606B711E2078B92C004EFF95 /* Mesh.swift */,
 				601E2DDC206F72CB00428A4D /* Texture.swift */,
 				604F12AF206F6355003CE7D1 /* Resources.swift */,
@@ -381,6 +379,17 @@
 				6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */,
 			);
 			path = Sample;
+			sourceTree = "<group>";
+		};
+		608856B6208E259E00F69621 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				6053011720665F4000AAAF1F /* Application.swift */,
+				60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */,
+				606B711220787E02004EFF95 /* Display.swift */,
+				607206E420538ABE0068F691 /* Renderer.swift */,
+			);
+			path = Framework;
 			sourceTree = "<group>";
 		};
 		60E5CB18208AFFB400AE6090 /* Components */ = {
@@ -643,6 +652,7 @@
 				601A9E322088F54E002045DA /* Component.swift in Sources */,
 				601A9E2B2088F54E002045DA /* Display.swift in Sources */,
 				601A9E302088F54E002045DA /* Transform.swift in Sources */,
+				608856B7208E25CC00F69621 /* ApplicationDelegate.swift in Sources */,
 				601A9E3C2088F558002045DA /* MatrixTransform.swift in Sources */,
 				601A9E3D2088F558002045DA /* Trigonometry.swift in Sources */,
 				601A9E2A2088F54E002045DA /* GameObject.swift in Sources */,
