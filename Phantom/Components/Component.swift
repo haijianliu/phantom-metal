@@ -5,7 +5,7 @@ open class Component: Object {
 	
 	/// The game object this component is attached to.
 	/// A component is always attached to a game object.
-	public let gameObject: GameObject
+	public unowned let gameObject: GameObject
 	
 	/// The Transform attached to this GameObject.
 	public var transform: Transform {
