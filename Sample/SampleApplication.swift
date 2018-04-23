@@ -22,7 +22,7 @@ class SampleApplication: ApplicationDelegate {
 		// SampleBehaviour
 		guard let _: SampleBehaviour = gameObject.addComponent() else { return }
 		// Add GameObject
-		addGameObject(gameObject)
+		Application.addGameObject(gameObject)
 	}
 	
 	private func createMainCamera() {
@@ -32,7 +32,7 @@ class SampleApplication: ApplicationDelegate {
 		guard let _: Camera = gameObject.addComponent() else { return }
 		gameObject.tag = .mainCamera // TODO: set mainCamera before add a camera component
 		// Add GameObject
-		addGameObject(gameObject)
+		Application.addGameObject(gameObject)
 	}
 	
 }
