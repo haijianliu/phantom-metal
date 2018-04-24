@@ -34,5 +34,4 @@ class SampleApplication: ApplicationDelegate {
 		// Add GameObject
 		Application.addGameObject(gameObject)
 	}
-	
 }
