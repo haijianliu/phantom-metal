@@ -9,8 +9,6 @@ class Renderer: NSObject, MTKViewDelegate {
 	
 	let commandQueue: MTLCommandQueue
 	var depthState: MTLDepthStencilState
-	
-	var application: Application?
 
 	init?(mtkView: MTKView) {
 		// Set device
@@ -33,20 +31,16 @@ class Renderer: NSObject, MTKViewDelegate {
 	func draw(in view: MTKView) {
 		// update Behaviours
 		// TODO: multi-thread update
-		if let updateBehaviours = application?.updateBehaviours {
-			for var updateBehaviour in updateBehaviours {
-				updateBehaviour?.update()
-			}
+		for updateBehaviour in Application.sharedInstance.updateBehaviours {
+			updateBehaviour.reference?.update()
 		}
 		
 		// update MeshRenderers
-		if let gameObjects = application?.gameObjects {
-			for gameObject in gameObjects {
-				// TODO: check dirty
-				gameObject.update()
-				guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
-				drawGameObject(meshRenderer: meshRenderer, view: view)
-			}
+		for gameObject in Application.sharedInstance.gameObjects {
+			// TODO: check dirty
+			gameObject.update()
+			guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
+			drawGameObject(meshRenderer: meshRenderer, view: view)
 		}
 	}
 
