@@ -13,7 +13,7 @@ public class Application {
 	// TODO: weak?
 	var renderer: Renderer?
 	var gameObjects = [GameObject]()
-	var updateBehaviours = [Updatable?]()
+	var updateBehaviours = [Weak<Updatable>]()
 
 	public static func launch(application: ApplicationDelegate) {
 		Application.sharedInstance.delegate = application
@@ -26,7 +26,7 @@ public class Application {
 		Application.sharedInstance.gameObjects.append(gameObjcet)
 		for component in gameObjcet.components {
 			if let updateBehaviour = component.value as? Updatable {
-				Application.sharedInstance.updateBehaviours.append(updateBehaviour)
+				Application.sharedInstance.updateBehaviours.append(Weak(reference: updateBehaviour))
 			}
 		}
 	}
@@ -37,7 +37,6 @@ public class Application {
 			print("Renderer cannot be initialized")
 			return
 		}
-		newRenderer.application = self
 		renderer = newRenderer
 		
 		// TODO: This will be a Display process
