@@ -3,6 +3,11 @@
 /// Base class for everything attached to GameObject(s).
 open class Component: Object {
 	
+	/// Enabled Behaviours are updated, disabled Behaviours are not.
+	///
+	/// Automatically adopts and comforms to Behaviour protocol (Default: true).
+	@objc public var enabled: Bool = true
+	
 	/// The game object this component is attached to.
 	/// A component is always attached to a game object.
 	public unowned let gameObject: GameObject
