@@ -5,7 +5,7 @@
 import Metal
 import MetalKit
 
-class Renderer: NSObject, MTKViewDelegate {
+class View: NSObject, MTKViewDelegate {
 	
 	let commandQueue: MTLCommandQueue
 	var depthState: MTLDepthStencilState
@@ -114,7 +114,7 @@ class Renderer: NSObject, MTKViewDelegate {
 	}
 }
 
-extension Renderer {
+extension View {
 	class func buildRenderPipelineWithDevice(device: MTLDevice, metalKitView: MTKView, mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTLRenderPipelineState {
 		// Build a render state pipeline object
 		
