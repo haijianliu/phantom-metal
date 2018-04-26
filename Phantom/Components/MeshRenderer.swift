@@ -2,7 +2,7 @@
 
 import MetalKit
 
-public class MeshRenderer: Component {
+public class MeshRenderer: Renderer, Drawable {
 	
 	var pipelineState: MTLRenderPipelineState?
 	
@@ -19,4 +19,7 @@ public class MeshRenderer: Component {
 	}
 	
 	public var texture: Texture? // TODO: Material
+	
+	func draw() {
+	}
 }
