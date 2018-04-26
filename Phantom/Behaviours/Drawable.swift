@@ -1,11 +1,11 @@
 // Copyright © haijian. All rights reserved.
 
-/// General functionality for all renderers (drawable objects).
+/// Drawable Behaviour protocol to draw comformed objects on the screen.
 ///
-/// A drawable object is what makes an object appear on the screen. Use this class to access the renderer of any object, mesh or particle system. Drawable objects can be disabled to make objects invisible (Automatically adopt from Component class), and the materials can be accessed and modified through them (see Material).
-@objc protocol Drawable: Behaviour {
+/// Requires that class inherits from Renderer
+@objc protocol Drawable: Behaviour where Self: Renderer {
 	
-	/// Draw object on the screen.
+	/// Draw objects on the screen.
 	///
 	/// Updated every frame by render thread (s).
 	func draw()
