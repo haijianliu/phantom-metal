@@ -3,17 +3,18 @@
 // TODO: public?
 public class Application {
 	
-	/// Singleton
+	// TODO: no singleton
 	static let sharedInstance: Application = Application()
 	private init() {}
 	
 	// Delegate
 	weak var delegate: ApplicationDelegate?
 	
-	// TODO: weak?
 	var renderer: View?
 	var gameObjects = [GameObject]()
+	// TODO: array slice
 	var updateBehaviours = [Weak<Updatable>]()
+	var drawBehaviours = [Weak<Drawable>]()
 
 	public static func launch(application: ApplicationDelegate) {
 		Application.sharedInstance.delegate = application
