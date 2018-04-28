@@ -9,7 +9,7 @@ public class Mesh {
 	public init?() {
 		mtlVertexDescriptor = Mesh.buildVertexDescriptor()
 		do {
-			mtkMesh = try Mesh.buildMesh(device: Display.main.device!, vertexDescriptor: mtlVertexDescriptor)
+			mtkMesh = try Mesh.buildMesh(device: View.main.device!, vertexDescriptor: mtlVertexDescriptor)
 		} catch {
 			print("Unable to build MetalKit Mesh. Error info: \(error)")
 			return nil

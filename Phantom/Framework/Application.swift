@@ -10,7 +10,7 @@ public class Application {
 	// Delegate
 	weak var delegate: ApplicationDelegate?
 	
-	var renderer: ViewDelegate?
+	var viewDelegate: ViewDelegate?
 	var gameObjects = [GameObject]()
 	// TODO: array slice
 	var updateBehaviours = [Weak<Updatable>]()
@@ -34,17 +34,17 @@ public class Application {
 
 	private func createRenderer() {
 		// Create Renderer
-		guard let newRenderer = ViewDelegate(mtkView: Display.main) else {
+		guard let newRenderer = ViewDelegate(mtkView: View.main) else {
 			print("Renderer cannot be initialized")
 			return
 		}
-		renderer = newRenderer
+		viewDelegate = newRenderer
 		
 		// TODO: This will be a Display process
 		// Set MTKViewDelegate to current Renderer instance
-		Display.main.delegate = renderer
+		View.main.delegate = viewDelegate
 		
 		// Only for the first time, should initiate the view manually
-		renderer?.mtkView(Display.main, drawableSizeWillChange: Display.main.drawableSize)
+		viewDelegate?.mtkView(View.main, drawableSizeWillChange: View.main.drawableSize)
 	}
 }

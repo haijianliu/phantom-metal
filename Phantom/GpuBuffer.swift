@@ -30,7 +30,7 @@ struct GpuBuffer<BufferType> {
 		max = semaphoreValue
 		semaphore = DispatchSemaphore(value: semaphoreValue)
 		let bufferSize = alignedSize * max
-		guard let newBuffer = Display.main.device?.makeBuffer(length: bufferSize, options: options) else { return nil }
+		guard let newBuffer = View.main.device?.makeBuffer(length: bufferSize, options: options) else { return nil }
 		buffer = newBuffer
 		buffer.label = String(describing: BufferType.self)
 		pointer = UnsafeMutableRawPointer(buffer.contents()).bindMemory(to: BufferType.self, capacity: 1)
