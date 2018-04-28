@@ -18,7 +18,9 @@ public class View {
 	private var depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
 	private var colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
 	private var sampleCount: Int = 1 // TODO: enum
-	
+}
+
+extension View {
 	/// Main view.
 	/// (Force wrapped. If there is not one single view, this will get a run time error)
 	static var main: MTKView {
