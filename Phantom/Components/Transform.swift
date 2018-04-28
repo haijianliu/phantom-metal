@@ -28,12 +28,13 @@ public class Transform: Component {
 
 extension Transform {
 
+	// TODO: use quaternion
 	/// Applies a rotation of radians around the axis
 	///
 	/// - Parameters:
 	///   - relativeTo: TODO: If relativeTo is not specified or set to Space.local the rotation is applied around the transform's local axes. If relativeTo is set to Space.World the rotation is applied around the world x, y, z axes.
 	public func rotate(angle: Radian, axis: Vector3, relativeTo: Space = Space.local) {
-		let rotateMatrix = Math.rotate(angle, axis)
-		modelMatrix = rotateMatrix * modelMatrix
+		let rotateMatrix = Math.rotate(modelMatrix, angle, axis)
+		modelMatrix = rotateMatrix
 	}
 }
