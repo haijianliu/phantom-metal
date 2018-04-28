@@ -38,11 +38,7 @@ public class Application {
 
 	private func createRenderer() {
 		// Create Renderer
-		guard let newRenderer = ViewDelegate(mtkView: View.main) else {
-			print("Renderer cannot be initialized")
-			return
-		}
-		viewDelegate = newRenderer
+		viewDelegate = ViewDelegate()
 		
 		// TODO: This will be a Display process
 		// Set MTKViewDelegate to current Renderer instance
