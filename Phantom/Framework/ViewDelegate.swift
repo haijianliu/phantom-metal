@@ -37,8 +37,6 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		
 		// update MeshRenderers
 		for gameObject in Application.sharedInstance.gameObjects {
-			// TODO: check dirty
-			gameObject.update()
 			guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
 			drawGameObject(meshRenderer: meshRenderer, view: view)
 		}
@@ -61,6 +59,8 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		if let commandBuffer = commandQueue.makeCommandBuffer() {
 			
 			commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
+			
+			meshRenderer.gameObject.update()
 			
 			let renderPassDescriptor = view.currentRenderPassDescriptor
 			
