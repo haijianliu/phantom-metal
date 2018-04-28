@@ -10,7 +10,7 @@ public class Application {
 	// Delegate
 	weak var delegate: ApplicationDelegate?
 	
-	var renderer: View?
+	var renderer: ViewDelegate?
 	var gameObjects = [GameObject]()
 	// TODO: array slice
 	var updateBehaviours = [Weak<Updatable>]()
@@ -34,7 +34,7 @@ public class Application {
 
 	private func createRenderer() {
 		// Create Renderer
-		guard let newRenderer = View(mtkView: Display.main) else {
+		guard let newRenderer = ViewDelegate(mtkView: Display.main) else {
 			print("Renderer cannot be initialized")
 			return
 		}

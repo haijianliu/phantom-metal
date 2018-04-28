@@ -10,7 +10,7 @@ public class MeshRenderer: Renderer, Drawable {
 		didSet {
 			// pipeline state
 			do {
-				pipelineState = try View.buildRenderPipelineWithDevice(device: Display.main.device!, metalKitView: Display.main, mtlVertexDescriptor: (mesh?.mtlVertexDescriptor)!)
+				pipelineState = try ViewDelegate.buildRenderPipelineWithDevice(device: Display.main.device!, metalKitView: Display.main, mtlVertexDescriptor: (mesh?.mtlVertexDescriptor)!)
 			} catch {
 				print("Unable to compile render pipeline state.  Error info: \(error)")
 				mesh = nil
