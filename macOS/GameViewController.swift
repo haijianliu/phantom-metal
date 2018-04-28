@@ -16,19 +16,7 @@ class GameViewController: NSViewController {
 			return
 		}
 		
-		// Select the default device to render with.
-		guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
-			print("Metal is not supported on this device")
-			return
-		}
-		
-		// Set metal kit view
-		mtkView.device = defaultDevice
-		mtkView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
-		mtkView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
-		mtkView.sampleCount = 1
-		
-		// add this mtkview and set it as the current active display
+		// Add this mtkview and set it as the current active display
 		Display.addDisplay(mtkView: mtkView)
 	}
 }

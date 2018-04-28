@@ -15,6 +15,10 @@ public class Display {
 	private var displays = [MTKView]()
 	private var currentDisplayIndex: Int?
 	
+	private var depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
+	private var colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
+	private var sampleCount: Int = 1 // TODO: enum
+	
 	/// Main Display.
 	/// (Force wrapped. If there is not a display, this will get a run time error)
 	static var main: MTKView {
@@ -25,6 +29,18 @@ public class Display {
 	
 	/// Add a mtkView to displays and set it as the current active display (since only supported for one display by now)
 	public static func addDisplay(mtkView: MTKView) {
+		
+		// Select the default device to render with.
+		guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
+			print("Metal is not supported on this device")
+			return
+		}
+		
+		// Set metal kit view
+		mtkView.device = defaultDevice
+		mtkView.depthStencilPixelFormat = Display.sharedInstance.depthStencilPixelFormat
+		mtkView.colorPixelFormat = Display.sharedInstance.colorPixelFormat
+		mtkView.sampleCount = Display.sharedInstance.sampleCount
 		Display.sharedInstance.displays.append(mtkView)
 		Display.sharedInstance.currentDisplayIndex = Display.sharedInstance.displays.startIndex
 	}
