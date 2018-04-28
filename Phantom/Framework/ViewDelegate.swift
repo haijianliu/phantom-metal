@@ -35,10 +35,11 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 			updateBehaviour.reference?.update()
 		}
 		
-		// update MeshRenderers
-		for gameObject in Application.sharedInstance.gameObjects {
-			guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { continue }
-			drawGameObject(meshRenderer: meshRenderer, view: view)
+		// update drawable behaviours
+		// TODO: use drawable draw
+		for drawBehaviour in Application.sharedInstance.drawBehaviours {
+			guard let drawable = drawBehaviour.reference else { continue }
+			drawGameObject(drawable: drawable, view: view)
 		}
 	}
 
@@ -50,7 +51,11 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	}
 	
 	// TODO: in CommandBuffer
-	private func drawGameObject(meshRenderer: MeshRenderer, view: MTKView) {
+	// TODO: delete this function
+	private func drawGameObject(drawable: Drawable, view: MTKView) {
+		
+		// TODO: delete this
+		let meshRenderer = drawable as! MeshRenderer
 
 		// TODO: wait in game object
 		let semaphore = meshRenderer.gameObject.getSemaphore()
