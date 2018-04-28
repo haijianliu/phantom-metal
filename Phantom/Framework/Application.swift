@@ -11,6 +11,7 @@ public class Application {
 	weak var delegate: ApplicationDelegate?
 	
 	var viewDelegate: ViewDelegate?
+	
 	var gameObjects = [GameObject]()
 	// TODO: array slice
 	var updateBehaviours = [Weak<Updatable>]()

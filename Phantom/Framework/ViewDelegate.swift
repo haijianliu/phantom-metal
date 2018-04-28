@@ -29,13 +29,13 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 
 
 	func draw(in view: MTKView) {
-		// update Behaviours
+		// update behaviours
 		// TODO: multi-thread update
 		for updateBehaviour in Application.sharedInstance.updateBehaviours {
 			updateBehaviour.reference?.update()
 		}
 		
-		// update drawable behaviours
+		// drawable behaviours
 		// TODO: use drawable draw
 		for drawBehaviour in Application.sharedInstance.drawBehaviours {
 			guard let drawable = drawBehaviour.reference else { continue }
@@ -67,9 +67,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 			
 			meshRenderer.gameObject.update()
 			
-			let renderPassDescriptor = view.currentRenderPassDescriptor
-			
-			if let renderPassDescriptor = renderPassDescriptor, let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
+			if let renderPassDescriptor = view.currentRenderPassDescriptor, let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
 				
 				/// Final pass rendering code here
 				renderEncoder.label = "Primary Render Encoder"
