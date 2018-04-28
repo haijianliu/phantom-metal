@@ -18,6 +18,11 @@ public class View {
 	private var depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
 	private var colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
 	private var sampleCount: Int = 1 // TODO: enum
+	
+	// TODO: multiple command queues
+	var commandQueue: MTLCommandQueue?
+	// TODO: multiple rendering passes
+	var renderPass: RenderPass?
 }
 
 extension View {
@@ -45,5 +50,14 @@ extension View {
 		mtkView.sampleCount = View.sharedInstance.sampleCount
 		View.sharedInstance.views.append(mtkView)
 		View.sharedInstance.currentViewIndex = View.sharedInstance.views.startIndex
+		
+		// TODO: multiple command queues
+		if View.sharedInstance.commandQueue == nil {
+			View.sharedInstance.commandQueue = mtkView.device?.makeCommandQueue()
+		}
+		// TODO: multiple rendering passes
+		if View.sharedInstance.renderPass == nil {
+			View.sharedInstance.renderPass = RenderPass(mtkView: mtkView)
+		}
 	}
 }
