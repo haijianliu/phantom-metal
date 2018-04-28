@@ -29,6 +29,9 @@ public class Application {
 			if let updateBehaviour = component.value as? Updatable {
 				Application.sharedInstance.updateBehaviours.append(Weak(reference: updateBehaviour))
 			}
+			if let drawBehaviour = component.value as? Drawable {
+				Application.sharedInstance.drawBehaviours.append(Weak(reference: drawBehaviour))
+			}
 		}
 	}
 
