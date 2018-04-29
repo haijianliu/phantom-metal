@@ -10,12 +10,11 @@ public class MeshRenderer: Renderer, Drawable {
 	func draw(in view: MTKView) {
 		// Check all the resources available.
 		guard
-			let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
-			let renderPassDescriptor = view.currentRenderPassDescriptor,
-			let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor),
+			let mesh = self.mesh,
 			let material = self.material,
-			let depthStencilState = View.sharedInstance.renderPass?.depthStencilState,
-			let mesh = self.mesh
+			let renderPass = View.sharedInstance.renderPass,
+			let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
+			let renderEncoder = renderPass.makeRenderCommandEncoder(commandBuffer: commandBuffer)
 		else { return }
 			
 		// TODO: wait in game object? It seems impossible.
@@ -27,8 +26,8 @@ public class MeshRenderer: Renderer, Drawable {
 		// TODO: setup with object names
 		renderEncoder.label = "Primary Render Encoder"
 		renderEncoder.pushDebugGroup("Draw Box")
-		// TODO: render pass encoding.
-		renderEncoder.setDepthStencilState(depthStencilState)
+		// Render pass encoding.
+		renderPass.encode(to: renderEncoder)
 		// Material encoding: including shader and texture encoding.
 		material.encode(to: renderEncoder)
 		// Game object encoding: update triple buffer.
