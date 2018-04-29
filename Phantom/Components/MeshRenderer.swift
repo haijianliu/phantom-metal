@@ -17,73 +17,63 @@ public class MeshRenderer: Renderer, Drawable {
 			}
 		}
 	}
-	
-	public var texture: Texture? // TODO: Material
-	
-	func draw(in view: MTKView) {
 		
-		// TODO: wait in game object
+	func draw(in view: MTKView) {
+		// Check all the resources available
+		guard
+		let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
+		let renderPassDescriptor = view.currentRenderPassDescriptor,
+		let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor),
+		let material = self.material,
+		let depthStencilState = View.sharedInstance.renderPass?.depthStencilState,
+		let renderPipelineState = self.renderPipelineState,
+		let mesh = self.mesh,
+		let texture = self.material?.texture
+		else { return }
+			
+		// TODO: wait in game object? It seems impossible.
 		let semaphore = gameObject.getSemaphore()
 		_ = semaphore.wait(timeout: .distantFuture)
-				
-		if let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer() {
-			
-			commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
-			
-			gameObject.update()
-			
-			if let renderPassDescriptor = view.currentRenderPassDescriptor, let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
-				
-				/// Final pass rendering code here
-				renderEncoder.label = "Primary Render Encoder"
-				renderEncoder.pushDebugGroup("Draw Box")
-				
-				// TODO: in material
-				renderEncoder.setCullMode(.back)
-				renderEncoder.setFrontFacing(.counterClockwise)
-				
-				// TODO: in rendering pass
-				guard let depthStencilState = View.sharedInstance.renderPass?.depthStencilState else { return }
-				renderEncoder.setDepthStencilState(depthStencilState)
-				
-				// TODO: in material
-				// TODO: in mesh
-				guard let renderPipelineState = self.renderPipelineState else { return }
-				renderEncoder.setRenderPipelineState(renderPipelineState)
+		commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
 
-				// TODO: in game object
-				// TODO: BufferIndex
-				renderEncoder.setVertexBuffer(gameObject.transformUniformBuffer.buffer, offset: gameObject.transformUniformBuffer.offset, index: BufferIndex.uniforms.rawValue)
-				
-				// TODO: in mesh
-				guard let mesh = self.mesh else { return }
-				for (index, element) in mesh.mtkMesh.vertexDescriptor.layouts.enumerated() {
-					guard let layout = element as? MDLVertexBufferLayout else { return }
-					if layout.stride != 0 {
-						let vertexBuffers = mesh.mtkMesh.vertexBuffers[index]
-						renderEncoder.setVertexBuffer(vertexBuffers.buffer, offset: vertexBuffers.offset, index: index)
-					}
-				}
-				
-				// TODO: in material
-				guard let texture = self.texture else { return }
-				renderEncoder.setFragmentTexture(texture.mtlTexture, index: TextureIndex.color.rawValue)
-				
-				// TODO: in mesh
-				for submesh in mesh.mtkMesh.submeshes {
-					renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
-				}
-				
-				renderEncoder.popDebugGroup()
-				
-				renderEncoder.endEncoding()
-				
-				if let drawable = view.currentDrawable {
-					commandBuffer.present(drawable)
-				}
-			}
-			
-			commandBuffer.commit()
+		// Final pass rendering code here
+		// TODO: setup with object names
+		renderEncoder.label = "Primary Render Encoder"
+		renderEncoder.pushDebugGroup("Draw Box")
+		
+		// Material
+		renderEncoder.setCullMode(material.cullMode)
+		
+		// Render pass
+		renderEncoder.setDepthStencilState(depthStencilState)
+		
+		// TODO: in material
+		// TODO: in mesh
+		// Render pipeline
+		renderEncoder.setRenderPipelineState(renderPipelineState)
+
+		// Game object encodes triple buffer
+		gameObject.encode(to: renderEncoder)
+		
+		// Mesh
+		mesh.encode(to: renderEncoder)
+		
+		// TODO: in material
+		// Texture
+		renderEncoder.setFragmentTexture(texture.mtlTexture, index: TextureIndex.color.rawValue)
+		
+		// TODO: in mesh
+		for submesh in mesh.mtkMesh.submeshes {
+			renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
 		}
+		
+		renderEncoder.popDebugGroup()
+		renderEncoder.endEncoding()
+		
+		// Render to core animation layer
+		// TODO: in render pass
+		if let drawable = view.currentDrawable { commandBuffer.present(drawable) }
+	
+		commandBuffer.commit()
 	}
 }

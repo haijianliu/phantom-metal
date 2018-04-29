@@ -16,9 +16,11 @@ class SampleApplication: ApplicationDelegate {
 		// Attach Mesh
 		guard let mesh = Mesh() else { return }
 		meshRenderer.mesh = mesh
-		// Attach Texture
+		// Attach material
+		var material = Material()
 		guard let texture = Texture(name: "UV_Grid_Sm") else { return }
-		meshRenderer.texture = texture
+		material.texture = texture
+		meshRenderer.material = material
 		// SampleBehaviour
 		guard let _: SampleBehaviour = gameObject.addComponent() else { return }
 		// Add GameObject
