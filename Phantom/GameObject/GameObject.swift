@@ -46,14 +46,19 @@ extension GameObject {
 		// TODO: wait in GpuBuffer
 		return transformUniformBuffer.semaphore
 	}
+}
+
+extension GameObject: Encodable {
 	
-	// TODO: delete this function
-	func update() {
+	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
+		
 		// TODO: automatic
 		transformUniformBuffer.updateBufferState()
 		// TODO: in game object
 		transformUniformBuffer.pointer[0].projectionMatrix = (Camera.main?.projectionMatrix)!
 		// TODO: Camera set view matrix
 		transformUniformBuffer.pointer[0].modelViewMatrix = transform.viewMatrix * transform.modelMatrix;
+		
+		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.uniforms.rawValue)
 	}
 }
