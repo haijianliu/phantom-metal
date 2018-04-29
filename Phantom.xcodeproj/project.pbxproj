@@ -325,18 +325,13 @@
 			children = (
 				603F760B20694E1700E9922F /* BridgingHeaders */,
 				603F760A20694C2A00E9922F /* Shaders */,
-				608856B6208E259E00F69621 /* Framework */,
 				603F760C206952BE00E9922F /* Math */,
+				607258A42095AAF4004996FA /* Resources */,
+				608856B6208E259E00F69621 /* Framework */,
+				607258A52095AB40004996FA /* Graphics */,
 				605B053F208CDD75000AB25A /* GameObject */,
 				60E5CB18208AFFB400AE6090 /* Components */,
 				6051E350208B4ED200C4E8AA /* Behaviours */,
-				606B711E2078B92C004EFF95 /* Mesh.swift */,
-				601E2DDC206F72CB00428A4D /* Texture.swift */,
-				608856BF2090E33700F69621 /* Material.swift */,
-				607258A0209589E6004996FA /* Shader.swift */,
-				60D645C02094C1B900646198 /* RenderPass.swift */,
-				601355D92094EB880093AF6E /* Encodable.swift */,
-				604F12AF206F6355003CE7D1 /* Resources.swift */,
 				606B712220791905004EFF95 /* Error.swift */,
 				6026CB8E2084E0DD00537B04 /* GpuBuffer.swift */,
 				60E5CB12208AEB9200AE6090 /* Object.swift */,
@@ -389,6 +384,27 @@
 				6072071420538ABE0068F691 /* Info.plist */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		607258A42095AAF4004996FA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				607258A0209589E6004996FA /* Shader.swift */,
+				601E2DDC206F72CB00428A4D /* Texture.swift */,
+				606B711E2078B92C004EFF95 /* Mesh.swift */,
+				608856BF2090E33700F69621 /* Material.swift */,
+				604F12AF206F6355003CE7D1 /* Resources.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		607258A52095AB40004996FA /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				60D645C02094C1B900646198 /* RenderPass.swift */,
+				601355D92094EB880093AF6E /* Encodable.swift */,
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 		6074A5D3208A478500F35A8F /* Sample */ = {
