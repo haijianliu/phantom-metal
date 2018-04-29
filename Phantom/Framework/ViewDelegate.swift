@@ -28,28 +28,3 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		camera.projectionMatrix = Math.perspective(fovyRadians: camera.fieldOfView, aspect: aspect, near: camera.nearClipPlane, far: camera.farClipPlane)
 	}
 }
-
-extension ViewDelegate {
-	class func buildRenderPipelineWithDevice(device: MTLDevice, metalKitView: MTKView, mtlVertexDescriptor: MTLVertexDescriptor) throws -> MTLRenderPipelineState {
-		// Build a render state pipeline object
-		
-		let library = device.makeDefaultLibrary()
-		
-		let vertexFunction = library?.makeFunction(name: "vertexShader")
-		let fragmentFunction = library?.makeFunction(name: "fragmentShader")
-		
-		let pipelineDescriptor = MTLRenderPipelineDescriptor()
-		pipelineDescriptor.label = "RenderPipeline"
-		pipelineDescriptor.sampleCount = metalKitView.sampleCount
-		pipelineDescriptor.vertexFunction = vertexFunction
-		pipelineDescriptor.fragmentFunction = fragmentFunction
-		pipelineDescriptor.vertexDescriptor = mtlVertexDescriptor
-		
-		pipelineDescriptor.colorAttachments[0].pixelFormat = metalKitView.colorPixelFormat
-		pipelineDescriptor.depthAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-		pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-		
-		return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-	}
-}
-
