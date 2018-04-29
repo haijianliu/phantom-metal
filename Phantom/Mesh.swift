@@ -5,6 +5,7 @@ import MetalKit
 public class Mesh {
 	var mtkMesh: MTKMesh
 	let mtlVertexDescriptor: MTLVertexDescriptor
+	var winding: MTLWinding = MTLWinding.counterClockwise
 	
 	public init?() {
 		mtlVertexDescriptor = Mesh.buildVertexDescriptor()
@@ -59,5 +60,18 @@ public class Mesh {
 		mdlMesh.vertexDescriptor = mdlVertexDescriptor
 		
 		return try MTKMesh(mesh: mdlMesh, device: device)
+	}
+}
+
+extension Mesh: Encodable {
+	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
+		renderCommandEncoder.setFrontFacing(winding)
+		for (index, element) in mtkMesh.vertexDescriptor.layouts.enumerated() {
+			guard let layout = element as? MDLVertexBufferLayout else { return }
+			if layout.stride != 0 {
+				let vertexBuffers = mtkMesh.vertexBuffers[index]
+				renderCommandEncoder.setVertexBuffer(vertexBuffers.buffer, offset: vertexBuffers.offset, index: index)
+			}
+		}
 	}
 }
