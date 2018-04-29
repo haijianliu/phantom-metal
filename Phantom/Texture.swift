@@ -33,3 +33,9 @@ public class Texture {
 	}
 }
 
+extension Texture: Encodable {
+	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
+		// TODO: varies from library?
+		renderCommandEncoder.setFragmentTexture(mtlTexture, index: TextureIndex.color.rawValue)
+	}
+}
