@@ -2,6 +2,7 @@
 
 import MetalKit
 
+// TODO: mutiple settings render pass vailiation.
 class RenderPass {
 	
 	var depthStencilState: MTLDepthStencilState
