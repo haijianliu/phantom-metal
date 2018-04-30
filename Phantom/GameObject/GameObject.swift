@@ -8,19 +8,11 @@ public class GameObject {
 	
 	// TODO: set mainCamera before add a camera component
 	/// The tag of this game object.
-	public var tag: GameObjectTag {
-		didSet {
-			if tag == .mainCamera {
-				Camera.main = self.getComponent()
-			}
-		}
-	}
+	public var tag: GameObjectTag { didSet { if tag == .mainCamera { Camera.main = self.getComponent() } } }
 	
 	// TODO: unowned reference.
 	/// The Transform attached to this GameObject.
-	public var transform: Transform {
-		return components[String(describing: Transform.self)] as! Transform
-	}
+	public var transform: Transform { return components[String(describing: Transform.self)] as! Transform }
 	
 	private var transformUniformBuffer: TripleBuffer<Uniforms>
 	
@@ -37,6 +29,27 @@ public class GameObject {
 		tag = .untagged
 		// Transform
 		guard let _: Transform = self.addComponent() else { return nil }
+	}
+	
+	/// Adds a component class named type name to the game object.
+	///
+	/// If there is already a same type of componet added, this function will do nothing, and return a nil
+	/// - Returns: Componet instance if succeed, otherwise nil
+	public func addComponent<ComponentType: Component>() -> ComponentType? {
+		let typeName = String(describing: ComponentType.self)
+		if components[typeName] == nil {
+			let component = ComponentType(self)
+			components[typeName] = component
+			return components[typeName] as? ComponentType
+		} else {
+			return nil
+		}
+	}
+	
+	/// Get a component instance attached to the game object by component type. Calling this function during real time updating is not recommended.
+	/// - Returns: Component instance of component type if the game object has one attached, nil if it doesn't.
+	public func getComponent<ComponentType: Component>() -> ComponentType? {
+		return components[String(describing: ComponentType.self)] as? ComponentType
 	}
 }
 
