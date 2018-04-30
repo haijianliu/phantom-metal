@@ -16,20 +16,22 @@ public class GameObject {
 		}
 	}
 	
+	// TODO: unowned reference.
 	/// The Transform attached to this GameObject.
 	public var transform: Transform {
 		return components[String(describing: Transform.self)] as! Transform
 	}
 	
-	// TODO: private
-	var transformUniformBuffer: GpuBuffer<Uniforms>
+	private var transformUniformBuffer: TripleBuffer<Uniforms>
+	
+	// TODO: private?
 	var components = [String: Component]()
 	
 	// TODO: named name.
 	/// Creates a new game object.
 	public init?() {
 		// TODO: init dynamic semaphore value
-		guard let newBuffer = GpuBuffer<Uniforms>(semaphoreValue: 3, options: MTLResourceOptions.storageModeShared) else { return nil }
+		guard let newBuffer = TripleBuffer<Uniforms>() else { return nil }
 		transformUniformBuffer = newBuffer
 		// Default tag: untagged
 		tag = .untagged
@@ -38,26 +40,16 @@ public class GameObject {
 	}
 }
 
-// MARK: - Update functions
-extension GameObject {
-	
-	// TODO: update command buffer in game object
-	func getSemaphore() -> DispatchSemaphore {
-		// TODO: wait in GpuBuffer
-		return transformUniformBuffer.semaphore
-	}
-}
-
 extension GameObject: Encodable {
 	
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		
-		// TODO: automatic
-		transformUniformBuffer.updateBufferState()
+		// TODO: in transform
 		// TODO: in game object
-		transformUniformBuffer.pointer[0].projectionMatrix = (Camera.main?.projectionMatrix)!
+		transformUniformBuffer.data.projectionMatrix = (Camera.main?.projectionMatrix)!
 		// TODO: Camera set view matrix
-		transformUniformBuffer.pointer[0].modelViewMatrix = transform.viewMatrix * transform.modelMatrix;
+		transformUniformBuffer.data.modelViewMatrix = transform.viewMatrix * transform.modelMatrix;
+		transformUniformBuffer.endWritting()
 		
 		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.uniforms.rawValue)
 	}
