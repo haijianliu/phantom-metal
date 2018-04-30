@@ -6,6 +6,9 @@ public class MeshRenderer: Renderer, Drawable {
 	
 	public var mesh: Mesh?
 	
+	// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
+	private let semaphore = DispatchSemaphore(value: 3)
+
 	// TODO: can this skip some encoding phases?
 	func draw(in view: MTKView) {
 		// Check all the resources available.
@@ -16,12 +19,10 @@ public class MeshRenderer: Renderer, Drawable {
 			let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
 			let renderEncoder = renderPass.makeRenderCommandEncoder(commandBuffer: commandBuffer)
 		else { return }
-			
-		// TODO: wait in game object? It seems impossible.
-		let semaphore = gameObject.getSemaphore()
+		
 		_ = semaphore.wait(timeout: .distantFuture)
-		commandBuffer.addCompletedHandler() { _ in semaphore.signal() }
-
+		commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
+		
 		// Start encoding and setup debug infomation
 		// TODO: setup with object names
 		renderEncoder.label = "Primary Render Encoder"
