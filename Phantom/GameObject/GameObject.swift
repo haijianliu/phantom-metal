@@ -10,13 +10,15 @@ public class GameObject {
 	/// The tag of this game object.
 	public var tag: GameObjectTag { didSet { if tag == .mainCamera { Camera.main = self.getComponent() } } }
 	
-	// TODO: unowned reference.
+	// TODO: unowned reference?
 	/// The Transform attached to this GameObject.
-	public var transform: Transform { return components[String(describing: Transform.self)] as! Transform }
-	
+	lazy public private(set) var transform: Transform = {
+		return components[String(describing: Transform.self)] as! Transform
+	}()
+
 	private var transformUniformBuffer: TripleBuffer<Uniforms>
 	
-	// TODO: private?
+	/// Holds a list of strong references of components have attached.
 	var components = [String: Component]()
 	
 	// TODO: named name.
