@@ -5,17 +5,25 @@ public class Application {
 	
 	// TODO: no singleton
 	static let sharedInstance: Application = Application()
-	private init() {}
+	// TODO: initialize capacity.
+	private init() {
+		updateBehaviours.reserveCapacity(0xFF)
+		drawBehaviours.reserveCapacity(0xFF)
+	}
 	
 	// Delegate
 	weak var delegate: ApplicationDelegate?
 	
 	var viewDelegate: ViewDelegate?
 	
-	var gameObjects = [GameObject]()
-	// TODO: array slice
-	var updateBehaviours = [Weak<Updatable>]()
-	var drawBehaviours = [Weak<Drawable>]()
+	/// The only game object references holder.
+	private var gameObjects = [GameObject]()
+	
+	// TODO: clean up nil reference.
+	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
+	var updateBehaviours = ContiguousArray<Weak<Updatable>>()
+	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviours weak reference list in real time, reserving a capacity of 256 elements.
+	var drawBehaviours = ContiguousArray<Weak<Drawable>>()
 
 	public static func launch(application: ApplicationDelegate) {
 		Application.sharedInstance.delegate = application
