@@ -287,6 +287,7 @@
 				6051E351208B4F7E00C4E8AA /* Behaviour.swift */,
 				6051E355208B4F8B00C4E8AA /* Updatable.swift */,
 				608856B82090D3D500F69621 /* Drawable.swift */,
+				601355D92094EB880093AF6E /* Encodable.swift */,
 			);
 			path = Behaviours;
 			sourceTree = "<group>";
@@ -398,7 +399,6 @@
 			isa = PBXGroup;
 			children = (
 				60D645C02094C1B900646198 /* RenderPass.swift */,
-				601355D92094EB880093AF6E /* Encodable.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
