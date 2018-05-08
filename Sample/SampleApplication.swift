@@ -35,7 +35,8 @@ class SampleApplication: ApplicationDelegate {
 		guard let gameObject = GameObject() else { return }
 		// Camera
 		guard let _: Camera = gameObject.addComponent() else { return }
-		gameObject.tag = .mainCamera // TODO: set mainCamera before add a camera component
+		// Transform.
+		gameObject.transform.position.z = -8.0;
 		// Add GameObject
 		Application.addGameObject(gameObject)
 	}
