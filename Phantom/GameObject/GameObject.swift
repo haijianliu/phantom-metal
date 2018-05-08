@@ -6,9 +6,8 @@ import MetalKit
 /// Base class for all entities in scenes.
 public class GameObject {
 	
-	// TODO: set mainCamera before add a camera component
 	/// The tag of this game object.
-	public var tag: GameObjectTag { didSet { if tag == .mainCamera { Camera.main = self.getComponent() } } }
+	public var tag: GameObjectTag { didSet { if tag == .mainCamera, let camera: Camera = self.getComponent() { Camera.main = camera } } }
 	
 	// TODO: unowned reference?
 	/// The Transform attached to this GameObject.
@@ -61,9 +60,10 @@ extension GameObject: Encodable {
 		
 		// TODO: in transform
 		// TODO: in game object
-		transformUniformBuffer.data.projectionMatrix = (Camera.main?.projectionMatrix)!
+		guard let camera = Camera.main else { return }
+		transformUniformBuffer.data.projectionMatrix = camera.projectionMatrix
 		// TODO: Camera set view matrix
-		transformUniformBuffer.data.modelViewMatrix = transform.viewMatrix * transform.modelMatrix;
+		transformUniformBuffer.data.modelViewMatrix = camera.worldToCameraMatrix * transform.localToWorldMatrix;
 		transformUniformBuffer.endWritting()
 		
 		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.uniforms.rawValue)
