@@ -3,7 +3,9 @@
 public class Camera: Component {
 	
 	/// The last enabled camera tagged GameObject.mainCamera (Read Only).
-	static var main: Camera?
+	///
+	/// Returns **nil** if there is no such camera in the scene.
+	public internal(set) weak static var main: Camera?
 	
 	/// The near clipping plane distance.
 	var nearClipPlane: Float = 0.1
@@ -11,6 +13,13 @@ public class Camera: Component {
 	var farClipPlane: Float = 100
 	/// The field of view of the camera (fovy) in radians.
 	var fieldOfView: Float = Math.radians(90)
+	
+	/// Matrix that transforms from world to camera space (Read only).
+	///
+	/// Use this to calculate the camera space position of objects or to provide custom camera's location that is not based on the transform.
+	var worldToCameraMatrix: Matrix4x4 {
+		return Math.translate(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z)
+	}
 	
 	/// The aspect ratio (width divided by height).
 	///
@@ -23,5 +32,13 @@ public class Camera: Component {
 	///
 	///If you change this matrix, the camera no longer updates its rendering based on its fieldOfView. This lasts until you call ResetProjectionMatrix.
 	var projectionMatrix: Matrix4x4 = Matrix4x4()
+	
+	required public init(_ gameObject: GameObject) {
+		super.init(gameObject)
+		if Camera.main == nil {
+			gameObject.tag = .mainCamera
+			Camera.main = self
+		}
+	}
 }
 
