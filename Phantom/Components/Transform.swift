@@ -19,11 +19,9 @@ public class Transform: Component {
 		return Quaternion()
 	}
 	
-	// TODO: extension
-	var modelMatrix = Matrix4x4(1)
-
-	// TODO: will in camera. public temporarily
-	public var viewMatrix = Matrix4x4()
+	// TODO: computed property.
+	/// Matrix that transforms a point from local space into world space (Read Only).
+	var localToWorldMatrix = Matrix4x4(1)
 }
 
 extension Transform {
@@ -34,7 +32,7 @@ extension Transform {
 	/// - Parameters:
 	///   - relativeTo: TODO: If relativeTo is not specified or set to Space.local the rotation is applied around the transform's local axes. If relativeTo is set to Space.World the rotation is applied around the world x, y, z axes.
 	public func rotate(angle: Radian, axis: Vector3, relativeTo: Space = Space.local) {
-		let rotateMatrix = Math.rotate(modelMatrix, angle, axis)
-		modelMatrix = rotateMatrix
+		let rotateMatrix = Math.rotate(localToWorldMatrix, angle, axis)
+		localToWorldMatrix = rotateMatrix
 	}
 }
