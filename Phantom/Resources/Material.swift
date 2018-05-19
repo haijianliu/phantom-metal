@@ -4,7 +4,7 @@ import MetalKit
 
 // TODO: struct only protocol
 // TODO: when add drawable behaviour to list, check if there is shader and texture attached. If not, assign one.
-public struct Material {
+public class Material {
 
 	var cullMode: MTLCullMode = MTLCullMode.back
 	
