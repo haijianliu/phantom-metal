@@ -2,6 +2,7 @@
 
 import MetalKit
 
+// TODO: redefine this.
 /// Drawable Behaviour protocol to draw comformed objects on the screen.
 ///
 /// Requires that class inherits from Renderer
@@ -10,5 +11,5 @@ import MetalKit
 	/// Draw objects on the screen.
 	///
 	/// Updated every frame by render thread (s).
-	func draw(in view: MTKView)
+	func draw(encoding renderEncoder: MTLRenderCommandEncoder)
 }
