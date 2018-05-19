@@ -4,13 +4,16 @@ import PhantomKit
 
 class SampleApplication: ApplicationDelegate {
 	func start() {
-		createGameObjects()
+		createGameObjects(position: Vector3(x: -3, y: 0, z: 0))
+		createGameObjects(position: Vector3(x:  3, y: 0, z: 0))
 		createMainCamera()
 	}
 	
-	private func createGameObjects() {
+	private func createGameObjects(position: Vector3) {
 		// GameObject
 		guard let gameObject = GameObject() else { return }
+		// Transform
+		gameObject.transform.position = position
 		// MeshRenderer
 		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return }
 		// Attach material
