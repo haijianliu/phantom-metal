@@ -47,7 +47,7 @@ extension Transform {
 	/// - Parameters:
 	///   - relativeTo: TODO: If relativeTo is not specified or set to Space.local the rotation is applied around the transform's local axes. If relativeTo is set to Space.World the rotation is applied around the world x, y, z axes.
 	public func rotate(angle: Radian, axis: Vector3, relativeTo: Space = Space.local) {
-		//let rotateMatrix = Math.rotate(localToWorldMatrix, angle, axis)
-		//currentLocalToWorldMatrix = rotateMatrix
+		let rotateMatrix = Math.rotate(localToWorldMatrix, angle, axis)
+		currentLocalToWorldMatrix = rotateMatrix
 	}
 }
