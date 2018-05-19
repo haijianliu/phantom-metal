@@ -3,12 +3,21 @@
 // Defines functions that generate common transformation matrices
 extension Math {
 	
-	/// Creates a matrix for a symetric perspective-view frustum. (Right hand)
-	public static func perspective(fovyRadians fovy: Float, aspect: Float, near: Float, far: Float) -> Matrix4x4 {
-		let ys = 1 / tanf(fovy * 0.5)
-		let xs = ys / aspect
-		let zs = far / (near - far)
-		return Matrix4x4.init(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
+	/// Builds a translation 4 * 4 matrix created from a vector of 3 components.
+	///
+	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
+	/// - Parameters:
+	///   - matrix: Input matrix multiplied by this translation matrix. Default value is `Matrix4x4(1)`.
+	///   - vector: Coordinates of a translation vector.
+	public static func translate(from matrix: Matrix4x4 = Matrix4x4(1), _ vector: Vector3) -> Matrix4x4 {
+		var result = matrix
+		result[3] = matrix[0] * vector[0] + matrix[1] * vector[1] + matrix[2] * vector[2] + matrix[3];
+		return result;
+	}
+	
+	/// Builds a translation 4 * 4 matrix created from 3 scalars.
+	public static func translate(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> Matrix4x4 {
+		return Matrix4x4.init(columns:(Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(translationX, translationY, translationZ, 1)))
 	}
 	
 	/// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
@@ -68,8 +77,11 @@ extension Math {
 		return Result;
 	}
 	
-	/// Builds a translation 4 * 4 matrix created from 3 scalars.
-	public static func translate(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> Matrix4x4 {
-		return Matrix4x4.init(columns:(Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(translationX, translationY, translationZ, 1)))
+	/// Creates a matrix for a symetric perspective-view frustum. (Right hand)
+	public static func perspective(fovyRadians fovy: Float, aspect: Float, near: Float, far: Float) -> Matrix4x4 {
+		let ys = 1 / tanf(fovy * 0.5)
+		let xs = ys / aspect
+		let zs = far / (near - far)
+		return Matrix4x4.init(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
 	}
 }
