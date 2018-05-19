@@ -77,8 +77,8 @@
 		6074A5D6208A47EB00F35A8F /* SampleApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074A5D4208A47E400F35A8F /* SampleApplication.swift */; };
 		6074A5D7208A47EC00F35A8F /* SampleApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074A5D4208A47E400F35A8F /* SampleApplication.swift */; };
 		608856B7208E25CC00F69621 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
-		608856BA2090D3E800F69621 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B82090D3D500F69621 /* Drawable.swift */; };
-		608856BB2090D3E900F69621 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B82090D3D500F69621 /* Drawable.swift */; };
+		608856BA2090D3E800F69621 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B82090D3D500F69621 /* Renderable.swift */; };
+		608856BB2090D3E900F69621 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B82090D3D500F69621 /* Renderable.swift */; };
 		608856BD2090DD4600F69621 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BC2090DD4600F69621 /* Renderer.swift */; };
 		608856BE2090DD4600F69621 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BC2090DD4600F69621 /* Renderer.swift */; };
 		608856C02090E33700F69621 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BF2090E33700F69621 /* Material.swift */; };
@@ -184,7 +184,7 @@
 		6072071420538ABE0068F691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607258A0209589E6004996FA /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		6074A5D4208A47E400F35A8F /* SampleApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleApplication.swift; sourceTree = "<group>"; };
-		608856B82090D3D500F69621 /* Drawable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
+		608856B82090D3D500F69621 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		608856BC2090DD4600F69621 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		608856BF2090E33700F69621 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		609064FC2083A58C0047D411 /* GameObjectTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectTag.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 			children = (
 				6051E351208B4F7E00C4E8AA /* Behaviour.swift */,
 				6051E355208B4F8B00C4E8AA /* Updatable.swift */,
-				608856B82090D3D500F69621 /* Drawable.swift */,
+				608856B82090D3D500F69621 /* Renderable.swift */,
 				601355D92094EB880093AF6E /* Encodable.swift */,
 			);
 			path = Behaviours;
@@ -647,7 +647,7 @@
 				601A9E202088F54A002045DA /* Error.swift in Sources */,
 				60D645C22094C1C000646198 /* RenderPass.swift in Sources */,
 				601A9E3A2088F557002045DA /* Constants.swift in Sources */,
-				608856BA2090D3E800F69621 /* Drawable.swift in Sources */,
+				608856BA2090D3E800F69621 /* Renderable.swift in Sources */,
 				605B0547208CE976000AB25A /* Weak.swift in Sources */,
 				601A9E262088F54A002045DA /* GameObjectTag.swift in Sources */,
 				601355DB2094EC2A0093AF6E /* Encodable.swift in Sources */,
@@ -709,7 +709,7 @@
 				601A9E2D2088F54E002045DA /* Texture.swift in Sources */,
 				601A9E2F2088F54E002045DA /* Error.swift in Sources */,
 				601A9E342088F54E002045DA /* Camera.swift in Sources */,
-				608856BB2090D3E900F69621 /* Drawable.swift in Sources */,
+				608856BB2090D3E900F69621 /* Renderable.swift in Sources */,
 				608856C12090E33700F69621 /* Material.swift in Sources */,
 				608856BE2090DD4600F69621 /* Renderer.swift in Sources */,
 				601A9E0B2088F4F2002045DA /* PhantomKitTests.swift in Sources */,

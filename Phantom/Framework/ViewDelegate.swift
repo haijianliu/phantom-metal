@@ -35,8 +35,8 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		
 		// drawable behaviours
 		// TODO: multiple threads draw multiple queue (realtime and offline rendering)
-		for drawBehaviour in Application.sharedInstance.drawBehaviours {
-			drawBehaviour.reference?.draw(encoding: renderEncoder)
+		for renderBehaviour in Application.sharedInstance.renderBehaviours {
+			renderBehaviour.reference?.encode(to: renderEncoder)
 		}
 		
 		// End encoding.

@@ -8,7 +8,7 @@ public class Application {
 	// TODO: initialize capacity.
 	private init() {
 		updateBehaviours.reserveCapacity(0xFF)
-		drawBehaviours.reserveCapacity(0xFF)
+		renderBehaviours.reserveCapacity(0xFF)
 	}
 	
 	// Delegate
@@ -23,7 +23,7 @@ public class Application {
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
 	var updateBehaviours = ContiguousArray<Weak<Updatable>>()
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviours weak reference list in real time, reserving a capacity of 256 elements.
-	var drawBehaviours = ContiguousArray<Weak<Drawable>>()
+	var renderBehaviours = ContiguousArray<Weak<Renderable>>()
 
 	public static func launch(application: ApplicationDelegate) {
 		Application.sharedInstance.delegate = application
@@ -38,8 +38,8 @@ public class Application {
 			if let updateBehaviour = component.value as? Updatable {
 				Application.sharedInstance.updateBehaviours.append(Weak(reference: updateBehaviour))
 			}
-			if let drawBehaviour = component.value as? Drawable {
-				Application.sharedInstance.drawBehaviours.append(Weak(reference: drawBehaviour))
+			if let renderBehaviour = component.value as? Renderable {
+				Application.sharedInstance.renderBehaviours.append(Weak(reference: renderBehaviour))
 			}
 		}
 	}
