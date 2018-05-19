@@ -8,6 +8,10 @@ class RenderPass {
 	var depthStencilState: MTLDepthStencilState
 	var renderPassDescriptor: MTLRenderPassDescriptor?
 	
+	// TODO: in metal library.
+	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
+	let semaphore = DispatchSemaphore(value: 3)
+	
 	init?(mtkView: MTKView) {
 		// Set device
 		guard let device = mtkView.device else { return nil }
@@ -27,38 +31,31 @@ class RenderPass {
 	}
 }
 
-extension RenderPass: Encodable {
-	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
-		renderCommandEncoder.setDepthStencilState(depthStencilState)
-	}
-}
-
 extension RenderPass: Drawable {
 	func draw(in view: MTKView) {
 		guard
-			let renderPass = View.sharedInstance.renderPass,
 			let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
-			let renderEncoder = renderPass.makeRenderCommandEncoder(commandBuffer: commandBuffer)
-			else { return }
+			let renderEncoder = makeRenderCommandEncoder(commandBuffer: commandBuffer)
+		else { return }
 		
+		// TODO: multi-thread CPU.
 		// update behaviours
-		// TODO: multi-thread update
 		for updateBehaviour in Application.sharedInstance.updateBehaviours {
 			updateBehaviour.reference?.update()
 		}
 		
+		// TODO: multi-thread CPU to GPU.
+		// TODO: multiple threads draw multiple queue (realtime and offline rendering).
 		// TODO: semaphore.
-		//		_ = semaphore.wait(timeout: .distantFuture)
-		//		commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
+		_ = semaphore.wait(timeout: .distantFuture)
+		commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
 		
 		// Start encoding and setup debug infomation
-		// TODO: setup with render pass names
-		renderEncoder.label = "Primary Render Encoder"
+		renderEncoder.label = String(describing: self)
 		// Render pass encoding.
-		renderPass.encode(to: renderEncoder)
+		renderEncoder.setDepthStencilState(depthStencilState)
 		
-		// drawable behaviours
-		// TODO: multiple threads draw multiple queue (realtime and offline rendering)
+		// render behaviours.
 		for renderBehaviour in Application.sharedInstance.renderBehaviours {
 			renderBehaviour.reference?.encode(to: renderEncoder)
 		}
@@ -67,7 +64,6 @@ extension RenderPass: Drawable {
 		renderEncoder.endEncoding()
 		
 		// If rendering to core animation layer.
-		// TODO: in render pass
 		if let drawable = view.currentDrawable { commandBuffer.present(drawable) }
 		
 		commandBuffer.commit()

@@ -9,10 +9,6 @@ public class MeshRenderer: Renderer, Renderable {
 	/// Mesh slot for rendering.
 	public var mesh: Mesh?
 	
-	// TODO: in game object.
-	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
-	private let semaphore = DispatchSemaphore(value: 3)
-	
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		// Check all the resources available.
 		guard let mesh = self.mesh, let material = self.material else { return }
