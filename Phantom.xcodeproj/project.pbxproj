@@ -238,6 +238,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60021EFD20ED0BB800106763 /* TestSample */ = {
+			isa = PBXGroup;
+			children = (
+				6074A5D4208A47E400F35A8F /* SampleApplication.swift */,
+				6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */,
+			);
+			path = TestSample;
+			sourceTree = "<group>";
+		};
 		601A9DFC2088F4F2002045DA /* PhantomKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,7 +325,7 @@
 				607206ED20538ABE0068F691 /* iOS */,
 				607206FE20538ABE0068F691 /* tvOS */,
 				6072070C20538ABE0068F691 /* macOS */,
-				6074A5D3208A478500F35A8F /* Sample */,
+				6074A5D3208A478500F35A8F /* Samples */,
 				607206EC20538ABE0068F691 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -407,13 +416,12 @@
 			path = Graphics;
 			sourceTree = "<group>";
 		};
-		6074A5D3208A478500F35A8F /* Sample */ = {
+		6074A5D3208A478500F35A8F /* Samples */ = {
 			isa = PBXGroup;
 			children = (
-				6074A5D4208A47E400F35A8F /* SampleApplication.swift */,
-				6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */,
+				60021EFD20ED0BB800106763 /* TestSample */,
 			);
-			path = Sample;
+			path = Samples;
 			sourceTree = "<group>";
 		};
 		608856B6208E259E00F69621 /* Framework */ = {
