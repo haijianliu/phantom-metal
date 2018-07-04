@@ -466,9 +466,9 @@
 			productReference = 601A9E032088F4F2002045DA /* PhantomKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		607206EA20538ABE0068F691 /* Phantom iOS */ = {
+		607206EA20538ABE0068F691 /* TestSample iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6072072320538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom iOS" */;
+			buildConfigurationList = 6072072320538ABE0068F691 /* Build configuration list for PBXNativeTarget "TestSample iOS" */;
 			buildPhases = (
 				607206E720538ABE0068F691 /* Sources */,
 				607206E820538ABE0068F691 /* Frameworks */,
@@ -478,14 +478,14 @@
 			);
 			dependencies = (
 			);
-			name = "Phantom iOS";
+			name = "TestSample iOS";
 			productName = "Phantom iOS";
 			productReference = 607206EB20538ABE0068F691 /* Phantom.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6072070A20538ABE0068F691 /* Phantom macOS */ = {
+		6072070A20538ABE0068F691 /* TestSample macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6072072920538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom macOS" */;
+			buildConfigurationList = 6072072920538ABE0068F691 /* Build configuration list for PBXNativeTarget "TestSample macOS" */;
 			buildPhases = (
 				6072070720538ABE0068F691 /* Sources */,
 				6072070820538ABE0068F691 /* Frameworks */,
@@ -497,7 +497,7 @@
 			dependencies = (
 				601A9E0F2088F4F2002045DA /* PBXTargetDependency */,
 			);
-			name = "Phantom macOS";
+			name = "TestSample macOS";
 			productName = "Phantom macOS";
 			productReference = 6072070B20538ABE0068F691 /* Phantom.app */;
 			productType = "com.apple.product-type.application";
@@ -509,7 +509,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = haijian;
 				TargetAttributes = {
 					601A9DFA2088F4F2002045DA = {
@@ -544,8 +544,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607206EA20538ABE0068F691 /* Phantom iOS */,
-				6072070A20538ABE0068F691 /* Phantom macOS */,
+				607206EA20538ABE0068F691 /* TestSample iOS */,
+				6072070A20538ABE0068F691 /* TestSample macOS */,
 				601A9DFA2088F4F2002045DA /* PhantomKit */,
 				601A9E022088F4F2002045DA /* PhantomKitTests */,
 			);
@@ -701,7 +701,7 @@
 		};
 		601A9E082088F4F2002045DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6072070A20538ABE0068F691 /* Phantom macOS */;
+			target = 6072070A20538ABE0068F691 /* TestSample macOS */;
 			targetProxy = 601A9E072088F4F2002045DA /* PBXContainerItemProxy */;
 		};
 		601A9E0F2088F4F2002045DA /* PBXTargetDependency */ = {
@@ -861,6 +861,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -868,6 +869,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -915,6 +917,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -922,6 +925,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1056,7 +1060,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6072072320538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom iOS" */ = {
+		6072072320538ABE0068F691 /* Build configuration list for PBXNativeTarget "TestSample iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6072072420538ABE0068F691 /* Debug */,
@@ -1065,7 +1069,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6072072920538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom macOS" */ = {
+		6072072920538ABE0068F691 /* Build configuration list for PBXNativeTarget "TestSample macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6072072A20538ABE0068F691 /* Debug */,
