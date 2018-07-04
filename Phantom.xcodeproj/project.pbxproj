@@ -55,7 +55,6 @@
 		6051E34A208B3F1700C4E8AA /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
 		6051E34B208B3F1700C4E8AA /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
 		6051E34D208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */; };
-		6051E34E208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */; };
 		6051E34F208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E34C208B4C3300C4E8AA /* SampleBehaviour.swift */; };
 		6051E359208B4FFC00C4E8AA /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
 		6051E35A208B4FFC00C4E8AA /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
@@ -70,13 +69,9 @@
 		607206F120538ABE0068F691 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206F020538ABE0068F691 /* GameViewController.swift */; };
 		607206F420538ABE0068F691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607206F220538ABE0068F691 /* Main.storyboard */; };
 		607206F720538ABE0068F691 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607206F520538ABE0068F691 /* LaunchScreen.storyboard */; };
-		6072070020538ABE0068F691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206FF20538ABE0068F691 /* AppDelegate.swift */; };
-		6072070220538ABE0068F691 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072070120538ABE0068F691 /* GameViewController.swift */; };
-		6072070520538ABE0068F691 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6072070320538ABE0068F691 /* Main.storyboard */; };
 		607258A220958A20004996FA /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607258A0209589E6004996FA /* Shader.swift */; };
 		607258A320958A20004996FA /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607258A0209589E6004996FA /* Shader.swift */; };
 		6074A5D5208A47E400F35A8F /* SampleApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074A5D4208A47E400F35A8F /* SampleApplication.swift */; };
-		6074A5D6208A47EB00F35A8F /* SampleApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074A5D4208A47E400F35A8F /* SampleApplication.swift */; };
 		6074A5D7208A47EC00F35A8F /* SampleApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074A5D4208A47E400F35A8F /* SampleApplication.swift */; };
 		608856B7208E25CC00F69621 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
 		608856BA2090D3E800F69621 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B82090D3D500F69621 /* Renderable.swift */; };
@@ -85,7 +80,6 @@
 		608856BE2090DD4600F69621 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BC2090DD4600F69621 /* Renderer.swift */; };
 		608856C02090E33700F69621 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BF2090E33700F69621 /* Material.swift */; };
 		608856C12090E33700F69621 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BF2090E33700F69621 /* Material.swift */; };
-		60A0D4732089035500D08572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		60A0D4742089035600D08572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		60A0D4762089047300D08572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607206E620538ABE0068F691 /* Assets.xcassets */; };
 		60D645C22094C1C000646198 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D645C02094C1B900646198 /* RenderPass.swift */; };
@@ -175,11 +169,6 @@
 		607206F320538ABE0068F691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607206F620538ABE0068F691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		607206F820538ABE0068F691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607206FD20538ABE0068F691 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phantom.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		607206FF20538ABE0068F691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6072070120538ABE0068F691 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		6072070420538ABE0068F691 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6072070620538ABE0068F691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6072070B20538ABE0068F691 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phantom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6072070D20538ABE0068F691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6072070F20538ABE0068F691 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -214,13 +203,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		607206E820538ABE0068F691 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		607206FA20538ABE0068F691 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -323,7 +305,6 @@
 				601A9DFC2088F4F2002045DA /* PhantomKit */,
 				601A9E092088F4F2002045DA /* PhantomKitTests */,
 				607206ED20538ABE0068F691 /* iOS */,
-				607206FE20538ABE0068F691 /* tvOS */,
 				6072070C20538ABE0068F691 /* macOS */,
 				6074A5D3208A478500F35A8F /* Samples */,
 				607206EC20538ABE0068F691 /* Products */,
@@ -354,7 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				607206EB20538ABE0068F691 /* Phantom.app */,
-				607206FD20538ABE0068F691 /* Phantom.app */,
 				6072070B20538ABE0068F691 /* Phantom.app */,
 				601A9DFB2088F4F2002045DA /* PhantomKit.framework */,
 				601A9E032088F4F2002045DA /* PhantomKitTests.xctest */,
@@ -372,17 +352,6 @@
 				607206F820538ABE0068F691 /* Info.plist */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		607206FE20538ABE0068F691 /* tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				607206FF20538ABE0068F691 /* AppDelegate.swift */,
-				6072070120538ABE0068F691 /* GameViewController.swift */,
-				6072070320538ABE0068F691 /* Main.storyboard */,
-				6072070620538ABE0068F691 /* Info.plist */,
-			);
-			path = tvOS;
 			sourceTree = "<group>";
 		};
 		6072070C20538ABE0068F691 /* macOS */ = {
@@ -514,23 +483,6 @@
 			productReference = 607206EB20538ABE0068F691 /* Phantom.app */;
 			productType = "com.apple.product-type.application";
 		};
-		607206FC20538ABE0068F691 /* Phantom tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6072072620538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom tvOS" */;
-			buildPhases = (
-				607206F920538ABE0068F691 /* Sources */,
-				607206FA20538ABE0068F691 /* Frameworks */,
-				607206FB20538ABE0068F691 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Phantom tvOS";
-			productName = "Phantom tvOS";
-			productReference = 607206FD20538ABE0068F691 /* Phantom.app */;
-			productType = "com.apple.product-type.application";
-		};
 		6072070A20538ABE0068F691 /* Phantom macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6072072920538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom macOS" */;
@@ -573,10 +525,6 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
-					607206FC20538ABE0068F691 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-					};
 					6072070A20538ABE0068F691 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -597,7 +545,6 @@
 			projectRoot = "";
 			targets = (
 				607206EA20538ABE0068F691 /* Phantom iOS */,
-				607206FC20538ABE0068F691 /* Phantom tvOS */,
 				6072070A20538ABE0068F691 /* Phantom macOS */,
 				601A9DFA2088F4F2002045DA /* PhantomKit */,
 				601A9E022088F4F2002045DA /* PhantomKitTests */,
@@ -627,15 +574,6 @@
 				607206F420538ABE0068F691 /* Main.storyboard in Resources */,
 				60A0D4742089035600D08572 /* Assets.xcassets in Resources */,
 				607206F720538ABE0068F691 /* LaunchScreen.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		607206FB20538ABE0068F691 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60A0D4732089035500D08572 /* Assets.xcassets in Resources */,
-				6072070520538ABE0068F691 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,17 +679,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		607206F920538ABE0068F691 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6072070220538ABE0068F691 /* GameViewController.swift in Sources */,
-				6051E34E208B4C3300C4E8AA /* SampleBehaviour.swift in Sources */,
-				6074A5D6208A47EB00F35A8F /* SampleApplication.swift in Sources */,
-				6072070020538ABE0068F691 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6072070720538ABE0068F691 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -799,14 +726,6 @@
 				607206F620538ABE0068F691 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		6072070320538ABE0068F691 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6072070420538ABE0068F691 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		6072071120538ABE0068F691 /* Main.storyboard */ = {
@@ -1067,41 +986,6 @@
 			};
 			name = Release;
 		};
-		6072072720538ABE0068F691 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = tvOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
-				PRODUCT_NAME = Phantom;
-				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
-			};
-			name = Debug;
-		};
-		6072072820538ABE0068F691 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M5A36G82A;
-				INFOPLIST_FILE = tvOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
-				PRODUCT_NAME = Phantom;
-				SDKROOT = appletvos;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		6072072A20538ABE0068F691 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1177,15 +1061,6 @@
 			buildConfigurations = (
 				6072072420538ABE0068F691 /* Debug */,
 				6072072520538ABE0068F691 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6072072620538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6072072720538ABE0068F691 /* Debug */,
-				6072072820538ABE0068F691 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
