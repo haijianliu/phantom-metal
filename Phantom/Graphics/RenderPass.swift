@@ -5,23 +5,21 @@ import MetalKit
 // TODO: mutiple settings render pass vailiation.
 class RenderPass {
 	
-	var depthStencilState: MTLDepthStencilState
-	var renderPassDescriptor: MTLRenderPassDescriptor?
+	// TODO: Add front and back face stencil properties.
+	var depthWrite = true
+	var compareFunction = MTLCompareFunction.less
+	private var depthStencilState: MTLDepthStencilState
 	
 	// TODO: in metal library.
 	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
 	let semaphore = DispatchSemaphore(value: 3)
 	
 	init?(mtkView: MTKView) {
-		// Set device
-		guard let device = mtkView.device else { return nil }
-		
-		// depth descriptor
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
-		depthStencilDescriptor.depthCompareFunction = MTLCompareFunction.less // TODO: properties
-		depthStencilDescriptor.isDepthWriteEnabled = true // TODO: properties
-		guard let depthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
-		self.depthStencilState = depthStencilState
+		depthStencilDescriptor.depthCompareFunction = compareFunction
+		depthStencilDescriptor.isDepthWriteEnabled = depthWrite
+		guard let newDepthStencilState = mtkView.device?.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
+		depthStencilState = newDepthStencilState
 	}
 	
 	// TODO: customize this function varying from render passes.
@@ -34,8 +32,8 @@ class RenderPass {
 extension RenderPass: Drawable {
 	func draw(in view: MTKView) {
 		guard
-			let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
-			let renderEncoder = makeRenderCommandEncoder(commandBuffer: commandBuffer)
+		let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
+		let renderEncoder = makeRenderCommandEncoder(commandBuffer: commandBuffer)
 		else { return }
 		
 		// TODO: multi-thread CPU.
