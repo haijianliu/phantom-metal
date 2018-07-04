@@ -17,7 +17,7 @@ class SampleApplication: ApplicationDelegate {
 		// MeshRenderer
 		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return }
 		// Attach material
-		var material = Material()
+		let material = Material()
 		guard let shader = Shader() else { return }
 		guard let texture = Texture(name: "UV_Grid_Sm") else { return }
 		material.texture = texture
