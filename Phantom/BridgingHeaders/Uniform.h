@@ -15,7 +15,7 @@
 typedef NS_ENUM(NSInteger, BufferIndex)
 {
 	BufferIndexMeshPositions = 0,
-	BufferIndexMeshGenerics = 1,
+	BufferIndexMeshTexcoords = 1,
 	BufferIndexUniforms = 2
 };
 

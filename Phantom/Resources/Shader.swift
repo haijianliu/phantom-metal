@@ -59,15 +59,15 @@ extension Shader {
 		
 		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].format = MTLVertexFormat.float2
 		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].offset = 0
-		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].bufferIndex = BufferIndex.meshGenerics.rawValue
+		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].bufferIndex = BufferIndex.meshTexcoords.rawValue
 		
 		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stride = 12
 		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepRate = 1
 		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepFunction = MTLVertexStepFunction.perVertex
 		
-		vertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stride = 8
-		vertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stepRate = 1
-		vertexDescriptor.layouts[BufferIndex.meshGenerics.rawValue].stepFunction = MTLVertexStepFunction.perVertex
+		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stride = 8
+		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stepRate = 1
+		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stepFunction = MTLVertexStepFunction.perVertex
 		
 		return vertexDescriptor
 	}
