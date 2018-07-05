@@ -21,12 +21,12 @@ typedef struct
 	float2 texCoord;
 } ColorInOut;
 
-vertex ColorInOut vertexShader(Vertex in [[stage_in]], constant Uniforms & uniforms [[ buffer(BufferIndexUniforms) ]])
+vertex ColorInOut vertexShader(Vertex in [[stage_in]], constant Transformations & transformations [[ buffer(BufferIndexTransformations) ]])
 {
 	ColorInOut out;
 
 	float4 position = float4(in.position, 1.0);
-	out.position = uniforms.projectionMatrix * uniforms.modelViewMatrix * position;
+	out.position = transformations.projectionMatrix * transformations.modelViewMatrix * position;
 	out.texCoord = in.texCoord;
 
 	return out;

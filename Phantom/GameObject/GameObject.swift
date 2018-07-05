@@ -15,7 +15,7 @@ public class GameObject {
 		return components[String(describing: Transform.self)] as! Transform
 	}()
 
-	private var transformUniformBuffer: TripleBuffer<Uniforms>
+	private var transformUniformBuffer: TripleBuffer<Transformations>
 	
 	/// Holds a list of strong references of components have attached.
 	var components = [String: Component]()
@@ -24,7 +24,7 @@ public class GameObject {
 	/// Creates a new game object.
 	public init?() {
 		// TODO: init dynamic semaphore value
-		guard let newBuffer = TripleBuffer<Uniforms>() else { return nil }
+		guard let newBuffer = TripleBuffer<Transformations>() else { return nil }
 		transformUniformBuffer = newBuffer
 		// Default tag: untagged
 		tag = .untagged
@@ -66,6 +66,6 @@ extension GameObject: Encodable {
 		transformUniformBuffer.data.modelViewMatrix = camera.worldToCameraMatrix * transform.localToWorldMatrix;
 		transformUniformBuffer.endWritting()
 		
-		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.uniforms.rawValue)
+		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.transformations.rawValue)
 	}
 }

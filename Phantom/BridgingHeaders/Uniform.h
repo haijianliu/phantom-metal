@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, BufferIndex)
 {
 	BufferIndexMeshPositions = 0,
 	BufferIndexMeshTexcoords = 1,
-	BufferIndexUniforms = 2
+	BufferIndexTransformations = 2
 };
 
 typedef NS_ENUM(NSInteger, VertexAttribute)
@@ -25,15 +25,21 @@ typedef NS_ENUM(NSInteger, VertexAttribute)
 	VertexAttributeTexcoord = 1,
 };
 
+// TODO: Add format and stride information.
+
 typedef NS_ENUM(NSInteger, TextureIndex)
 {
 	TextureIndexColor = 0,
 };
 
+/**
+ Transformations
+ All these matrices are float4x4 type.
+ */
 typedef struct
 {
 	matrix_float4x4 projectionMatrix;
 	matrix_float4x4 modelViewMatrix;
-} Uniforms;
+} Transformations;
 
 #endif /* Uniform_h */
