@@ -37,6 +37,7 @@ fragment float4 fragmentShader(ColorInOut in [[stage_in]], texture2d<half> color
 	constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
 
 	half4 colorSample   = colorMap.sample(colorSampler, in.texCoord.xy);
+	float3 color = mix(float3(0.2, 0.2, 0.2), float3(colorSample.xyz), float(colorSample.a));
 
-	return float4(colorSample);
+	return float4(color, 1);
 }
