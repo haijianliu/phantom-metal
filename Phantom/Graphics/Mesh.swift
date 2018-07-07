@@ -24,7 +24,7 @@ public class Mesh {
 		
 		let metalAllocator = MTKMeshBufferAllocator(device: device)
 		
-		let mdlMesh = MDLMesh.newBox(withDimensions: float3(4, 4, 4), segments: uint3(2, 2, 2), geometryType: MDLGeometryType.triangles, inwardNormals: false, allocator: metalAllocator)
+		let mdlMesh = MDLMesh.newBox(withDimensions: float3(1, 1, 1), segments: uint3(1, 1, 1), geometryType: MDLGeometryType.triangles, inwardNormals: false, allocator: metalAllocator)
 		
 		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(vertexDescriptor)
 		

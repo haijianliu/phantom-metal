@@ -156,13 +156,13 @@
 		601A9E0A2088F4F2002045DA /* PhantomKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhantomKitTests.swift; sourceTree = "<group>"; };
 		601A9E0C2088F4F2002045DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		601E2DDC206F72CB00428A4D /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		6021AAB720F0583D00287C73 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phantom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6021AAB820F0583D00287C73 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phantom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6021AAB920F0583D00287C73 /* PhantomKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhantomKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6026CB8E2084E0DD00537B04 /* TripleBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleBuffer.swift; sourceTree = "<group>"; };
 		6030BC83206FC00300918010 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
-		603C0CF820EEB35600462669 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Phantom.app; path = "/Users/haijian/Documents/Metal/Phantom/build/Debug-iphoneos/Phantom.app"; sourceTree = "<absolute>"; };
-		603C0CF920EEB35600462669 /* Phantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Phantom.app; path = /Users/haijian/Documents/Metal/Phantom/build/Debug/Phantom.app; sourceTree = "<absolute>"; };
 		603C0CFA20EEB35600462669 /* PhantomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhantomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		603C0CFB20EEB35600462669 /* PrimitiveSample macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PrimitiveSample macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		603C0CFC20EEB35600462669 /* PhantomKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PhantomKitTests.xctest; path = /Users/haijian/Documents/Metal/Phantom/build/Debug/PhantomKitTests.xctest; sourceTree = "<absolute>"; };
 		603F760D206953CE00E9922F /* MatrixTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTransform.swift; sourceTree = "<group>"; };
 		603F76112069577D00E9922F /* Trigonometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigonometry.swift; sourceTree = "<group>"; };
 		603F7615206958B300E9922F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -347,6 +347,9 @@
 				6074A5D3208A478500F35A8F /* Samples */,
 				603C0CFA20EEB35600462669 /* PhantomKit.framework */,
 				603C0CFB20EEB35600462669 /* PrimitiveSample macOS.app */,
+				6021AAB720F0583D00287C73 /* Phantom.app */,
+				6021AAB820F0583D00287C73 /* Phantom.app */,
+				6021AAB920F0583D00287C73 /* PhantomKitTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -398,7 +401,6 @@
 			children = (
 				607258A0209589E6004996FA /* Shader.swift */,
 				601E2DDC206F72CB00428A4D /* Texture.swift */,
-				606B711E2078B92C004EFF95 /* Mesh.swift */,
 				608856BF2090E33700F69621 /* Material.swift */,
 				604F12AF206F6355003CE7D1 /* Resources.swift */,
 			);
@@ -409,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				60D645C02094C1B900646198 /* RenderPass.swift */,
+				606B711E2078B92C004EFF95 /* Mesh.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -492,7 +495,7 @@
 			);
 			name = PhantomKitTests;
 			productName = PhantomKitTests;
-			productReference = 603C0CFC20EEB35600462669 /* PhantomKitTests.xctest */;
+			productReference = 6021AAB920F0583D00287C73 /* PhantomKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		6049052220ED10D2000BB47F /* PrimitiveSample macOS */ = {
@@ -528,7 +531,7 @@
 			);
 			name = "TestSample iOS";
 			productName = "Phantom iOS";
-			productReference = 603C0CF820EEB35600462669 /* Phantom.app */;
+			productReference = 6021AAB720F0583D00287C73 /* Phantom.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6072070A20538ABE0068F691 /* TestSample macOS */ = {
@@ -547,7 +550,7 @@
 			);
 			name = "TestSample macOS";
 			productName = "Phantom macOS";
-			productReference = 603C0CF920EEB35600462669 /* Phantom.app */;
+			productReference = 6021AAB820F0583D00287C73 /* Phantom.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
