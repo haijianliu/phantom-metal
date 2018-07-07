@@ -18,6 +18,8 @@ public class Mesh {
 			return nil
 		}
 	}
+	
+	init(with mtkMesh: MTKMesh) { self.mtkMesh = mtkMesh }
 
 	/// Create and condition mesh data to feed into a pipeline using the given vertex descriptor.
 	class func buildMesh(device: MTLDevice, vertexDescriptor: MTLVertexDescriptor) throws -> MTKMesh {
