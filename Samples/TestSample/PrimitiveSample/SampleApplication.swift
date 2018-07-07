@@ -11,7 +11,7 @@ class SampleApplication: ApplicationDelegate {
 	
 	private func createGameObjects(position: Vector3) {
 		// GameObject
-		guard let gameObject = GameObject.createCube() else { return }
+		guard let gameObject = GameObject.createCube(withDimensions: Vector3(2, 2, 2)) else { return }
 		// Transform
 		gameObject.transform.position = position
 		// SampleBehaviour
