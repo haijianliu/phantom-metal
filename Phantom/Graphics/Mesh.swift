@@ -3,31 +3,9 @@
 import MetalKit
 
 class Mesh {
-	
 	var mtkMesh: MTKMesh
 	var winding: MTLWinding = MTLWinding.counterClockwise
-	
 	init(with mtkMesh: MTKMesh) { self.mtkMesh = mtkMesh }
-
-	/// Create and condition mesh data to feed into a pipeline using the given vertex descriptor.
-	class func buildMesh(device: MTLDevice, vertexDescriptor: MTLVertexDescriptor) throws -> MTKMesh {
-		
-		let metalAllocator = MTKMeshBufferAllocator(device: device)
-		
-		let mdlMesh = MDLMesh.newBox(withDimensions: float3(1, 1, 1), segments: uint3(1, 1, 1), geometryType: MDLGeometryType.triangles, inwardNormals: false, allocator: metalAllocator)
-		
-		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(vertexDescriptor)
-		
-		guard let attributes = mdlVertexDescriptor.attributes as? [MDLVertexAttribute] else {
-			throw RendererError.badVertexDescriptor
-		}
-		attributes[VertexAttribute.position.rawValue].name = MDLVertexAttributePosition
-		attributes[VertexAttribute.texcoord.rawValue].name = MDLVertexAttributeTextureCoordinate
-		
-		mdlMesh.vertexDescriptor = mdlVertexDescriptor
-		
-		return try MTKMesh(mesh: mdlMesh, device: device)
-	}
 }
 
 extension Mesh: Encodable {
