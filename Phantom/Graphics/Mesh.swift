@@ -2,22 +2,10 @@
 
 import MetalKit
 
-public class Mesh {
+class Mesh {
 	
 	var mtkMesh: MTKMesh
 	var winding: MTLWinding = MTLWinding.counterClockwise
-	
-	// TODO: delete shader argument.
-	/// Create and condition mesh data to feed into a pipeline using the given vertex descriptor.
-	public init?(shader: Shader) {
-		guard let device = View.main.device else { return nil }
-		do {
-			mtkMesh = try Mesh.buildMesh(device: device, vertexDescriptor: shader.vertexDescriptor)
-		} catch {
-			print("Unable to build MetalKit Mesh. Error info: \(error)")
-			return nil
-		}
-	}
 	
 	init(with mtkMesh: MTKMesh) { self.mtkMesh = mtkMesh }
 
