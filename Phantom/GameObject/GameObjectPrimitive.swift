@@ -25,7 +25,13 @@ extension GameObject {
 	}
 	
 	/// Create a cube primitive.
-
+	///
+	/// - Parameters:
+	///   - dimensions: A vector containing the width (x-component), height (y-component), and depth (z-component) of the box to generate. If all components are equal, this method generates a cube.
+	///   - segments: The number of points to generate along each dimension. A larger number of points increases rendering fidelity but decreases rendering performance.
+	///   - geometryType: The type of geometric primitive from which to construct the mesh; must be either kindTriangles, kindQuads, or lines.
+	///   - inwardNormals: true to generate normal vectors pointing toward the inside of the box; false to generate normal vectors pointing outward.
+	/// - Returns: A new GameObject with MeshRenderer.
 	public static func createCube(withDimensions dimensions: Vector3 = Vector3(1, 1, 1), segments: Uint3 = Uint3(1, 1, 1), geometryType: MDLGeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
 		guard let gameObject = GameObject.createBase() else { return nil }
 		guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { return nil }
