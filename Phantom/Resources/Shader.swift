@@ -2,16 +2,15 @@
 
 import MetalKit
 
+// TODO: GpuObject.
 public class Shader {
 	
 	let renderPipelineState: MTLRenderPipelineState
 	let vertexDescriptor: MTLVertexDescriptor
 
-	public init?(filepath: String = "Default") {
-		guard
-			let device = View.main.device,
-			let library = device.makeDefaultLibrary() // TODO: load metal library.
-		else { return nil }
+	public init?(_ device: MTLDevice, filepath: String = "Default") {
+		// TODO: load metal library.
+		guard let library = device.makeDefaultLibrary() else { return nil }
 		
 		// TODO: function name enum
 		let vertexFunction = library.makeFunction(name: "vertexShader")
