@@ -23,8 +23,9 @@ public class GameObject {
 	// TODO: named name.
 	/// Creates a new game object.
 	public init?() {
+		guard let device = View.main.device else { return nil }
 		// TODO: init dynamic semaphore value
-		guard let newBuffer = TripleBuffer<Transformations>() else { return nil }
+		guard let newBuffer = TripleBuffer<Transformations>(device) else { return nil }
 		transformUniformBuffer = newBuffer
 		// Default tag: untagged
 		tag = .untagged
