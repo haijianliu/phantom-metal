@@ -5,25 +5,6 @@ import MetalKit
 // MARK: - Primitive extension for creating various primitive gameobjects by using the GameObject.create... functions.
 extension GameObject {
 
-	/// Create a basic mesh type gameobject by all default settings.
-	///
-	/// - Returns: GameObject
-	private static func createBase() -> GameObject? {
-		// GameObject
-		guard let gameObject = GameObject() else { return nil }
-		// MeshRenderer
-		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return nil }
-		// Attach material
-		let material = Material()
-		guard let shader = Shader() else { return nil }
-		// TODO: None texture.
-		guard let texture = Texture(name: "UV_Grid_Sm") else { return nil }
-		material.texture = texture
-		material.shader = shader
-		meshRenderer.material = material
-		return gameObject
-	}
-	
 	/// Create a cube primitive.
 	///
 	/// - Parameters:
@@ -33,15 +14,21 @@ extension GameObject {
 	///   - inwardNormals: true to generate normal vectors pointing toward the inside of the box; false to generate normal vectors pointing outward.
 	/// - Returns: A new GameObject with MeshRenderer.
 	public static func createCube(withDimensions dimensions: Vector3 = Vector3(1, 1, 1), segments: Uint3 = Uint3(1, 1, 1), geometryType: MDLGeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
-		guard let gameObject = GameObject.createBase() else { return nil }
-		guard let meshRenderer: MeshRenderer = gameObject.getComponent() else { return nil }
-		guard let vertexDescriptor = meshRenderer.material?.shader?.vertexDescriptor else { return nil }
-
+		// GameObject
+		guard let gameObject = GameObject() else { return nil }
+		// MeshRenderer
+		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return nil }
+		// Attach material
+		// TODO: refactor shader initializer.
+		guard let shader = Shader() else { return nil }
+		let material = Material(with: shader)
+		meshRenderer.material = material
 		// TODO: refactor!
 		guard let device = View.main.device else { return nil }
 		let metalAllocator = MTKMeshBufferAllocator(device: device)
+		// Create new MDLMesh.
 		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: metalAllocator)
-		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(vertexDescriptor)
+		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(shader.vertexDescriptor)
 		guard let attributes = mdlVertexDescriptor.attributes as? [MDLVertexAttribute] else { return nil }
 		attributes[VertexAttribute.position.rawValue].name = MDLVertexAttributePosition
 		attributes[VertexAttribute.texcoord.rawValue].name = MDLVertexAttributeTextureCoordinate
