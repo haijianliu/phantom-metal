@@ -8,6 +8,11 @@ public class GameObject {
 	
 	/// The tag of this game object.
 	public var tag: GameObjectTag { didSet { if tag == .mainCamera, let camera: Camera = self.getComponent() { Camera.main = camera } } }
+
+	/// The material attached of MeshRenderer attached to this GameObject. 
+	public var material: Material? { get {
+			let meshRenderer: MeshRenderer? = self.getComponent()
+			return meshRenderer?.material } }
 	
 	// TODO: unowned reference?
 	/// The Transform attached to this GameObject.
