@@ -2,21 +2,38 @@
 
 import MetalKit
 
+/// Types of geometric primitives for rendering a submesh, used by the geometryType property.
+public typealias GeometryType = MDLGeometryType
+
 // MARK: - Primitive extension for creating various primitive gameobjects by using the GameObject.create... functions.
 extension GameObject {
 
-	/// Create a cube primitive.
+	/// Creates a primitive gameobject in the shape of a rectangular box or cube.
 	///
 	/// - Parameters:
 	///   - dimensions: A vector containing the width (x-component), height (y-component), and depth (z-component) of the box to generate. If all components are equal, this method generates a cube.
 	///   - segments: The number of points to generate along each dimension. A larger number of points increases rendering fidelity but decreases rendering performance.
 	///   - geometryType: The type of geometric primitive from which to construct the mesh; must be either kindTriangles, kindQuads, or lines.
 	///   - inwardNormals: true to generate normal vectors pointing toward the inside of the box; false to generate normal vectors pointing outward.
-	/// - Returns: A new GameObject with MeshRenderer.
-	public static func createCube(withDimensions dimensions: Vector3 = Vector3(1, 1, 1), segments: Uint3 = Uint3(1, 1, 1), geometryType: MDLGeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
+	/// - Returns: A new GameObject with MeshRenderer component.
+	public static func createCube(withDimensions dimensions: Vector3 = Vector3(1, 1, 1), segments: Uint3 = Uint3(1, 1, 1), geometryType: GeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
 		guard let device = View.main.device else { return nil }
-		let metalAllocator = MTKMeshBufferAllocator(device: device)
-		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: metalAllocator)
+		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
+		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: mtkMeshBufferAllocator)
+		return GameObject.createMeshGameObject(device, with: mdlMesh)
+	}
+
+	/// Creates a primitive gameobject in the shape of a rectangular plane.
+	///
+	/// - Parameters:
+	///   - dimensions: A vector containing the width (x-component) and depth (y-component) of the plane to generate.
+	///   - segments: The number of points to generate along each dimension. A larger number of points increases rendering fidelity but decreases rendering performance.
+	///   - geometryType: The type of geometric primitive from which to construct the mesh; must be either kindTriangles or
+	/// - Returns: A new GameObject with MeshRenderer component.
+	public static func createPlane(withDimensions dimensions: Vector2 = Vector2(10, 10), segments: Uint2 = Uint2(10, 10), geometryType: GeometryType = .triangles) -> GameObject? {
+		guard let device = View.main.device else { return nil }
+		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
+		let mdlMesh = MDLMesh.newPlane(withDimensions: dimensions, segments: segments, geometryType: geometryType, allocator: mtkMeshBufferAllocator)
 		return GameObject.createMeshGameObject(device, with: mdlMesh)
 	}
 
