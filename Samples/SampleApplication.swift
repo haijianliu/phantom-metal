@@ -12,6 +12,8 @@ class SampleApplication: ApplicationDelegate {
 	private func createGameObjects(position: Vector3) {
 		// GameObject
 		guard let gameObject = GameObject.createCube(withDimensions: Vector3(2, 2, 2)) else { return }
+		// Set texture
+		gameObject.material?.texture = Texture(name: "UV_Grid_Sm")
 		// Transform
 		gameObject.transform.position = position
 		// SampleBehaviour
