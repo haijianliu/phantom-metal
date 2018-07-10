@@ -2,7 +2,7 @@
 
 // TODO: public?
 public class Application {
-	
+
 	// TODO: no singleton
 	static let sharedInstance: Application = Application()
 	// TODO: initialize capacity.
@@ -10,15 +10,15 @@ public class Application {
 		updateBehaviours.reserveCapacity(0xFF)
 		renderBehaviours.reserveCapacity(0xFF)
 	}
-	
+
 	// Delegate
 	weak var delegate: ApplicationDelegate?
-	
+
 	var viewDelegate: ViewDelegate?
-	
+
 	/// The only game object references holder.
 	private var gameObjects = [GameObject]()
-	
+
 	// TODO: clean up nil reference.
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
 	var updateBehaviours = ContiguousArray<Weak<Updatable>>()
@@ -30,7 +30,7 @@ public class Application {
 		Application.sharedInstance.delegate?.start()
 		Application.sharedInstance.createRenderer()
 	}
-	
+
 	// TODO: in Scene
 	public static func addGameObject(_ gameObjcet: GameObject) {
 		Application.sharedInstance.gameObjects.append(gameObjcet)
@@ -47,11 +47,11 @@ public class Application {
 	private func createRenderer() {
 		// Create Renderer
 		viewDelegate = ViewDelegate()
-		
+
 		// TODO: This will be a Display process
 		// Set MTKViewDelegate to current Renderer instance
 		View.main.delegate = viewDelegate
-		
+
 		// Only for the first time, should initiate the view manually
 		viewDelegate?.mtkView(View.main, drawableSizeWillChange: View.main.drawableSize)
 	}

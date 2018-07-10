@@ -18,15 +18,15 @@ public class Transform: Component {
 		// TODO: matrix to quaternion
 		return Quaternion()
 	}
-	
+
 	// TODO: dirty protocol?
 	/// True if the associated properties is modifed. Initialized value is true.
 	private var dirty = true
-	
+
 	/// Storage of the local to world matrix.
 	/// When dirty flag is true, this value will be updated when first time the local to world matrix is called.
 	private var currentLocalToWorldMatrix = Matrix4x4(1)
-	
+
 	// TODO: use rotation.
 	/// Matrix that transforms a point from local space into world space (Read Only).
 	var localToWorldMatrix: Matrix4x4 {
