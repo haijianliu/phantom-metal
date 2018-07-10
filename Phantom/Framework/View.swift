@@ -16,8 +16,8 @@ public class View {
 	private var views = [MTKView]()
 	private var currentViewIndex: Int?
 
-	private var depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
-	private var colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
+    private var depthStencilPixelFormat: MTLPixelFormat = .depth32Float_stencil8
+    private var colorPixelFormat: MTLPixelFormat = .bgra8Unorm_srgb
 	// TODO: Max sampling test.
 	private var antialiasingMode: AntialiasingMode = AntialiasingMode.multisampling4X
 
