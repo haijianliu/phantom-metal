@@ -4,7 +4,7 @@ import GLKit
 
 // Defines functions that generate common transformation matrices
 extension Math {
-	
+
 	/// Builds a translation 4 * 4 matrix created from a vector of 3 components.
 	///
 	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
@@ -16,12 +16,12 @@ extension Math {
 		result[3] = matrix[0] * vector[0] + matrix[1] * vector[1] + matrix[2] * vector[2] + matrix[3];
 		return result;
 	}
-	
+
 	/// Builds a translation 4 * 4 matrix created from 3 scalars.
 	public static func translate(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> Matrix4x4 {
-		return Matrix4x4.init(columns:(Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(translationX, translationY, translationZ, 1)))
+		return Matrix4x4(columns:(Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(translationX, translationY, translationZ, 1)))
 	}
-	
+
 	/// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
 	///
 	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
@@ -32,34 +32,34 @@ extension Math {
 		let a = angle
 		let c = cosf(a)
 		let s = sinf(a)
-		
+
 		var unitAxis = normalize(axis)
 		var temp = (1 - c) * axis
-		
+
 		var Rotate = simd_float4x4()
 		Rotate[0][0] = c + temp[0] * unitAxis[0]
 		Rotate[0][1] = temp[0] * unitAxis[1] + s * unitAxis[2]
 		Rotate[0][2] = temp[0] * unitAxis[2] - s * unitAxis[1]
 		Rotate[0][3] = 0
-		
+
 		Rotate[1][0] = temp[1] * unitAxis[0] - s * unitAxis[2]
 		Rotate[1][1] = c + temp[1] * unitAxis[1]
 		Rotate[1][2] = temp[1] * unitAxis[2] + s * unitAxis[0]
 		Rotate[1][3] = 0
-		
+
 		Rotate[2][0] = temp[2] * unitAxis[0] + s * unitAxis[1]
 		Rotate[2][1] = temp[2] * unitAxis[1] - s * unitAxis[0]
 		Rotate[2][2] = c + temp[2] * unitAxis[2]
 		Rotate[2][3] = 0
-		
+
 		Rotate[3][0] = 0
 		Rotate[3][1] = 0
 		Rotate[3][2] = 0
 		Rotate[3][3] = 1
-		
+
 		return Rotate
 	}
-	
+
 	/// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
 	///
 	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
@@ -76,15 +76,15 @@ extension Math {
 		Result[3] = matrix4x4[3];
 		return Result;
 	}
-	
+
 	/// Creates a matrix for a symetric perspective-view frustum. (Right hand)
 	public static func perspective(fovyRadians fovy: Float, aspect: Float, near: Float, far: Float) -> Matrix4x4 {
 		let ys = 1 / tanf(fovy * 0.5)
 		let xs = ys / aspect
 		let zs = far / (near - far)
-		return Matrix4x4.init(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
+		return Matrix4x4(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
 	}
-	
+
 	/// Build a right handed look at view matrix.
 	///
 	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)

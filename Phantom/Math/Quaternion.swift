@@ -1,7 +1,7 @@
 // Copyright © haijian. All rights reserved.
 
 extension Math {
-	
+
 	// TODO: test
 	/// Build a quaternion from an angle and a normalized axis.
 	///

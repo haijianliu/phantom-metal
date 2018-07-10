@@ -4,11 +4,11 @@ import MetalKit
 
 /// Renders meshes.
 class MeshRenderer: Renderer, Renderable {
-	
+
 	// TODO: multiple.
 	/// Mesh slot for rendering.
 	var mesh: Mesh?
-	
+
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		// Check all the resources available.
 		guard let mesh = self.mesh, let material = self.material else { return }

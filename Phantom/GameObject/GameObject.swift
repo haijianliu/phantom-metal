@@ -5,15 +5,15 @@ import MetalKit
 // TODO: Inherits from:Obje
 /// Base class for all entities in scenes.
 public class GameObject {
-	
+
 	/// The tag of this game object.
 	public var tag: GameObjectTag { didSet { if tag == .mainCamera, let camera: Camera = self.getComponent() { Camera.main = camera } } }
 
-	/// The material attached of MeshRenderer attached to this GameObject. 
+	/// The material attached of MeshRenderer attached to this GameObject.
 	public var material: Material? { get {
 			let meshRenderer: MeshRenderer? = self.getComponent()
 			return meshRenderer?.material } }
-	
+
 	// TODO: unowned reference?
 	/// The Transform attached to this GameObject.
 	lazy public private(set) var transform: Transform = {
@@ -21,10 +21,10 @@ public class GameObject {
 	}()
 
 	private var transformUniformBuffer: TripleBuffer<Transformations>
-	
+
 	/// Holds a list of strong references of components have attached.
 	var components = [String: Component]()
-	
+
 	// TODO: named name.
 	/// Creates a new game object.
 	public init?() {
@@ -37,7 +37,7 @@ public class GameObject {
 		// Transform
 		guard let _: Transform = self.addComponent() else { return nil }
 	}
-	
+
 	/// Adds a component class named type name to the game object.
 	///
 	/// If there is already a same type of componet added, this function will do nothing, and return a nil
@@ -52,7 +52,7 @@ public class GameObject {
 			return nil
 		}
 	}
-	
+
 	/// Get a component instance attached to the game object by component type. Calling this function during real time updating is not recommended.
 	/// - Returns: Component instance of component type if the game object has one attached, nil if it doesn't.
 	public func getComponent<ComponentType: Component>() -> ComponentType? {
@@ -61,9 +61,9 @@ public class GameObject {
 }
 
 extension GameObject: Encodable {
-	
+
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
-		
+
 		// TODO: in transform
 		// TODO: in game object
 		guard let camera = Camera.main else { return }
@@ -71,7 +71,7 @@ extension GameObject: Encodable {
 		// TODO: Camera set view matrix
 		transformUniformBuffer.data.modelViewMatrix = camera.worldToCameraMatrix * transform.localToWorldMatrix;
 		transformUniformBuffer.endWritting()
-		
+
 		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.transformations.rawValue)
 	}
 }
