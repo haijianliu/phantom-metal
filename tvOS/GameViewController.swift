@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
 			return
 		}
 
-		application = Application.init(mtkView: mtkView)
+		application = Application(mtkView: mtkView)
 		guard (application != nil)  else {
 			print("View attached to GameViewController is not an MTKView")
 			return
