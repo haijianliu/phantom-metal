@@ -7,7 +7,8 @@ import MetalKit
 public class Material {
 	public var shader: Shader
 	public var texture: Texture?
-	var cullMode: MTLCullMode = MTLCullMode.back
+	public var cullMode: MTLCullMode = MTLCullMode.back
+	public var fillMode: MTLTriangleFillMode = MTLTriangleFillMode.fill
 
 	public init(with shader: Shader) { self.shader = shader }
 }
@@ -15,6 +16,7 @@ public class Material {
 extension Material: Encodable {
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		renderCommandEncoder.setCullMode(cullMode)
+		renderCommandEncoder.setTriangleFillMode(fillMode)
 		shader.encode(to: renderCommandEncoder)
 		texture?.encode(to: renderCommandEncoder)
 	}
