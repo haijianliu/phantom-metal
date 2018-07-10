@@ -2,6 +2,7 @@
 
 import MetalKit
 
+// TODO: UX refactor.
 /// Provides access to an application view for rendering operations.
 ///
 /// Multi-view rendering is unavailable by now
@@ -17,7 +18,8 @@ public class View {
 	
 	private var depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
 	private var colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
-	private var sampleCount: Int = 1 // TODO: enum
+	// TODO: Max sampling test.
+	private var antialiasingMode: AntialiasingMode = AntialiasingMode.multisampling4X
 	
 	// TODO: multiple command queues
 	var commandQueue: MTLCommandQueue?
@@ -25,6 +27,7 @@ public class View {
 	var renderPass: RenderPass?
 }
 
+// TODO: [SCNView](https://developer.apple.com/documentation/scenekit/scnview)
 extension View {
 	/// Main view.
 	/// (Force wrapped. If there is not one single view, this will get a run time error)
@@ -47,7 +50,9 @@ extension View {
 		mtkView.device = defaultDevice
 		mtkView.depthStencilPixelFormat = View.sharedInstance.depthStencilPixelFormat
 		mtkView.colorPixelFormat = View.sharedInstance.colorPixelFormat
-		mtkView.sampleCount = View.sharedInstance.sampleCount
+		mtkView.sampleCount = View.sharedInstance.antialiasingMode.rawValue
+		// TODO: clear color property.
+		mtkView.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
 		View.sharedInstance.views.append(mtkView)
 		View.sharedInstance.currentViewIndex = View.sharedInstance.views.startIndex
 		
