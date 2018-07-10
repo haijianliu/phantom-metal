@@ -10,7 +10,9 @@ class SampleApplication: ApplicationDelegate {
 			// GameObject
 			guard let gameObject = GameObject.createCube(withDimensions: Vector3(2, 2, 2)) else { break cube }
 			// Transform
-			gameObject.transform.position = Vector3(x: -3, y: 0, z: 0)
+			gameObject.transform.position = Vector3(x: 2.5, y: 2.5, z: 0)
+			// Set texture
+			gameObject.material?.texture = Texture(name: "UV_Grid_Sm")
 			// SampleBehaviour
 			guard let _: SampleBehaviour = gameObject.addComponent() else { break cube }
 			// Add GameObject
@@ -20,11 +22,9 @@ class SampleApplication: ApplicationDelegate {
 		// Create plane.
 		plane: do {
 			// GameObject
-			guard let gameObject = GameObject.createPlane() else { break plane }
+			guard let gameObject = GameObject.createPlane(withDimensions: Vector2(20, 20), segments: Uint2(20, 20)) else { break plane }
 			// Set texture
 			gameObject.material?.texture = Texture(name: "UV_Grid_Sm")
-			// Transform
-			gameObject.transform.position = Vector3(x: 3, y: 0, z: 0)
 			// SampleBehaviour
 			guard let _: SampleBehaviour = gameObject.addComponent() else { break plane }
 			// Add GameObject
@@ -38,7 +38,7 @@ class SampleApplication: ApplicationDelegate {
 			// Camera
 			guard let _: Camera = gameObject.addComponent() else { break camera }
 			// Transform.
-			gameObject.transform.position.z = -8.0;
+			gameObject.transform.position = Vector3(0, 10, 10);
 			// Add GameObject
 			Application.addGameObject(gameObject)
 		}
