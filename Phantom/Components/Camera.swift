@@ -12,13 +12,14 @@ public class Camera: Component {
 	/// The far clipping plane distance.
 	var farClipPlane: Float = 100
 	/// The field of view of the camera (fovy) in radians.
-	var fieldOfView: Float = Math.radians(90)
+	var fieldOfView: Float = Math.radians(60)
 	
+	// TODO: target.
 	/// Matrix that transforms from world to camera space (Read only).
 	///
 	/// Use this to calculate the camera space position of objects or to provide custom camera's location that is not based on the transform.
 	var worldToCameraMatrix: Matrix4x4 {
-		return Math.translate(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z)
+		return Math.lookAt(eye: gameObject.transform.position, center: Vector3(0, 0, 0))
 	}
 	
 	/// The aspect ratio (width divided by height).
