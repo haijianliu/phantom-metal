@@ -1,5 +1,7 @@
 // Copyright © haijian. All rights reserved.
 
+import GLKit
+
 // Defines functions that generate common transformation matrices
 extension Math {
 	
@@ -66,9 +68,7 @@ extension Math {
 	///   - angle: Rotation angle expressed in radians.
 	///   - axis: Rotation axis, recommended to be normalized.
 	public static func rotate(_ matrix4x4: Matrix4x4, _ angle: Radian, _ axis: Vector3) -> Matrix4x4 {
-
 		let Rotate = Math.rotate(angle, axis)
-
 		var Result = simd_float4x4()
 		Result[0] = matrix4x4[0] * Rotate[0][0] + matrix4x4[1] * Rotate[0][1] + matrix4x4[2] * Rotate[0][2];
 		Result[1] = matrix4x4[0] * Rotate[1][0] + matrix4x4[1] * Rotate[1][1] + matrix4x4[2] * Rotate[1][2];
@@ -83,5 +83,32 @@ extension Math {
 		let xs = ys / aspect
 		let zs = far / (near - far)
 		return Matrix4x4.init(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
+	}
+	
+	/// Build a right handed look at view matrix.
+	///
+	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
+	/// - Parameters:
+	///   - eye: Position of the camera.
+	///   - center: Position where the camera is looking at.
+	///   - up: Normalized up vector, how the camera is oriented. Typically (0, 1, 0).
+	public static func lookAt(eye: Vector3, center: Vector3, up: Vector3 = Vector3(0, 1, 0)) -> Matrix4x4 {
+		let f = normalize(center - eye)
+		let s = normalize(cross(f, up))
+		let u = cross(s, f)
+		var Result = Matrix4x4(1)
+		Result[0][0] = s.x
+		Result[1][0] = s.y
+		Result[2][0] = s.z
+		Result[0][1] = u.x
+		Result[1][1] = u.y
+		Result[2][1] = u.z
+		Result[0][2] = -f.x
+		Result[1][2] = -f.y
+		Result[2][2] = -f.z
+		Result[3][0] = -dot(s, eye)
+		Result[3][1] = -dot(u, eye)
+		Result[3][2] = dot(f, eye)
+		return Result
 	}
 }
