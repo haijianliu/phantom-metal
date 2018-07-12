@@ -11,7 +11,7 @@ class SampleApplication: ApplicationDelegate {
 			guard let gameObject = GameObject.createBox(withDimensions: Vector3(2, 2, 2)) else { break cube }
 			// Transform
 			gameObject.transform.position = Vector3(x: 2.5, y: 2.5, z: 0)
-			// Set texture
+			// Set material.
 			gameObject.material?.texture = Texture(name: "UV_Grid_Lrg")
 			// SampleBehaviour
 			guard let _: SampleBehaviour = gameObject.addComponent() else { break cube }
@@ -23,7 +23,7 @@ class SampleApplication: ApplicationDelegate {
 		plane: do {
 			// GameObject
 			guard let gameObject = GameObject.createPlane(withDimensions: Vector2(20, 20), segments: Uint2(20, 20)) else { break plane }
-			// Set texture
+			// Set material.
 			gameObject.material?.texture = Texture(name: "UV_Grid_Sm")
 			gameObject.material?.fillMode = .lines
 			// SampleBehaviour
@@ -38,8 +38,11 @@ class SampleApplication: ApplicationDelegate {
 			guard let gameObject = GameObject.createEllipsoid() else { break ellipsoid }
 			// Transform
 			gameObject.transform.position = Vector3(x: -2.5, y: 2.5, z: 0)
-			// Set texture
+			gameObject.transform.scale = Vector3(1.4)
+			// Set material.
 			gameObject.material?.texture = Texture(name: "UV_Grid_Sm")
+			// SampleBehaviour
+			guard let _: SampleBehaviour = gameObject.addComponent() else { break ellipsoid }
 			// Add GameObject
 			Application.addGameObject(gameObject)
 		}
