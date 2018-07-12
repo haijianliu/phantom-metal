@@ -40,7 +40,7 @@ public class Shader {
 	}
 }
 
-extension Shader: Encodable {
+extension Shader: RenderEncodable {
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		renderCommandEncoder.setRenderPipelineState(renderPipelineState)
 	}

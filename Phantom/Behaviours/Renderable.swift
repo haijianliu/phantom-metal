@@ -7,4 +7,4 @@ import MetalKit
 /// and update encoding during render pass executing draw function.
 ///
 /// Requires that class inherits from Renderer
-@objc protocol Renderable: Behaviour, Encodable where Self: Renderer { }
+@objc protocol Renderable: Behaviour, RenderEncodable where Self: Renderer { }

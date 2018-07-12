@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		601355DB2094EC2A0093AF6E /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601355D92094EB880093AF6E /* Encodable.swift */; };
-		601355DC2094EC2B0093AF6E /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601355D92094EB880093AF6E /* Encodable.swift */; };
+		601355DB2094EC2A0093AF6E /* RenderEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601355D92094EB880093AF6E /* RenderEncodable.swift */; };
+		601355DC2094EC2B0093AF6E /* RenderEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601355D92094EB880093AF6E /* RenderEncodable.swift */; };
 		601A9E042088F4F2002045DA /* PhantomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601A9DFB2088F4F2002045DA /* PhantomKit.framework */; };
 		601A9E0B2088F4F2002045DA /* PhantomKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601A9E0A2088F4F2002045DA /* PhantomKitTests.swift */; };
 		601A9E102088F4F2002045DA /* PhantomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601A9DFB2088F4F2002045DA /* PhantomKit.framework */; };
@@ -143,7 +143,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		601355D92094EB880093AF6E /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
+		601355D92094EB880093AF6E /* RenderEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderEncodable.swift; sourceTree = "<group>"; };
 		601A9DFB2088F4F2002045DA /* PhantomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhantomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		601A9DFD2088F4F2002045DA /* PhantomKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhantomKit.h; sourceTree = "<group>"; };
 		601A9DFE2088F4F2002045DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 				6051E351208B4F7E00C4E8AA /* Behaviour.swift */,
 				6051E355208B4F8B00C4E8AA /* Updatable.swift */,
 				608856B82090D3D500F69621 /* Renderable.swift */,
-				601355D92094EB880093AF6E /* Encodable.swift */,
+				601355D92094EB880093AF6E /* RenderEncodable.swift */,
 				606FF37F20B0012E00CC704B /* Drawable.swift */,
 			);
 			path = Behaviours;
@@ -668,7 +668,7 @@
 				608856BA2090D3E800F69621 /* Renderable.swift in Sources */,
 				605B0547208CE976000AB25A /* Weak.swift in Sources */,
 				601A9E262088F54A002045DA /* GameObjectTag.swift in Sources */,
-				601355DB2094EC2A0093AF6E /* Encodable.swift in Sources */,
+				601355DB2094EC2A0093AF6E /* RenderEncodable.swift in Sources */,
 				6051E34A208B3F1700C4E8AA /* Quaternion.swift in Sources */,
 				601A9E242088F54A002045DA /* MeshRenderer.swift in Sources */,
 				601A9E382088F557002045DA /* MatrixTransform.swift in Sources */,
@@ -713,7 +713,7 @@
 				601A9E302088F54E002045DA /* Transform.swift in Sources */,
 				608856B7208E25CC00F69621 /* ApplicationDelegate.swift in Sources */,
 				601A9E3C2088F558002045DA /* MatrixTransform.swift in Sources */,
-				601355DC2094EC2B0093AF6E /* Encodable.swift in Sources */,
+				601355DC2094EC2B0093AF6E /* RenderEncodable.swift in Sources */,
 				601A9E3D2088F558002045DA /* Trigonometry.swift in Sources */,
 				601A9E2A2088F54E002045DA /* GameObject.swift in Sources */,
 				601A9E352088F54E002045DA /* GameObjectTag.swift in Sources */,

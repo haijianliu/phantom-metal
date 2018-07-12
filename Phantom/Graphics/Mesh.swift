@@ -8,7 +8,7 @@ class Mesh {
 	init(with mtkMesh: MTKMesh) { self.mtkMesh = mtkMesh }
 }
 
-extension Mesh: Encodable {
+extension Mesh: RenderEncodable {
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		// Encode winding order of front-facing primitives.
 		renderCommandEncoder.setFrontFacing(winding)

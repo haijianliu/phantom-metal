@@ -2,6 +2,6 @@
 
 import MetalKit
 
-@objc protocol Encodable {
+@objc protocol RenderEncodable {
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder)
 }

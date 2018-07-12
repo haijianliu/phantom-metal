@@ -60,7 +60,7 @@ public class GameObject {
 	}
 }
 
-extension GameObject: Encodable {
+extension GameObject: RenderEncodable {
 	
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		

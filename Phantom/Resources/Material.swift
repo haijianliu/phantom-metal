@@ -13,7 +13,7 @@ public class Material {
 	public init(with shader: Shader) { self.shader = shader }
 }
 
-extension Material: Encodable {
+extension Material: RenderEncodable {
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		renderCommandEncoder.setCullMode(cullMode)
 		renderCommandEncoder.setTriangleFillMode(fillMode)
