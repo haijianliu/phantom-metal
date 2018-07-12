@@ -8,7 +8,7 @@ class SampleApplication: ApplicationDelegate {
 		// Create cube.
 		cube: do {
 			// GameObject
-			guard let gameObject = GameObject.createCube(withDimensions: Vector3(2, 2, 2)) else { break cube }
+			guard let gameObject = GameObject.createBox(withDimensions: Vector3(2, 2, 2)) else { break cube }
 			// Transform
 			gameObject.transform.position = Vector3(x: 2.5, y: 2.5, z: 0)
 			// Set texture

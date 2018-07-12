@@ -16,14 +16,14 @@ extension GameObject {
 	///   - geometryType: The type of geometric primitive from which to construct the mesh; must be either kindTriangles, kindQuads, or lines.
 	///   - inwardNormals: true to generate normal vectors pointing toward the inside of the box; false to generate normal vectors pointing outward.
 	/// - Returns: A new GameObject with MeshRenderer component.
-	public static func createCube(withDimensions dimensions: Vector3 = Vector3(1, 1, 1), segments: Uint3 = Uint3(1, 1, 1), geometryType: GeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
+	public static func createBox(withDimensions dimensions: Vector3 = Vector3(1, 1, 1), segments: Uint3 = Uint3(1, 1, 1), geometryType: GeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
 		guard let device = View.main.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: mtkMeshBufferAllocator)
 		return GameObject.createMeshGameObject(device, with: mdlMesh)
 	}
 	
-	/// Creates a mesh in the shape of an ellipsoid or sphere.
+	/// Creates a primitive gameobject in the shape of an ellipsoid or sphere.
 	///
 	/// - Parameters:
 	///   - radius: A vector containing the width (x-component), height (y-component), and depth (z-component) of the bounding box of the ellipsoid to generate. If all components are equal, this method generates a sphere.
