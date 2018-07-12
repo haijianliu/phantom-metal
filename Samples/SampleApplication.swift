@@ -31,7 +31,20 @@ class SampleApplication: ApplicationDelegate {
 			// Add GameObject
 			Application.addGameObject(gameObject)
 		}
-
+		
+		// Create ellipsoid.
+		ellipsoid: do {
+			// GameObject
+			guard let gameObject = GameObject.createEllipsoid() else { break ellipsoid }
+			// Transform
+			gameObject.transform.position = Vector3(x: -2.5, y: 2.5, z: 0)
+			// Set texture
+			gameObject.material?.texture = Texture(name: "UV_Grid_Lrg")
+			gameObject.material?.fillMode = .lines
+			// Add GameObject
+			Application.addGameObject(gameObject)
+		}
+		
 		// Create camera.
 		camera: do {
 			// GameObject
