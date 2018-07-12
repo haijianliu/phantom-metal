@@ -33,7 +33,7 @@ extension GameObject {
 	///   - inwardNormals: true to generate normal vectors pointing toward the center of the ellipsoid; false to generate normal vectors pointing outward.
 	///   - hemisphere: true to generate only the upper half of the ellipsoid or sphere (a dome); false to generate a complete ellipsoid or sphere.
 	/// - Returns: A new GameObject with MeshRenderer component.
-	public static func createEllipsoid(withRadii radius: Vector3 = Vector3(1, 1, 1), radialSegments: Int = 18, verticalSegments: Int = 12, geometryType: GeometryType = .triangles, inwardNormals: Bool = false, hemisphere: Bool = false) -> GameObject? {
+	public static func createEllipsoid(withRadii radius: Vector3 = Vector3(1, 1, 1), radialSegments: Int = 24, verticalSegments: Int = 18, geometryType: GeometryType = .triangles, inwardNormals: Bool = false, hemisphere: Bool = false) -> GameObject? {
 		guard let device = View.main.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newEllipsoid(withRadii: radius, radialSegments: radialSegments, verticalSegments: verticalSegments, geometryType: geometryType, inwardNormals: inwardNormals, hemisphere: hemisphere, allocator: mtkMeshBufferAllocator)

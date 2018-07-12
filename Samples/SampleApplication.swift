@@ -39,8 +39,7 @@ class SampleApplication: ApplicationDelegate {
 			// Transform
 			gameObject.transform.position = Vector3(x: -2.5, y: 2.5, z: 0)
 			// Set texture
-			gameObject.material?.texture = Texture(name: "UV_Grid_Lrg")
-			gameObject.material?.fillMode = .lines
+			gameObject.material?.texture = Texture(name: "UV_Grid_Sm")
 			// Add GameObject
 			Application.addGameObject(gameObject)
 		}
