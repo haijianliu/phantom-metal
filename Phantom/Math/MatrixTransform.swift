@@ -3,6 +3,7 @@
 import GLKit
 
 // Defines functions that generate common transformation matrices
+// https://glm.g-truc.net/0.9.9/api/a00163.html
 extension Math {
 	
 	/// Builds a translation 4 * 4 matrix created from a vector of 3 components.
@@ -20,6 +21,21 @@ extension Math {
 	/// Builds a translation 4 * 4 matrix created from 3 scalars.
 	public static func translate(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> Matrix4x4 {
 		return Matrix4x4.init(columns:(Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(translationX, translationY, translationZ, 1)))
+	}
+	
+	/// Builds a scale 4 * 4 matrix created from 3 scalars.
+	///
+	/// [glm/glm/gtc/matrix_transform.inl](https://github.com/g-truc/glm/blob/master/glm/gtc/matrix_transform.inl)
+	/// - Parameters:
+	///   - matrix: Input matrix multiplied by this translation matrix. Default value is `Matrix4x4(1)`.
+	///   - scale: Ratio of scaling for each axis.
+	public static func scale(from matrix: Matrix4x4 = Matrix4x4(1), _ scale: Vector3) -> Matrix4x4 {
+		var Result = Matrix4x4(1);
+		Result[0] = matrix[0] * scale[0];
+		Result[1] = matrix[1] * scale[1];
+		Result[2] = matrix[2] * scale[2];
+		Result[3] = matrix[3];
+		return Result;
 	}
 	
 	/// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
