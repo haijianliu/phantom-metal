@@ -22,6 +22,23 @@ extension GameObject {
 		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: mtkMeshBufferAllocator)
 		return GameObject.createMeshGameObject(device, with: mdlMesh)
 	}
+	
+	/// Creates a mesh in the shape of an ellipsoid or sphere.
+	///
+	/// - Parameters:
+	///   - radius: A vector containing the width (x-component), height (y-component), and depth (z-component) of the bounding box of the ellipsoid to generate. If all components are equal, this method generates a sphere.
+	///   - radialSegments: The number of points to generate around the horizontal circumference of the ellipsoid (that is, its cross-section in the xz-plane). A larger number of points increases rendering fidelity but decreases rendering performance.
+	///   - verticalSegments: The number of points to generate along the height of the ellipsoid. A larger number of points increases rendering fidelity but decreases rendering performance.
+	///   - geometryType: The type of geometric primitive from which to construct the mesh; must be either kindTriangles or kindQuads.
+	///   - inwardNormals: true to generate normal vectors pointing toward the center of the ellipsoid; false to generate normal vectors pointing outward.
+	///   - hemisphere: true to generate only the upper half of the ellipsoid or sphere (a dome); false to generate a complete ellipsoid or sphere.
+	/// - Returns: A new GameObject with MeshRenderer component.
+	public static func createEllipsoid(withRadii radius: Vector3 = Vector3(1, 1, 1), radialSegments: Int = 18, verticalSegments: Int = 12, geometryType: GeometryType = .triangles, inwardNormals: Bool = false, hemisphere: Bool = false) -> GameObject? {
+		guard let device = View.main.device else { return nil }
+		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
+		let mdlMesh = MDLMesh.newEllipsoid(withRadii: radius, radialSegments: radialSegments, verticalSegments: verticalSegments, geometryType: geometryType, inwardNormals: inwardNormals, hemisphere: hemisphere, allocator: mtkMeshBufferAllocator)
+		return GameObject.createMeshGameObject(device, with: mdlMesh)
+	}
 
 	/// Creates a primitive gameobject in the shape of a rectangular plane.
 	///
