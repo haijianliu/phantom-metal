@@ -4,12 +4,17 @@
 ///
 /// Every object in a scene has a Transform. It's used to store and manipulate the position, rotation and scale of the object. Every Transform can have a parent, which allows you to apply position, rotation and scale hierarchically. This is the hierarchy seen in the Hierarchy pane. They also support enumerators so you can loop through children using:
 public class Transform: Component {
+	
+	// TODO: Use local, lossy, world transform. https://docs.unity3d.com/ScriptReference/Transform.html
 
 	// TODO: setter getter dirty
 	/// The position of the transform in world space.
 	///
 	/// The position member can be accessed by the Game code. Setting this value can be used to animate the GameObject. The example below makes an attached sphere bounce by updating the position. This bouncing slowly comes to an end. The position can also be use to determine where in 3D space the transform.
 	public var position = Vector3() { didSet { dirty = true } }
+	
+	/// The scale of the transform in world space.
+	public var scale = Vector3(1) { didSet { dirty = true } }
 
 	/// The rotation of the transform in world space stored as a Quaternion (Read Only).
 	///
@@ -31,7 +36,7 @@ public class Transform: Component {
 	/// Matrix that transforms a point from local space into world space (Read Only).
 	var localToWorldMatrix: Matrix4x4 {
 		if dirty {
-			currentLocalToWorldMatrix = Math.translate(position)
+			currentLocalToWorldMatrix = Math.translate(position) * Math.scale(scale)
 			dirty = false
 		}
 		return currentLocalToWorldMatrix
