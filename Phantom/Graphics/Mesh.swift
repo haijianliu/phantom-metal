@@ -18,6 +18,8 @@ extension Mesh: RenderEncodable {
 			if layout.stride != 0 {
 				let vertexBuffers = mtkMesh.vertexBuffers[index]
 				renderCommandEncoder.setVertexBuffer(vertexBuffers.buffer, offset: vertexBuffers.offset, index: index)
+			} else {
+				break
 			}
 		}
 		// Encode draw command.
