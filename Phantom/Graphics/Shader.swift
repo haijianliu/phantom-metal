@@ -20,8 +20,8 @@ public class Shader {
 		}
 		
 		// TODO: function name enum
-		let vertexFunction = library.makeFunction(name: "vertexShader")
-		let fragmentFunction = library.makeFunction(name: "fragmentShader")
+		let vertexFunction = library.makeFunction(name: ShaderType.primitive.vertex)
+		let fragmentFunction = library.makeFunction(name: ShaderType.primitive.fragment)
 		vertexDescriptor = Shader.buildVertexDescriptor() // TODO: by library
 		
 		// TODO: automatically make vertex descriptor according to current metal library
