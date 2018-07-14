@@ -74,6 +74,7 @@ extension GameObject {
 		guard let attributes = mdlVertexDescriptor.attributes as? [MDLVertexAttribute] else { return nil }
 		attributes[VertexAttribute.position.rawValue].name = MDLVertexAttributePosition
 		attributes[VertexAttribute.texcoord.rawValue].name = MDLVertexAttributeTextureCoordinate
+		attributes[VertexAttribute.normal.rawValue].name = MDLVertexAttributeNormal
 		mdlMesh.vertexDescriptor = mdlVertexDescriptor
 		// Create MTKMesh.
 		let mtkMesh: MTKMesh

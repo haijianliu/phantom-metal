@@ -67,6 +67,10 @@ extension Shader {
 		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].offset = 0
 		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].bufferIndex = BufferIndex.meshTexcoords.rawValue
 		
+		vertexDescriptor.attributes[VertexAttribute.normal.rawValue].format = MTLVertexFormat.float3
+		vertexDescriptor.attributes[VertexAttribute.normal.rawValue].offset = 0
+		vertexDescriptor.attributes[VertexAttribute.normal.rawValue].bufferIndex = BufferIndex.meshNormals.rawValue
+		
 		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stride = 12
 		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepRate = 1
 		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepFunction = MTLVertexStepFunction.perVertex
@@ -74,6 +78,10 @@ extension Shader {
 		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stride = 8
 		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stepRate = 1
 		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stepFunction = MTLVertexStepFunction.perVertex
+		
+		vertexDescriptor.layouts[BufferIndex.meshNormals.rawValue].stride = 12
+		vertexDescriptor.layouts[BufferIndex.meshNormals.rawValue].stepRate = 1
+		vertexDescriptor.layouts[BufferIndex.meshNormals.rawValue].stepFunction = MTLVertexStepFunction.perVertex
 		
 		return vertexDescriptor
 	}
