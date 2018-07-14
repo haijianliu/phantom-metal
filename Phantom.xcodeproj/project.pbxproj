@@ -101,9 +101,10 @@
 		60E5CB11208AE60A00AE6090 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072070F20538ABE0068F691 /* GameViewController.swift */; };
 		60E5CB14208AEB9E00AE6090 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB12208AEB9200AE6090 /* Object.swift */; };
 		60E5CB17208AEF7B00AE6090 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
-		60E6B3AD20F9814600F3AE02 /* Inouts.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6020ED6720F8F647001A6F06 /* Inouts.metal */; };
-		60E6B3AE20F9814D00F3AE02 /* Attributes.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6020ED6320F8F593001A6F06 /* Attributes.metal */; };
-		60E6B3AF20F9815200F3AE02 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
+		60E6B3CE20F986DA00F3AE02 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
+		60E6B3CF20F986E000F3AE02 /* Attributes.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6020ED6320F8F593001A6F06 /* Attributes.metal */; };
+		60E6B3D020F986E400F3AE02 /* Inouts.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6020ED6720F8F647001A6F06 /* Inouts.metal */; };
+		60E6B3D220F9870700F3AE02 /* DefaultShaders.metallib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +210,7 @@
 		60D645C02094C1B900646198 /* RenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPass.swift; sourceTree = "<group>"; };
 		60E5CB12208AEB9200AE6090 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
+		60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */ = {isa = PBXFileReference; explicitFileType = "archive.metal-library"; includeInIndex = 0; path = DefaultShaders.metallib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				601A9E102088F4F2002045DA /* PhantomKit.framework in Frameworks */,
+				60E6B3D220F9870700F3AE02 /* DefaultShaders.metallib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +358,7 @@
 				6072070C20538ABE0068F691 /* macOS */,
 				60652FE420F0B1720054C962 /* Samples */,
 				607206EC20538ABE0068F691 /* Products */,
+				60E6B3D120F9870700F3AE02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -386,6 +390,7 @@
 				6072070B20538ABE0068F691 /* Phantom.app */,
 				601A9DFB2088F4F2002045DA /* PhantomKit.framework */,
 				601A9E032088F4F2002045DA /* PhantomKitTests.xctest */,
+				60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -456,6 +461,13 @@
 				6054B2102081DB140052E413 /* MeshRenderer.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		60E6B3D120F9870700F3AE02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +573,21 @@
 			productReference = 6072070B20538ABE0068F691 /* Phantom.app */;
 			productType = "com.apple.product-type.application";
 		};
+		60E6B3C620F9864B00F3AE02 /* DefaultShaders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60E6B3CD20F9864B00F3AE02 /* Build configuration list for PBXNativeTarget "DefaultShaders" */;
+			buildPhases = (
+				60E6B3C520F9864B00F3AE02 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DefaultShaders;
+			productName = shaders;
+			productReference = 60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */;
+			productType = "com.apple.product-type.metal-library";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -592,6 +619,10 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
+					60E6B3C620F9864B00F3AE02 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 607206E120538ABE0068F691 /* Build configuration list for PBXProject "Phantom" */;
@@ -612,6 +643,7 @@
 				6072070A20538ABE0068F691 /* Phantom macOS */,
 				601A9DFA2088F4F2002045DA /* PhantomKit */,
 				601A9E022088F4F2002045DA /* PhantomKitTests */,
+				60E6B3C620F9864B00F3AE02 /* DefaultShaders */,
 			);
 		};
 /* End PBXProject section */
@@ -774,13 +806,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60E6B3AF20F9815200F3AE02 /* Shaders.metal in Sources */,
 				60E5CB11208AE60A00AE6090 /* GameViewController.swift in Sources */,
 				60E5CB10208AE60500AE6090 /* AppDelegate.swift in Sources */,
-				60E6B3AE20F9814D00F3AE02 /* Attributes.metal in Sources */,
 				60652FE920F0B1720054C962 /* SampleBehaviour.swift in Sources */,
 				60652FEC20F0B1720054C962 /* SampleApplication.swift in Sources */,
-				60E6B3AD20F9814600F3AE02 /* Inouts.metal in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60E6B3C520F9864B00F3AE02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60E6B3CF20F986E000F3AE02 /* Attributes.metal in Sources */,
+				60E6B3CE20F986DA00F3AE02 /* Shaders.metal in Sources */,
+				60E6B3D020F986E400F3AE02 /* Inouts.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1162,6 +1201,30 @@
 			};
 			name = Release;
 		};
+		60E6B3CB20F9864B00F3AE02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4M5A36G82A;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		60E6B3CC20F9864B00F3AE02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4M5A36G82A;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1215,6 +1278,15 @@
 			buildConfigurations = (
 				6072072A20538ABE0068F691 /* Debug */,
 				6072072B20538ABE0068F691 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60E6B3CD20F9864B00F3AE02 /* Build configuration list for PBXNativeTarget "DefaultShaders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60E6B3CB20F9864B00F3AE02 /* Debug */,
+				60E6B3CC20F9864B00F3AE02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

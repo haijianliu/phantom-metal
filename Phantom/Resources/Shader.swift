@@ -7,10 +7,17 @@ public class Shader {
 	
 	let renderPipelineState: MTLRenderPipelineState
 	let vertexDescriptor: MTLVertexDescriptor
+	/// TODO: use global default library and customize library option.
+	let library: MTLLibrary
 
-	public init?(_ device: MTLDevice, filepath: String = "Default") {
-		// TODO: load metal library.
-		guard let library = device.makeDefaultLibrary() else { return nil }
+	public init?(_ device: MTLDevice, filepath: String? = nil) {
+		// TODO: if has filepath then load customize libraray.
+		do {
+			library = try device.makeLibrary(filepath: "DefaultShaders.metallib")
+		} catch {
+			print(error)
+			return nil
+		}
 		
 		// TODO: function name enum
 		let vertexFunction = library.makeFunction(name: "vertexShader")
@@ -19,7 +26,7 @@ public class Shader {
 		
 		// TODO: automatically make vertex descriptor according to current metal library
 		let pipelineDescriptor = MTLRenderPipelineDescriptor()
-		pipelineDescriptor.label = filepath // TODO: only the library name
+		pipelineDescriptor.label = "DefaultShaders" // TODO: check if using default
 		pipelineDescriptor.sampleCount = View.main.sampleCount
 		pipelineDescriptor.vertexFunction = vertexFunction
 		pipelineDescriptor.fragmentFunction = fragmentFunction
