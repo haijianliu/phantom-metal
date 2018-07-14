@@ -12,6 +12,8 @@
 
 #include <simd/simd.h>
 
+// https://developer.apple.com/documentation/scenekit/scnprogram
+
 typedef NS_ENUM(NSInteger, BufferIndex)
 {
 	BufferIndexMeshPositions,
