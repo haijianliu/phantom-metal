@@ -8,14 +8,13 @@ using namespace metal;
 #import "Phantom/BridgingHeaders/Uniform.h"
 #import "Attributes.metal"
 #import "Inouts.metal"
-#import "Functions.metal"
 
 vertex ColorInOut vertexShader(Vertex in [[stage_in]], constant Transformations & transformations [[ buffer(BufferIndexTransformations) ]])
 {
 	ColorInOut out;
 
 	float4 position = float4(in.position, 1.0);
-	out.position = modelToProjection(position, transformations);
+	out.position = transformations.projectionMatrix * transformations.modelViewMatrix * position;
 	out.texCoord = in.texCoord;
 
 	return out;
