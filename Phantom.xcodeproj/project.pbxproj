@@ -18,7 +18,6 @@
 		601A9E1B2088F54A002045DA /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030BC83206FC00300918010 /* GameObject.swift */; };
 		601A9E1C2088F54A002045DA /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B711220787E02004EFF95 /* View.swift */; };
 		601A9E1E2088F54A002045DA /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E2DDC206F72CB00428A4D /* Texture.swift */; };
-		601A9E1F2088F54A002045DA /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604F12AF206F6355003CE7D1 /* Resources.swift */; };
 		601A9E202088F54A002045DA /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B712220791905004EFF95 /* Error.swift */; };
 		601A9E212088F54A002045DA /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B71262079E27A004EFF95 /* Transform.swift */; };
 		601A9E232088F54A002045DA /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B20C2081C9270052E413 /* Component.swift */; };
@@ -31,7 +30,6 @@
 		601A9E2A2088F54E002045DA /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030BC83206FC00300918010 /* GameObject.swift */; };
 		601A9E2B2088F54E002045DA /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B711220787E02004EFF95 /* View.swift */; };
 		601A9E2D2088F54E002045DA /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E2DDC206F72CB00428A4D /* Texture.swift */; };
-		601A9E2E2088F54E002045DA /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604F12AF206F6355003CE7D1 /* Resources.swift */; };
 		601A9E2F2088F54E002045DA /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B712220791905004EFF95 /* Error.swift */; };
 		601A9E302088F54E002045DA /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B71262079E27A004EFF95 /* Transform.swift */; };
 		601A9E322088F54E002045DA /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B20C2081C9270052E413 /* Component.swift */; };
@@ -58,8 +56,6 @@
 		605B0540208CDE0C000AB25A /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB12208AEB9200AE6090 /* Object.swift */; };
 		605B0547208CE976000AB25A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605B0545208CE800000AB25A /* Weak.swift */; };
 		605B0548208CE976000AB25A /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605B0545208CE800000AB25A /* Weak.swift */; };
-		60652FDD20F0B0430054C962 /* RenderCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FDB20F0B0430054C962 /* RenderCommand.swift */; };
-		60652FDE20F0B0430054C962 /* RenderCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FDB20F0B0430054C962 /* RenderCommand.swift */; };
 		60652FDF20F0B0430054C962 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FDC20F0B0430054C962 /* Mesh.swift */; };
 		60652FE020F0B0430054C962 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FDC20F0B0430054C962 /* Mesh.swift */; };
 		60652FE220F0B07D0054C962 /* GameObjectPrimitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FE120F0B07D0054C962 /* GameObjectPrimitive.swift */; };
@@ -160,7 +156,6 @@
 		603F760D206953CE00E9922F /* MatrixTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTransform.swift; sourceTree = "<group>"; };
 		603F76112069577D00E9922F /* Trigonometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigonometry.swift; sourceTree = "<group>"; };
 		603F7615206958B300E9922F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		604F12AF206F6355003CE7D1 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		6051E344208B1D1300C4E8AA /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
 		6051E348208B3D4C00C4E8AA /* Quaternion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
 		6051E351208B4F7E00C4E8AA /* Behaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behaviour.swift; sourceTree = "<group>"; };
@@ -171,7 +166,6 @@
 		6054B218208203750052E413 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		605B0545208CE800000AB25A /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		605F2C2A206641F200C534C8 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
-		60652FDB20F0B0430054C962 /* RenderCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderCommand.swift; sourceTree = "<group>"; };
 		60652FDC20F0B0430054C962 /* Mesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		60652FE120F0B07D0054C962 /* GameObjectPrimitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObjectPrimitive.swift; sourceTree = "<group>"; };
 		60652FE520F0B1720054C962 /* SampleBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleBehaviour.swift; sourceTree = "<group>"; };
@@ -366,7 +360,6 @@
 				603F760B20694E1700E9922F /* BridgingHeaders */,
 				603F760A20694C2A00E9922F /* Shaders */,
 				603F760C206952BE00E9922F /* Math */,
-				607258A42095AAF4004996FA /* Resources */,
 				608856B6208E259E00F69621 /* Framework */,
 				607258A52095AB40004996FA /* Graphics */,
 				605B053F208CDD75000AB25A /* GameObject */,
@@ -416,22 +409,13 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
-		607258A42095AAF4004996FA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				607258A0209589E6004996FA /* Shader.swift */,
-				601E2DDC206F72CB00428A4D /* Texture.swift */,
-				608856BF2090E33700F69621 /* Material.swift */,
-				604F12AF206F6355003CE7D1 /* Resources.swift */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		607258A52095AB40004996FA /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
 				60D645C02094C1B900646198 /* RenderPass.swift */,
-				60652FDB20F0B0430054C962 /* RenderCommand.swift */,
+				608856BF2090E33700F69621 /* Material.swift */,
+				607258A0209589E6004996FA /* Shader.swift */,
+				601E2DDC206F72CB00428A4D /* Texture.swift */,
 				60652FDC20F0B0430054C962 /* Mesh.swift */,
 			);
 			path = Graphics;
@@ -711,14 +695,12 @@
 				606FF38220B001AD00CC704B /* Drawable.swift in Sources */,
 				60652FDF20F0B0430054C962 /* Mesh.swift in Sources */,
 				607258A220958A20004996FA /* Shader.swift in Sources */,
-				60652FDD20F0B0430054C962 /* RenderCommand.swift in Sources */,
 				608856C02090E33700F69621 /* Material.swift in Sources */,
 				60652FE220F0B07D0054C962 /* GameObjectPrimitive.swift in Sources */,
 				601A9E1A2088F54A002045DA /* Application.swift in Sources */,
 				601A9E1E2088F54A002045DA /* Texture.swift in Sources */,
 				608856BD2090DD4600F69621 /* Renderer.swift in Sources */,
 				601A9E232088F54A002045DA /* Component.swift in Sources */,
-				601A9E1F2088F54A002045DA /* Resources.swift in Sources */,
 				60E5CB14208AEB9E00AE6090 /* Object.swift in Sources */,
 				601A9E192088F54A002045DA /* ViewDelegate.swift in Sources */,
 				601A9E1C2088F54A002045DA /* View.swift in Sources */,
@@ -745,7 +727,6 @@
 				605B0548208CE976000AB25A /* Weak.swift in Sources */,
 				601A9E322088F54E002045DA /* Component.swift in Sources */,
 				601A9E2B2088F54E002045DA /* View.swift in Sources */,
-				60652FDE20F0B0430054C962 /* RenderCommand.swift in Sources */,
 				601A9E302088F54E002045DA /* Transform.swift in Sources */,
 				608856B7208E25CC00F69621 /* ApplicationDelegate.swift in Sources */,
 				601A9E3C2088F558002045DA /* MatrixTransform.swift in Sources */,
@@ -763,7 +744,6 @@
 				6051E347208B1DCC00C4E8AA /* Space.swift in Sources */,
 				601A9E3B2088F558002045DA /* Math.swift in Sources */,
 				601A9E332088F54E002045DA /* MeshRenderer.swift in Sources */,
-				601A9E2E2088F54E002045DA /* Resources.swift in Sources */,
 				60784B7B20F4E4AD00C02D33 /* AntialiasingMode.swift in Sources */,
 				601A9E3E2088F558002045DA /* Constants.swift in Sources */,
 				605B0540208CDE0C000AB25A /* Object.swift in Sources */,
