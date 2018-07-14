@@ -104,7 +104,6 @@
 		60E6B3CE20F986DA00F3AE02 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
 		60E6B3CF20F986E000F3AE02 /* Attributes.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6020ED6320F8F593001A6F06 /* Attributes.metal */; };
 		60E6B3D020F986E400F3AE02 /* Inouts.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6020ED6720F8F647001A6F06 /* Inouts.metal */; };
-		60E6B3D220F9870700F3AE02 /* DefaultShaders.metallib in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,7 +247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				601A9E102088F4F2002045DA /* PhantomKit.framework in Frameworks */,
-				60E6B3D220F9870700F3AE02 /* DefaultShaders.metallib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

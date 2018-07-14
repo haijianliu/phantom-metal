@@ -9,13 +9,13 @@ using namespace metal;
 #import "Attributes.metal"
 #import "Inouts.metal"
 
-vertex ColorInOut vertexShader(Vertex in [[stage_in]], constant Transformations & transformations [[ buffer(BufferIndexTransformations) ]])
+vertex ColorInOut vertexShader(Vertex in [[stage_in]], constant NodeBuffer & nodebuffer [[ buffer(BufferIndexNodeBuffer) ]])
 {
 	ColorInOut out;
 
-	float4 position = float4(in.position, 1.0);
-	out.position = transformations.projectionMatrix * transformations.modelViewMatrix * position;
+	out.position = nodebuffer.projectionMatrix * nodebuffer.viewMatrix * nodebuffer.modelMatrix * float4(in.position, 1.0);
 	out.texcoord = in.texcoord;
+	out.normal = (nodebuffer.modelMatrix * float4(in.normal, 1.0)).xyz;
 
 	return out;
 }
@@ -25,7 +25,8 @@ fragment float4 fragmentShader(ColorInOut in [[stage_in]], texture2d<half> color
 	constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
 
 	half4 colorSample   = colorMap.sample(colorSampler, in.texcoord.xy);
-	float3 color = mix(float3(0, 1, 0), float3(colorSample.xyz), float(colorSample.a));
+//	float3 color = mix(float3(0, 1, 0), float3(colorSample.xyz), float(colorSample.a));
+	float3 color = in.normal;
 
 	return float4(color, 1);
 }

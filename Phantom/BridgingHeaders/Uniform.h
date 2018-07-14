@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, BufferIndex)
 	BufferIndexMeshPositions,
 	BufferIndexMeshTexcoords,
 	BufferIndexMeshNormals,
-	BufferIndexTransformations,
+	BufferIndexNodeBuffer,
 };
 
 typedef NS_ENUM(NSInteger, VertexAttribute)
@@ -36,14 +36,16 @@ typedef NS_ENUM(NSInteger, TextureIndex)
 	TextureIndexColor,
 };
 
+// TODO: Add Scene buffer.
+
 /**
- Transformations
- All these matrices are float4x4 type.
+ To use information that varies for each object being rendered with a shader—such as model and normal matrices—declare a parameter to your shader function with an attribute qualifier.
  */
 typedef struct
 {
 	matrix_float4x4 projectionMatrix;
-	matrix_float4x4 modelViewMatrix;
-} Transformations;
+	matrix_float4x4 viewMatrix;
+	matrix_float4x4 modelMatrix;
+} NodeBuffer;
 
 #endif /* Uniform_h */
