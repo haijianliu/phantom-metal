@@ -10,5 +10,6 @@ using namespace metal;
 typedef struct
 {
 	float4 position [[position]];
-	float2 texCoord;
+	float2 texcoord;
+	float3 normal;
 } ColorInOut;
