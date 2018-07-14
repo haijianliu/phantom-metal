@@ -3,14 +3,14 @@
 import MetalKit
 
 // TODO: GpuObject.
-public class Shader {
+class Shader {
 	
 	let renderPipelineState: MTLRenderPipelineState
 	let vertexDescriptor: MTLVertexDescriptor
 	/// TODO: use global default library and customize library option.
 	let library: MTLLibrary
 
-	public init?(_ device: MTLDevice, filepath: String? = nil) {
+	init?(_ device: MTLDevice, filepath: String? = nil, shaderType: ShaderType = ShaderType.primitive) {
 		// TODO: if has filepath then load customize libraray.
 		do {
 			library = try device.makeLibrary(filepath: "DefaultShaders.metallib")
@@ -20,8 +20,8 @@ public class Shader {
 		}
 		
 		// TODO: function name enum
-		let vertexFunction = library.makeFunction(name: ShaderType.primitive.vertex)
-		let fragmentFunction = library.makeFunction(name: ShaderType.primitive.fragment)
+		let vertexFunction = library.makeFunction(name: shaderType.vertex)
+		let fragmentFunction = library.makeFunction(name: shaderType.fragment)
 		vertexDescriptor = Shader.buildVertexDescriptor() // TODO: by library
 		
 		// TODO: automatically make vertex descriptor according to current metal library
