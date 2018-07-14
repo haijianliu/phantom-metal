@@ -1,6 +1,6 @@
 // Copyright © haijian. All rights reserved.
 
-enum ShaderType {
+public enum ShaderType {
 	
 	case primitive
 	
