@@ -9,7 +9,10 @@ using namespace metal;
 
 typedef struct
 {
-	float4 position [[position]];
+	float4 projectionPosition [[position]];
+	float3 modelPosition;
+	float3 worldPosition;
 	float2 texcoord;
 	float3 normal;
+	float3 worldNormal;
 } ColorInOut;
