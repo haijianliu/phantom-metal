@@ -3,10 +3,13 @@
 public enum ShaderType {
 	
 	case primitive
+	case primitiveNormalColor
 	
 	var vertex: String {
 		switch self {
 		case .primitive:
+			return "vertexShader"
+		case .primitiveNormalColor:
 			return "vertexShader"
 		}
 	}
@@ -15,6 +18,8 @@ public enum ShaderType {
 		switch self {
 		case .primitive:
 			return "fragmentShader"
+		case .primitiveNormalColor:
+			return "primitiveNormalColor"
 		}
 	}
 }
