@@ -8,7 +8,7 @@ class SampleApplication: ApplicationDelegate {
 		// Create cube.
 		cube: do {
 			// GameObject
-			guard let gameObject = GameObject.createBox(shaderType: ShaderType.primitiveNormalColor, withDimensions: Vector3(2, 2, 2)) else { break cube }
+			guard let gameObject = GameObject.createBox(shaderType: ShaderType.normalColor, withDimensions: Vector3(2, 2, 2)) else { break cube }
 			// Transform
 			gameObject.transform.position = Vector3(x: 2.5, y: 2.5, z: 0)
 			// Set material.
@@ -35,7 +35,7 @@ class SampleApplication: ApplicationDelegate {
 		// Create ellipsoid.
 		ellipsoid: do {
 			// GameObject
-			guard let gameObject = GameObject.createEllipsoid(shaderType: ShaderType.primitiveNormalColor) else { break ellipsoid }
+			guard let gameObject = GameObject.createEllipsoid(shaderType: ShaderType.normalColor) else { break ellipsoid }
 			// Transform
 			gameObject.transform.position = Vector3(x: -2.5, y: 2.5, z: 0)
 			gameObject.transform.scale = Vector3(1.4)
