@@ -10,7 +10,7 @@ class Shader {
 	/// TODO: use global default library and customize library option.
 	let library: MTLLibrary
 
-	init?(_ device: MTLDevice, filepath: String? = nil, _ shaderType: ShaderType = ShaderType.primitive) {
+	init?(_ device: MTLDevice, filepath: String? = nil, _ shaderType: ShaderType = ShaderType.standard) {
 		// TODO: if has filepath then load customize libraray.
 		do {
 			library = try device.makeLibrary(filepath: "DefaultShaders.metallib")
