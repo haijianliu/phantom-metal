@@ -13,4 +13,4 @@ typedef struct
 	float3 worldPosition;
 	float2 texcoord;
 	float3 worldNormal;
-} ColorInOut;
+} StandardInout;
