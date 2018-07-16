@@ -13,6 +13,7 @@
 #include <simd/simd.h>
 
 // https://developer.apple.com/documentation/scenekit/scnprogram
+// https://forum.unity.com/threads/world-space-normal.58810/
 
 typedef NS_ENUM(NSInteger, BufferIndex)
 {
@@ -47,6 +48,6 @@ typedef struct
 	matrix_float4x4 viewMatrix;
 	matrix_float4x4 modelMatrix;
 	matrix_float4x4 inverseTransposeModelMatrix;
-} NodeBuffer;
+} StandardNodeBuffer;
 
 #endif /* Uniform_h */
