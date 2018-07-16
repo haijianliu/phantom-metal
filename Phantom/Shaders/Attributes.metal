@@ -13,3 +13,9 @@ typedef struct
 	float2 texcoord [[attribute(VertexAttributeTexcoord)]];
 	float3 normal [[attribute(VertexAttributeNormal)]];
 } StandardVertex;
+
+typedef struct
+{
+	float3 position [[attribute(VertexAttributePosition)]];
+	float3 normal [[attribute(VertexAttributeNormal)]];
+} StandardNoTextureVertex;

@@ -25,9 +25,9 @@ vertex StandardInout standardVertex(StandardVertex in [[stage_in]], constant Sta
 }
 
 /// Standard vertex shader without texture but with normal.
-vertex StandardInout standardNoTextureVertex(StandardVertex in [[stage_in]], constant StandardNodeBuffer & nodebuffer [[ buffer(BufferIndexNodeBuffer) ]])
+vertex StandardNoTextureInout standardNoTextureVertex(StandardNoTextureVertex in [[stage_in]], constant StandardNodeBuffer & nodebuffer [[ buffer(BufferIndexNodeBuffer) ]])
 {
-	StandardInout out;
+	StandardNoTextureInout out;
 	
 	out.projectionPosition = nodebuffer.projectionMatrix * nodebuffer.viewMatrix * nodebuffer.modelMatrix * float4(in.position, 1.0);
 	out.worldPosition = (nodebuffer.modelMatrix * float4(in.position, 1.0)).xyz;
@@ -49,7 +49,7 @@ fragment float4 standardFragment(StandardInout in [[stage_in]], texture2d<half> 
 }
 
 /// Normal color test shader using only normal.
-fragment float4 normalColorFragment(StandardInout in [[stage_in]])
+fragment float4 normalColorFragment(StandardNoTextureInout in [[stage_in]])
 {
 	return float4(in.worldNormal, 1);
 }

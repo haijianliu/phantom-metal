@@ -14,3 +14,10 @@ typedef struct
 	float2 texcoord;
 	float3 worldNormal;
 } StandardInout;
+
+typedef struct
+{
+	float4 projectionPosition [[position]];
+	float3 worldPosition;
+	float3 worldNormal;
+} StandardNoTextureInout;
