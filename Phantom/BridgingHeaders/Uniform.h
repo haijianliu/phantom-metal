@@ -50,4 +50,6 @@ typedef struct
 	matrix_float4x4 inverseTransposeModelMatrix;
 } StandardNodeBuffer;
 
+// TODO: Add no normal node buffer. Maybe instance particle type?
+
 #endif /* Uniform_h */
