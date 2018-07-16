@@ -12,4 +12,4 @@ typedef struct
 	float3 position [[attribute(VertexAttributePosition)]];
 	float2 texcoord [[attribute(VertexAttributeTexcoord)]];
 	float3 normal [[attribute(VertexAttributeNormal)]];
-} Vertex;
+} StandardVertex;
