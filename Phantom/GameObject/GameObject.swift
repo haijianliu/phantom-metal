@@ -68,9 +68,11 @@ extension GameObject: RenderEncodable {
 		// TODO: in game object
 		guard let camera = Camera.main else { return }
 		transformUniformBuffer.data.projectionMatrix = camera.projectionMatrix
-		// TODO: Camera set view matrix
+		// TODO: Camera set view matrix.
+		// TODO: Use shader type to set buffer.
 		transformUniformBuffer.data.viewMatrix = camera.worldToCameraMatrix
 		transformUniformBuffer.data.modelMatrix = transform.localToWorldMatrix
+		transformUniformBuffer.data.inverseTransposeModelMatrix = transform.localToWorldMatrix.inverse.transpose
 		transformUniformBuffer.endWritting()
 		
 		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.nodeBuffer.rawValue)
