@@ -20,7 +20,7 @@ public class GameObject {
 		return components[String(describing: Transform.self)] as! Transform
 	}()
 
-	private var transformUniformBuffer: TripleBuffer<NodeBuffer>
+	private var transformUniformBuffer: TripleBuffer<StandardNodeBuffer>
 	
 	/// Holds a list of strong references of components have attached.
 	var components = [String: Component]()
@@ -30,7 +30,7 @@ public class GameObject {
 	public init?() {
 		guard let device = View.main.device else { return nil }
 		// TODO: init dynamic semaphore value
-		guard let newBuffer = TripleBuffer<NodeBuffer>(device) else { return nil }
+		guard let newBuffer = TripleBuffer<StandardNodeBuffer>(device) else { return nil }
 		transformUniformBuffer = newBuffer
 		// Default tag: untagged
 		tag = .untagged
