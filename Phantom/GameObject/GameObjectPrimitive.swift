@@ -17,7 +17,7 @@ extension GameObject {
 	///   - geometryType: The type of geometric primitive from which to construct the mesh; must be either kindTriangles, kindQuads, or lines.
 	///   - inwardNormals: true to generate normal vectors pointing toward the inside of the box; false to generate normal vectors pointing outward.
 	/// - Returns: A new GameObject with MeshRenderer component.
-	public static func createBox(shaderType: ShaderType = ShaderType.primitive, withDimensions dimensions: Vector3 = Vector3(1), segments: Uint3 = Uint3(1), geometryType: GeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
+	public static func createBox(shaderType: ShaderType = ShaderType.standard, withDimensions dimensions: Vector3 = Vector3(1), segments: Uint3 = Uint3(1), geometryType: GeometryType = .triangles, inwardNormals: Bool = false) -> GameObject? {
 		guard let device = View.main.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: mtkMeshBufferAllocator)
@@ -35,7 +35,7 @@ extension GameObject {
 	///   - inwardNormals: true to generate normal vectors pointing toward the center of the ellipsoid; false to generate normal vectors pointing outward.
 	///   - hemisphere: true to generate only the upper half of the ellipsoid or sphere (a dome); false to generate a complete ellipsoid or sphere.
 	/// - Returns: A new GameObject with MeshRenderer component.
-	public static func createEllipsoid(shaderType: ShaderType = ShaderType.primitive, withRadii radius: Vector3 = Vector3(1), radialSegments: Int = 24, verticalSegments: Int = 18, geometryType: GeometryType = .triangles, inwardNormals: Bool = false, hemisphere: Bool = false) -> GameObject? {
+	public static func createEllipsoid(shaderType: ShaderType = ShaderType.standard, withRadii radius: Vector3 = Vector3(1), radialSegments: Int = 24, verticalSegments: Int = 18, geometryType: GeometryType = .triangles, inwardNormals: Bool = false, hemisphere: Bool = false) -> GameObject? {
 		guard let device = View.main.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newEllipsoid(withRadii: radius, radialSegments: radialSegments, verticalSegments: verticalSegments, geometryType: geometryType, inwardNormals: inwardNormals, hemisphere: hemisphere, allocator: mtkMeshBufferAllocator)
@@ -50,7 +50,7 @@ extension GameObject {
 	///   - segments: The number of points to generate along each dimension. A larger number of points increases rendering fidelity but decreases rendering performance.
 	///   - geometryType: The type of geometric primitive from which to construct the mesh; must be either kindTriangles or
 	/// - Returns: A new GameObject with MeshRenderer component.
-	public static func createPlane(shaderType: ShaderType = ShaderType.primitive, withDimensions dimensions: Vector2 = Vector2(10), segments: Uint2 = Uint2(10), geometryType: GeometryType = .triangles) -> GameObject? {
+	public static func createPlane(shaderType: ShaderType = ShaderType.standard, withDimensions dimensions: Vector2 = Vector2(10), segments: Uint2 = Uint2(10), geometryType: GeometryType = .triangles) -> GameObject? {
 		guard let device = View.main.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newPlane(withDimensions: dimensions, segments: segments, geometryType: geometryType, allocator: mtkMeshBufferAllocator)
