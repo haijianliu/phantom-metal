@@ -2,24 +2,24 @@
 
 public enum ShaderType {
 	
-	case primitive
-	case primitiveNormalColor
+	case standard
+	case normalColor
 	
-	var vertex: String {
+	internal var vertex: String {
 		switch self {
-		case .primitive:
-			return "vertexShader"
-		case .primitiveNormalColor:
-			return "vertexShader"
+		case .standard:
+			return "standardVertex"
+		case .normalColor:
+			return "standardNoTextureVertex"
 		}
 	}
 	
-	var fragment: String {
+	internal var fragment: String {
 		switch self {
-		case .primitive:
-			return "fragmentShader"
-		case .primitiveNormalColor:
-			return "primitiveNormalColor"
+		case .standard:
+			return "standardFragment"
+		case .normalColor:
+			return "normalColorFragment"
 		}
 	}
 }
