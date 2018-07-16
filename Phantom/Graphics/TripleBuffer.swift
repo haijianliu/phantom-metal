@@ -7,7 +7,7 @@ import MetalKit
 /// [Triple buffering model](https://developer.apple.com/library/content/documentation/3DDrawing/Conceptual/MTLBestPracticesGuide/TripleBuffering.html#//apple_ref/doc/uid/TP40016642-CH5-SW1) to update dynamic buffer data.
 ///
 /// Adding a third dynamic data buffer is the ideal solution when considering processor idle time, memory overhead, and frame latency.
-struct TripleBuffer<DataType> {
+struct TripleBuffer<DataType: UniformBuffer> {
 	
 	/// Shared storgame mode MTLBuffer which can be sent to GPU using:
 	///
