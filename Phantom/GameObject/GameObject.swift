@@ -63,18 +63,15 @@ public class GameObject {
 extension GameObject: RenderEncodable {
 	
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
-		
 		// TODO: in transform
 		// TODO: in game object
 		guard let camera = Camera.main else { return }
-		transformUniformBuffer.data.projectionMatrix = camera.projectionMatrix
+		// TODO: Update from camera and scene buffer.
 		// TODO: Camera set view matrix.
-		// TODO: Use shader type to set buffer.
+		transformUniformBuffer.data.projectionMatrix = camera.projectionMatrix
 		transformUniformBuffer.data.viewMatrix = camera.worldToCameraMatrix
-		transformUniformBuffer.data.modelMatrix = transform.localToWorldMatrix
-		transformUniformBuffer.data.inverseTransposeModelMatrix = transform.localToWorldMatrix.inverse.transpose
+		transformUniformBuffer.data.update(by: transform)
 		transformUniformBuffer.endWritting()
-		
 		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.nodeBuffer.rawValue)
 	}
 }
