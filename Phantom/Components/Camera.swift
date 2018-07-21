@@ -19,7 +19,7 @@ public class Camera: Component {
 	///
 	/// Use this to calculate the camera space position of objects or to provide custom camera's location that is not based on the transform.
 	var worldToCameraMatrix: Matrix4x4 {
-		return Math.lookAt(eye: gameObject.transform.position, center: Vector3(0, 0, 0))
+		return Math.lookAt(eye: gameObject.transform.worldPosition, center: Vector3(0, 0, 0))
 	}
 	
 	/// The aspect ratio (width divided by height).
