@@ -8,22 +8,31 @@ public class GameObject {
 	
 	/// The tag of this game object.
 	public var tag: GameObjectTag { didSet { if tag == .mainCamera, let camera: Camera = self.getComponent() { Camera.main = camera } } }
-
-	/// The material attached of MeshRenderer attached to this GameObject. 
-	public var material: Material? { get {
-			let meshRenderer: MeshRenderer? = self.getComponent()
-			return meshRenderer?.material } }
+	
+	// TODO: Observe changes of properties.
+	// TODO: Node system.
+	weak var parent: GameObject?
+	
+	// TODO: use fixed array.
+	/// The only strong references holder of child gameobjects.
+	var children = [GameObject]()
+	
+	/// Holds a list of strong references of components have attached.
+	var components = [String: Component]()
 	
 	// TODO: unowned reference?
 	/// The Transform attached to this GameObject.
 	lazy public private(set) var transform: Transform = {
 		return components[String(describing: Transform.self)] as! Transform
 	}()
-
+	
+	// TODO: refactor.
 	private var transformUniformBuffer: TripleBuffer<StandardNodeBuffer>
 	
-	/// Holds a list of strong references of components have attached.
-	var components = [String: Component]()
+	/// The material attached of MeshRenderer attached to this GameObject.
+	public var material: Material? { get {
+		let meshRenderer: MeshRenderer? = self.getComponent()
+		return meshRenderer?.material } }
 	
 	// TODO: named name.
 	/// Creates a new game object.
@@ -47,7 +56,7 @@ public class GameObject {
 		if components[typeName] == nil {
 			let component = ComponentType(self)
 			components[typeName] = component
-			return components[typeName] as? ComponentType
+			return components[typeName] as? ComponentType // TODO: no optional type return.
 		} else {
 			return nil
 		}
