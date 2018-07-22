@@ -7,21 +7,22 @@ class Shader {
 	
 	let renderPipelineState: MTLRenderPipelineState
 	let vertexDescriptor: MTLVertexDescriptor
+	let vertexFunction: MTLFunction
+	let fragmentFunction: MTLFunction
 	/// TODO: use global default library and customize library option.
 	let library: MTLLibrary
-
+	
 	init?(_ device: MTLDevice, filepath: String? = nil, _ shaderType: ShaderType = ShaderType.standard) {
 		// TODO: if has filepath then load customize libraray.
 		do {
 			library = try device.makeLibrary(filepath: "DefaultShaders.metallib")
+			vertexFunction = try library.makeFunction(name: shaderType.vertex, constantValues: shaderType.functionConstantValues)
+			fragmentFunction = try library.makeFunction(name: shaderType.fragment, constantValues: shaderType.functionConstantValues)
 		} catch {
 			print(error)
 			return nil
 		}
 		
-		// TODO: function name enum
-		let vertexFunction = library.makeFunction(name: shaderType.vertex)
-		let fragmentFunction = library.makeFunction(name: shaderType.fragment)
 		vertexDescriptor = Shader.buildVertexDescriptor() // TODO: by library
 		
 		// TODO: automatically make vertex descriptor according to current metal library
