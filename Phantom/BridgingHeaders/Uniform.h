@@ -15,6 +15,17 @@
 // https://developer.apple.com/documentation/scenekit/scnprogram
 // https://forum.unity.com/threads/world-space-normal.58810/
 
+typedef NS_ENUM(NSInteger, FunctionConstant)
+{
+	FunctionConstantBaseColorMapIndex,
+	FunctionConstantNormalMapIndex,
+	FunctionConstantMetallicMapIndex,
+	FunctionConstantRoughnessMapIndex,
+	FunctionConstantAmbientOcclusionMapIndex,
+	FunctionConstantIrradianceMapIndex,
+	FunctionConstantCount
+};
+
 typedef NS_ENUM(NSInteger, BufferIndex)
 {
 	BufferIndexMeshPositions,
