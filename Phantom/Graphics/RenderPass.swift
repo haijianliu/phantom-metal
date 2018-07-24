@@ -36,15 +36,7 @@ extension RenderPass: Drawable {
 		let renderEncoder = makeRenderCommandEncoder(commandBuffer: commandBuffer)
 		else { return }
 		
-		// TODO: multi-thread CPU.
-		// update behaviours
-		for updateBehaviour in Application.sharedInstance.updateBehaviours {
-			updateBehaviour.reference?.update()
-		}
-		
-		// TODO: multi-thread CPU to GPU.
 		// TODO: multiple threads draw multiple queue (realtime and offline rendering).
-		// TODO: semaphore.
 		_ = semaphore.wait(timeout: .distantFuture)
 		commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
 		
@@ -54,9 +46,7 @@ extension RenderPass: Drawable {
 		renderEncoder.setDepthStencilState(depthStencilState)
 		
 		// render behaviours.
-		for renderBehaviour in Application.sharedInstance.renderBehaviours {
-			renderBehaviour.reference?.encode(to: renderEncoder)
-		}
+		for renderBehaviour in Application.sharedInstance.renderBehaviours { renderBehaviour.reference?.encode(to: renderEncoder) }
 		
 		// End encoding.
 		renderEncoder.endEncoding()
