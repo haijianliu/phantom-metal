@@ -6,10 +6,17 @@ import Metal
 import MetalKit
 
 class ViewDelegate: NSObject, MTKViewDelegate {
-
+	
 	// TODO: only render render pass here.
 	func draw(in view: MTKView) {
-		View.sharedInstance.renderPass?.draw(in: view)
+		// Dpdatable behaviours.
+		DispatchQueue.global(qos: .userInitiated).async {
+			for updateBehaviour in Application.sharedInstance.updateBehaviours { updateBehaviour.reference?.update() }
+		}
+		// Drawable behaviours.
+		DispatchQueue.global(qos: .userInteractive).sync {
+			View.sharedInstance.renderPass?.draw(in: view)
+		}
 	}
 
 	func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
