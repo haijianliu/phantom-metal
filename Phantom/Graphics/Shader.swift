@@ -4,15 +4,18 @@ import MetalKit
 
 // TODO: GpuObject.
 class Shader {
+	private let renderPipelineState: MTLRenderPipelineState
 	
-	let renderPipelineState: MTLRenderPipelineState
+	/// An object that describes how vertex data is organized and mapped to a vertex function.
 	let vertexDescriptor: MTLVertexDescriptor
-	let vertexFunction: MTLFunction
-	let fragmentFunction: MTLFunction
+
 	/// TODO: use global default library and customize library option.
 	let library: MTLLibrary
 	
 	init?(_ device: MTLDevice, filepath: String? = nil, _ shaderType: ShaderType = ShaderType.standard) {
+		let vertexFunction: MTLFunction
+		let fragmentFunction: MTLFunction
+		
 		// TODO: if has filepath then load customize libraray.
 		do {
 			library = try device.makeLibrary(filepath: "DefaultShaders.metallib")
@@ -23,7 +26,19 @@ class Shader {
 			return nil
 		}
 		
-		vertexDescriptor = Shader.buildVertexDescriptor() // TODO: by library
+		// Use vertex function reflection to creete a Metal vertex descriptor specifying how vertices will be laid out for input into the render pipeline and how the layout of Model IO vertices.
+		guard let vertexAttributes = vertexFunction.vertexAttributes else { return nil }
+		vertexDescriptor = MTLVertexDescriptor()
+		for (index, attribute) in vertexAttributes.enumerated() {
+			if attribute.isActive {
+				vertexDescriptor.attributes[attribute.attributeIndex].format = attribute.attributeType.format
+				vertexDescriptor.attributes[attribute.attributeIndex].offset = 0
+				vertexDescriptor.attributes[attribute.attributeIndex].bufferIndex = index
+				vertexDescriptor.layouts[index].stride = attribute.attributeType.stride
+				vertexDescriptor.layouts[index].stepRate = 1
+				vertexDescriptor.layouts[index].stepFunction = MTLVertexStepFunction.perVertex
+			}
+		}
 		
 		// TODO: automatically make vertex descriptor according to current metal library
 		let pipelineDescriptor = MTLRenderPipelineDescriptor()
@@ -51,39 +66,5 @@ class Shader {
 extension Shader: RenderEncodable {
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		renderCommandEncoder.setRenderPipelineState(renderPipelineState)
-	}
-}
-
-extension Shader {
-	// TODO: remove this
-	static func buildVertexDescriptor() -> MTLVertexDescriptor {
-		// Creete a Metal vertex descriptor specifying how vertices will by laid out for input into our render pipeline and how we'll layout our Model IO vertices
-		let vertexDescriptor = MTLVertexDescriptor()
-		
-		vertexDescriptor.attributes[VertexAttribute.position.rawValue].format = MTLVertexFormat.float3
-		vertexDescriptor.attributes[VertexAttribute.position.rawValue].offset = 0
-		vertexDescriptor.attributes[VertexAttribute.position.rawValue].bufferIndex = BufferIndex.meshPositions.rawValue
-		
-		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].format = MTLVertexFormat.float2
-		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].offset = 0
-		vertexDescriptor.attributes[VertexAttribute.texcoord.rawValue].bufferIndex = BufferIndex.meshTexcoords.rawValue
-		
-		vertexDescriptor.attributes[VertexAttribute.normal.rawValue].format = MTLVertexFormat.float3
-		vertexDescriptor.attributes[VertexAttribute.normal.rawValue].offset = 0
-		vertexDescriptor.attributes[VertexAttribute.normal.rawValue].bufferIndex = BufferIndex.meshNormals.rawValue
-		
-		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stride = 12
-		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepRate = 1
-		vertexDescriptor.layouts[BufferIndex.meshPositions.rawValue].stepFunction = MTLVertexStepFunction.perVertex
-		
-		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stride = 8
-		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stepRate = 1
-		vertexDescriptor.layouts[BufferIndex.meshTexcoords.rawValue].stepFunction = MTLVertexStepFunction.perVertex
-		
-		vertexDescriptor.layouts[BufferIndex.meshNormals.rawValue].stride = 12
-		vertexDescriptor.layouts[BufferIndex.meshNormals.rawValue].stepRate = 1
-		vertexDescriptor.layouts[BufferIndex.meshNormals.rawValue].stepFunction = MTLVertexStepFunction.perVertex
-		
-		return vertexDescriptor
 	}
 }
