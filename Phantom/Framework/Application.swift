@@ -7,6 +7,7 @@ public class Application {
 	static let sharedInstance: Application = Application()
 	// TODO: initialize capacity.
 	private init() {
+		// TODO: use library settings.
 		updateBehaviours.reserveCapacity(0xFF)
 		renderBehaviours.reserveCapacity(0xFF)
 	}
