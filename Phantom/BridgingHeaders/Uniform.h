@@ -26,19 +26,19 @@ typedef NS_ENUM(NSInteger, FunctionConstant)
 	FunctionConstantCount
 };
 
-typedef NS_ENUM(NSInteger, BufferIndex)
-{
-	BufferIndexMeshPositions,
-	BufferIndexMeshTexcoords,
-	BufferIndexMeshNormals,
-	BufferIndexNodeBuffer,
-};
-
+/// An enum that describes how vertex data is organized and mapped to a vertex function. And used by MTLVertexDescriptor and MDLVertexDescriptor to configure how vertex data stored in memory is mapped to attributes in a vertex shader.
 typedef NS_ENUM(NSInteger, VertexAttribute)
 {
-	VertexAttributePosition,
+	VertexAttributePosition = 0,
 	VertexAttributeTexcoord,
 	VertexAttributeNormal,
+	VertexAttributeCount
+};
+
+/// An enum that describes how buffer data is organized and mapped to shader functions. Raw values continue to vertex attribute indices which is invalid for buffer objects.
+typedef NS_ENUM(NSInteger, BufferIndex)
+{
+	BufferIndexNodeBuffer = VertexAttributeCount,
 };
 
 // TODO: Add format and stride information.
@@ -50,9 +50,7 @@ typedef NS_ENUM(NSInteger, TextureIndex)
 
 // TODO: Add Scene buffer.
 
-/**
- To use information that varies for each object being rendered with a shader—such as model and normal matrices—declare a parameter to your shader function with an attribute qualifier.
- */
+/// To use information that varies for each object being rendered with a shader—such as model and normal matrices—declare a parameter to your shader function with an attribute qualifier.
 typedef struct
 {
 	matrix_float4x4 projectionMatrix;
