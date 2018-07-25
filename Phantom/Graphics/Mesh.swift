@@ -14,6 +14,8 @@ class Mesh {
 
 	init(with mtkMesh: MTKMesh) {
 		self.mtkMesh = mtkMesh
+		// TODO: use library settings.
+		vertexBufferIndices.reserveCapacity(0x20)
 		for (index, element) in mtkMesh.vertexDescriptor.layouts.enumerated() {
 			guard let layout = element as? MDLVertexBufferLayout else { return }
 			if layout.stride != 0 { vertexBufferIndices.append(index) }
