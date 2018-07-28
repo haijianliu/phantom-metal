@@ -7,7 +7,7 @@ import MetalKit
 ///
 /// Multi-view rendering is unavailable by now
 public class View {
-	
+	// TODO: no singleton?
 	/// Singleton
 	static let sharedInstance: View = View()
 	private init() {}
@@ -23,7 +23,10 @@ public class View {
 	
 	// TODO: multiple command queues
 	var commandQueue: MTLCommandQueue?
-	// TODO: multiple rendering passes
+	// TODO: in metal library.
+	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
+	let semaphore = DispatchSemaphore(value: 3)
+	// TODO: multiple rendering passes. only store protoco. reference in application.
 	var renderPass: RenderPass?
 }
 
@@ -64,5 +67,16 @@ extension View {
 		if View.sharedInstance.renderPass == nil {
 			View.sharedInstance.renderPass = RenderPass(mtkView: mtkView)
 		}
+	}
+	
+	func draw() {
+		guard let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer() else { return }
+		
+		// TODO: multiple threads draw multiple queue (realtime and offline rendering)
+		_ = semaphore.wait(timeout: .distantFuture)
+		commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
+		// TODO: multiple rendering passes
+		View.sharedInstance.renderPass?.draw(in: View.main, by: commandBuffer)
+		commandBuffer.commit()
 	}
 }
