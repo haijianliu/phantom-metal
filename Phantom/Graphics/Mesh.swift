@@ -12,7 +12,22 @@ class Mesh {
 	/// The vertex winding rule that determines a front-facing primitive (Default: counter-clockwise).
 	var winding: MTLWinding = MTLWinding.counterClockwise
 
-	init(with mtkMesh: MTKMesh) {
+	init?(_ device: MTLDevice, from mdlMesh: MDLMesh, with vertexDescriptor: MTLVertexDescriptor) {
+		// Create MDLVertexDescriptor.
+		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(vertexDescriptor)
+		guard let attributes = mdlVertexDescriptor.attributes as? [MDLVertexAttribute] else { return nil }
+		attributes[VertexAttribute.position.rawValue].name = MDLVertexAttributePosition
+		attributes[VertexAttribute.texcoord.rawValue].name = MDLVertexAttributeTextureCoordinate
+		attributes[VertexAttribute.normal.rawValue].name = MDLVertexAttributeNormal
+		mdlMesh.vertexDescriptor = mdlVertexDescriptor
+		// Create MTKMesh.
+		let mtkMesh: MTKMesh
+		do {
+			mtkMesh = try MTKMesh(mesh: mdlMesh, device: device)
+		} catch {
+			print("Unable to build MetalKit Mesh. Error info: \(error)")
+			return nil
+		}
 		self.mtkMesh = mtkMesh
 		// TODO: use library settings.
 		vertexBufferIndices.reserveCapacity(0x20)

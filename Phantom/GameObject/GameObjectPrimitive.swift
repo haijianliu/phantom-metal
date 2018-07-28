@@ -71,23 +71,8 @@ extension GameObject {
 		guard let shader = Shader(device, shaderType) else { return nil }
 		let material = Material(with: shader)
 		meshRenderer.material = material
-		// TODO: refactor.
-		// Create MDLVertexDescriptor.
-		let mdlVertexDescriptor = MTKModelIOVertexDescriptorFromMetal(shader.vertexDescriptor)
-		guard let attributes = mdlVertexDescriptor.attributes as? [MDLVertexAttribute] else { return nil }
-		attributes[VertexAttribute.position.rawValue].name = MDLVertexAttributePosition
-		attributes[VertexAttribute.texcoord.rawValue].name = MDLVertexAttributeTextureCoordinate
-		attributes[VertexAttribute.normal.rawValue].name = MDLVertexAttributeNormal
-		mdlMesh.vertexDescriptor = mdlVertexDescriptor
-		// Create MTKMesh.
-		let mtkMesh: MTKMesh
-		do {
-			mtkMesh = try MTKMesh(mesh: mdlMesh, device: device)
-		} catch {
-			print("Unable to build MetalKit Mesh. Error info: \(error)")
-			return nil
-		}
-		meshRenderer.mesh = Mesh(with: mtkMesh)
+		guard let mesh = Mesh(device, from: mdlMesh, with: shader.vertexDescriptor) else { return nil }
+		meshRenderer.mesh = mesh
 		return gameObject
 	}
 }
