@@ -430,6 +430,7 @@
 				60AE97B320FC70DF00D6ABA5 /* UniformBuffer.swift */,
 				60784B7920F4E4AD00C02D33 /* AntialiasingMode.swift */,
 				60D645C02094C1B900646198 /* RenderPass.swift */,
+				606FF37F20B0012E00CC704B /* Drawable.swift */,
 				608856BF2090E33700F69621 /* Material.swift */,
 				60566A2A20F9E8F2004861FB /* ShaderType.swift */,
 				607258A0209589E6004996FA /* Shader.swift */,
@@ -437,7 +438,6 @@
 				601E2DDC206F72CB00428A4D /* Texture.swift */,
 				60652FDC20F0B0430054C962 /* Mesh.swift */,
 				601355D92094EB880093AF6E /* RenderEncodable.swift */,
-				606FF37F20B0012E00CC704B /* Drawable.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
