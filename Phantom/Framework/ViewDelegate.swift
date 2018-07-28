@@ -15,7 +15,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		}
 		// Drawable behaviours.
 		DispatchQueue.global(qos: .userInteractive).sync {
-			View.sharedInstance.renderPass?.draw(in: view)
+			View.sharedInstance.draw()
 		}
 	}
 
