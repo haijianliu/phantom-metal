@@ -10,10 +10,6 @@ class RenderPass {
 	var compareFunction = MTLCompareFunction.less
 	private var depthStencilState: MTLDepthStencilState
 	
-	// TODO: in metal library.
-	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
-	let semaphore = DispatchSemaphore(value: 3)
-	
 	init?(mtkView: MTKView) {
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
 		depthStencilDescriptor.depthCompareFunction = compareFunction
@@ -30,15 +26,8 @@ class RenderPass {
 }
 
 extension RenderPass: Drawable {
-	func draw(in view: MTKView) {
-		guard
-		let commandBuffer = View.sharedInstance.commandQueue?.makeCommandBuffer(),
-		let renderEncoder = makeRenderCommandEncoder(commandBuffer: commandBuffer)
-		else { return }
-		
-		// TODO: multiple threads draw multiple queue (realtime and offline rendering).
-		_ = semaphore.wait(timeout: .distantFuture)
-		commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
+	func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
+		guard let renderEncoder = makeRenderCommandEncoder(commandBuffer: commandBuffer) else { return }
 		
 		// Start encoding and setup debug infomation
 		renderEncoder.label = String(describing: self)
@@ -51,9 +40,8 @@ extension RenderPass: Drawable {
 		// End encoding.
 		renderEncoder.endEncoding()
 		
+		// TODO: render target.
 		// If rendering to core animation layer.
 		if let drawable = view.currentDrawable { commandBuffer.present(drawable) }
-		
-		commandBuffer.commit()
 	}
 }
