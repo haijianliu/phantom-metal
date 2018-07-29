@@ -17,17 +17,13 @@ class RenderPass {
 		guard let newDepthStencilState = mtkView.device?.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
 		depthStencilState = newDepthStencilState
 	}
-	
-	// TODO: customize this function varying from render passes.
-	func makeRenderCommandEncoder(commandBuffer: MTLCommandBuffer) -> MTLRenderCommandEncoder? {
-		guard let renderPassDescriptor = View.main.currentRenderPassDescriptor else { return nil }
-		return commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
-	}
 }
 
 extension RenderPass: Drawable {
 	func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
-		guard let renderEncoder = makeRenderCommandEncoder(commandBuffer: commandBuffer) else { return }
+		// TODO: customize this function varying from render passes.
+		guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
+		guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
 		
 		// Start encoding and setup debug infomation
 		renderEncoder.label = String(describing: self)
