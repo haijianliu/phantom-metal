@@ -10,11 +10,11 @@ class RenderPass {
 	var compareFunction = MTLCompareFunction.less
 	private var depthStencilState: MTLDepthStencilState
 	
-	init?(mtkView: MTKView) {
+	init?(view: MTKView) {
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
 		depthStencilDescriptor.depthCompareFunction = compareFunction
 		depthStencilDescriptor.isDepthWriteEnabled = depthWrite
-		guard let newDepthStencilState = mtkView.device?.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
+		guard let newDepthStencilState = view.device?.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
 		depthStencilState = newDepthStencilState
 	}
 }

@@ -50,7 +50,7 @@ public class Application {
 	}
 	
 	/// Add a mtkView to views and set it as the current active view (since only supported for one view by now)
-	public static func launch(mtkView: MTKView) {
+	public static func launch(view: MTKView) {
 		// Select the default device to render with.
 		guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
 			print("Metal is not supported on this device")
@@ -58,23 +58,23 @@ public class Application {
 		}
 		
 		// Set metal kit view
-		mtkView.device = defaultDevice
-		mtkView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
-		mtkView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
-		mtkView.sampleCount = AntialiasingMode.multisampling4X.rawValue  // TODO: Max sampling test.
-		mtkView.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
-		Application.sharedInstance.view = mtkView
+		view.device = defaultDevice
+		view.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
+		view.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
+		view.sampleCount = AntialiasingMode.multisampling4X.rawValue  // TODO: Max sampling test.
+		view.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
+		Application.sharedInstance.view = view
 		
 		// TODO: This will be a Display process
 		// Set MTKViewDelegate to current Renderer instance
 		// TODO: multiple command queues
 		Application.sharedInstance.viewDelegate.commandQueue = defaultDevice.makeCommandQueue()
 		// TODO: multiple rendering passes
-		Application.sharedInstance.viewDelegate.renderPass = RenderPass(mtkView: mtkView)
-		mtkView.delegate = Application.sharedInstance.viewDelegate
+		Application.sharedInstance.viewDelegate.renderPass = RenderPass(view: view)
+		view.delegate = Application.sharedInstance.viewDelegate
 		
 		// Set references.
-		Application.sharedInstance.view = mtkView
+		Application.sharedInstance.view = view
 		Application.sharedInstance.device = defaultDevice
 	}
 }
