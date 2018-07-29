@@ -2,7 +2,11 @@
 
 import MetalKit
 
+// MARK: - Extension for public functions.
 extension Application {
+	/// Launch application. After launched this delegate will be released.
+	///
+	/// - Parameter application: An user class that confirms ApplicationDelegate protocol.
 	public static func launch(application: ApplicationDelegate) {
 		application.start()
 		// Only for the first time, should initiate the view manually
@@ -48,8 +52,17 @@ extension Application {
 	}
 	
 	// TODO: in Scene
+	// TODO: when add twice.
+	/// Add gameobjects to application.
 	public static func addGameObject(_ gameObjcet: GameObject) {
+		// Add gameobject strong references to application.
 		Application.sharedInstance.gameObjects.append(gameObjcet)
+		// If there is mesh renderer attached then load shaders and meshes.
+		if let meshRenderer: MeshRenderer = gameObjcet.getComponent() {
+			meshRenderer.material.shader.load()
+			meshRenderer.mesh.load(from: meshRenderer.material.shader.vertexDescriptor)
+		}
+		// Add behaviour weak references to application.
 		for component in gameObjcet.components {
 			if let updateBehaviour = component.value as? Updatable {
 				Application.sharedInstance.updateBehaviours.append(Weak(reference: updateBehaviour))
