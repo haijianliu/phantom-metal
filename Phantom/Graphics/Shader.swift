@@ -8,26 +8,23 @@ class Shader {
 	
 	/// An object that describes how vertex data is organized and mapped to a vertex function.
 	let vertexDescriptor: MTLVertexDescriptor
-
-	/// TODO: use global default library and customize library option.
-	let library: MTLLibrary
+	let pipelineDescriptor: MTLRenderPipelineDescriptor
+	
+	let vertexFunction: MTLFunction?
+	let fragmentFunction: MTLFunction?
 	
 	init?(_ device: MTLDevice, filepath: String? = nil, _ shaderType: ShaderType = ShaderType.standard) {
-		let vertexFunction: MTLFunction
-		let fragmentFunction: MTLFunction
-		
 		// TODO: if has filepath then load customize libraray.
 		do {
-			library = try device.makeLibrary(filepath: "DefaultShaders.metallib")
-			vertexFunction = try library.makeFunction(name: shaderType.vertex, constantValues: shaderType.functionConstantValues)
-			fragmentFunction = try library.makeFunction(name: shaderType.fragment, constantValues: shaderType.functionConstantValues)
+			vertexFunction = try Application.sharedInstance.library?.makeFunction(name: shaderType.vertex, constantValues: shaderType.functionConstantValues)
+			fragmentFunction = try Application.sharedInstance.library?.makeFunction(name: shaderType.fragment, constantValues: shaderType.functionConstantValues)
 		} catch {
 			print(error)
 			return nil
 		}
 		
 		// Use vertex function reflection to creete a Metal vertex descriptor specifying how vertices will be laid out for input into the render pipeline and how the layout of Model IO vertices.
-		guard let vertexAttributes = vertexFunction.vertexAttributes else { return nil }
+		guard let vertexAttributes = vertexFunction?.vertexAttributes else { return nil }
 		vertexDescriptor = MTLVertexDescriptor()
 		for (index, attribute) in vertexAttributes.enumerated() {
 			if attribute.isActive {
@@ -41,7 +38,7 @@ class Shader {
 		}
 		
 		// TODO: automatically make vertex descriptor according to current metal library
-		let pipelineDescriptor = MTLRenderPipelineDescriptor()
+		pipelineDescriptor = MTLRenderPipelineDescriptor()
 		pipelineDescriptor.vertexDescriptor = vertexDescriptor
 		pipelineDescriptor.vertexFunction = vertexFunction
 		pipelineDescriptor.fragmentFunction = fragmentFunction
