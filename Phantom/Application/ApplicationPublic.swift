@@ -37,6 +37,14 @@ extension Application {
 		// Set references.
 		Application.sharedInstance.view = view
 		Application.sharedInstance.device = defaultDevice
+		
+		// TODO: build library according to application delegate.
+		do {
+			Application.sharedInstance.library = try defaultDevice.makeLibrary(filepath: "DefaultShaders.metallib")
+		} catch {
+			print(error)
+			return
+		}
 	}
 	
 	// TODO: in Scene

@@ -15,6 +15,8 @@ public class Application {
 	
 	weak var view: MTKView?
 	weak var device: MTLDevice?
+	/// TODO: use global default library and customize library option.
+	var library: MTLLibrary?
 	
 	// TODO: remove
 	/// MTKViewDelegat reference holder.
