@@ -378,7 +378,7 @@
 				603F760B20694E1700E9922F /* BridgingHeaders */,
 				603F760A20694C2A00E9922F /* Shaders */,
 				603F760C206952BE00E9922F /* Math */,
-				608856B6208E259E00F69621 /* Framework */,
+				608856B6208E259E00F69621 /* Application */,
 				607258A52095AB40004996FA /* Graphics */,
 				605B053F208CDD75000AB25A /* GameObject */,
 				60E5CB18208AFFB400AE6090 /* Components */,
@@ -442,7 +442,7 @@
 			path = Graphics;
 			sourceTree = "<group>";
 		};
-		608856B6208E259E00F69621 /* Framework */ = {
+		608856B6208E259E00F69621 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				6053011720665F4000AAAF1F /* Application.swift */,
@@ -452,7 +452,7 @@
 				605B0545208CE800000AB25A /* Weak.swift */,
 				606B712220791905004EFF95 /* Error.swift */,
 			);
-			path = Framework;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		60E5CB18208AFFB400AE6090 /* Components */ = {
