@@ -18,7 +18,7 @@ extension GameObject {
 	///   - shaderType: A shader type defined by the default shaders library.
 	/// - Returns: A new GameObject with MeshRenderer component.
 	public static func createBox(withDimensions dimensions: Vector3 = Vector3(1), segments: Uint3 = Uint3(1), geometryType: GeometryType = .triangles, inwardNormals: Bool = false, shaderType: ShaderType = ShaderType.standard) -> GameObject? {
-		guard let device = View.main.device else { return nil }
+		guard let device = Application.sharedInstance.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: mtkMeshBufferAllocator)
 		return GameObject.createMeshGameObject(device, with: mdlMesh, shaderType: shaderType)
@@ -36,7 +36,7 @@ extension GameObject {
 	///   - shaderType: A shader type defined by the default shaders library.
 	/// - Returns: A new GameObject with MeshRenderer component.
 	public static func createEllipsoid(withRadii radius: Vector3 = Vector3(1), radialSegments: Int = 24, verticalSegments: Int = 18, geometryType: GeometryType = .triangles, inwardNormals: Bool = false, hemisphere: Bool = false, shaderType: ShaderType = ShaderType.standard) -> GameObject? {
-		guard let device = View.main.device else { return nil }
+		guard let device = Application.sharedInstance.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newEllipsoid(withRadii: radius, radialSegments: radialSegments, verticalSegments: verticalSegments, geometryType: geometryType, inwardNormals: inwardNormals, hemisphere: hemisphere, allocator: mtkMeshBufferAllocator)
 		return GameObject.createMeshGameObject(device, with: mdlMesh, shaderType: shaderType)
@@ -51,7 +51,7 @@ extension GameObject {
 	///   - shaderType: A shader type defined by the default shaders library.
 	/// - Returns: A new GameObject with MeshRenderer component.
 	public static func createPlane(withDimensions dimensions: Vector2 = Vector2(10), segments: Uint2 = Uint2(10), geometryType: GeometryType = .triangles, shaderType: ShaderType = ShaderType.standard) -> GameObject? {
-		guard let device = View.main.device else { return nil }
+		guard let device = Application.sharedInstance.device else { return nil }
 		let mtkMeshBufferAllocator = MTKMeshBufferAllocator(device: device)
 		let mdlMesh = MDLMesh.newPlane(withDimensions: dimensions, segments: segments, geometryType: geometryType, allocator: mtkMeshBufferAllocator)
 		return GameObject.createMeshGameObject(device, with: mdlMesh, shaderType: shaderType)

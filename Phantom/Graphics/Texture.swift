@@ -18,7 +18,7 @@ public class Texture {
 	static func load(textureName: String) throws -> MTLTexture {
 		// Load texture data with optimal parameters for sampling
 		
-		guard let device = View.main.device else {
+		guard let device = Application.sharedInstance.device else {
 			throw RendererError.badVertexDescriptor // TODO: new error
 		}
 		

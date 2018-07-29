@@ -37,7 +37,7 @@ public class GameObject {
 	// TODO: named name.
 	/// Creates a new game object.
 	public init?() {
-		guard let device = View.main.device else { return nil }
+		guard let device = Application.sharedInstance.device else { return nil }
 		// TODO: init dynamic semaphore value
 		guard let newBuffer = TripleBuffer<StandardNodeBuffer>(device) else { return nil }
 		transformUniformBuffer = newBuffer

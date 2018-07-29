@@ -42,18 +42,19 @@ class Shader {
 		
 		// TODO: automatically make vertex descriptor according to current metal library
 		let pipelineDescriptor = MTLRenderPipelineDescriptor()
-		pipelineDescriptor.label = "DefaultShaders" // TODO: check if using default
-		pipelineDescriptor.sampleCount = View.main.sampleCount
+		pipelineDescriptor.vertexDescriptor = vertexDescriptor
 		pipelineDescriptor.vertexFunction = vertexFunction
 		pipelineDescriptor.fragmentFunction = fragmentFunction
-		pipelineDescriptor.vertexDescriptor = vertexDescriptor
 		
+		// TODO: use render target settings.
 		// TODO: though these settings are only for final render pass, may be customizable from render pipeline.
-		pipelineDescriptor.colorAttachments[0].pixelFormat = View.main.colorPixelFormat
-		pipelineDescriptor.depthAttachmentPixelFormat = View.main.depthStencilPixelFormat
-		pipelineDescriptor.stencilAttachmentPixelFormat = View.main.depthStencilPixelFormat
+		pipelineDescriptor.label = "DefaultShaders" // TODO: check if using default. TODO: use shader name and pass name
+		pipelineDescriptor.sampleCount = AntialiasingMode.multisampling4X.rawValue // TODO: muti antialias settings in material.
+		pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm_srgb
+		pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float_stencil8
+		pipelineDescriptor.stencilAttachmentPixelFormat = .depth32Float_stencil8
 		
-		// pipeline state
+		// TODO: reuse pipeline state.
 		do {
 			try renderPipelineState = device.makeRenderPipelineState(descriptor: pipelineDescriptor)
 		} catch {
