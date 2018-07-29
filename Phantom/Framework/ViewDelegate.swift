@@ -5,7 +5,17 @@
 import Metal
 import MetalKit
 
-extension View: MTKViewDelegate {
+// TODO: [SCNView](https://developer.apple.com/documentation/scenekit/scnview)
+// TODO: UX refactor.
+/// Provides access to an application view for rendering operations.
+class ViewDelegate: NSObject, MTKViewDelegate {
+	// TODO: multiple command queues
+	var commandQueue: MTLCommandQueue?
+	// TODO: in metal library.
+	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
+	let semaphore = DispatchSemaphore(value: 3)
+	// TODO: multiple rendering passes. only store protoco. reference in application.
+	var renderPass: RenderPass?
 	
 	// TODO: only render render pass here.
 	public func draw(in view: MTKView) {
