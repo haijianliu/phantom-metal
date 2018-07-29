@@ -7,12 +7,10 @@ class MeshRenderer: Renderer, Renderable {
 	
 	// TODO: multiple.
 	/// Mesh slot for rendering.
-	var mesh: Mesh?
+	let mesh = Mesh()
 	
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
-		// Check all the resources available.
-		guard let mesh = self.mesh, let material = self.material else { return }
-		// Material encoding: including shader and texture encoding.
+		// Material encoding: including texture and shader encoding.
 		material.encode(to: renderCommandEncoder)
 		// Game object encoding: update triple buffer.
 		gameObject.encode(to: renderCommandEncoder)
