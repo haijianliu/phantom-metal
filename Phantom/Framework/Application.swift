@@ -1,8 +1,9 @@
 // Copyright © haijian. All rights reserved.
 
-// TODO: public?
+import MetalKit
+
+/// The single instance of application interface that manages game resources, event loop and status.
 public class Application {
-	
 	// TODO: no singleton
 	static let sharedInstance: Application = Application()
 	// TODO: initialize capacity.
@@ -14,8 +15,6 @@ public class Application {
 	
 	// Delegate
 	weak var delegate: ApplicationDelegate?
-	
-	var viewDelegate: ViewDelegate?
 	
 	/// The only game object references holder.
 	private var gameObjects = [GameObject]()
@@ -29,7 +28,8 @@ public class Application {
 	public static func launch(application: ApplicationDelegate) {
 		Application.sharedInstance.delegate = application
 		Application.sharedInstance.delegate?.start()
-		Application.sharedInstance.createRenderer()
+		// Only for the first time, should initiate the view manually
+		View.sharedInstance.mtkView(View.main, drawableSizeWillChange: View.main.drawableSize)
 	}
 	
 	// TODO: in Scene
@@ -44,16 +44,35 @@ public class Application {
 			}
 		}
 	}
-
-	private func createRenderer() {
-		// Create Renderer
-		viewDelegate = ViewDelegate()
+	
+	/// Add a mtkView to views and set it as the current active view (since only supported for one view by now)
+	public static func launch(mtkView: MTKView) {
+		
+		// Select the default device to render with.
+		guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
+			print("Metal is not supported on this device")
+			return
+		}
+		
+		// Set metal kit view
+		mtkView.device = defaultDevice
+		mtkView.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
+		mtkView.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
+		mtkView.sampleCount = AntialiasingMode.multisampling4X.rawValue  // TODO: Max sampling test.
+		mtkView.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
+		View.sharedInstance.mtkView = mtkView
+		
+		// TODO: multiple command queues
+		if View.sharedInstance.commandQueue == nil {
+			View.sharedInstance.commandQueue = mtkView.device?.makeCommandQueue()
+		}
+		// TODO: multiple rendering passes
+		if View.sharedInstance.renderPass == nil {
+			View.sharedInstance.renderPass = RenderPass(mtkView: mtkView)
+		}
 		
 		// TODO: This will be a Display process
 		// Set MTKViewDelegate to current Renderer instance
-		View.main.delegate = viewDelegate
-		
-		// Only for the first time, should initiate the view manually
-		viewDelegate?.mtkView(View.main, drawableSizeWillChange: View.main.drawableSize)
+		View.main.delegate = View.sharedInstance
 	}
 }
