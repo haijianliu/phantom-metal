@@ -5,21 +5,27 @@
 import Metal
 import MetalKit
 
-class ViewDelegate: NSObject, MTKViewDelegate {
+extension View: MTKViewDelegate {
 	
 	// TODO: only render render pass here.
-	func draw(in view: MTKView) {
+	public func draw(in view: MTKView) {
 		// Dpdatable behaviours.
 		DispatchQueue.global(qos: .userInitiated).async {
 			for updateBehaviour in Application.sharedInstance.updateBehaviours { updateBehaviour.reference?.update() }
 		}
 		// Drawable behaviours.
 		DispatchQueue.global(qos: .userInteractive).sync {
-			View.sharedInstance.draw()
+			guard let commandBuffer = commandQueue?.makeCommandBuffer() else { return }
+			// TODO: multiple threads draw multiple queue (realtime and offline rendering)
+			_ = semaphore.wait(timeout: .distantFuture)
+			commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
+			// TODO: multiple rendering passes
+			renderPass?.draw(in: view, by: commandBuffer)
+			commandBuffer.commit()
 		}
 	}
 
-	func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+	public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
 		// TODO: Camera
 		let aspect = Float(size.width) / Float(size.height)
 		guard let camera: Camera = Camera.main else { return }
