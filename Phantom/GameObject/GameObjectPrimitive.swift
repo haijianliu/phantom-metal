@@ -68,11 +68,8 @@ extension GameObject {
 		guard let gameObject = GameObject() else { return nil }
 		guard let meshRenderer: MeshRenderer = gameObject.addComponent() else { return nil }
 		// Attach material
-		guard let shader = Shader(device, shaderType) else { return nil }
-		let material = Material(with: shader)
-		meshRenderer.material = material
-		guard let mesh = Mesh(device, from: mdlMesh, with: shader.vertexDescriptor) else { return nil }
-		meshRenderer.mesh = mesh
+		meshRenderer.material.shader.shaderType = shaderType
+		meshRenderer.mesh.mdlMesh = mdlMesh
 		return gameObject
 	}
 }
