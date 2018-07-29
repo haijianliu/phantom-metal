@@ -18,5 +18,5 @@ public class Renderer: Component {
 	///
 	/// Material is a value type, modifying material will change the material for this object only.
 	/// Copy the material to any other renderers, this will make a clone this current material.
-	public var material: Material? // TODO: multi materials.
+	let material = Material() // TODO: multi materials.
 }
