@@ -378,6 +378,7 @@
 				603F760B20694E1700E9922F /* BridgingHeaders */,
 				603F760A20694C2A00E9922F /* Shaders */,
 				603F760C206952BE00E9922F /* Math */,
+				60C6E51E210D9CC00041CA68 /* Utility */,
 				608856B6208E259E00F69621 /* Application */,
 				607258A52095AB40004996FA /* Graphics */,
 				605B053F208CDD75000AB25A /* GameObject */,
@@ -449,10 +450,17 @@
 				60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */,
 				60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */,
 				607206E420538ABE0068F691 /* ViewDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		60C6E51E210D9CC00041CA68 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
 				605B0545208CE800000AB25A /* Weak.swift */,
 				606B712220791905004EFF95 /* Error.swift */,
 			);
-			path = Application;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		60E5CB18208AFFB400AE6090 /* Components */ = {
