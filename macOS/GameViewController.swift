@@ -17,6 +17,6 @@ class GameViewController: NSViewController {
 		}
 		
 		// Add this mtkview and set it as the current active display
-		View.addView(mtkView: mtkView)
+		Application.launch(mtkView: mtkView)
 	}
 }
