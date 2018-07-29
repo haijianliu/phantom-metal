@@ -96,6 +96,8 @@
 		60A5B4682103232400930DC2 /* GameObjectParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5B4662103232400930DC2 /* GameObjectParent.swift */; };
 		60AE97B420FC70DF00D6ABA5 /* UniformBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AE97B320FC70DF00D6ABA5 /* UniformBuffer.swift */; };
 		60AE97B520FC70DF00D6ABA5 /* UniformBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AE97B320FC70DF00D6ABA5 /* UniformBuffer.swift */; };
+		60C6E51C210D9AD10041CA68 /* ApplicationPublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */; };
+		60C6E51D210D9AD10041CA68 /* ApplicationPublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */; };
 		60D645C22094C1C000646198 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D645C02094C1B900646198 /* RenderPass.swift */; };
 		60D645C32094C1C100646198 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D645C02094C1B900646198 /* RenderPass.swift */; };
 		60D98CD72108E78A00924532 /* MTLDataTypeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D98CD62108E78A00924532 /* MTLDataTypeMapping.swift */; };
@@ -214,6 +216,7 @@
 		609064FC2083A58C0047D411 /* GameObjectTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectTag.swift; sourceTree = "<group>"; };
 		60A5B4662103232400930DC2 /* GameObjectParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectParent.swift; sourceTree = "<group>"; };
 		60AE97B320FC70DF00D6ABA5 /* UniformBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniformBuffer.swift; sourceTree = "<group>"; };
+		60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPublic.swift; sourceTree = "<group>"; };
 		60D158122088FC2D00A2A876 /* Uniform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uniform.h; sourceTree = "<group>"; };
 		60D645C02094C1B900646198 /* RenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPass.swift; sourceTree = "<group>"; };
 		60D98CD62108E78A00924532 /* MTLDataTypeMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLDataTypeMapping.swift; sourceTree = "<group>"; };
@@ -443,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				6053011720665F4000AAAF1F /* Application.swift */,
+				60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */,
 				60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */,
 				607206E420538ABE0068F691 /* ViewDelegate.swift */,
 				605B0545208CE800000AB25A /* Weak.swift */,
@@ -727,6 +731,7 @@
 				601A9E192088F54A002045DA /* ViewDelegate.swift in Sources */,
 				60AE97B420FC70DF00D6ABA5 /* UniformBuffer.swift in Sources */,
 				6051E359208B4FFC00C4E8AA /* Behaviour.swift in Sources */,
+				60C6E51C210D9AD10041CA68 /* ApplicationPublic.swift in Sources */,
 				601A9E1B2088F54A002045DA /* GameObject.swift in Sources */,
 				6051E346208B1DCC00C4E8AA /* Space.swift in Sources */,
 				601A9E252088F54A002045DA /* Camera.swift in Sources */,
@@ -773,6 +778,7 @@
 				601A9E332088F54E002045DA /* MeshRenderer.swift in Sources */,
 				60784B7B20F4E4AD00C02D33 /* AntialiasingMode.swift in Sources */,
 				601A9E3E2088F558002045DA /* Constants.swift in Sources */,
+				60C6E51D210D9AD10041CA68 /* ApplicationPublic.swift in Sources */,
 				60652FE320F0B07D0054C962 /* GameObjectPrimitive.swift in Sources */,
 				601A9E2D2088F54E002045DA /* Texture.swift in Sources */,
 				601A9E2F2088F54E002045DA /* Error.swift in Sources */,
