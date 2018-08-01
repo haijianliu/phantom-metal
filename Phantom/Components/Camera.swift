@@ -35,7 +35,7 @@ public class Camera: Component {
 	var projectionMatrix: Matrix4x4 = Matrix4x4()
 	
 	required public init(_ gameObject: GameObject) {
-		super.init(gameObject)
+		super.init(gameObject)! // TODO: safe wrap.
 		if Camera.main == nil {
 			gameObject.tag = .mainCamera
 			Camera.main = self
