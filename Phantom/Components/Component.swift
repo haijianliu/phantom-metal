@@ -16,7 +16,7 @@ open class Component {
 	public var transform: Transform { return gameObject.transform }
 	
 	// TODO: no public
-	required public init(_ gameObject: GameObject) {
+	required public init?(_ gameObject: GameObject) {
 		self.gameObject = gameObject
 	}
 }
