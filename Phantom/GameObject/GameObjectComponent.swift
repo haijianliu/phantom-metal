@@ -9,7 +9,7 @@ extension GameObject {
 	public func addComponent<ComponentType: Component>() -> ComponentType? {
 		let typeName = String(describing: ComponentType.self)
 		if components[typeName] == nil {
-			let component = ComponentType(self)
+			guard let component = ComponentType(self) else { return nil }
 			components[typeName] = component
 			return components[typeName] as? ComponentType // TODO: no optional type return.
 		} else {
