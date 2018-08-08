@@ -64,11 +64,15 @@ extension Application {
 		}
 		// Add behaviour weak references to application.
 		for component in gameObjcet.components {
-			if let updateBehaviour = component.value as? Updatable {
-				Application.sharedInstance.updateBehaviours.append(Weak(reference: updateBehaviour))
+			// TODO: registerable.
+			if let updatableBehaviour = component.value as? Updatable {
+				Application.sharedInstance.updatableBehaviours.append(Weak(reference: updatableBehaviour))
 			}
-			if let renderBehaviour = component.value as? Renderable {
-				Application.sharedInstance.renderBehaviours.append(Weak(reference: renderBehaviour))
+			if let renderableBehaviour = component.value as? Renderable {
+				Application.sharedInstance.renderableBehaviours.append(Weak(reference: renderableBehaviour))
+			}
+			if let lightableBehaviour = component.value as? Lightable {
+				Application.sharedInstance.lightableBehaviours.append(Weak(reference: lightableBehaviour))
 			}
 		}
 	}
