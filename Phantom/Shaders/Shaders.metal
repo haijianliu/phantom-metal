@@ -15,6 +15,8 @@ constant bool has_ambient_occlusion_map [[function_constant(FunctionConstantAmbi
 constant bool has_irradiance_map [[function_constant(FunctionConstantIrradianceMapIndex)]];
 constant bool has_any_map = (has_base_color_map || has_normal_map || has_metallic_map || has_roughness_map || has_ambient_occlusion_map || has_irradiance_map);
 
+constant bool use_light [[function_constant(FunctionConstantLightIndex)]];
+
 typedef struct
 {
 	float3 position [[attribute(VertexAttributePosition)]];
@@ -31,7 +33,7 @@ typedef struct
 } ColorInOut;
 
 /// Standard vertex shader using texcoord and normal.
-vertex ColorInOut standardVertex(Vertex in [[stage_in, function_constant(has_any_map)]], constant StandardNodeBuffer & nodebuffer [[ buffer(BufferIndexNodeBuffer) ]])
+vertex ColorInOut standardVertex(Vertex in [[stage_in, function_constant(has_any_map)]], constant StandardNodeBuffer & nodebuffer [[buffer(BufferIndexNodeBuffer)]])
 {
 	ColorInOut out;
 	
@@ -45,16 +47,28 @@ vertex ColorInOut standardVertex(Vertex in [[stage_in, function_constant(has_any
 
 // TODO: Use scene node for lighting.
 /// Standard fragment shader using color texture and normal.
-fragment float4 standardFragment(ColorInOut in [[stage_in, function_constant(has_any_map)]], texture2d<half> colorMap [[texture(TextureIndexColor), function_constant(has_base_color_map)]])
+fragment float4 standardFragment(ColorInOut in [[stage_in, function_constant(has_any_map)]], texture2d<half> colorMap [[texture(TextureIndexColor), function_constant(has_base_color_map)]], constant LightBuffer & lightbuffer [[buffer(BufferIndexLightBuffer), function_constant(use_light)]])
 {
 	constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
 
-	float3 color = float3(0, 1, 0);
+	float3 color = float3(0, 0, 1);
+	
 	if (has_base_color_map) {
 		half4 colorSample = colorMap.sample(colorSampler, in.texcoord.xy);
 		color = float3(colorSample.xyz);
 	}
-
+	
+	if (use_light) {
+		float3 lightColor = float3(0, 0, 0);
+		for (int i = 0; i < lightbuffer.count; i++) {
+			float3 lightVector = normalize(lightbuffer.light[i].position - in.worldPosition);
+			float lightFactor = fmax(dot(lightVector, in.worldNormal), 0);
+			lightColor += lightFactor * lightbuffer.light[i].intensity * lightbuffer.light[i].color;
+		}
+		color *= lightColor;
+		// TODO: tonemapping.
+	}
+	
 	return float4(color, 1);
 }
 
