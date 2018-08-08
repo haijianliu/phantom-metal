@@ -21,7 +21,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	public func draw(in view: MTKView) {
 		// Dpdatable behaviours.
 		DispatchQueue.global(qos: .userInitiated).async {
-			for updateBehaviour in Application.sharedInstance.updateBehaviours { updateBehaviour.reference?.update() }
+			for updatableBehaviour in Application.sharedInstance.updatableBehaviours { updatableBehaviour.reference?.update() }
 		}
 		// Drawable behaviours.
 		DispatchQueue.global(qos: .userInteractive).sync {
