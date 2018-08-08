@@ -9,8 +9,9 @@ public class Application {
 	// TODO: initialize capacity.
 	private init() {
 		// TODO: use library settings.
-		updateBehaviours.reserveCapacity(0xFF)
-		renderBehaviours.reserveCapacity(0xFF)
+		updatableBehaviours.reserveCapacity(0xFF)
+		renderableBehaviours.reserveCapacity(0xFF)
+		lightableBehaviours.reserveCapacity(0xF)
 	}
 	
 	weak var view: MTKView?
@@ -27,7 +28,7 @@ public class Application {
 	
 	// TODO: clean up nil reference.
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
-	var updateBehaviours = ContiguousArray<Weak<Updatable>>()
-	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviours weak reference list in real time, reserving a capacity of 256 elements.
-	var renderBehaviours = ContiguousArray<Weak<Renderable>>()
+	var updatableBehaviours = ContiguousArray<Weak<Updatable>>()
+	var renderableBehaviours = ContiguousArray<Weak<Renderable>>()
+	var lightableBehaviours = ContiguousArray<Weak<Lightable>>()
 }
