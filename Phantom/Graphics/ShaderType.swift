@@ -28,6 +28,7 @@ public enum ShaderType {
 		switch self {
 		case .standard:
 			functionContants[FunctionConstant.baseColorMapIndex.rawValue] = true
+			functionContants[FunctionConstant.lightIndex.rawValue] = true
 		default: break
 		}
 		return functionContants
