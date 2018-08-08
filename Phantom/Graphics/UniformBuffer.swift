@@ -19,6 +19,7 @@ extension StandardNodeBuffer: UniformBuffer {
 	}
 }
 
+// https://forums.developer.apple.com/thread/72120
 extension LightBuffer: UniformBuffer {
 	// TODO: use contigous array.
 	mutating func update(_ lightDatas: [LightData]) {
