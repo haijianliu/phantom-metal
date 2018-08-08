@@ -43,5 +43,16 @@ class SampleApplication: ApplicationDelegate {
 			// Add GameObject
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
+		
+		// TODO: convienice function.
+		// Create light.
+		light: do {
+			// Root gameobject.
+			guard let gameObject = GameObject() else { break light }
+			gameObject.transform.position = Vector3(5); // Transform.
+			guard let _: Light = gameObject.addComponent() else { break light }
+			// Add GameObject
+			Application.addGameObject(gameObject) // Register to renderer.
+		}
 	}
 }
