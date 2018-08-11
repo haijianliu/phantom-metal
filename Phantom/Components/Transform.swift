@@ -1,9 +1,14 @@
 // Copyright © haijian. All rights reserved.
 
+import MetalKit
+
 /// Position, rotation and scale of an object.
 ///
 /// Every object in a scene has a Transform. It's used to store and manipulate the position, rotation and scale of the object. Every Transform can have a parent, which allows you to apply position, rotation and scale hierarchically. This is the hierarchy seen in the Hierarchy pane. They also support enumerators so you can loop through children using:
-public class Transform: Component {
+public class Transform: Component, Updatable, RenderEncodable {
+	// TODO: refactor.
+	private var transformUniformBuffer: TripleBuffer<StandardNodeBuffer>
+	
 	// TODO: dirty protocol?
 	/// True if the associated properties is modifed. Initialized value is true.
 	private var dirty = true {
@@ -47,6 +52,31 @@ public class Transform: Component {
 			dirty = false
 		}
 		return currentLocalToWorldMatrix
+	}
+	
+	required public init?(_ gameObject: GameObject) {
+		guard let device = Application.sharedInstance.device else { return nil }
+		// TODO: init dynamic semaphore value
+		guard let newBuffer = TripleBuffer<StandardNodeBuffer>(device) else { return nil }
+		transformUniformBuffer = newBuffer
+		
+		super.init(gameObject)
+	}
+	
+	public func update() {
+		// TODO: in transform
+		// TODO: in game object
+		guard let camera = Camera.main else { return }
+		// TODO: Update from camera and scene buffer.
+		// TODO: Camera set view matrix.
+		transformUniformBuffer.data.projectionMatrix = camera.projectionMatrix
+		transformUniformBuffer.data.viewMatrix = camera.worldToCameraMatrix
+		transformUniformBuffer.data.update(by: transform)
+		transformUniformBuffer.endWritting()
+	}
+	
+	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
+		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.nodeBuffer.rawValue)
 	}
 }
 
