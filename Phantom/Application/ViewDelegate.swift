@@ -19,9 +19,9 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	
 	// TODO: only render render pass here.
 	public func draw(in view: MTKView) {
-		// Dpdatable behaviours.
+		// Updatable behaviours.
 		DispatchQueue.global(qos: .userInitiated).async {
-			for updatableBehaviour in Application.sharedInstance.updatableBehaviours { updatableBehaviour.reference?.update() }
+			Application.sharedInstance.scene?.update()
 		}
 		// Drawable behaviours.
 		DispatchQueue.global(qos: .userInteractive).sync {
