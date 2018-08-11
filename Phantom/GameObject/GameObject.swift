@@ -5,7 +5,6 @@ import MetalKit
 // TODO: Inherits from:Obje
 /// Base class for all entities in scenes.
 public class GameObject {
-	
 	/// The tag of this game object.
 	public var tag: GameObjectTag { didSet { if tag == .mainCamera, let camera: Camera = self.getComponent() { Camera.main = camera } } }
 	
@@ -26,9 +25,6 @@ public class GameObject {
 		return components[String(describing: Transform.self)] as! Transform
 	}()
 	
-	// TODO: refactor.
-	private var transformUniformBuffer: TripleBuffer<StandardNodeBuffer>
-	
 	/// The material attached of MeshRenderer attached to this GameObject.
 	public var material: Material? { get {
 		let meshRenderer: MeshRenderer? = self.getComponent()
@@ -37,10 +33,6 @@ public class GameObject {
 	// TODO: named name.
 	/// Creates a new game object.
 	public init?() {
-		guard let device = Application.sharedInstance.device else { return nil }
-		// TODO: init dynamic semaphore value
-		guard let newBuffer = TripleBuffer<StandardNodeBuffer>(device) else { return nil }
-		transformUniformBuffer = newBuffer
 		// Default tag: untagged
 		tag = .untagged
 		// Transform
@@ -50,15 +42,6 @@ public class GameObject {
 
 extension GameObject: RenderEncodable {
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
-		// TODO: in transform
-		// TODO: in game object
-		guard let camera = Camera.main else { return }
-		// TODO: Update from camera and scene buffer.
-		// TODO: Camera set view matrix.
-		transformUniformBuffer.data.projectionMatrix = camera.projectionMatrix
-		transformUniformBuffer.data.viewMatrix = camera.worldToCameraMatrix
-		transformUniformBuffer.data.update(by: transform)
-		transformUniformBuffer.endWritting()
-		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.nodeBuffer.rawValue)
+		transform.encode(to: renderCommandEncoder)
 	}
 }
