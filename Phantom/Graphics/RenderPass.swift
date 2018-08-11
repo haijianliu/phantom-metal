@@ -10,20 +10,12 @@ class RenderPass {
 	var compareFunction = MTLCompareFunction.less
 	private var depthStencilState: MTLDepthStencilState
 	
-	// TODO: in scene.
-	private var lightUniformBuffer: TripleBuffer<LightBuffer>
-	
 	init?(view: MTKView) {
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
 		depthStencilDescriptor.depthCompareFunction = compareFunction
 		depthStencilDescriptor.isDepthWriteEnabled = depthWrite
 		guard let newDepthStencilState = view.device?.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
 		depthStencilState = newDepthStencilState
-		
-		guard let device = view.device else { return nil }
-		// TODO: init dynamic semaphore value
-		guard let newBuffer = TripleBuffer<LightBuffer>(device) else { return nil }
-		lightUniformBuffer = newBuffer
 	}
 }
 
@@ -38,17 +30,7 @@ extension RenderPass: Drawable {
 		// Render pass encoding.
 		renderEncoder.setDepthStencilState(depthStencilState)
 		
-		// Light behaviours.
-		var lightDatas = [LightData]()
-		for lightableBehaviour in Application.sharedInstance.lightableBehaviours {
-			guard let lightData = lightableBehaviour.reference?.lightData else { continue }
-			lightDatas.append(lightData)
-		}
-		lightUniformBuffer.data.update(lightDatas)
-		renderEncoder.setFragmentBuffer(lightUniformBuffer.buffer, offset: lightUniformBuffer.offset, index: BufferIndex.lightBuffer.rawValue)
-		
-		// render behaviours.
-		for renderableBehaviour in Application.sharedInstance.renderableBehaviours { renderableBehaviour.reference?.encode(to: renderEncoder) }
+		Application.sharedInstance.scene?.encode(to: renderEncoder)
 		
 		// End encoding.
 		renderEncoder.endEncoding()
