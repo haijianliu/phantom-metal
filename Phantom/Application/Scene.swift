@@ -2,7 +2,7 @@
 
 import MetalKit
 
-class Scene: RenderEncodable {
+class Scene {
 	/// The only game object references holder.
 	var gameObjects = [GameObject]()
 	
@@ -27,10 +27,30 @@ class Scene: RenderEncodable {
 		lightUniformBuffer = newBuffer
 	}
 	
+	func addGameObject(_ gameObjcet: GameObject) {
+		// Add gameobject strong references.
+		gameObjects.append(gameObjcet)
+		// Add behaviour weak references to application.
+		for component in gameObjcet.components {
+			// TODO: registerable.
+			if let updatableBehaviour = component.value as? Updatable {
+				updatableBehaviours.append(Weak(reference: updatableBehaviour))
+			}
+			if let renderableBehaviour = component.value as? Renderable {
+				renderableBehaviours.append(Weak(reference: renderableBehaviour))
+			}
+			if let lightableBehaviour = component.value as? Lightable {
+				lightableBehaviours.append(Weak(reference: lightableBehaviour))
+			}
+		}
+	}
+	
+	/// This function to invoke all updatable behaviours.
 	func update() {
 		for updatableBehaviour in updatableBehaviours { updatableBehaviour.reference?.update() }
 	}
 	
+	/// This function to invoke all encodables.
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		// Light behaviours.
 		var lightDatas = [LightData]()
