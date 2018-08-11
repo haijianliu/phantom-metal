@@ -14,8 +14,17 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	// TODO: in metal library.
 	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
 	let semaphore = DispatchSemaphore(value: 3)
-	// TODO: multiple rendering passes. only store protoco. reference in application.
-	var renderPass: RenderPass?
+	
+	private var drawables = ContiguousArray<Weak<Drawable>>()
+	
+	func addRenderPass(_ renderPass: RenderPass) {
+		drawables.append(Weak(reference: renderPass))
+	}
+	
+	override init() {
+		super.init()
+		drawables.reserveCapacity(0xF)
+	}
 	
 	// TODO: only render render pass here.
 	public func draw(in view: MTKView) {
@@ -29,8 +38,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 			// TODO: multiple threads draw multiple queue (realtime and offline rendering)
 			_ = semaphore.wait(timeout: .distantFuture)
 			commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
-			// TODO: multiple rendering passes
-			renderPass?.draw(in: view, by: commandBuffer)
+			for drawable in drawables { drawable.reference?.draw(in: view, by: commandBuffer) }
 			commandBuffer.commit()
 		}
 	}
