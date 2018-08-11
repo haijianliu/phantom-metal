@@ -3,8 +3,11 @@
 import MetalKit
 
 class Scene {
-	/// The only game object references holder.
-	var gameObjects = [GameObject]()
+	/// The only game object references holder per scene.
+	private var gameObjects = [GameObject]()
+	
+	/// Share uniform buffer by all the lights in this scene.
+	private var lightUniformBuffer: TripleBuffer<LightBuffer>
 	
 	// TODO: clean up nil reference.
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
@@ -12,8 +15,6 @@ class Scene {
 	var renderableBehaviours = ContiguousArray<Weak<Renderable>>()
 	var lightableBehaviours = ContiguousArray<Weak<Lightable>>()
 	
-	// TODO: in scene.
-	private var lightUniformBuffer: TripleBuffer<LightBuffer>
 	
 	init?(device: MTLDevice) {
 		// TODO: use library settings.
