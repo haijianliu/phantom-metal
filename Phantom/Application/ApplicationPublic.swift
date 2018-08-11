@@ -38,6 +38,9 @@ extension Application {
 		Application.sharedInstance.viewDelegate.renderPass = RenderPass(view: view)
 		view.delegate = Application.sharedInstance.viewDelegate
 		
+		// Initialize scene.
+		Application.sharedInstance.scene = Scene(device: defaultDevice)
+		
 		// Set references.
 		Application.sharedInstance.view = view
 		Application.sharedInstance.device = defaultDevice
@@ -56,23 +59,25 @@ extension Application {
 	/// Add gameobjects to application.
 	public static func addGameObject(_ gameObjcet: GameObject) {
 		// Add gameobject strong references to application.
-		Application.sharedInstance.gameObjects.append(gameObjcet)
+		Application.sharedInstance.scene?.gameObjects.append(gameObjcet)
 		// If there is mesh renderer attached then load shaders and meshes.
 		if let meshRenderer: MeshRenderer = gameObjcet.getComponent() {
 			meshRenderer.material.shader.load()
 			meshRenderer.mesh.load(from: meshRenderer.material.shader.vertexDescriptor)
 		}
+		
+		// TODO: register in scene.
 		// Add behaviour weak references to application.
 		for component in gameObjcet.components {
 			// TODO: registerable.
 			if let updatableBehaviour = component.value as? Updatable {
-				Application.sharedInstance.updatableBehaviours.append(Weak(reference: updatableBehaviour))
+				Application.sharedInstance.scene?.updatableBehaviours.append(Weak(reference: updatableBehaviour))
 			}
 			if let renderableBehaviour = component.value as? Renderable {
-				Application.sharedInstance.renderableBehaviours.append(Weak(reference: renderableBehaviour))
+				Application.sharedInstance.scene?.renderableBehaviours.append(Weak(reference: renderableBehaviour))
 			}
 			if let lightableBehaviour = component.value as? Lightable {
-				Application.sharedInstance.lightableBehaviours.append(Weak(reference: lightableBehaviour))
+				Application.sharedInstance.scene?.lightableBehaviours.append(Weak(reference: lightableBehaviour))
 			}
 		}
 	}
