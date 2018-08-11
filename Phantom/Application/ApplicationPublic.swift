@@ -26,7 +26,7 @@ extension Application {
 		view.device = defaultDevice
 		view.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
 		view.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
-		view.sampleCount = AntialiasingMode.multisampling4X.rawValue  // TODO: Max sampling test.
+		view.sampleCount = AntialiasingMode.none.rawValue  // TODO: Max sampling test.
 		view.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
 		Application.sharedInstance.view = view
 		
@@ -34,8 +34,7 @@ extension Application {
 		// Set MTKViewDelegate to current Renderer instance
 		// TODO: multiple command queues
 		Application.sharedInstance.viewDelegate.commandQueue = defaultDevice.makeCommandQueue()
-		// TODO: multiple rendering passes
-		Application.sharedInstance.viewDelegate.renderPass = RenderPass(view: view)
+		
 		view.delegate = Application.sharedInstance.viewDelegate
 		
 		// Initialize scene.
