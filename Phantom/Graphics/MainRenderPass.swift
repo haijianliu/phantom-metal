@@ -3,24 +3,16 @@
 import MetalKit
 
 // TODO: mutiple settings render pass vailiation.
-class RenderPass {
+class MainRenderPass: RenderPass {
 	
-	// TODO: Add front and back face stencil properties.
-	var depthWrite = true
-	var compareFunction = MTLCompareFunction.less
-	private var depthStencilState: MTLDepthStencilState
-	
-	init?(view: MTKView) {
+	required init?(device: MTLDevice) {
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
-		depthStencilDescriptor.depthCompareFunction = compareFunction
-		depthStencilDescriptor.isDepthWriteEnabled = depthWrite
-		guard let newDepthStencilState = view.device?.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
-		depthStencilState = newDepthStencilState
+		depthStencilDescriptor.depthCompareFunction = .less
+		depthStencilDescriptor.isDepthWriteEnabled = true
+		super.init(device: device, depthStencilDescriptor: depthStencilDescriptor)
 	}
-}
-
-extension RenderPass: Drawable {
-	func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
+	
+	override func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
 		// TODO: customize this function varying from render passes.
 		guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
 		guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
