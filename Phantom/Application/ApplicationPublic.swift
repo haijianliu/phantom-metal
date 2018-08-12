@@ -57,11 +57,6 @@ extension Application {
 	// TODO: when add twice.
 	/// Add gameobjects to application.
 	public static func addGameObject(_ gameObjcet: GameObject) {
-		// If there is mesh renderer attached then load shaders and meshes.
-		if let meshRenderer: MeshRenderer = gameObjcet.getComponent() {
-			meshRenderer.material.shader.load()
-			meshRenderer.mesh.load(from: meshRenderer.material.shader.vertexDescriptor)
-		}
 		// Register to scene.
 		// TODO: multi scene.
 		Application.sharedInstance.scene?.addGameObject(gameObjcet)
