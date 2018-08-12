@@ -13,7 +13,7 @@ class Scene {
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
 	
 	// TODO: in renderpass manager.
-	var renderPasses = [RenderPass]()
+	var renderPasses = [String: RenderPass]()
 	
 	var updatableBehaviours = ContiguousArray<Weak<Updatable>>()
 	var lightableBehaviours = ContiguousArray<Weak<Lightable>>()
@@ -29,18 +29,38 @@ class Scene {
 		guard let newBuffer = TripleBuffer<LightBuffer>(device) else { return nil }
 		lightUniformBuffer = newBuffer
 		
+		// TODO: order.
 		// TODO: in renderpass manager.
-		//		if let renderPass = ShadowMapRenderPass(view: view) {
-		//			Application.sharedInstance.renderPasses.append(renderPass)
-		//			Application.sharedInstance.viewDelegate.addRenderPass(renderPass)
-		//		}
+		if let renderPass = ShadowMapRenderPass(device: device) {
+			renderPasses[String(describing: ShadowMapRenderPass.self)] = renderPass
+			Application.sharedInstance.viewDelegate.addRenderPass(renderPass)
+		}
+		
 		if let renderPass = MainRenderPass(device: device) {
-			renderPasses.append(renderPass)
+			renderPasses[String(describing: MainRenderPass.self)] = renderPass
 			Application.sharedInstance.viewDelegate.addRenderPass(renderPass)
 		}
 	}
 	
 	func addGameObject(_ gameObjcet: GameObject) {
+		// TODO: refactor.
+		// If there is mesh renderer attached, add this render bebaviour to main renderpass.
+		// If mesh casts shadows, add a new shadow renderer component and add this render behaviour to shadowmap renderpass.
+		if let meshRenderer: MeshRenderer = gameObjcet.getComponent() {
+			meshRenderer.material.shader.load()
+			meshRenderer.mesh.load(from: meshRenderer.material.shader.vertexDescriptor)
+			renderPasses[String(describing: MainRenderPass.self)]?.renderableBehaviours.append(Weak(reference: meshRenderer))
+			if meshRenderer.castShadows == true {
+				let _: ShadowRenderer? = gameObjcet.addComponent()
+				guard let shadowRenderer: ShadowRenderer = gameObjcet.getComponent() else { return }
+				shadowRenderer.mesh.mdlMesh = meshRenderer.mesh.mdlMesh // TODO: refactor
+				shadowRenderer.material.shader.shaderType = .shadowMap
+				shadowRenderer.material.shader.load()
+				shadowRenderer.mesh.load(from: shadowRenderer.material.shader.vertexDescriptor)
+				renderPasses[String(describing: ShadowMapRenderPass.self)]?.renderableBehaviours.append(Weak(reference: shadowRenderer))
+			}
+		}
+	
 		// Add gameobject strong references.
 		gameObjects.append(gameObjcet)
 		// Add behaviour weak references to application.
@@ -49,10 +69,7 @@ class Scene {
 			if let updatableBehaviour = component.value as? Updatable {
 				updatableBehaviours.append(Weak(reference: updatableBehaviour))
 			}
-			// TODO: add to mutiple renderpasses.
-			if let renderableBehaviour = component.value as? Renderable {
-				renderPasses[0].renderableBehaviours.append(Weak(reference: renderableBehaviour))
-			}
+
 			if let lightableBehaviour = component.value as? Lightable {
 				lightableBehaviours.append(Weak(reference: lightableBehaviour))
 			}
@@ -76,9 +93,5 @@ class Scene {
 	/// This function to invoke all encodables.
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		renderCommandEncoder.setFragmentBuffer(lightUniformBuffer.buffer, offset: lightUniformBuffer.offset, index: BufferIndex.lightBuffer.rawValue)
-		
-		// TODO: refactor.
-		// render behaviours.
-		for renderableBehaviour in renderPasses[0].renderableBehaviours { renderableBehaviour.reference?.encode(to: renderCommandEncoder) }
 	}
 }
