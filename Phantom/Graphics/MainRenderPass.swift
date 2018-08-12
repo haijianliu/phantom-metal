@@ -15,17 +15,20 @@ class MainRenderPass: RenderPass {
 	override func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
 		// TODO: customize this function varying from render passes.
 		guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
-		guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
+		guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
 		
 		// Start encoding and setup debug infomation
-		renderEncoder.label = String(describing: self)
+		renderCommandEncoder.label = String(describing: self)
 		// Render pass encoding.
-		renderEncoder.setDepthStencilState(depthStencilState)
+		renderCommandEncoder.setDepthStencilState(depthStencilState)
 		
-		Application.sharedInstance.scene?.encode(to: renderEncoder)
+		Application.sharedInstance.scene?.encode(to: renderCommandEncoder)
+		
+		// render behaviours.
+		for renderableBehaviour in renderableBehaviours { renderableBehaviour.reference?.encode(to: renderCommandEncoder) }
 		
 		// End encoding.
-		renderEncoder.endEncoding()
+		renderCommandEncoder.endEncoding()
 		
 		// TODO: render target.
 		// If rendering to core animation layer.
