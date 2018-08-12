@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, FunctionConstant)
 	FunctionConstantAmbientOcclusionMapIndex,
 	FunctionConstantIrradianceMapIndex,
 	FunctionConstantLightIndex,
+	FunctionConstantNormalIndex,
 	FunctionConstantCount,
 };
 
