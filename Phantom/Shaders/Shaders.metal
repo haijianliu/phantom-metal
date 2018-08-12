@@ -14,14 +14,15 @@ constant bool has_roughness_map [[function_constant(FunctionConstantRoughnessMap
 constant bool has_ambient_occlusion_map [[function_constant(FunctionConstantAmbientOcclusionMapIndex)]];
 constant bool has_irradiance_map [[function_constant(FunctionConstantIrradianceMapIndex)]];
 constant bool has_any_map = (has_base_color_map || has_normal_map || has_metallic_map || has_roughness_map || has_ambient_occlusion_map || has_irradiance_map);
-
-constant bool use_light [[function_constant(FunctionConstantLightIndex)]];
+constant bool has_light [[function_constant(FunctionConstantLightIndex)]];
+constant bool use_normal [[function_constant(FunctionConstantNormalIndex)]];
+constant bool use_light = (has_light && use_normal);
 
 typedef struct
 {
 	float3 position [[attribute(VertexAttributePosition)]];
 	float2 texcoord [[attribute(VertexAttributeTexcoord), function_constant(has_any_map)]];
-	float3 normal [[attribute(VertexAttributeNormal)]];
+	float3 normal [[attribute(VertexAttributeNormal), function_constant(use_normal)]];
 } Vertex;
 
 typedef struct
@@ -29,25 +30,25 @@ typedef struct
 	float4 projectionPosition [[position]];
 	float3 worldPosition;
 	float2 texcoord [[function_constant(has_any_map)]];
-	float3 worldNormal;
+	float3 worldNormal [[function_constant(use_normal)]];
 } ColorInOut;
 
 /// Standard vertex shader using texcoord and normal.
-vertex ColorInOut standardVertex(Vertex in [[stage_in, function_constant(has_any_map)]], constant StandardNodeBuffer & nodebuffer [[buffer(BufferIndexNodeBuffer)]])
+vertex ColorInOut standardVertex(Vertex in [[stage_in]], constant StandardNodeBuffer & nodebuffer [[buffer(BufferIndexNodeBuffer)]])
 {
 	ColorInOut out;
 	
 	out.projectionPosition = nodebuffer.projectionMatrix * nodebuffer.viewMatrix * nodebuffer.modelMatrix * float4(in.position, 1.0);
 	out.worldPosition = (nodebuffer.modelMatrix * float4(in.position, 1.0)).xyz;
 	if (has_any_map) { out.texcoord = float2(in.texcoord.x, in.texcoord.y); }
-	out.worldNormal = normalize((nodebuffer.inverseTransposeModelMatrix * float4(in.normal, 0)).xyz);
+	if (use_normal) { out.worldNormal = normalize((nodebuffer.inverseTransposeModelMatrix * float4(in.normal, 0)).xyz); }
 	
 	return out;
 }
 
 // TODO: Use scene node for lighting.
 /// Standard fragment shader using color texture and normal.
-fragment float4 standardFragment(ColorInOut in [[stage_in, function_constant(has_any_map)]], texture2d<half> colorMap [[texture(TextureIndexColor), function_constant(has_base_color_map)]], constant LightBuffer & lightbuffer [[buffer(BufferIndexLightBuffer), function_constant(use_light)]])
+fragment float4 standardFragment(ColorInOut in [[stage_in]], texture2d<half> colorMap [[texture(TextureIndexColor), function_constant(has_base_color_map)]], constant LightBuffer & lightbuffer [[buffer(BufferIndexLightBuffer), function_constant(use_light)]])
 {
 	constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
 
@@ -73,7 +74,7 @@ fragment float4 standardFragment(ColorInOut in [[stage_in, function_constant(has
 }
 
 /// Normal color test shader using only normal.
-fragment float4 normalColorFragment(ColorInOut in [[stage_in, function_constant(has_any_map)]])
+fragment float4 normalColorFragment(ColorInOut in [[stage_in]])
 {
 	return float4(in.worldNormal, 1);
 }
