@@ -33,14 +33,12 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 			Application.sharedInstance.scene?.update()
 		}
 		// Drawable behaviours.
-		DispatchQueue.global(qos: .userInteractive).sync {
-			guard let commandBuffer = commandQueue?.makeCommandBuffer() else { return }
-			// TODO: multiple threads draw multiple queue (realtime and offline rendering)
-			_ = semaphore.wait(timeout: .distantFuture)
-			commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
-			for drawable in drawables { drawable.reference?.draw(in: view, by: commandBuffer) }
-			commandBuffer.commit()
-		}
+		guard let commandBuffer = commandQueue?.makeCommandBuffer() else { return }
+		// TODO: multiple threads draw multiple queue (realtime and offline rendering)
+		_ = semaphore.wait(timeout: .distantFuture)
+		commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
+		for drawable in drawables { drawable.reference?.draw(in: view, by: commandBuffer) }
+		commandBuffer.commit()
 	}
 
 	public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
