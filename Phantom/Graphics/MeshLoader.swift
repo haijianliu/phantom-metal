@@ -16,7 +16,7 @@ extension Mesh {
 		guard let device = Application.sharedInstance.device else { return }
 		do {
 			mtkMesh = try MTKMesh(mesh: mdlMesh, device: device)
-			self.mdlMesh = nil
+			// self.mdlMesh = nil // TODO: delete mdlmesh.
 		} catch {
 			print("Unable to build MetalKit Mesh. Error info: \(error)")
 			return
