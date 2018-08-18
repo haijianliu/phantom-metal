@@ -35,11 +35,13 @@ extension Shader {
 		
 		// TODO: use render target settings.
 		// TODO: though these settings are only for final render pass, may be customizable from render pipeline.
-		pipelineDescriptor.label = "DefaultShaders" // TODO: check if using default. TODO: use shader name and pass name
-		pipelineDescriptor.sampleCount = AntialiasingMode.multisampling4X.rawValue // TODO: muti antialias settings in material.
-		pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm_srgb
-		pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float_stencil8
-		pipelineDescriptor.stencilAttachmentPixelFormat = .depth32Float_stencil8
+		pipelineDescriptor.label = shaderType.label // TODO: check if using default. TODO: use shader name and pass name
+		pipelineDescriptor.sampleCount = shaderType.sampleCount // TODO: muti antialias settings in material.
+		for index in 0 ..< shaderType.colorAttachmentsCount {
+			pipelineDescriptor.colorAttachments[index].pixelFormat = shaderType.colorAttachmentsPixelFormat[index]
+		}
+		pipelineDescriptor.depthAttachmentPixelFormat = shaderType.depthAttachmentPixelFormat
+		pipelineDescriptor.stencilAttachmentPixelFormat = shaderType.stencilAttachmentPixelFormat
 		
 		// TODO: reuse pipeline state.
 		do {

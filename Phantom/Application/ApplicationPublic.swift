@@ -24,9 +24,9 @@ extension Application {
 		
 		// Set metal kit view
 		view.device = defaultDevice
-		view.depthStencilPixelFormat = MTLPixelFormat.depth32Float_stencil8
-		view.colorPixelFormat = MTLPixelFormat.bgra8Unorm_srgb
-		view.sampleCount = AntialiasingMode.none.rawValue  // TODO: Max sampling test.
+		view.colorPixelFormat = ShaderType.standard.colorAttachmentsPixelFormat[0]
+		view.depthStencilPixelFormat = ShaderType.standard.depthAttachmentPixelFormat
+		view.sampleCount = ShaderType.standard.sampleCount  // TODO: Max sampling test.
 		view.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
 		Application.sharedInstance.view = view
 		

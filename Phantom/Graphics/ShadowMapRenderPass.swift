@@ -13,10 +13,10 @@ class ShadowMapRenderPass: RenderPass {
 		textureDescriptor.height = 512
 		textureDescriptor.width = 512
 		textureDescriptor.usage = .renderTarget
-		textureDescriptor.pixelFormat = .bgra8Unorm_srgb
+		textureDescriptor.pixelFormat = ShaderType.shadowMap.colorAttachmentsPixelFormat[0]
 		guard let newTexture = device.makeTexture(descriptor: textureDescriptor) else { return nil }
 		texture = newTexture
-		textureDescriptor.pixelFormat = .depth32Float_stencil8
+		textureDescriptor.pixelFormat = ShaderType.shadowMap.depthAttachmentPixelFormat
 		textureDescriptor.resourceOptions = .storageModePrivate
 		guard let newDepthTexture = device.makeTexture(descriptor: textureDescriptor) else { return nil }
 		depthTexture = newDepthTexture
@@ -47,7 +47,6 @@ class ShadowMapRenderPass: RenderPass {
 		renderCommandEncoder.label = String(describing: self)
 		// Render pass encoding.
 		renderCommandEncoder.setDepthStencilState(depthStencilState)
-		
 		
 		Application.sharedInstance.scene?.encode(to: renderCommandEncoder)
 		
