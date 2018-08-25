@@ -4,23 +4,20 @@ import MetalKit
 
 // TODO: mutiple settings render pass vailiation.
 class ShadowMapRenderPass: RenderPass {
-	
+	// TODO: inherate from renderpass.
 	let texture: MTLTexture  //TODO: double textures for asyc render?
-	let depthTexture: MTLTexture
 	
 	required init?(device: MTLDevice) {
 		let textureDescriptor = MTLTextureDescriptor()
-		textureDescriptor.height = 512
+		textureDescriptor.height = 512 // TODO: set size.
 		textureDescriptor.width = 512
-		textureDescriptor.usage = .renderTarget
-		textureDescriptor.pixelFormat = ShaderType.shadowMap.colorAttachmentsPixelFormat[0]
-		guard let newTexture = device.makeTexture(descriptor: textureDescriptor) else { return nil }
-		texture = newTexture
+		textureDescriptor.usage = [.shaderRead, .renderTarget]
 		textureDescriptor.pixelFormat = ShaderType.shadowMap.depthAttachmentPixelFormat
 		textureDescriptor.resourceOptions = .storageModePrivate
-		guard let newDepthTexture = device.makeTexture(descriptor: textureDescriptor) else { return nil }
-		depthTexture = newDepthTexture
+		guard let newTexture = device.makeTexture(descriptor: textureDescriptor) else { return nil }
+		texture = newTexture
 		
+		// TODO: renderpass setting, renderpass type.
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
 		depthStencilDescriptor.depthCompareFunction = .less
 		depthStencilDescriptor.isDepthWriteEnabled = true
@@ -30,16 +27,11 @@ class ShadowMapRenderPass: RenderPass {
 	override func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
 		// TODO: customize this function varying from render passes.
 		let renderPassDescriptor = MTLRenderPassDescriptor()
-		renderPassDescriptor.colorAttachments[0].texture = texture
-		renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 0)
-		renderPassDescriptor.colorAttachments[0].storeAction = .store
-		renderPassDescriptor.colorAttachments[0].loadAction = .clear
-		renderPassDescriptor.depthAttachment.texture = depthTexture
-		renderPassDescriptor.depthAttachment.storeAction = .dontCare
+		// TODO: init forward.
+		renderPassDescriptor.depthAttachment.storeAction = .store
 		renderPassDescriptor.depthAttachment.loadAction = .clear
-		renderPassDescriptor.stencilAttachment.texture = depthTexture
-		renderPassDescriptor.stencilAttachment.storeAction = .dontCare
-		renderPassDescriptor.stencilAttachment.loadAction = .clear
+		renderPassDescriptor.depthAttachment.clearDepth = 1
+		renderPassDescriptor.depthAttachment.texture = texture
 		
 		guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
 		
