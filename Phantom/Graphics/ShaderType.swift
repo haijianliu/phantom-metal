@@ -12,21 +12,21 @@ public enum ShaderType {
 		return String(describing: self)
 	}
 	
-	internal var vertex: String {
+	internal var vertex: String? {
 		switch self {
 		case .standard, .shadowMap, .normalColor:
 			return "standardVertex"
 		}
 	}
 	
-	internal var fragment: String {
+	internal var fragment: String? {
 		switch self {
 		case .standard:
 			return "standardFragment"
-		case .shadowMap:
-			return "normalColorFragment" // TODO: shadowmap shader
 		case .normalColor:
 			return "normalColorFragment"
+		case .shadowMap:
+			return nil
 		}
 	}
 	
@@ -36,36 +36,33 @@ public enum ShaderType {
 			let formats: [MTLPixelFormat] = [MTLPixelFormat.bgra8Unorm_srgb]
 			return formats
 		case .shadowMap:
-			let formats: [MTLPixelFormat] = [MTLPixelFormat.bgra8Unorm_srgb]
+			let formats: [MTLPixelFormat] = [MTLPixelFormat.invalid]
 			return formats
-		}
-	}
-	
-	internal var colorAttachmentsCount: Int {
-		switch self {
-		case .standard, .normalColor, .shadowMap:
-			return 1
 		}
 	}
 	
 	internal var depthAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
-		case .standard, .normalColor, .shadowMap:
+		case .standard, .normalColor:
 			return MTLPixelFormat.depth32Float_stencil8
+		case .shadowMap:
+			return MTLPixelFormat.depth32Float
 		}
 	}
 	
 	internal var stencilAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
-		case .standard, .normalColor, .shadowMap:
+		case .standard, .normalColor:
 			return MTLPixelFormat.depth32Float_stencil8
+		case .shadowMap:
+			return MTLPixelFormat.invalid
 		}
 	}
 	
 	internal var sampleCount: Int {
 		switch self {
 		case .standard, .normalColor:
-			return AntialiasingMode.none.rawValue
+			return AntialiasingMode.multisampling4X.rawValue
 		case .shadowMap:
 			return AntialiasingMode.none.rawValue
 		}
@@ -78,9 +75,8 @@ public enum ShaderType {
 			functionContants[FunctionConstant.baseColorMapIndex.rawValue] = true
 			functionContants[FunctionConstant.lightIndex.rawValue] = true
 			functionContants[FunctionConstant.normalIndex.rawValue] = true
-		case .shadowMap:
-			functionContants[FunctionConstant.normalIndex.rawValue] = true
-		//			break  TODO: shadowmap
+			functionContants[FunctionConstant.shadowMapIndex.rawValue] = true // TODO: if recieve shadows.
+		case .shadowMap: break
 		case .normalColor:
 			functionContants[FunctionConstant.normalIndex.rawValue] = true
 		}
