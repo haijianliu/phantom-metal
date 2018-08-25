@@ -8,14 +8,14 @@ class SampleApplication: ApplicationDelegate {
 		cube: do {
 			guard let gameObject = GameObject.createBox(withDimensions: Vector3(2, 2, 2)) else { break cube }
 			gameObject.transform.position = Vector3(x: 2.5, y: 2.5, z: 0)
-			gameObject.material?.texture = Texture(name: "UV_Grid_Lrg") // Set material.
+			gameObject.material?.texture = Texture(name: "UV_Grid_Lrg", type: TextureType.color) // Set material.
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
 
 		// Create plane.
 		plane: do {
 			guard let gameObject = GameObject.createPlane(withDimensions: Vector2(20, 20), segments: Uint2(20, 20)) else { break plane }
-			gameObject.material?.texture = Texture(name: "UV_Grid_Sm") // Set texture.
+			gameObject.material?.texture = Texture(name: "UV_Grid_Sm", type: TextureType.color) // Set texture.
 			gameObject.material?.fillMode = .lines // Set fill mode.
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
@@ -25,7 +25,6 @@ class SampleApplication: ApplicationDelegate {
 			guard let gameObject = GameObject.createEllipsoid(shaderType: ShaderType.normalColor) else { break ellipsoid }
 			gameObject.transform.position = Vector3(x: -2.5, y: 2.5, z: 0)
 			gameObject.transform.scale = Vector3(1.4)
-			gameObject.material?.texture = Texture(name: "UV_Grid_Sm") // Set material.
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
 		
