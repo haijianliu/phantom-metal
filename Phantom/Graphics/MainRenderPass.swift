@@ -4,6 +4,7 @@ import MetalKit
 
 // TODO: mutiple settings render pass vailiation.
 class MainRenderPass: RenderPass {
+	var shadowMap: MTLTexture?
 	
 	required init?(device: MTLDevice) {
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
@@ -21,6 +22,11 @@ class MainRenderPass: RenderPass {
 		renderCommandEncoder.label = String(describing: self)
 		// Render pass encoding.
 		renderCommandEncoder.setDepthStencilState(depthStencilState)
+		
+		// Setup shadow map.
+		if let shadow = shadowMap {
+			renderCommandEncoder.setFragmentTexture(shadow, index: TextureIndex.shadow.rawValue)
+		}
 		
 		Application.sharedInstance.scene?.encode(to: renderCommandEncoder)
 		
