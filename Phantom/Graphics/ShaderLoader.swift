@@ -41,8 +41,8 @@ extension Shader {
 		// TODO: though these settings are only for final render pass, may be customizable from render pipeline.
 		pipelineDescriptor.label = shaderType.label // TODO: check if using default. TODO: use shader name and pass name
 		pipelineDescriptor.sampleCount = shaderType.sampleCount // TODO: muti antialias settings in material.
-		for index in 0 ..< shaderType.colorAttachmentsCount {
-			pipelineDescriptor.colorAttachments[index].pixelFormat = shaderType.colorAttachmentsPixelFormat[index]
+		for (index, format) in shaderType.colorAttachmentsPixelFormat.enumerated() {
+			pipelineDescriptor.colorAttachments[index].pixelFormat = format
 		}
 		pipelineDescriptor.depthAttachmentPixelFormat = shaderType.depthAttachmentPixelFormat
 		pipelineDescriptor.stencilAttachmentPixelFormat = shaderType.stencilAttachmentPixelFormat
