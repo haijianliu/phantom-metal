@@ -18,12 +18,13 @@
 // DOTO: refactor names.
 typedef NS_ENUM(NSInteger, FunctionConstant)
 {
-	FunctionConstantBaseColorMapIndex,
+	FunctionConstantBaseColorMapIndex = 0,
 	FunctionConstantNormalMapIndex,
 	FunctionConstantMetallicMapIndex,
 	FunctionConstantRoughnessMapIndex,
 	FunctionConstantAmbientOcclusionMapIndex,
 	FunctionConstantIrradianceMapIndex,
+	FunctionConstantShadowMapIndex,
 	FunctionConstantLightIndex,
 	FunctionConstantNormalIndex,
 	FunctionConstantCount,
@@ -52,7 +53,8 @@ typedef NS_ENUM(NSInteger, BufferIndex)
 // TODO: add more texture types.
 typedef NS_ENUM(NSInteger, TextureIndex)
 {
-	TextureIndexColor,
+	TextureIndexColor = 0,
+	TextureIndexShadow,
 	TextureIndexCount,
 };
 
