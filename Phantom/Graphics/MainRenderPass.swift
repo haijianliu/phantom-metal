@@ -25,7 +25,7 @@ class MainRenderPass: RenderPass {
 		
 		// Setup shadow map.
 		if let shadow = shadowMap {
-			renderCommandEncoder.setFragmentTexture(shadow, index: TextureIndex.shadow.rawValue)
+			renderCommandEncoder.setFragmentTexture(shadow, index: TextureType.shadow.textureIndex) // TODO: use texture functions.
 		}
 		
 		Application.sharedInstance.scene?.encode(to: renderCommandEncoder)
