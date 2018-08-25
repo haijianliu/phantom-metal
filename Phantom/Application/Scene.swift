@@ -40,6 +40,12 @@ class Scene {
 			renderPasses[String(describing: MainRenderPass.self)] = renderPass
 			Application.sharedInstance.viewDelegate.addRenderPass(renderPass)
 		}
+		
+		// Set shadowmap renderpass target to main renderpass texture.
+		let mainRenderPass = renderPasses[String(describing: MainRenderPass.self)] as? MainRenderPass
+		let shadowMapRenderPass = renderPasses[String(describing: ShadowMapRenderPass.self)] as? ShadowMapRenderPass
+		// TODO: renderpass targets.
+		mainRenderPass?.shadowMap = shadowMapRenderPass?.texture.makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
 	}
 	
 	func addGameObject(_ gameObjcet: GameObject) {
