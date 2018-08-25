@@ -6,8 +6,12 @@ extension Shader {
 	func load() {
 		// TODO: if has filepath then load customize libraray.
 		do {
-			vertexFunction = try Application.sharedInstance.library?.makeFunction(name: shaderType.vertex, constantValues: shaderType.functionConstantValues)
-			fragmentFunction = try Application.sharedInstance.library?.makeFunction(name: shaderType.fragment, constantValues: shaderType.functionConstantValues)
+			if let vertexFuctionName = shaderType.vertex {
+				vertexFunction = try Application.sharedInstance.library?.makeFunction(name: vertexFuctionName, constantValues: shaderType.functionConstantValues)
+			}
+			if let fragmentFunctionName = shaderType.fragment {
+					fragmentFunction = try Application.sharedInstance.library?.makeFunction(name: fragmentFunctionName, constantValues: shaderType.functionConstantValues)
+			}
 		} catch {
 			print(error)
 			return
