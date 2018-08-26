@@ -18,6 +18,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	private var drawables = ContiguousArray<Weak<Drawable>>()
 	
 	func addRenderPass(_ renderPass: RenderPass) {
+		renderPass.register(device: renderPass.depthStencilState.device)
 		drawables.append(Weak(reference: renderPass))
 	}
 	
