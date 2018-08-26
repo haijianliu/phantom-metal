@@ -25,7 +25,7 @@ class RenderPass: Drawable, Registrable {
 		renderableBehaviours.reserveCapacity(0xFF)
 	}
 
-	func register(device: MTLDevice) { }
+	func register() { }
 	
 	func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) { }
 }

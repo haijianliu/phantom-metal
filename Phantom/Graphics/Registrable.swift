@@ -3,5 +3,5 @@
 import MetalKit
 
 protocol Registrable {
-	func register(device: MTLDevice)
+	func register()
 }
