@@ -49,38 +49,32 @@ class Scene {
 		mainRenderPass?.shadowMap = shadowMapRenderPass?.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
 	}
 	
-	func addGameObject(_ gameObjcet: GameObject) {
-		// TODO: refactor. component onload.
-		// If there is mesh renderer attached, add this render bebaviour to main renderpass.
-		// If mesh casts shadows, add a new shadow renderer component and add this render behaviour to shadowmap renderpass.
-		if let meshRenderer: MeshRenderer = gameObjcet.getComponent() {
-			meshRenderer.material.shader.load()
-			meshRenderer.mesh.load(from: meshRenderer.material.shader.vertexDescriptor)
-			renderPasses[String(describing: MainRenderPass.self)]?.renderableBehaviours.append(Weak(reference: meshRenderer))
-			if meshRenderer.castShadows == true {
-				let _: ShadowRenderer? = gameObjcet.addComponent()
-				guard let shadowRenderer: ShadowRenderer = gameObjcet.getComponent() else { return }
-				shadowRenderer.mesh.mdlMesh = meshRenderer.mesh.mdlMesh // TODO: refactor
-				shadowRenderer.material.shader.shaderType = .shadowMap
-				shadowRenderer.material.shader.load()
-				shadowRenderer.mesh.load(from: shadowRenderer.material.shader.vertexDescriptor)
-				renderPasses[String(describing: ShadowMapRenderPass.self)]?.renderableBehaviours.append(Weak(reference: shadowRenderer))
+	func addGameObject(_ gameObject: GameObject) {
+		// Setup components.
+		for component in gameObject.components {
+			// Invoke registrables.
+			if let registralbe = component.value as? Registrable {
+				registralbe.register()
 			}
-		}
-	
-		// Add gameobject strong references.
-		gameObjects.append(gameObjcet)
-		// Add behaviour weak references to application.
-		for component in gameObjcet.components {
-			// TODO: registerable.
+			// Add behaviour weak references to application.
 			if let updatableBehaviour = component.value as? Updatable {
 				updatableBehaviours.append(Weak(reference: updatableBehaviour))
 			}
-
 			if let lightableBehaviour = component.value as? Lightable {
 				lightableBehaviours.append(Weak(reference: lightableBehaviour))
 			}
 		}
+		
+		// Register renderable behaviours to renderpasses.
+		if let renderer: MeshRenderer = gameObject.getComponent() {
+			renderPasses[String(describing: MainRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
+		}
+		if let renderer: ShadowRenderer = gameObject.getComponent() {
+			renderPasses[String(describing: ShadowMapRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
+		}
+		
+		// Add gameobject strong references.
+		gameObjects.append(gameObject)
 	}
 	
 	/// This function to invoke all updatable behaviours.
