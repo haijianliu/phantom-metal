@@ -31,6 +31,7 @@ class Scene {
 		
 		// TODO: order.
 		// TODO: in renderpass manager.
+		// TODO: generic create function.
 		if let renderPass = ShadowMapRenderPass(device: device) {
 			renderPasses[String(describing: ShadowMapRenderPass.self)] = renderPass
 			Application.sharedInstance.viewDelegate.addRenderPass(renderPass)
@@ -44,12 +45,12 @@ class Scene {
 		// Set shadowmap renderpass target to main renderpass texture.
 		let mainRenderPass = renderPasses[String(describing: MainRenderPass.self)] as? MainRenderPass
 		let shadowMapRenderPass = renderPasses[String(describing: ShadowMapRenderPass.self)] as? ShadowMapRenderPass
-		// TODO: renderpass targets.
-		mainRenderPass?.shadowMap = shadowMapRenderPass?.texture.makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
+		// TODO: target type?
+		mainRenderPass?.shadowMap = shadowMapRenderPass?.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
 	}
 	
 	func addGameObject(_ gameObjcet: GameObject) {
-		// TODO: refactor.
+		// TODO: refactor. component onload.
 		// If there is mesh renderer attached, add this render bebaviour to main renderpass.
 		// If mesh casts shadows, add a new shadow renderer component and add this render behaviour to shadowmap renderpass.
 		if let meshRenderer: MeshRenderer = gameObjcet.getComponent() {
