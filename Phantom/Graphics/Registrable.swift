@@ -1,5 +1,7 @@
 // Copyright © haijian. All rights reserved.
 
-protocol Loadable {
-	func onload()
+import MetalKit
+
+protocol Registrable {
+	func register(device: MTLDevice)
 }
