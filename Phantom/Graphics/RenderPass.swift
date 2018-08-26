@@ -2,8 +2,15 @@
 
 import MetalKit
 
-class RenderPass: Drawable {
+class RenderPass: Drawable, Registrable {
+	// TODO: use texture class.
+	// TODO: color attachments dictionary.
+	//TODO: double textures for asyc render?
+	var targets = [MTLTexture]()
+	
 	var renderableBehaviours = ContiguousArray<Weak<Renderable>>()
+	
+	var renderPassDescriptor = MTLRenderPassDescriptor()
 	
 	var depthStencilState: MTLDepthStencilState
 	
@@ -18,5 +25,7 @@ class RenderPass: Drawable {
 		renderableBehaviours.reserveCapacity(0xFF)
 	}
 
+	func register(device: MTLDevice) { }
+	
 	func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) { }
 }
