@@ -64,13 +64,6 @@ public class Transform: Component, Updatable, RenderEncodable {
 	}
 	
 	public func update() {
-		// TODO: in transform
-		// TODO: in game object
-		guard let camera = Camera.main else { return }
-		// TODO: Update from camera and scene buffer.
-		// TODO: Camera set view matrix.
-		transformUniformBuffer.data.projectionMatrix = camera.projectionMatrix
-		transformUniformBuffer.data.viewMatrix = camera.worldToCameraMatrix
 		transformUniformBuffer.data.update(by: transform)
 		transformUniformBuffer.endWritting()
 	}
