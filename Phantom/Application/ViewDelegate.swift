@@ -43,9 +43,12 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	}
 
 	public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-		// TODO: Camera
+		// TODO: Camera.
 		let aspect = Float(size.width) / Float(size.height)
 		guard let camera: Camera = Camera.main else { return }
 		camera.projectionMatrix = Math.perspective(fovyRadians: camera.fieldOfView, aspect: aspect, near: camera.nearClipPlane, far: camera.farClipPlane)
+		// TODO: refactor.
+		guard let shadow: Camera = Camera.shadow else { return }
+		shadow.projectionMatrix = Math.perspective(fovyRadians: shadow.fieldOfView, aspect: aspect, near: shadow.nearClipPlane, far: shadow.farClipPlane)
 	}
 }
