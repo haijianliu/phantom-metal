@@ -6,7 +6,17 @@ import MetalKit
 /// Base class for all entities in scenes.
 public class GameObject {
 	/// The tag of this game object.
-	public var tag: GameObjectTag { didSet { if tag == .mainCamera, let camera: Camera = self.getComponent() { Camera.main = camera } } }
+	public var tag: GameObjectTag {
+		didSet {
+			switch tag {
+			case .mainCamera:
+				if let camera: Camera = self.getComponent() { Camera.main = camera }
+			case .shadowMapCamera:
+				if let camera: Camera = self.getComponent() { Camera.shadow = camera }
+			default: break
+			}
+		}
+	}
 	
 	// TODO: Observe changes of properties.
 	// TODO: Node system.
