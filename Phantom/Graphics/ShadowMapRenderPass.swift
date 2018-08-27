@@ -31,6 +31,7 @@ class ShadowMapRenderPass: RenderPass {
 	}
 	
 	override func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
+		// TODO: safety skip all.
 		guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
 		
 		// Start encoding and setup debug infomation
@@ -38,8 +39,10 @@ class ShadowMapRenderPass: RenderPass {
 		// Render pass encoding.
 		renderCommandEncoder.setDepthStencilState(depthStencilState)
 		
-		Application.sharedInstance.scene?.encode(to: renderCommandEncoder)
-		
+		// Encode camera.
+		guard let camera = Camera.shadow else { return }
+		camera.encode(to: renderCommandEncoder)
+
 		// render behaviours.
 		for renderableBehaviour in renderableBehaviours { renderableBehaviour.reference?.encode(to: renderCommandEncoder) }
 		
