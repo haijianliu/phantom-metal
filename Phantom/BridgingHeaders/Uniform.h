@@ -44,6 +44,7 @@ typedef NS_ENUM(NSInteger, VertexAttribute)
 typedef NS_ENUM(NSInteger, BufferIndex)
 {
 	BufferIndexNodeBuffer = VertexAttributeCount,
+	BufferIndexCameraBuffer,
 	BufferIndexLightBuffer,
 	BufferIndexCount,
 };
@@ -58,13 +59,15 @@ typedef NS_ENUM(NSInteger, TextureIndex)
 	TextureIndexCount,
 };
 
-// TODO: Add Scene buffer.
-
-/// To use information that varies for each object being rendered with a shader—such as model and normal matrices—declare a parameter to your shader function with an attribute qualifier.
 typedef struct
 {
 	matrix_float4x4 projectionMatrix;
 	matrix_float4x4 viewMatrix;
+} CameraBuffer;
+
+/// To use information that varies for each object being rendered with a shader—such as model and normal matrices—declare a parameter to your shader function with an attribute qualifier.
+typedef struct
+{
 	matrix_float4x4 modelMatrix;
 	matrix_float4x4 inverseTransposeModelMatrix;
 } StandardNodeBuffer;
