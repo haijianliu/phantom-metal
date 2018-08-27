@@ -14,6 +14,7 @@ class MainRenderPass: RenderPass {
 	}
 	
 	override func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) {
+		// TODO: safety skip all.
 		// TODO: customize this function varying from render passes.
 		guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
 		guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
@@ -28,7 +29,12 @@ class MainRenderPass: RenderPass {
 			renderCommandEncoder.setFragmentTexture(shadow, index: TextureType.shadow.textureIndex) // TODO: use texture functions.
 		}
 		
+		// Encode scene (lights).
 		Application.sharedInstance.scene?.encode(to: renderCommandEncoder)
+		
+		// Encode camera.
+		guard let camera = Camera.main else { return }
+		camera.encode(to: renderCommandEncoder)
 		
 		// render behaviours.
 		for renderableBehaviour in renderableBehaviours { renderableBehaviour.reference?.encode(to: renderCommandEncoder) }
