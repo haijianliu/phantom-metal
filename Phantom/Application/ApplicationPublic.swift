@@ -60,5 +60,9 @@ extension Application {
 		// Register to scene.
 		// TODO: multi scene.
 		Application.sharedInstance.scene?.addGameObject(gameObjcet)
+		// TODO: check same?
+		// TODO: leak?
+		// Recurve add all children.
+		for child in gameObjcet.children { addGameObject(child) }
 	}
 }
