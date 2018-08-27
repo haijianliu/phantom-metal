@@ -8,4 +8,5 @@
 public enum GameObjectTag {
 	case untagged
 	case mainCamera
+	case shadowMapCamera
 }
