@@ -15,7 +15,14 @@ protocol UniformBuffer { }
 extension StandardNodeBuffer: UniformBuffer {
 	mutating func update(by transform: Transform) {
 		self.modelMatrix = transform.localToWorldMatrix
-		self.inverseTransposeModelMatrix = transform.localToWorldMatrix.inverse.transpose
+		self.inverseTransposeModelMatrix = transform.localToWorldMatrix.inverse.transpose // TODO: stored.
+	}
+}
+
+extension CameraBuffer: UniformBuffer {
+	mutating func update(by camera: Camera) {
+		self.projectionMatrix = camera.projectionMatrix
+		self.viewMatrix = camera.worldToCameraMatrix
 	}
 }
 
