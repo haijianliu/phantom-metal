@@ -32,13 +32,14 @@ class SampleApplication: ApplicationDelegate {
 		camera: do {
 			// Root gameobject.
 			guard let gameObject = GameObject() else { break camera }
-			gameObject.transform.position = Vector3(0, 0, 0); // Transform.
+			gameObject.transform.position = Vector3(0, 0, 0) // Transform.
 			guard let _: SampleBehaviour = gameObject.addComponent() else { break camera }
 			// Camera child gameobject attached to root gameobject.
 			guard let cameraObject = GameObject() else { break camera } // TODO: GameObject.createCamera(main???).
 			guard let _: Camera = cameraObject.addComponent() else { break camera }
-			cameraObject.transform.position = Vector3(0, 10, 10); // Transform.
+			cameraObject.transform.position = Vector3(0, 10, 10) // Transform.
 			gameObject.addChild(cameraObject) // Add camera node to root gameobject.
+			cameraObject.tag = .mainCamera
 			// Add GameObject
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
@@ -48,8 +49,19 @@ class SampleApplication: ApplicationDelegate {
 		light: do {
 			// Root gameobject.
 			guard let gameObject = GameObject() else { break light }
-			gameObject.transform.position = Vector3(5); // Transform.
+			gameObject.transform.position = Vector3(5) // Transform.
 			guard let _: Light = gameObject.addComponent() else { break light }
+			// Add GameObject
+			Application.addGameObject(gameObject) // Register to renderer.
+		}
+		
+		// Create shadowmap camera.
+		shadowCamera: do {
+			// Root gameobject.
+			guard let gameObject = GameObject() else { break shadowCamera }
+			gameObject.transform.position = Vector3(5) // Position is the same as the light.
+			guard let _: Camera = gameObject.addComponent() else { break shadowCamera }
+			gameObject.tag = .shadowMapCamera // Set gameobject tags defer.
 			// Add GameObject
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
