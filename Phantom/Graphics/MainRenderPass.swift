@@ -26,7 +26,9 @@ class MainRenderPass: RenderPass {
 		
 		// Setup shadow map.
 		if let shadow = shadowMap {
-			renderCommandEncoder.setFragmentTexture(shadow, index: TextureType.shadow.textureIndex) // TODO: use texture functions.
+			// TODO: sampler states. (MTLSamplerDescriptor) (renderCommandEncoder.setFragmentSamplerStates)
+			// TODO: use texture functions.
+			renderCommandEncoder.setFragmentTexture(shadow, index: TextureType.shadow.textureIndex)
 		}
 		
 		// Encode scene (lights).
@@ -35,6 +37,10 @@ class MainRenderPass: RenderPass {
 		// Encode camera.
 		guard let camera = Camera.main else { return }
 		camera.encode(to: renderCommandEncoder)
+		
+		// Set shadowmap camera buffers.
+		guard let shadowCamera = Camera.shadow else { return }
+		renderCommandEncoder.setFragmentBuffer(shadowCamera.cameraUniformBuffer.buffer, offset: shadowCamera.cameraUniformBuffer.offset, index: BufferIndex.shadowCameraBuffer.rawValue)
 		
 		// render behaviours.
 		for renderableBehaviour in renderableBehaviours { renderableBehaviour.reference?.encode(to: renderCommandEncoder) }
