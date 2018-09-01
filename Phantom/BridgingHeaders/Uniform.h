@@ -18,15 +18,15 @@
 // DOTO: refactor names.
 typedef NS_ENUM(NSInteger, FunctionConstant)
 {
-	FunctionConstantBaseColorMapIndex = 0,
-	FunctionConstantNormalMapIndex,
-	FunctionConstantMetallicMapIndex,
-	FunctionConstantRoughnessMapIndex,
-	FunctionConstantAmbientOcclusionMapIndex,
-	FunctionConstantIrradianceMapIndex,
-	FunctionConstantShadowMapIndex,
-	FunctionConstantLightIndex,
-	FunctionConstantNormalIndex,
+	FunctionConstantHasBaseColorMap = 0,
+	FunctionConstantHasNormalMap,
+	FunctionConstantHasMetallicMap,
+	FunctionConstantHasRoughnessMap,
+	FunctionConstantHasAmbientOcclusionMap,
+	FunctionConstantHasIrradianceMap,
+	FunctionConstantHasLight,
+	FunctionConstantRecieveShadow,
+	FunctionConstantHasNormal,
 	FunctionConstantCount,
 };
 
