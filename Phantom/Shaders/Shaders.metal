@@ -8,17 +8,17 @@ using namespace metal;
 #import "Phantom/BridgingHeaders/Uniform.h"
 
 // Fuction constants.
-constant bool has_base_color_map [[function_constant(FunctionConstantBaseColorMapIndex)]];
-constant bool has_normal_map [[function_constant(FunctionConstantNormalMapIndex)]];
-constant bool has_metallic_map [[function_constant(FunctionConstantMetallicMapIndex)]];
-constant bool has_roughness_map [[function_constant(FunctionConstantRoughnessMapIndex)]];
-constant bool has_ambient_occlusion_map [[function_constant(FunctionConstantAmbientOcclusionMapIndex)]];
-constant bool has_irradiance_map [[function_constant(FunctionConstantIrradianceMapIndex)]];
+constant bool has_base_color_map [[function_constant(FunctionConstantHasBaseColorMap)]];
+constant bool has_normal_map [[function_constant(FunctionConstantHasNormalMap)]];
+constant bool has_metallic_map [[function_constant(FunctionConstantHasMetallicMap)]];
+constant bool has_roughness_map [[function_constant(FunctionConstantHasRoughnessMap)]];
+constant bool has_ambient_occlusion_map [[function_constant(FunctionConstantHasAmbientOcclusionMap)]];
+constant bool has_irradiance_map [[function_constant(FunctionConstantHasIrradianceMap)]];
 constant bool has_any_map = (has_base_color_map || has_normal_map || has_metallic_map || has_roughness_map || has_ambient_occlusion_map || has_irradiance_map);
-constant bool has_light [[function_constant(FunctionConstantLightIndex)]];
-constant bool use_normal [[function_constant(FunctionConstantNormalIndex)]];
-constant bool use_light = (has_light && use_normal);
-constant bool recieve_shadow [[function_constant(FunctionConstantShadowMapIndex)]];
+constant bool has_light [[function_constant(FunctionConstantHasLight)]];
+constant bool has_normal [[function_constant(FunctionConstantHasNormal)]]; // for debug shader.
+constant bool recieve_shadow [[function_constant(FunctionConstantRecieveShadow)]];
+constant bool use_normal = (recieve_shadow || has_light || has_normal);
 
 /// Linear sampled gaussian blur. (http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/)
 constant float gaussianLinearSamplingOffset[3] = { 0.0,          1.3846153846, 3.2307692308 };
@@ -54,7 +54,7 @@ typedef struct
 	texture2d<half> colorMap [[texture(TextureIndexColor), function_constant(has_base_color_map)]];
 	depth2d<float> shadowMap [[texture(TextureIndexShadow), function_constant(recieve_shadow)]];
 	constant CameraBuffer& shadowbuffer [[buffer(BufferIndexShadowMapBuffer), function_constant(recieve_shadow)]];
-	constant LightBuffer& lightbuffer [[buffer(BufferIndexLightBuffer), function_constant(use_light)]];
+	constant LightBuffer& lightbuffer [[buffer(BufferIndexLightBuffer), function_constant(has_light)]];
 } StandardFragmentParameter;
 
 /// Standard vertex shader using texcoord and normal.
@@ -89,7 +89,7 @@ fragment float4 standardFragment(ColorInOut in [[stage_in]], StandardFragmentPar
 	}
 	
 	// TODO: Use scene node for lighting.
-	if (use_light) {
+	if (has_light) {
 		float3 lightColor = float3(0, 0, 0);
 		for (int i = 0; i < parameter.lightbuffer.count; i++) {
 			float3 lightVector = normalize(parameter.lightbuffer.light[i].position - in.worldPosition);
