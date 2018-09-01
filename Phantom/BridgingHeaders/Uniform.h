@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, BufferIndex)
 {
 	BufferIndexNodeBuffer = VertexAttributeCount,
 	BufferIndexCameraBuffer,
+	BufferIndexShadowMapBuffer,
 	BufferIndexLightBuffer,
 	BufferIndexCount,
 };
@@ -59,10 +60,11 @@ typedef NS_ENUM(NSInteger, TextureIndex)
 	TextureIndexCount,
 };
 
+/// A general structure used for both main camera and any other types of mapping cameras.
 typedef struct
 {
-	matrix_float4x4 projectionMatrix;
-	matrix_float4x4 viewMatrix;
+	matrix_float4x4 viewProjectionMatrix;
+	vector_float3 position;
 } CameraBuffer;
 
 /// To use information that varies for each object being rendered with a shader—such as model and normal matrices—declare a parameter to your shader function with an attribute qualifier.
