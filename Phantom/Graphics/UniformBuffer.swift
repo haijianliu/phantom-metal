@@ -21,8 +21,8 @@ extension StandardNodeBuffer: UniformBuffer {
 
 extension CameraBuffer: UniformBuffer {
 	mutating func update(by camera: Camera) {
-		self.projectionMatrix = camera.projectionMatrix
-		self.viewMatrix = camera.worldToCameraMatrix
+		self.viewProjectionMatrix = camera.projectionMatrix * camera.worldToCameraMatrix
+		self.position = camera.transform.position
 	}
 }
 
