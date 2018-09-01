@@ -7,7 +7,7 @@ import MetalKit
 /// Every object in a scene has a Transform. It's used to store and manipulate the position, rotation and scale of the object. Every Transform can have a parent, which allows you to apply position, rotation and scale hierarchically. This is the hierarchy seen in the Hierarchy pane. They also support enumerators so you can loop through children using:
 public class Transform: Component, Updatable, RenderEncodable {
 	// TODO: refactor.
-	private var transformUniformBuffer: TripleBuffer<StandardNodeBuffer>
+	private var transformUniformBuffer: TripleBuffer<NodeBuffer>
 	
 	// TODO: dirty protocol?
 	/// True if the associated properties is modifed. Initialized value is true.
@@ -57,14 +57,14 @@ public class Transform: Component, Updatable, RenderEncodable {
 	required public init?(_ gameObject: GameObject) {
 		guard let device = Application.sharedInstance.device else { return nil }
 		// TODO: init dynamic semaphore value
-		guard let newBuffer = TripleBuffer<StandardNodeBuffer>(device) else { return nil }
+		guard let newBuffer = TripleBuffer<NodeBuffer>(device) else { return nil }
 		transformUniformBuffer = newBuffer
 		
 		super.init(gameObject)
 	}
 	
 	public func update() {
-		transformUniformBuffer.data.update(by: transform)
+		transformUniformBuffer.data.update(by: self)
 		transformUniformBuffer.endWritting()
 	}
 	

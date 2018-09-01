@@ -40,7 +40,7 @@ class MainRenderPass: RenderPass {
 		
 		// Set shadowmap camera buffers.
 		guard let shadowCamera = Camera.shadow else { return }
-		renderCommandEncoder.setFragmentBuffer(shadowCamera.cameraUniformBuffer.buffer, offset: shadowCamera.cameraUniformBuffer.offset, index: BufferIndex.shadowCameraBuffer.rawValue)
+		renderCommandEncoder.setFragmentBuffer(shadowCamera.cameraUniformBuffer.buffer, offset: shadowCamera.cameraUniformBuffer.offset, index: BufferIndex.shadowMapBuffer.rawValue)
 		
 		// render behaviours.
 		for renderableBehaviour in renderableBehaviours { renderableBehaviour.reference?.encode(to: renderCommandEncoder) }

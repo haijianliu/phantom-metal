@@ -72,7 +72,7 @@ typedef struct
 {
 	matrix_float4x4 modelMatrix;
 	matrix_float4x4 inverseTransposeModelMatrix;
-} StandardNodeBuffer;
+} NodeBuffer;
 
 /// Light uniforms.
 typedef struct

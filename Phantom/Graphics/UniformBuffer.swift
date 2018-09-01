@@ -12,7 +12,7 @@ protocol UniformBuffer { }
 
 // TODO: confirm protocol.
 
-extension StandardNodeBuffer: UniformBuffer {
+extension NodeBuffer: UniformBuffer {
 	mutating func update(by transform: Transform) {
 		self.modelMatrix = transform.localToWorldMatrix
 		self.inverseTransposeModelMatrix = transform.localToWorldMatrix.inverse.transpose // TODO: stored.
