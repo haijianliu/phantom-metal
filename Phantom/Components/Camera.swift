@@ -10,7 +10,7 @@ public class Camera: Component, Updatable, RenderEncodable {
 	
 	weak static var shadow: Camera?
 	
-	private var cameraUniformBuffer: TripleBuffer<CameraBuffer>
+	var cameraUniformBuffer: TripleBuffer<CameraBuffer>
 	
 	/// The near clipping plane distance.
 	var nearClipPlane: Float = 0.1
