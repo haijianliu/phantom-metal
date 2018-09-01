@@ -26,8 +26,8 @@ class Scene {
 		
 		// Light uniform buffer.
 		// TODO: init dynamic semaphore value
-		guard let newBuffer = TripleBuffer<LightBuffer>(device) else { return nil }
-		lightUniformBuffer = newBuffer
+		guard let lightBuffer = TripleBuffer<LightBuffer>(device) else { return nil }
+		lightUniformBuffer = lightBuffer
 		
 		// TODO: order.
 		// TODO: in renderpass manager.
