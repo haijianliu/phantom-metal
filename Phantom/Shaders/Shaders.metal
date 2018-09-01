@@ -96,21 +96,45 @@ fragment float4 standardFragment(ColorInOut in [[stage_in]], StandardFragmentPar
 		// TODO: tonemapping.
 	}
 	
+	// Recieve shadows.
 	if (recieve_shadow) {
+		// Shadow sampler.
 		constexpr sampler shadowSampler(coord::normalized, filter::linear, address::clamp_to_border, compare_func::less);
+		// Fragment positions in light (shadowmap camera) space.
 		float4 lightSpacePosition = parameter.shadowbuffer.viewProjectionMatrix * float4(in.worldPosition, 1);
-		float2 lightSpaceUV = lightSpacePosition.xy / lightSpacePosition.w;
-		lightSpaceUV = lightSpaceUV * 0.5 + 0.5;
-		lightSpaceUV.y = 1 - lightSpaceUV.y;
-		float closestDepth = parameter.shadowMap.sample(shadowSampler, lightSpaceUV);
+		// Fragment texcoord in light (shadowmap camera) space.
+		float2 lightSpaceTexcoord = lightSpacePosition.xy / lightSpacePosition.w;
+		lightSpaceTexcoord = lightSpaceTexcoord * 0.5 + 0.5;
+		lightSpaceTexcoord.y = 1 - lightSpaceTexcoord.y;
+		// Closest and current depth values from light's perspective.
+		float closestDepth = parameter.shadowMap.sample(shadowSampler, lightSpaceTexcoord);
 		float currentDepth = lightSpacePosition.z / lightSpacePosition.w;
-		float shadowFactor = currentDepth - 0.0001 > closestDepth ? 0.2 : 1;
+		// TODO: shadowmap setting.
+		// Calculate shadow bias (based on depth map resolution and slope).
+		float3 lightDirection = normalize(parameter.shadowbuffer.position - in.worldPosition);
+		float shadowBias = max(0.005 * (1.0 - dot(in.worldNormal, lightDirection)), 0.001);
+		// check whether current frag pos is in shadow
+		// TODO: shadow sample mode function constants, if use PCF.
+		float shadowFactor = 0.0;
+		if (true) {
+			uint width = parameter.shadowMap.get_width();
+			uint height = parameter.shadowMap.get_height();
+			float2 texelSize = 1.0 / float2(width, height);
+			// TODO: guassian sampling.
+			for(int x = -1; x <= 1; x++) {
+				for(int y = -1; y <= 1; y++) {
+					float pcfDepth = parameter.shadowMap.sample(shadowSampler, lightSpaceTexcoord + float2(x, y) * texelSize);
+					shadowFactor += (currentDepth - shadowBias > pcfDepth ? 0 : 1);
+				}
+			}
+			shadowFactor /= 9.0;
+		} else {
+			shadowFactor = currentDepth - shadowBias > closestDepth ? 0 : 1;
+		}
+		// Keep the shadow off when outside the far_plane region of the light's frustum, since iOS is no support for border colors.
 		if (closestDepth < 0.001) shadowFactor = 1;
 		color *= shadowFactor;
 	}
-	
-	// test.
-//	color = float3(in.projectionPosition.z / in.projectionPosition.w / 200.0);
 	
 	return float4(color, 1);
 }
