@@ -20,6 +20,10 @@ constant bool use_normal [[function_constant(FunctionConstantNormalIndex)]];
 constant bool use_light = (has_light && use_normal);
 constant bool recieve_shadow [[function_constant(FunctionConstantShadowMapIndex)]];
 
+/// Linear sampled gaussian blur. (http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/)
+constant float gaussianLinearSamplingOffset[3] = { 0.0,          1.3846153846, 3.2307692308 };
+constant float gaussianLinearSamplingWeight[3] = { 0.2270270270, 0.3162162162, 0.0702702703 };
+
 /// Vertex attributes.
 typedef struct
 {
@@ -117,17 +121,12 @@ fragment float4 standardFragment(ColorInOut in [[stage_in]], StandardFragmentPar
 		// TODO: shadow sample mode function constants, if use PCF.
 		float shadowFactor = 0.0;
 		if (true) {
-			uint width = parameter.shadowMap.get_width();
-			uint height = parameter.shadowMap.get_height();
-			float2 texelSize = 1.0 / float2(width, height);
-			// TODO: guassian sampling.
-			for(int x = -1; x <= 1; x++) {
-				for(int y = -1; y <= 1; y++) {
-					float pcfDepth = parameter.shadowMap.sample(shadowSampler, lightSpaceTexcoord + float2(x, y) * texelSize);
-					shadowFactor += (currentDepth - shadowBias > pcfDepth ? 0 : 1);
-				}
+			float texelSize = 1.0 / parameter.shadowMap.get_width();
+			for(int i = -2; i <= 2; i++) {
+				float pcfDepth = parameter.shadowMap.sample(shadowSampler, lightSpaceTexcoord + float2(i * gaussianLinearSamplingOffset[abs(i)], 0) * texelSize);
+				shadowFactor += (currentDepth - shadowBias > pcfDepth ? (gaussianLinearSamplingWeight[abs(i)] + gaussianLinearSamplingWeight[abs(i)]) : 1);
 			}
-			shadowFactor /= 9.0;
+			shadowFactor /= 5.0;
 		} else {
 			shadowFactor = currentDepth - shadowBias > closestDepth ? 0 : 1;
 		}
