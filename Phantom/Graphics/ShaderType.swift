@@ -72,13 +72,12 @@ public enum ShaderType {
 		var functionContants = ContiguousArray<Bool>(repeating: false, count: FunctionConstant.count.rawValue)
 		switch self {
 		case .standard:
-			functionContants[FunctionConstant.baseColorMapIndex.rawValue] = true
-			functionContants[FunctionConstant.lightIndex.rawValue] = true
-			functionContants[FunctionConstant.normalIndex.rawValue] = true
-			functionContants[FunctionConstant.shadowMapIndex.rawValue] = true // TODO: if recieve shadows.
+			functionContants[FunctionConstant.hasBaseColorMap.rawValue] = true
+			functionContants[FunctionConstant.hasLight.rawValue] = true
+			functionContants[FunctionConstant.recieveShadow.rawValue] = true // TODO: if recieve shadows.
 		case .shadowMap: break
 		case .normalColor:
-			functionContants[FunctionConstant.normalIndex.rawValue] = true
+			functionContants[FunctionConstant.hasNormal.rawValue] = true // for debug shadera.
 		}
 		return functionContants
 	}
