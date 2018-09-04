@@ -28,25 +28,6 @@ class Scene {
 		// TODO: init dynamic semaphore value
 		guard let lightBuffer = TripleBuffer<LightBuffer>(device) else { return nil }
 		lightUniformBuffer = lightBuffer
-		
-		// TODO: order.
-		// TODO: in renderpass manager.
-		// TODO: generic create function.
-		if let renderPass = ShadowMapRenderPass(device: device) {
-			renderPasses[String(describing: ShadowMapRenderPass.self)] = renderPass
-			Application.sharedInstance.viewDelegate.addRenderPass(renderPass)
-		}
-		
-		if let renderPass = MainRenderPass(device: device) {
-			renderPasses[String(describing: MainRenderPass.self)] = renderPass
-			Application.sharedInstance.viewDelegate.addRenderPass(renderPass)
-		}
-		
-		// Set shadowmap renderpass target to main renderpass texture.
-		let mainRenderPass = renderPasses[String(describing: MainRenderPass.self)] as? MainRenderPass
-		let shadowMapRenderPass = renderPasses[String(describing: ShadowMapRenderPass.self)] as? ShadowMapRenderPass
-		// TODO: target type?
-		mainRenderPass?.shadowMap = shadowMapRenderPass?.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
 	}
 	
 	func addGameObject(_ gameObject: GameObject) {
