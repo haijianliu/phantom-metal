@@ -21,6 +21,7 @@ extension Application {
 			print("Metal is not supported on this device")
 			return
 		}
+		Application.sharedInstance.device = defaultDevice
 		
 		// Set metal kit view
 		view.device = defaultDevice
@@ -37,12 +38,9 @@ extension Application {
 		
 		view.delegate = Application.sharedInstance.viewDelegate
 		
-		// Initialize scene.
+		// TODO: load xml.
+		// Initialize scenes.
 		Application.sharedInstance.scene = Scene(device: defaultDevice)
-		
-		// Set references.
-		Application.sharedInstance.view = view
-		Application.sharedInstance.device = defaultDevice
 		
 		// TODO: build library according to application delegate.
 		do {
@@ -51,6 +49,16 @@ extension Application {
 			print(error)
 			return
 		}
+		
+		// Initialize renderpasses.
+		// TODO: order.
+		// TODO: in renderpass manager.
+		guard let shadowMapRenderPass: ShadowMapRenderPass = Application.addRenderPass() else { return }
+		guard let mainRenderPass: MainRenderPass = Application.addRenderPass() else { return }
+		
+		// Set shadowmap renderpass target to main renderpass texture.
+		// TODO: target type?
+		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
 	}
 	
 	// TODO: in Scene
