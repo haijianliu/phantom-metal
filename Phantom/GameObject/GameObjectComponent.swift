@@ -13,7 +13,7 @@ extension GameObject {
 			components[typeName] = component
 			return components[typeName] as? ComponentType // TODO: no optional type return.
 		} else {
-			return nil
+			return nil // TODO: return exists.
 		}
 	}
 	
