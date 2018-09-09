@@ -24,10 +24,11 @@ extension Application {
 		Application.sharedInstance.device = defaultDevice
 		
 		// Set metal kit view
+		// TODO: refactor.
 		view.device = defaultDevice
-		view.colorPixelFormat = ShaderType.standard.colorAttachmentsPixelFormat[0]
-		view.depthStencilPixelFormat = ShaderType.standard.depthAttachmentPixelFormat
-		view.sampleCount = ShaderType.standard.sampleCount  // TODO: Max sampling test.
+		view.colorPixelFormat = ShaderType.postEffect.colorAttachmentsPixelFormat[0]
+		view.depthStencilPixelFormat = ShaderType.postEffect.depthAttachmentPixelFormat
+		view.sampleCount = AntialiasingMode.none.rawValue  // TODO: Max sampling test.
 		view.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
 		Application.sharedInstance.view = view
 		
@@ -55,10 +56,13 @@ extension Application {
 		// TODO: in renderpass manager.
 		guard let shadowMapRenderPass: ShadowMapRenderPass = Application.addRenderPass() else { return }
 		guard let mainRenderPass: MainRenderPass = Application.addRenderPass() else { return }
+		guard let postEffectRenderPass: PostEffectRenderPass = Application.addRenderPass() else { return }
 		
 		// Set shadowmap renderpass target to main renderpass texture.
 		// TODO: target type?
 		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
+		postEffectRenderPass.colorMap = mainRenderPass.targets[0].makeTextureView(pixelFormat: ShaderType.standard.colorAttachmentsPixelFormat[0])
+		postEffectRenderPass.depthMap = mainRenderPass.targets[1].makeTextureView(pixelFormat: ShaderType.standard.depthAttachmentPixelFormat)
 	}
 	
 	// TODO: in Scene
