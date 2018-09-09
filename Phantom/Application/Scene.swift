@@ -10,14 +10,10 @@ class Scene {
 	private var lightUniformBuffer: TripleBuffer<LightBuffer>
 	
 	// TODO: clean up nil reference.
+	// TODO: in view delegate.
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
-	
-	// TODO: in renderpass manager.
-	var renderPasses = [String: RenderPass]()
-	
 	var updatableBehaviours = ContiguousArray<Weak<Updatable>>()
 	var lightableBehaviours = ContiguousArray<Weak<Lightable>>()
-	
 	
 	init?(device: MTLDevice) {
 		// TODO: use library settings.
@@ -46,19 +42,20 @@ class Scene {
 			}
 		}
 		
+		// TODO: generic add functions.
 		// Register renderable behaviours to renderpasses.
 		if let renderer: MeshRenderer = gameObject.getComponent() {
 			if renderer.material.shader.shaderType == .postEffect {
-				renderPasses[String(describing: PostEffectRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
+				Application.sharedInstance.viewDelegate.renderPasses[String(describing: PostEffectRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
 				gameObjects.append(gameObject)
 				return
 			}
 		}
 		if let renderer: MeshRenderer = gameObject.getComponent() {
-			renderPasses[String(describing: MainRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
+			Application.sharedInstance.viewDelegate.renderPasses[String(describing: MainRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
 		}
 		if let renderer: ShadowRenderer = gameObject.getComponent() {
-			renderPasses[String(describing: ShadowMapRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
+			Application.sharedInstance.viewDelegate.renderPasses[String(describing: ShadowMapRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
 		}
 		
 		// Add gameobject strong references.
