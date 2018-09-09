@@ -52,17 +52,7 @@ extension Application {
 		}
 		
 		// Initialize renderpasses.
-		// TODO: order.
-		// TODO: in renderpass manager.
-		guard let shadowMapRenderPass: ShadowMapRenderPass = Application.addRenderPass() else { return }
-		guard let mainRenderPass: MainRenderPass = Application.addRenderPass() else { return }
-		guard let postEffectRenderPass: PostEffectRenderPass = Application.addRenderPass() else { return }
-		
-		// Set shadowmap renderpass target to main renderpass texture.
-		// TODO: target type?
-		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
-		postEffectRenderPass.colorMap = mainRenderPass.targets[0].makeTextureView(pixelFormat: ShaderType.standard.colorAttachmentsPixelFormat[0])
-		postEffectRenderPass.depthMap = mainRenderPass.targets[1].makeTextureView(pixelFormat: ShaderType.standard.depthAttachmentPixelFormat)
+		Application.sharedInstance.viewDelegate.launch()
 	}
 	
 	// TODO: in Scene
