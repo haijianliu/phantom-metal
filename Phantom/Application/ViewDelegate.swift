@@ -7,7 +7,8 @@ import MetalKit
 
 // TODO: [SCNView](https://developer.apple.com/documentation/scenekit/scnview)
 // TODO: UX refactor.
-/// Provides access to an application view for rendering operations.
+// TODO: view descriptor.
+/// Provides access to an application view for rendering operations, and defines render passes.
 class ViewDelegate: NSObject, MTKViewDelegate {
 	// TODO: multiple command queues
 	var commandQueue: MTLCommandQueue?
@@ -15,16 +16,41 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
 	let semaphore = DispatchSemaphore(value: 3)
 	
+	/// Renderpass references.
+	var renderPasses = [String: RenderPass]()
+	/// Renderpass drawable behaviours.
 	private var drawables = ContiguousArray<Weak<Drawable>>()
-	
-	func addRenderPass(_ renderPass: RenderPass) {
-		renderPass.register()
-		drawables.append(Weak(reference: renderPass))
-	}
 	
 	override init() {
 		super.init()
 		drawables.reserveCapacity(0xF)
+	}
+	
+	/// Initialize renderpasses.
+	func launch() {
+		// TODO: order.
+		guard let shadowMapRenderPass: ShadowMapRenderPass = addRenderPass() else { return }
+		guard let mainRenderPass: MainRenderPass = addRenderPass() else { return }
+		guard let postEffectRenderPass: PostEffectRenderPass = addRenderPass() else { return }
+		
+		// Set shadowmap renderpass target to main renderpass texture.
+		// TODO: target type?
+		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
+		postEffectRenderPass.colorMap = mainRenderPass.targets[0].makeTextureView(pixelFormat: ShaderType.standard.colorAttachmentsPixelFormat[0])
+		postEffectRenderPass.depthMap = mainRenderPass.targets[1].makeTextureView(pixelFormat: ShaderType.standard.depthAttachmentPixelFormat)
+	}
+	
+	/// Add renderpasses.
+	private func addRenderPass<RenderPassType: RenderPass>() -> RenderPassType? {
+		let typeName = String(describing: RenderPassType.self)
+		if renderPasses[typeName] == nil {
+			guard let device = Application.sharedInstance.device else { return nil }
+			guard let renderPass = RenderPassType(device: device) else { return nil }
+			renderPasses[typeName] = renderPass
+			renderPass.register()
+			drawables.append(Weak(reference: renderPass))
+		}
+		return renderPasses[typeName] as? RenderPassType
 	}
 	
 	// TODO: only render render pass here.
