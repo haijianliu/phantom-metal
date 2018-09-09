@@ -123,6 +123,8 @@
 		60E5CB11208AE60A00AE6090 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072070F20538ABE0068F691 /* GameViewController.swift */; };
 		60E5CB17208AEF7B00AE6090 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
 		60E6B3CE20F986DA00F3AE02 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
+		60EFBCD32143BBAC00ADE506 /* PostEffectRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */; };
+		60EFBCD42143BBAC00ADE506 /* PostEffectRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */; };
 		60FD6B96211EA76C005B61B7 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD6B95211EA76C005B61B7 /* Scene.swift */; };
 		60FD6B97211EA76C005B61B7 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD6B95211EA76C005B61B7 /* Scene.swift */; };
 		60FD6B9C211EC4AB005B61B7 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD6B9B211EC4AB005B61B7 /* RenderPass.swift */; };
@@ -250,6 +252,7 @@
 		60DC1EAF21201E3A006ED444 /* ShadowRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowRenderer.swift; sourceTree = "<group>"; };
 		60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
 		60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */ = {isa = PBXFileReference; explicitFileType = "archive.metal-library"; includeInIndex = 0; path = DefaultShaders.metallib; sourceTree = BUILT_PRODUCTS_DIR; };
+		60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEffectRenderPass.swift; sourceTree = "<group>"; };
 		60FD6B95211EA76C005B61B7 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		60FD6B9B211EC4AB005B61B7 /* RenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -464,6 +467,7 @@
 				60FD6B9B211EC4AB005B61B7 /* RenderPass.swift */,
 				60D645C02094C1B900646198 /* MainRenderPass.swift */,
 				60DC1EAC211F2ACD006ED444 /* ShadowMapRenderPass.swift */,
+				60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */,
 				606FF37F20B0012E00CC704B /* Drawable.swift */,
 				608856BF2090E33700F69621 /* Material.swift */,
 				607258A0209589E6004996FA /* Shader.swift */,
@@ -768,6 +772,7 @@
 				60379D7C210F6134008DA867 /* Light.swift in Sources */,
 				601A9E242088F54A002045DA /* MeshRenderer.swift in Sources */,
 				601A9E382088F557002045DA /* MatrixTransform.swift in Sources */,
+				60EFBCD32143BBAC00ADE506 /* PostEffectRenderPass.swift in Sources */,
 				606FF38220B001AD00CC704B /* Drawable.swift in Sources */,
 				60652FDF20F0B0430054C962 /* Mesh.swift in Sources */,
 				607258A220958A20004996FA /* Shader.swift in Sources */,
@@ -820,6 +825,7 @@
 				60DC1EAE211F2ACD006ED444 /* ShadowMapRenderPass.swift in Sources */,
 				60FD6B97211EA76C005B61B7 /* Scene.swift in Sources */,
 				60A5B4682103232400930DC2 /* GameObjectParent.swift in Sources */,
+				60EFBCD42143BBAC00ADE506 /* PostEffectRenderPass.swift in Sources */,
 				601A9E3C2088F558002045DA /* MatrixTransform.swift in Sources */,
 				60379D7D210F6134008DA867 /* Light.swift in Sources */,
 				601355DC2094EC2B0093AF6E /* RenderEncodable.swift in Sources */,
