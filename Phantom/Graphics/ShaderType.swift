@@ -2,11 +2,13 @@
 
 import MetalKit
 
+// TODO: refactor shader type values varys from different renderpasses.
 public enum ShaderType {
 	
 	case standard
 	case shadowMap
 	case normalColor
+	case postEffect
 	
 	internal var label: String {
 		return String(describing: self)
@@ -16,6 +18,8 @@ public enum ShaderType {
 		switch self {
 		case .standard, .shadowMap, .normalColor:
 			return "standardVertex"
+		case .postEffect:
+			return "directVertex"
 		}
 	}
 	
@@ -27,12 +31,14 @@ public enum ShaderType {
 			return "normalColorFragment"
 		case .shadowMap:
 			return nil
+		case .postEffect:
+			return "postEffectFragment"
 		}
 	}
 	
 	internal var colorAttachmentsPixelFormat: [MTLPixelFormat] {
 		switch self {
-		case .standard, .normalColor:
+		case .standard, .normalColor, .postEffect:
 			let formats: [MTLPixelFormat] = [MTLPixelFormat.bgra8Unorm_srgb]
 			return formats
 		case .shadowMap:
@@ -43,18 +49,18 @@ public enum ShaderType {
 	
 	internal var depthAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
-		case .standard, .normalColor:
+		case .postEffect:
 			return MTLPixelFormat.depth32Float_stencil8
-		case .shadowMap:
+		case .standard, .normalColor, .shadowMap:
 			return MTLPixelFormat.depth32Float
 		}
 	}
 	
 	internal var stencilAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
-		case .standard, .normalColor:
+		case .postEffect:
 			return MTLPixelFormat.depth32Float_stencil8
-		case .shadowMap:
+		case .standard, .normalColor, .shadowMap:
 			return MTLPixelFormat.invalid
 		}
 	}
@@ -62,8 +68,10 @@ public enum ShaderType {
 	internal var sampleCount: Int {
 		switch self {
 		case .standard, .normalColor:
-			return AntialiasingMode.multisampling4X.rawValue
+			return AntialiasingMode.none.rawValue
 		case .shadowMap:
+			return AntialiasingMode.none.rawValue
+		case .postEffect:
 			return AntialiasingMode.none.rawValue
 		}
 	}
@@ -76,6 +84,9 @@ public enum ShaderType {
 			functionContants[FunctionConstant.hasLight.rawValue] = true
 			functionContants[FunctionConstant.recieveShadow.rawValue] = true // TODO: if recieve shadows.
 		case .shadowMap: break
+		case .postEffect:
+			functionContants[FunctionConstant.hasBaseColorMap.rawValue] = true
+			functionContants[FunctionConstant.recieveShadow.rawValue] = true // TODO: if recieve shadows.
 		case .normalColor:
 			functionContants[FunctionConstant.hasNormal.rawValue] = true // for debug shadera.
 		}
