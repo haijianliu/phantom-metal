@@ -48,6 +48,13 @@ class Scene {
 		
 		// Register renderable behaviours to renderpasses.
 		if let renderer: MeshRenderer = gameObject.getComponent() {
+			if renderer.material.shader.shaderType == .postEffect {
+				renderPasses[String(describing: PostEffectRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
+				gameObjects.append(gameObject)
+				return
+			}
+		}
+		if let renderer: MeshRenderer = gameObject.getComponent() {
 			renderPasses[String(describing: MainRenderPass.self)]?.renderableBehaviours.append(Weak(reference: renderer))
 		}
 		if let renderer: ShadowRenderer = gameObject.getComponent() {
