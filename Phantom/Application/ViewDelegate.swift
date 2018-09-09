@@ -40,6 +40,9 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 			_ = self.semaphore.wait(timeout: .distantFuture)
 			commandBuffer.addCompletedHandler() { _ in self.semaphore.signal() } // TODO: capture
 			for drawable in self.drawables { drawable.reference?.draw(in: view, by: commandBuffer) }
+			// TODO: render target.
+			// If rendering to core animation layer.
+			if let currentDrawable = view.currentDrawable { commandBuffer.present(currentDrawable) }
 			commandBuffer.commit()
 		}
 	}
