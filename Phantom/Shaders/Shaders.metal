@@ -32,6 +32,7 @@ typedef struct
 	float3 normal [[attribute(VertexAttributeNormal), function_constant(use_normal)]];
 } Vertex;
 
+// TODO: check if uses world positions.
 /// Inout parameters.
 typedef struct
 {
@@ -93,7 +94,7 @@ fragment float4 standardFragment(ColorInOut in [[stage_in]], StandardFragmentPar
 		float3 lightColor = float3(0, 0, 0);
 		for (int i = 0; i < parameter.lightbuffer.count; i++) {
 			float3 lightVector = normalize(parameter.lightbuffer.light[i].position - in.worldPosition);
-			float lightFactor = fmax(dot(lightVector, in.worldNormal), 0);
+			float lightFactor = fmax(dot(lightVector, in.worldNormal), 0.04);
 			lightColor += lightFactor * parameter.lightbuffer.light[i].intensity * parameter.lightbuffer.light[i].color;
 		}
 		color *= lightColor;
@@ -123,8 +124,8 @@ fragment float4 standardFragment(ColorInOut in [[stage_in]], StandardFragmentPar
 		if (true) {
 			float texelSize = 1.0 / parameter.shadowMap.get_width();
 			for(int i = -2; i <= 2; i++) {
-				float pcfDepth = parameter.shadowMap.sample(shadowSampler, lightSpaceTexcoord + float2(i * gaussianLinearSamplingOffset[abs(i)], 0) * texelSize);
-				shadowFactor += (currentDepth - shadowBias > pcfDepth ? (gaussianLinearSamplingWeight[abs(i)] + gaussianLinearSamplingWeight[abs(i)]) : 1);
+				float pcfDepth = parameter.shadowMap.sample(shadowSampler, lightSpaceTexcoord + float2(sign(float(i)) * gaussianLinearSamplingOffset[abs(i)], 0) * texelSize);
+				shadowFactor += (currentDepth - shadowBias > pcfDepth ? gaussianLinearSamplingWeight[abs(i)] : 1);
 			}
 			shadowFactor /= 5.0;
 		} else {
@@ -142,4 +143,53 @@ fragment float4 standardFragment(ColorInOut in [[stage_in]], StandardFragmentPar
 fragment float4 normalColorFragment(ColorInOut in [[stage_in]])
 {
 	return float4(in.worldNormal, 1);
+}
+
+/// Direct vertex shader using position and texcoord and without camera projections for directly screen rendering.
+vertex ColorInOut directVertex(Vertex in [[stage_in]])
+{
+	ColorInOut out;
+	
+	out.projectionPosition = float4(-in.position.x, in.position.z, 0.5, 1);
+	
+	if (has_any_map) {
+		out.texcoord = float2(1 - in.texcoord.x, 1 - in.texcoord.y);
+	}
+	
+	return out;
+}
+
+fragment float4 postEffectFragment(ColorInOut in [[stage_in]], StandardFragmentParameter parameter)
+{
+	float3 color = float3(0, 0, 0);
+	
+	if (has_base_color_map && recieve_shadow) {
+		constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
+		constexpr sampler depthSampler(coord::normalized, mip_filter::linear, mag_filter::linear, min_filter::linear, address::clamp_to_border, compare_func::less);
+		float closestDepth = parameter.shadowMap.sample(colorSampler, in.texcoord, level(0));
+		closestDepth = closestDepth * 100 - 99;
+		half3 colorSample = half3(0);
+		float texelSize = 1.0 / parameter.colorMap.get_width();
+		for (int i = -2; i <= 2; i++) {
+//			for (int l = 0; l < 5; l++) {
+//				colorSample += parameter.colorMap.sample(colorSampler, in.texcoord + float2(sign(float(i)) * gaussianLinearSamplingOffset[abs(i)], 0) * texelSize, level(l)).xyz * gaussianLinearSamplingWeight[abs(i)];
+//			}
+			colorSample += parameter.colorMap.sample(colorSampler, in.texcoord + float2(sign(float(i)) * gaussianLinearSamplingOffset[abs(i)], 0) * texelSize, level(4*closestDepth)).xyz * gaussianLinearSamplingWeight[abs(i)];
+		}
+//		colorSample /= 5;
+		color = float3(colorSample);
+//		color = color / (color + 1);
+	}
+	
+//	if (has_base_color_map) {
+//		constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
+//		constexpr sampler depthSampler(coord::normalized, mip_filter::linear, mag_filter::linear, min_filter::linear, address::clamp_to_border, compare_func::less);
+//
+//		float closestDepth = parameter.shadowMap.sample(colorSampler, in.texcoord, level(0));
+//		closestDepth = pow(closestDepth * 100 - 99.1, 2.2);
+//		half4 colorSample = parameter.colorMap.sample(colorSampler, in.texcoord, level(2*closestDepth));
+//		color = float3(colorSample.xyz);
+//	}
+	
+	return float4(color, 1);
 }
