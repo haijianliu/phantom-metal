@@ -15,7 +15,7 @@ extension Application {
 	}
 	
 	/// Add a mtkView to views and set it as the current active view (since only supported for one view by now)
-	public static func launch(view: MTKView) {
+	public static func launch(view: MTKView, descriptor: ViewDescriptor = ViewDescriptor()) {
 		// Select the default device to render with.
 		guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
 			print("Metal is not supported on this device")
@@ -23,13 +23,17 @@ extension Application {
 		}
 		Application.sharedInstance.device = defaultDevice
 		
-		// Set metal kit view
+		// Set MTKView.
 		// TODO: refactor.
 		view.device = defaultDevice
-		view.colorPixelFormat = ShaderType.postEffect.colorAttachmentsPixelFormat[0]
-		view.depthStencilPixelFormat = ShaderType.postEffect.depthAttachmentPixelFormat
-		view.sampleCount = AntialiasingMode.none.rawValue  // TODO: Max sampling test.
-		view.clearColor = MTLClearColorMake(0.01, 0.01, 0.03, 1)
+		// TODO: use this view descriptor color format to set resolve color target format.
+		view.colorPixelFormat = descriptor.colorPixelFormat
+		view.depthStencilPixelFormat = descriptor.depthStencilPixelFormat
+		// TODO: Max sampling test.
+		view.sampleCount = descriptor.sampleCount
+		view.clearColor = descriptor.clearColor
+		view.clearDepth = descriptor.clearDepth
+		view.clearStencil = descriptor.clearStencil
 		Application.sharedInstance.view = view
 		
 		// TODO: This will be a Display process
