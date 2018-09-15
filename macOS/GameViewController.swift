@@ -16,7 +16,13 @@ class GameViewController: NSViewController {
 			return
 		}
 		
+		var descriptor = ViewDescriptor()
+		descriptor.colorPixelFormat = .bgra8Unorm_srgb
+		descriptor.depthStencilPixelFormat = .depth32Float_stencil8
+		// TODO: setup posteffect.
+		descriptor.usePostEffect = true
+		
 		// Add this mtkview and set it as the current active display
-		Application.launch(view: mtkView)
+		Application.launch(view: mtkView, descriptor: descriptor)
 	}
 }
