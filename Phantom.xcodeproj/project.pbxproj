@@ -81,7 +81,6 @@
 		60652FF320F0B3800054C962 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FEE20F0B3800054C962 /* GameViewController.swift */; };
 		60652FF420F0B3800054C962 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60652FEF20F0B3800054C962 /* Main.storyboard */; };
 		60652FF520F0B3800054C962 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FF120F0B3800054C962 /* AppDelegate.swift */; };
-		60652FF620F0B3800054C962 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60652FF220F0B3800054C962 /* Info.plist */; };
 		606FF38220B001AD00CC704B /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606FF37F20B0012E00CC704B /* Drawable.swift */; };
 		606FF38320B001AD00CC704B /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606FF37F20B0012E00CC704B /* Drawable.swift */; };
 		60712C32213136A7005EA968 /* TextureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60712C31213136A7005EA968 /* TextureType.swift */; };
@@ -657,11 +656,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = haijian;
 				TargetAttributes = {
 					601A9DFA2088F4F2002045DA = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					601A9E022088F4F2002045DA = {
@@ -679,6 +679,7 @@
 					};
 					6072070A20538ABE0068F691 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					60E6B3C620F9864B00F3AE02 = {
@@ -741,7 +742,6 @@
 			files = (
 				60A0D4732089035500D08572 /* Assets.xcassets in Resources */,
 				60652FF420F0B3800054C962 /* Main.storyboard in Resources */,
-				60652FF620F0B3800054C962 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -997,7 +997,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = Phantom/BridgingHeaders/Uniform.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1028,7 +1028,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = Phantom/BridgingHeaders/Uniform.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1094,6 +1094,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1101,6 +1102,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1148,6 +1150,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1155,6 +1158,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1270,7 +1274,7 @@
 				PRODUCT_NAME = Phantom;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1290,7 +1294,7 @@
 				PRODUCT_NAME = Phantom;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
