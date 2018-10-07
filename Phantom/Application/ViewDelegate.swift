@@ -31,13 +31,11 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		// TODO: order.
 		guard let shadowMapRenderPass: ShadowMapRenderPass = addRenderPass() else { return }
 		guard let mainRenderPass: MainRenderPass = addRenderPass() else { return }
-		guard let postEffectRenderPass: PostEffectRenderPass = addRenderPass() else { return }
+		guard let _: PostEffectRenderPass = addRenderPass() else { return }
 		
 		// Set shadowmap renderpass target to main renderpass texture.
 		// TODO: target type?
 		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
-		postEffectRenderPass.colorMap = mainRenderPass.targets[0].makeTextureView(pixelFormat: ShaderType.standard.colorAttachmentsPixelFormat[0])
-		postEffectRenderPass.depthMap = mainRenderPass.targets[1].makeTextureView(pixelFormat: ShaderType.standard.depthAttachmentPixelFormat)
 	}
 	
 	/// Add renderpasses.
@@ -81,5 +79,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		// TODO: refactor.
 		guard let shadow: Camera = Camera.shadow else { return }
 		shadow.projectionMatrix = Math.perspective(fovyRadians: shadow.fieldOfView, aspect: aspect, near: shadow.nearClipPlane, far: shadow.farClipPlane)
+		
+		renderPasses[String(describing: PostEffectRenderPass.self)]?.isViewDirty = true
 	}
 }
