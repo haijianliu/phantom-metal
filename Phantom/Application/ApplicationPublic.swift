@@ -34,6 +34,7 @@ extension Application {
 		view.clearColor = descriptor.clearColor
 		view.clearDepth = descriptor.clearDepth
 		view.clearStencil = descriptor.clearStencil
+		view.framebufferOnly = false
 		Application.sharedInstance.view = view
 		
 		// TODO: This will be a Display process
