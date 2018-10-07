@@ -8,10 +8,19 @@ class RenderPass: Drawable, Registrable {
 	// TODO: double textures for asyc render?
 	var targets = [MTLTexture]()
 	
-	private var viewColor: MTLTexture?
-	private var viewDepth: MTLTexture?
-	
 	var isViewDirty = false
+	
+	private var viewColor: MTLTexture? {
+		didSet {
+			isViewDirty = (viewColor == nil) ? true : false
+		}
+	}
+	
+	private var viewDepth: MTLTexture? {
+		didSet {
+			isViewDirty = (viewDepth == nil) ? true : false
+		}
+	}
 	
 	var renderableBehaviours = ContiguousArray<Weak<Renderable>>()
 	
@@ -39,8 +48,8 @@ class RenderPass: Drawable, Registrable {
 		guard let color = viewColor else {
 			DispatchQueue.global(qos: .background).async {
 				let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: texture.pixelFormat, width: texture.width, height: texture.height, mipmapped: mipmapped)
+				descriptor.storageMode = .private
 				self.viewColor = view.device?.makeTexture(descriptor: descriptor)
-				self.isViewDirty = false
 			}
 			blitCommandEncoder.endEncoding()
 			return nil
@@ -57,7 +66,6 @@ class RenderPass: Drawable, Registrable {
 		} else {
 			blitCommandEncoder.endEncoding()
 			viewColor = nil
-			isViewDirty = true
 		}
 		
 		return viewColor
@@ -70,7 +78,6 @@ class RenderPass: Drawable, Registrable {
 				let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: texture.pixelFormat, width: texture.width, height: texture.height, mipmapped: false)
 				descriptor.storageMode = .private
 				self.viewDepth = view.device?.makeTexture(descriptor: descriptor)
-				self.isViewDirty = false
 			}
 			blitCommandEncoder.endEncoding()
 			return nil
