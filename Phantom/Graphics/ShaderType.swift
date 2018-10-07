@@ -49,18 +49,18 @@ public enum ShaderType {
 	
 	internal var depthAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
-		case .postEffect:
+		case .postEffect, .standard, .normalColor:
 			return MTLPixelFormat.depth32Float_stencil8
-		case .standard, .normalColor, .shadowMap:
+		case .shadowMap:
 			return MTLPixelFormat.depth32Float
 		}
 	}
 	
 	internal var stencilAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
-		case .postEffect:
+		case .postEffect, .standard, .normalColor:
 			return MTLPixelFormat.depth32Float_stencil8
-		case .standard, .normalColor, .shadowMap:
+		case .shadowMap:
 			return MTLPixelFormat.invalid
 		}
 	}
