@@ -8,6 +8,11 @@ class RenderPass: Drawable, Registrable {
 	//TODO: double textures for asyc render?
 	var targets = [MTLTexture]()
 	
+	var viewColor: MTLTexture?
+	var viewDepth: MTLTexture?
+	
+	var isViewDirty = false
+	
 	var renderableBehaviours = ContiguousArray<Weak<Renderable>>()
 	
 	var renderPassDescriptor = MTLRenderPassDescriptor()
