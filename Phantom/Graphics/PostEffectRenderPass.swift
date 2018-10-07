@@ -21,37 +21,19 @@ class PostEffectRenderPass: RenderPass {
 		// TODO: safety skip all.
 		// TODO: customize this function varying from render passes.
 		guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
+		
+		// Blit view targets.
 		guard let currentViewColor = renderPassDescriptor.colorAttachments[0].texture else { return }
 		guard let currentViewDepth = renderPassDescriptor.depthAttachment.texture else { return }
+		guard let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder() else { return }
 		
-		// Dispath init view textures.
-		guard let color = viewColor, let depth = viewDepth else {
-			DispatchQueue.global(qos: .background).async {
-				let colorDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: currentViewColor.pixelFormat, width: currentViewColor.width, height: currentViewColor.height, mipmapped: true)
-				let depthDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: currentViewDepth.pixelFormat, width: currentViewDepth.width, height: currentViewDepth.height, mipmapped: false)
-				depthDescriptor.storageMode = .private
-				self.viewColor = view.device?.makeTexture(descriptor: colorDescriptor)
-				self.viewDepth = view.device?.makeTexture(descriptor: depthDescriptor)
-				self.isViewDirty = false
-			}
-			return
-		}
+		guard let color = blitViewColor(in: view, by: blitCommandEncoder, from: currentViewColor, mipmapped: true) else { return }
+		guard let depth = blitViewDepth(in: view, by: blitCommandEncoder, from: currentViewDepth) else { return }
 		
-		let origin = MTLOrigin(x: 0, y: 0, z: 0)
-		let size = MTLSize(width: currentViewColor.width, height: currentViewColor.height, depth: currentViewColor.depth)
-
-		if !isViewDirty && size.width == color.width && size.height == color.height {
-			guard let blitCommandeEncoder = commandBuffer.makeBlitCommandEncoder() else { return }
-			blitCommandeEncoder.copy(from: currentViewColor, sourceSlice: 0, sourceLevel: 0, sourceOrigin: origin, sourceSize: size, to: color, destinationSlice: 0, destinationLevel: 0, destinationOrigin: origin)
-			blitCommandeEncoder.generateMipmaps(for: color)
-			blitCommandeEncoder.copy(from: currentViewDepth, sourceSlice: 0, sourceLevel: 0, sourceOrigin: origin, sourceSize: size, to: depth, destinationSlice: 0, destinationLevel: 0, destinationOrigin: origin)
-			blitCommandeEncoder.endEncoding()
-		} else {
-			viewColor = nil
-			viewDepth = nil
-			return
-		}
+		blitCommandEncoder.endEncoding()
 		
+		
+		// Setup render command.
 		// TODO: safety skip all.
 		guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
 		
@@ -60,20 +42,14 @@ class PostEffectRenderPass: RenderPass {
 		// Render pass encoding.
 		renderCommandEncoder.setDepthStencilState(depthStencilState)
 		
-		// Setup shadow map.
-//		if let color = colorMap {
-			// TODO: sampler states. (MTLSamplerDescriptor) (renderCommandEncoder.setFragmentSamplerStates)
-			// TODO: use texture functions.
-			renderCommandEncoder.setFragmentTexture(color, index: TextureType.color.textureIndex)
-//		}
-		// Setup shadow map.
-//		if let shadow = depthMap {
-			// TODO: sampler states. (MTLSamplerDescriptor) (renderCommandEncoder.setFragmentSamplerStates)
-			// TODO: use texture functions.
-			renderCommandEncoder.setFragmentTexture(depth, index: TextureType.shadow.textureIndex)
-//		}
+		// Setup effect sources.
+		// TODO: sampler states. (MTLSamplerDescriptor) (renderCommandEncoder.setFragmentSamplerStates)
+		// TODO: use texture functions.
+		renderCommandEncoder.setFragmentTexture(color, index: TextureType.color.textureIndex)
+		renderCommandEncoder.setFragmentTexture(depth, index: TextureType.shadow.textureIndex)
 		
 		// Encode camera.
+		// TODO: will use main camera.
 		guard let camera = Camera.shadow else { return }
 		camera.encode(to: renderCommandEncoder)
 		
