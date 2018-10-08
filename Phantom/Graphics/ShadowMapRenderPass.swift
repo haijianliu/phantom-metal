@@ -14,12 +14,11 @@ class ShadowMapRenderPass: RenderPass {
 	}
 	
 	override func register() {
-		let textureDescriptor = MTLTextureDescriptor()
-		textureDescriptor.height = 512 // TODO: set size.
-		textureDescriptor.width = 512
+		// TODO: set size.
+		let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: ShaderType.shadowMap.depthAttachmentPixelFormat, width: 512, height: 512, mipmapped: false)
 		textureDescriptor.usage = [.shaderRead, .renderTarget]
-		textureDescriptor.pixelFormat = ShaderType.shadowMap.depthAttachmentPixelFormat
 		textureDescriptor.resourceOptions = .storageModePrivate
+		print(textureDescriptor)
 		guard let newTexture = depthStencilState.device.makeTexture(descriptor: textureDescriptor) else { return }
 		targets.append(newTexture)
 		
