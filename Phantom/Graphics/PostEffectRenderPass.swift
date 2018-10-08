@@ -23,13 +23,9 @@ class PostEffectRenderPass: RenderPass {
 		guard let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
 		
 		// Blit view targets.
-		guard let currentViewColor = renderPassDescriptor.colorAttachments[0].texture else { return }
-		guard let currentViewDepth = renderPassDescriptor.depthAttachment.texture else { return }
 		guard let blitCommandEncoder = commandBuffer.makeBlitCommandEncoder() else { return }
-		
-		guard let color = blitViewColor(in: view, by: blitCommandEncoder, from: currentViewColor, mipmapped: true) else { return }
-		guard let depth = blitViewDepth(in: view, by: blitCommandEncoder, from: currentViewDepth) else { return }
-		
+		guard let color = blitViewTarget(by: blitCommandEncoder, targetType: .color, mipmapped: true) else { return }
+		guard let depth = blitViewTarget(by: blitCommandEncoder, targetType: .depth, mipmapped: false) else { return }
 		blitCommandEncoder.endEncoding()
 		
 		
