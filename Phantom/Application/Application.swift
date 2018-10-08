@@ -21,4 +21,13 @@ public class Application {
 	// TODO: remove
 	/// MTKViewDelegat reference holder.
 	var viewDelegate = ViewDelegate()
+	
+	static func currentViewTarget(targetType: RenderTargetType) -> MTLTexture? {
+		switch targetType {
+		case .depth:
+			return Application.sharedInstance.view?.currentRenderPassDescriptor?.depthAttachment.texture
+		default:
+			return Application.sharedInstance.view?.currentRenderPassDescriptor?.colorAttachments[targetType.rawValue].texture
+		}
+	}
 }
