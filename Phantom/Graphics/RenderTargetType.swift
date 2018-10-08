@@ -1,6 +1,6 @@
 // Copyright © haijian. All rights reserved.
 
-enum RenderTargetType {
-	case color
+enum RenderTargetType: Int, CaseIterable {
+	case color = 0
 	case depth
 }
