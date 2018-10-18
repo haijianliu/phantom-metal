@@ -2,7 +2,7 @@
 
 import UIKit
 import MetalKit
-import PhantomTouchKit
+import PhantomKit
 
 // Our iOS specific view controller
 class GameViewController: UIViewController {
