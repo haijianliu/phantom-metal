@@ -54,11 +54,12 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	// TODO: only render render pass here.
 	public func draw(in view: MTKView) {
 		// Updatable behaviours.
-		DispatchQueue.global(qos: .userInitiated).async {
+		// TODO: support triple buffer dispatch updates.
+//		DispatchQueue.global(qos: .userInitiated).async {
 			Application.sharedInstance.scene?.update()
-		}
+//		}
 		// Drawable behaviours.
-		DispatchQueue.main.async {
+//		DispatchQueue.main.async {
 			guard let commandBuffer = self.commandQueue?.makeCommandBuffer() else { return }
 			// TODO: multiple threads draw multiple queue (realtime and offline rendering)
 			_ = self.semaphore.wait(timeout: .distantFuture)
@@ -68,7 +69,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 			// If rendering to core animation layer.
 			if let currentDrawable = view.currentDrawable { commandBuffer.present(currentDrawable) }
 			commandBuffer.commit()
-		}
+//		}
 	}
 
 	public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
