@@ -49,12 +49,7 @@ extension Application {
 		Application.sharedInstance.scene = Scene(device: defaultDevice)
 		
 		// TODO: build library according to application delegate.
-		do {
-			Application.sharedInstance.library = try defaultDevice.makeLibrary(filepath: "DefaultShaders.metallib")
-		} catch {
-			print(error)
-			return
-		}
+		Application.sharedInstance.library = defaultDevice.makeDefaultLibrary()
 		
 		// Initialize renderpasses.
 		Application.sharedInstance.viewDelegate.launch()
