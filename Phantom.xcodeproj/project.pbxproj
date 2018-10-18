@@ -46,6 +46,110 @@
 		601A9E3E2088F558002045DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F7615206958B300E9922F /* Constants.swift */; };
 		601E3BAE2107645300030185 /* GameObjectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E3BAC2107644C00030185 /* GameObjectComponent.swift */; };
 		601E3BAF2107645300030185 /* GameObjectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E3BAC2107644C00030185 /* GameObjectComponent.swift */; };
+		6033132C2176483300B42D39 /* PhantomTouchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603313232176483300B42D39 /* PhantomTouchKit.framework */; };
+		603313332176483300B42D39 /* PhantomTouchKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603313322176483300B42D39 /* PhantomTouchKitTests.swift */; };
+		603313382176483300B42D39 /* PhantomTouchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603313232176483300B42D39 /* PhantomTouchKit.framework */; };
+		603313392176483300B42D39 /* PhantomTouchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 603313232176483300B42D39 /* PhantomTouchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		60331341217649D800B42D39 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F2C2A206641F200C534C8 /* Math.swift */; };
+		60331342217649D800B42D39 /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F760D206953CE00E9922F /* MatrixTransform.swift */; };
+		60331343217649D800B42D39 /* Trigonometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F76112069577D00E9922F /* Trigonometry.swift */; };
+		60331344217649D800B42D39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F7615206958B300E9922F /* Constants.swift */; };
+		60331345217649D800B42D39 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
+		60331346217649D900B42D39 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F2C2A206641F200C534C8 /* Math.swift */; };
+		60331347217649D900B42D39 /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F760D206953CE00E9922F /* MatrixTransform.swift */; };
+		60331348217649D900B42D39 /* Trigonometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F76112069577D00E9922F /* Trigonometry.swift */; };
+		60331349217649D900B42D39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F7615206958B300E9922F /* Constants.swift */; };
+		6033134A217649D900B42D39 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
+		6033134B217649E400B42D39 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605B0545208CE800000AB25A /* Weak.swift */; };
+		6033134C217649E400B42D39 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B712220791905004EFF95 /* Error.swift */; };
+		6033134D217649E500B42D39 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605B0545208CE800000AB25A /* Weak.swift */; };
+		6033134E217649E500B42D39 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B712220791905004EFF95 /* Error.swift */; };
+		6033134F217649EB00B42D39 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053011720665F4000AAAF1F /* Application.swift */; };
+		60331350217649EB00B42D39 /* ApplicationPublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */; };
+		60331351217649EB00B42D39 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
+		60331352217649EB00B42D39 /* ViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6002D3872144F73F009FFD26 /* ViewDescriptor.swift */; };
+		60331353217649EB00B42D39 /* ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206E420538ABE0068F691 /* ViewDelegate.swift */; };
+		60331354217649EB00B42D39 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD6B95211EA76C005B61B7 /* Scene.swift */; };
+		60331355217649EB00B42D39 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6053011720665F4000AAAF1F /* Application.swift */; };
+		60331356217649EB00B42D39 /* ApplicationPublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */; };
+		60331357217649EB00B42D39 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
+		60331358217649EB00B42D39 /* ViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6002D3872144F73F009FFD26 /* ViewDescriptor.swift */; };
+		60331359217649EB00B42D39 /* ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607206E420538ABE0068F691 /* ViewDelegate.swift */; };
+		6033135A217649EB00B42D39 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD6B95211EA76C005B61B7 /* Scene.swift */; };
+		6033135B217649F300B42D39 /* TripleBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6026CB8E2084E0DD00537B04 /* TripleBuffer.swift */; };
+		6033135C217649F300B42D39 /* UniformBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AE97B320FC70DF00D6ABA5 /* UniformBuffer.swift */; };
+		6033135D217649F300B42D39 /* AntialiasingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60784B7920F4E4AD00C02D33 /* AntialiasingMode.swift */; };
+		6033135E217649F300B42D39 /* RenderTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E97AF1216A55BA00E65F1D /* RenderTargetType.swift */; };
+		6033135F217649F300B42D39 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD6B9B211EC4AB005B61B7 /* RenderPass.swift */; };
+		60331360217649F300B42D39 /* MainRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D645C02094C1B900646198 /* MainRenderPass.swift */; };
+		60331361217649F300B42D39 /* ShadowMapRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DC1EAC211F2ACD006ED444 /* ShadowMapRenderPass.swift */; };
+		60331362217649F300B42D39 /* PostEffectRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */; };
+		60331363217649F300B42D39 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606FF37F20B0012E00CC704B /* Drawable.swift */; };
+		60331364217649F300B42D39 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BF2090E33700F69621 /* Material.swift */; };
+		60331365217649F300B42D39 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607258A0209589E6004996FA /* Shader.swift */; };
+		60331366217649F300B42D39 /* ShaderLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B706C210E1316001FD253 /* ShaderLoader.swift */; };
+		60331367217649F300B42D39 /* ShaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60566A2A20F9E8F2004861FB /* ShaderType.swift */; };
+		60331368217649F300B42D39 /* MTLDataTypeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D98CD62108E78A00924532 /* MTLDataTypeMapping.swift */; };
+		60331369217649F300B42D39 /* TextureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60712C31213136A7005EA968 /* TextureType.swift */; };
+		6033136A217649F300B42D39 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E2DDC206F72CB00428A4D /* Texture.swift */; };
+		6033136B217649F300B42D39 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FDC20F0B0430054C962 /* Mesh.swift */; };
+		6033136C217649F300B42D39 /* MeshLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B706F210E132F001FD253 /* MeshLoader.swift */; };
+		6033136D217649F300B42D39 /* RenderEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601355D92094EB880093AF6E /* RenderEncodable.swift */; };
+		6033136E217649F300B42D39 /* Registrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60712C34213141A3005EA968 /* Registrable.swift */; };
+		6033136F217649F300B42D39 /* TripleBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6026CB8E2084E0DD00537B04 /* TripleBuffer.swift */; };
+		60331370217649F300B42D39 /* UniformBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AE97B320FC70DF00D6ABA5 /* UniformBuffer.swift */; };
+		60331371217649F300B42D39 /* AntialiasingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60784B7920F4E4AD00C02D33 /* AntialiasingMode.swift */; };
+		60331372217649F300B42D39 /* RenderTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E97AF1216A55BA00E65F1D /* RenderTargetType.swift */; };
+		60331373217649F300B42D39 /* RenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD6B9B211EC4AB005B61B7 /* RenderPass.swift */; };
+		60331374217649F300B42D39 /* MainRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D645C02094C1B900646198 /* MainRenderPass.swift */; };
+		60331375217649F300B42D39 /* ShadowMapRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DC1EAC211F2ACD006ED444 /* ShadowMapRenderPass.swift */; };
+		60331376217649F300B42D39 /* PostEffectRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */; };
+		60331377217649F300B42D39 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606FF37F20B0012E00CC704B /* Drawable.swift */; };
+		60331378217649F300B42D39 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BF2090E33700F69621 /* Material.swift */; };
+		60331379217649F300B42D39 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607258A0209589E6004996FA /* Shader.swift */; };
+		6033137A217649F300B42D39 /* ShaderLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B706C210E1316001FD253 /* ShaderLoader.swift */; };
+		6033137B217649F300B42D39 /* ShaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60566A2A20F9E8F2004861FB /* ShaderType.swift */; };
+		6033137C217649F300B42D39 /* MTLDataTypeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D98CD62108E78A00924532 /* MTLDataTypeMapping.swift */; };
+		6033137D217649F300B42D39 /* TextureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60712C31213136A7005EA968 /* TextureType.swift */; };
+		6033137E217649F300B42D39 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E2DDC206F72CB00428A4D /* Texture.swift */; };
+		6033137F217649F300B42D39 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FDC20F0B0430054C962 /* Mesh.swift */; };
+		60331380217649F300B42D39 /* MeshLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B706F210E132F001FD253 /* MeshLoader.swift */; };
+		60331381217649F300B42D39 /* RenderEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601355D92094EB880093AF6E /* RenderEncodable.swift */; };
+		60331382217649F300B42D39 /* Registrable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60712C34213141A3005EA968 /* Registrable.swift */; };
+		60331383217649FC00B42D39 /* GameObjectTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609064FC2083A58C0047D411 /* GameObjectTag.swift */; };
+		60331384217649FC00B42D39 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030BC83206FC00300918010 /* GameObject.swift */; };
+		60331385217649FC00B42D39 /* GameObjectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E3BAC2107644C00030185 /* GameObjectComponent.swift */; };
+		60331386217649FC00B42D39 /* GameObjectParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5B4662103232400930DC2 /* GameObjectParent.swift */; };
+		60331387217649FC00B42D39 /* GameObjectPrimitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FE120F0B07D0054C962 /* GameObjectPrimitive.swift */; };
+		60331388217649FC00B42D39 /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E344208B1D1300C4E8AA /* Space.swift */; };
+		60331389217649FC00B42D39 /* GameObjectTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609064FC2083A58C0047D411 /* GameObjectTag.swift */; };
+		6033138A217649FC00B42D39 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030BC83206FC00300918010 /* GameObject.swift */; };
+		6033138B217649FC00B42D39 /* GameObjectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E3BAC2107644C00030185 /* GameObjectComponent.swift */; };
+		6033138C217649FC00B42D39 /* GameObjectParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A5B4662103232400930DC2 /* GameObjectParent.swift */; };
+		6033138D217649FC00B42D39 /* GameObjectPrimitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60652FE120F0B07D0054C962 /* GameObjectPrimitive.swift */; };
+		6033138E217649FC00B42D39 /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E344208B1D1300C4E8AA /* Space.swift */; };
+		6033138F21764A0200B42D39 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B20C2081C9270052E413 /* Component.swift */; };
+		6033139021764A0200B42D39 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B71262079E27A004EFF95 /* Transform.swift */; };
+		6033139121764A0200B42D39 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B218208203750052E413 /* Camera.swift */; };
+		6033139221764A0200B42D39 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BC2090DD4600F69621 /* Renderer.swift */; };
+		6033139321764A0200B42D39 /* MeshRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B2102081DB140052E413 /* MeshRenderer.swift */; };
+		6033139421764A0200B42D39 /* ShadowRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DC1EAF21201E3A006ED444 /* ShadowRenderer.swift */; };
+		6033139521764A0200B42D39 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60379D7B210F6134008DA867 /* Light.swift */; };
+		6033139621764A0200B42D39 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B20C2081C9270052E413 /* Component.swift */; };
+		6033139721764A0200B42D39 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606B71262079E27A004EFF95 /* Transform.swift */; };
+		6033139821764A0200B42D39 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B218208203750052E413 /* Camera.swift */; };
+		6033139921764A0200B42D39 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856BC2090DD4600F69621 /* Renderer.swift */; };
+		6033139A21764A0200B42D39 /* MeshRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6054B2102081DB140052E413 /* MeshRenderer.swift */; };
+		6033139B21764A0200B42D39 /* ShadowRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DC1EAF21201E3A006ED444 /* ShadowRenderer.swift */; };
+		6033139C21764A0200B42D39 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60379D7B210F6134008DA867 /* Light.swift */; };
+		6033139D21764A0800B42D39 /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
+		6033139E21764A0800B42D39 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E355208B4F8B00C4E8AA /* Updatable.swift */; };
+		6033139F21764A0800B42D39 /* Lightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60379D78210F60B5008DA867 /* Lightable.swift */; };
+		603313A021764A0800B42D39 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B82090D3D500F69621 /* Renderable.swift */; };
+		603313A121764A0900B42D39 /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
+		603313A221764A0900B42D39 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E355208B4F8B00C4E8AA /* Updatable.swift */; };
+		603313A321764A0900B42D39 /* Lightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60379D78210F60B5008DA867 /* Lightable.swift */; };
+		603313A421764A0900B42D39 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608856B82090D3D500F69621 /* Renderable.swift */; };
 		60379D79210F60B5008DA867 /* Lightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60379D78210F60B5008DA867 /* Lightable.swift */; };
 		60379D7A210F60B5008DA867 /* Lightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60379D78210F60B5008DA867 /* Lightable.swift */; };
 		60379D7C210F6134008DA867 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60379D7B210F6134008DA867 /* Light.swift */; };
@@ -54,8 +158,11 @@
 		603B706E210E1316001FD253 /* ShaderLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B706C210E1316001FD253 /* ShaderLoader.swift */; };
 		603B7070210E132F001FD253 /* MeshLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B706F210E132F001FD253 /* MeshLoader.swift */; };
 		603B7071210E132F001FD253 /* MeshLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B706F210E132F001FD253 /* MeshLoader.swift */; };
-		60449C0A2104906600E2C910 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60449C0721048FF100E2C910 /* Metal.framework */; };
 		60449C0B2104907600E2C910 /* PhantomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601A9DFB2088F4F2002045DA /* PhantomKit.framework */; };
+		6044EE71217788740079B42C /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A9D7282176545200EA91B0 /* Metal.framework */; };
+		604B5C092178C5B700F39035 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
+		604B5C0A2178C6F100F39035 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
+		604B5C0B2178C71E00F39035 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A9D7282176545200EA91B0 /* Metal.framework */; };
 		6051E346208B1DCC00C4E8AA /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E344208B1D1300C4E8AA /* Space.swift */; };
 		6051E347208B1DCC00C4E8AA /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E344208B1D1300C4E8AA /* Space.swift */; };
 		6051E34A208B3F1700C4E8AA /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
@@ -123,7 +230,6 @@
 		60E5CB10208AE60500AE6090 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072070D20538ABE0068F691 /* AppDelegate.swift */; };
 		60E5CB11208AE60A00AE6090 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072070F20538ABE0068F691 /* GameViewController.swift */; };
 		60E5CB17208AEF7B00AE6090 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */; };
-		60E6B3CE20F986DA00F3AE02 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
 		60E97AF2216A55BA00E65F1D /* RenderTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E97AF1216A55BA00E65F1D /* RenderTargetType.swift */; };
 		60E97AF3216A55BA00E65F1D /* RenderTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E97AF1216A55BA00E65F1D /* RenderTargetType.swift */; };
 		60EFBCD32143BBAC00ADE506 /* PostEffectRenderPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */; };
@@ -156,12 +262,26 @@
 			remoteGlobalIDString = 601A9DFA2088F4F2002045DA;
 			remoteInfo = PhantomKit;
 		};
-		60449C0E2104C20000E2C910 /* PBXContainerItemProxy */ = {
+		6033132D2176483300B42D39 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 607206DE20538ABE0068F691 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 60E6B3C620F9864B00F3AE02;
-			remoteInfo = DefaultShaders;
+			remoteGlobalIDString = 603313222176483300B42D39;
+			remoteInfo = PhantomTouchKit;
+		};
+		6033132F2176483300B42D39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607206DE20538ABE0068F691 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 607206EA20538ABE0068F691;
+			remoteInfo = "Phantom iOS";
+		};
+		603313362176483300B42D39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607206DE20538ABE0068F691 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 603313222176483300B42D39;
+			remoteInfo = PhantomTouchKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -173,6 +293,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				601A9E112088F4F2002045DA /* PhantomKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6033133F2176483300B42D39 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				603313392176483300B42D39 /* PhantomTouchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +323,12 @@
 		601E3BAC2107644C00030185 /* GameObjectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectComponent.swift; sourceTree = "<group>"; };
 		6026CB8E2084E0DD00537B04 /* TripleBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripleBuffer.swift; sourceTree = "<group>"; };
 		6030BC83206FC00300918010 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
+		603313232176483300B42D39 /* PhantomTouchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhantomTouchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		603313252176483300B42D39 /* PhantomTouchKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhantomTouchKit.h; sourceTree = "<group>"; };
+		603313262176483300B42D39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6033132B2176483300B42D39 /* PhantomTouchKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhantomTouchKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		603313322176483300B42D39 /* PhantomTouchKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhantomTouchKitTests.swift; sourceTree = "<group>"; };
+		603313342176483300B42D39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60379D78210F60B5008DA867 /* Lightable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lightable.swift; sourceTree = "<group>"; };
 		60379D7B210F6134008DA867 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		603B706C210E1316001FD253 /* ShaderLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderLoader.swift; sourceTree = "<group>"; };
@@ -199,7 +336,6 @@
 		603F760D206953CE00E9922F /* MatrixTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTransform.swift; sourceTree = "<group>"; };
 		603F76112069577D00E9922F /* Trigonometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigonometry.swift; sourceTree = "<group>"; };
 		603F7615206958B300E9922F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		60449C0721048FF100E2C910 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		6051E344208B1D1300C4E8AA /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
 		6051E348208B3D4C00C4E8AA /* Quaternion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
 		6051E351208B4F7E00C4E8AA /* Behaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behaviour.swift; sourceTree = "<group>"; };
@@ -247,6 +383,7 @@
 		608856BF2090E33700F69621 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		609064FC2083A58C0047D411 /* GameObjectTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectTag.swift; sourceTree = "<group>"; };
 		60A5B4662103232400930DC2 /* GameObjectParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObjectParent.swift; sourceTree = "<group>"; };
+		60A9D7282176545200EA91B0 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		60AE97B320FC70DF00D6ABA5 /* UniformBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniformBuffer.swift; sourceTree = "<group>"; };
 		60C6E51B210D9AD10041CA68 /* ApplicationPublic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPublic.swift; sourceTree = "<group>"; };
 		60D158122088FC2D00A2A876 /* Uniform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uniform.h; sourceTree = "<group>"; };
@@ -255,7 +392,6 @@
 		60DC1EAC211F2ACD006ED444 /* ShadowMapRenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowMapRenderPass.swift; sourceTree = "<group>"; };
 		60DC1EAF21201E3A006ED444 /* ShadowRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowRenderer.swift; sourceTree = "<group>"; };
 		60E5CB15208AEE6400AE6090 /* ApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
-		60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */ = {isa = PBXFileReference; explicitFileType = "archive.metal-library"; includeInIndex = 0; path = DefaultShaders.metallib; sourceTree = BUILT_PRODUCTS_DIR; };
 		60E97AF1216A55BA00E65F1D /* RenderTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderTargetType.swift; sourceTree = "<group>"; };
 		60EFBCD22143BBAC00ADE506 /* PostEffectRenderPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEffectRenderPass.swift; sourceTree = "<group>"; };
 		60FD6B95211EA76C005B61B7 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -278,10 +414,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		603313202176483300B42D39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		603313282176483300B42D39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6033132C2176483300B42D39 /* PhantomTouchKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607206E820538ABE0068F691 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603313382176483300B42D39 /* PhantomTouchKit.framework in Frameworks */,
+				6044EE71217788740079B42C /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,8 +449,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				604B5C0B2178C71E00F39035 /* Metal.framework in Frameworks */,
 				60449C0B2104907600E2C910 /* PhantomKit.framework in Frameworks */,
-				60449C0A2104906600E2C910 /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +473,24 @@
 				601A9E0C2088F4F2002045DA /* Info.plist */,
 			);
 			path = PhantomKitTests;
+			sourceTree = "<group>";
+		};
+		603313242176483300B42D39 /* PhantomTouchKit */ = {
+			isa = PBXGroup;
+			children = (
+				603313252176483300B42D39 /* PhantomTouchKit.h */,
+				603313262176483300B42D39 /* Info.plist */,
+			);
+			path = PhantomTouchKit;
+			sourceTree = "<group>";
+		};
+		603313312176483300B42D39 /* PhantomTouchKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				603313322176483300B42D39 /* PhantomTouchKitTests.swift */,
+				603313342176483300B42D39 /* Info.plist */,
+			);
+			path = PhantomTouchKitTests;
 			sourceTree = "<group>";
 		};
 		603F760A20694C2A00E9922F /* Shaders */ = {
@@ -402,6 +573,8 @@
 				607206E220538ABE0068F691 /* Phantom */,
 				601A9DFC2088F4F2002045DA /* PhantomKit */,
 				601A9E092088F4F2002045DA /* PhantomKitTests */,
+				603313242176483300B42D39 /* PhantomTouchKit */,
+				603313312176483300B42D39 /* PhantomTouchKitTests */,
 				607206ED20538ABE0068F691 /* iOS */,
 				60652FED20F0B3800054C962 /* tvOS */,
 				6072070C20538ABE0068F691 /* macOS */,
@@ -435,7 +608,8 @@
 				6072070B20538ABE0068F691 /* Phantom.app */,
 				601A9DFB2088F4F2002045DA /* PhantomKit.framework */,
 				601A9E032088F4F2002045DA /* PhantomKitTests.xctest */,
-				60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */,
+				603313232176483300B42D39 /* PhantomTouchKit.framework */,
+				6033132B2176483300B42D39 /* PhantomTouchKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -529,7 +703,7 @@
 		60E6B3D120F9870700F3AE02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				60449C0721048FF100E2C910 /* Metal.framework */,
+				60A9D7282176545200EA91B0 /* Metal.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -538,6 +712,13 @@
 
 /* Begin PBXHeadersBuildPhase section */
 		601A9DF82088F4F2002045DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6033131E2176483300B42D39 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -559,7 +740,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				60449C0F2104C20000E2C910 /* PBXTargetDependency */,
 			);
 			name = PhantomKit;
 			productName = PhantomKit;
@@ -585,6 +765,43 @@
 			productReference = 601A9E032088F4F2002045DA /* PhantomKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		603313222176483300B42D39 /* PhantomTouchKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6033133E2176483300B42D39 /* Build configuration list for PBXNativeTarget "PhantomTouchKit" */;
+			buildPhases = (
+				6033131E2176483300B42D39 /* Headers */,
+				6033131F2176483300B42D39 /* Sources */,
+				603313202176483300B42D39 /* Frameworks */,
+				603313212176483300B42D39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhantomTouchKit;
+			productName = PhantomTouchKit;
+			productReference = 603313232176483300B42D39 /* PhantomTouchKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6033132A2176483300B42D39 /* PhantomTouchKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 603313402176483300B42D39 /* Build configuration list for PBXNativeTarget "PhantomTouchKitTests" */;
+			buildPhases = (
+				603313272176483300B42D39 /* Sources */,
+				603313282176483300B42D39 /* Frameworks */,
+				603313292176483300B42D39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6033132E2176483300B42D39 /* PBXTargetDependency */,
+				603313302176483300B42D39 /* PBXTargetDependency */,
+			);
+			name = PhantomTouchKitTests;
+			productName = PhantomTouchKitTests;
+			productReference = 6033132B2176483300B42D39 /* PhantomTouchKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		607206EA20538ABE0068F691 /* Phantom iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6072072320538ABE0068F691 /* Build configuration list for PBXNativeTarget "Phantom iOS" */;
@@ -592,10 +809,12 @@
 				607206E720538ABE0068F691 /* Sources */,
 				607206E820538ABE0068F691 /* Frameworks */,
 				607206E920538ABE0068F691 /* Resources */,
+				6033133F2176483300B42D39 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				603313372176483300B42D39 /* PBXTargetDependency */,
 			);
 			name = "Phantom iOS";
 			productName = "Phantom iOS";
@@ -638,28 +857,13 @@
 			productReference = 6072070B20538ABE0068F691 /* Phantom.app */;
 			productType = "com.apple.product-type.application";
 		};
-		60E6B3C620F9864B00F3AE02 /* DefaultShaders */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 60E6B3CD20F9864B00F3AE02 /* Build configuration list for PBXNativeTarget "DefaultShaders" */;
-			buildPhases = (
-				60E6B3C520F9864B00F3AE02 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DefaultShaders;
-			productName = shaders;
-			productReference = 60E6B3C720F9864B00F3AE02 /* DefaultShaders.metallib */;
-			productType = "com.apple.product-type.metal-library";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		607206DE20538ABE0068F691 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = haijian;
 				TargetAttributes = {
@@ -670,8 +874,18 @@
 					};
 					601A9E022088F4F2002045DA = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 6072070A20538ABE0068F691;
+					};
+					603313222176483300B42D39 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
+					6033132A2176483300B42D39 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 607206EA20538ABE0068F691;
 					};
 					607206EA20538ABE0068F691 = {
 						CreatedOnToolsVersion = 9.2;
@@ -684,10 +898,6 @@
 					6072070A20538ABE0068F691 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
-					};
-					60E6B3C620F9864B00F3AE02 = {
-						CreatedOnToolsVersion = 9.4.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -710,7 +920,8 @@
 				6072070A20538ABE0068F691 /* Phantom macOS */,
 				601A9DFA2088F4F2002045DA /* PhantomKit */,
 				601A9E022088F4F2002045DA /* PhantomKitTests */,
-				60E6B3C620F9864B00F3AE02 /* DefaultShaders */,
+				603313222176483300B42D39 /* PhantomTouchKit */,
+				6033132A2176483300B42D39 /* PhantomTouchKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -724,6 +935,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		601A9E012088F4F2002045DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		603313212176483300B42D39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		603313292176483300B42D39 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -876,6 +1101,121 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6033131F2176483300B42D39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60331367217649F300B42D39 /* ShaderType.swift in Sources */,
+				6033134F217649EB00B42D39 /* Application.swift in Sources */,
+				60331386217649FC00B42D39 /* GameObjectParent.swift in Sources */,
+				603313A021764A0800B42D39 /* Renderable.swift in Sources */,
+				60331345217649D800B42D39 /* Quaternion.swift in Sources */,
+				6033139421764A0200B42D39 /* ShadowRenderer.swift in Sources */,
+				6033139221764A0200B42D39 /* Renderer.swift in Sources */,
+				60331368217649F300B42D39 /* MTLDataTypeMapping.swift in Sources */,
+				60331366217649F300B42D39 /* ShaderLoader.swift in Sources */,
+				60331341217649D800B42D39 /* Math.swift in Sources */,
+				60331352217649EB00B42D39 /* ViewDescriptor.swift in Sources */,
+				60331354217649EB00B42D39 /* Scene.swift in Sources */,
+				6033139F21764A0800B42D39 /* Lightable.swift in Sources */,
+				6033135C217649F300B42D39 /* UniformBuffer.swift in Sources */,
+				6033139E21764A0800B42D39 /* Updatable.swift in Sources */,
+				60331384217649FC00B42D39 /* GameObject.swift in Sources */,
+				60331362217649F300B42D39 /* PostEffectRenderPass.swift in Sources */,
+				6033139021764A0200B42D39 /* Transform.swift in Sources */,
+				6033135F217649F300B42D39 /* RenderPass.swift in Sources */,
+				60331364217649F300B42D39 /* Material.swift in Sources */,
+				60331388217649FC00B42D39 /* Space.swift in Sources */,
+				6033135E217649F300B42D39 /* RenderTargetType.swift in Sources */,
+				6033136D217649F300B42D39 /* RenderEncodable.swift in Sources */,
+				60331342217649D800B42D39 /* MatrixTransform.swift in Sources */,
+				6033136C217649F300B42D39 /* MeshLoader.swift in Sources */,
+				60331343217649D800B42D39 /* Trigonometry.swift in Sources */,
+				60331350217649EB00B42D39 /* ApplicationPublic.swift in Sources */,
+				60331344217649D800B42D39 /* Constants.swift in Sources */,
+				60331365217649F300B42D39 /* Shader.swift in Sources */,
+				60331360217649F300B42D39 /* MainRenderPass.swift in Sources */,
+				60331383217649FC00B42D39 /* GameObjectTag.swift in Sources */,
+				6033139521764A0200B42D39 /* Light.swift in Sources */,
+				6033139121764A0200B42D39 /* Camera.swift in Sources */,
+				6033136A217649F300B42D39 /* Texture.swift in Sources */,
+				6033135D217649F300B42D39 /* AntialiasingMode.swift in Sources */,
+				60331363217649F300B42D39 /* Drawable.swift in Sources */,
+				60331351217649EB00B42D39 /* ApplicationDelegate.swift in Sources */,
+				6033138F21764A0200B42D39 /* Component.swift in Sources */,
+				6033136E217649F300B42D39 /* Registrable.swift in Sources */,
+				6033139D21764A0800B42D39 /* Behaviour.swift in Sources */,
+				60331361217649F300B42D39 /* ShadowMapRenderPass.swift in Sources */,
+				6033136B217649F300B42D39 /* Mesh.swift in Sources */,
+				60331369217649F300B42D39 /* TextureType.swift in Sources */,
+				6033139321764A0200B42D39 /* MeshRenderer.swift in Sources */,
+				6033134C217649E400B42D39 /* Error.swift in Sources */,
+				60331385217649FC00B42D39 /* GameObjectComponent.swift in Sources */,
+				60331387217649FC00B42D39 /* GameObjectPrimitive.swift in Sources */,
+				6033135B217649F300B42D39 /* TripleBuffer.swift in Sources */,
+				6033134B217649E400B42D39 /* Weak.swift in Sources */,
+				60331353217649EB00B42D39 /* ViewDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		603313272176483300B42D39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				603313A421764A0900B42D39 /* Renderable.swift in Sources */,
+				60331359217649EB00B42D39 /* ViewDelegate.swift in Sources */,
+				6033137E217649F300B42D39 /* Texture.swift in Sources */,
+				60331375217649F300B42D39 /* ShadowMapRenderPass.swift in Sources */,
+				60331355217649EB00B42D39 /* Application.swift in Sources */,
+				6033139921764A0200B42D39 /* Renderer.swift in Sources */,
+				6033139621764A0200B42D39 /* Component.swift in Sources */,
+				60331357217649EB00B42D39 /* ApplicationDelegate.swift in Sources */,
+				6033137C217649F300B42D39 /* MTLDataTypeMapping.swift in Sources */,
+				603313A221764A0900B42D39 /* Updatable.swift in Sources */,
+				60331374217649F300B42D39 /* MainRenderPass.swift in Sources */,
+				603313A321764A0900B42D39 /* Lightable.swift in Sources */,
+				6033134E217649E500B42D39 /* Error.swift in Sources */,
+				6033138C217649FC00B42D39 /* GameObjectParent.swift in Sources */,
+				6033139721764A0200B42D39 /* Transform.swift in Sources */,
+				6033135A217649EB00B42D39 /* Scene.swift in Sources */,
+				6033138E217649FC00B42D39 /* Space.swift in Sources */,
+				60331349217649D900B42D39 /* Constants.swift in Sources */,
+				603313A121764A0900B42D39 /* Behaviour.swift in Sources */,
+				60331348217649D900B42D39 /* Trigonometry.swift in Sources */,
+				6033139B21764A0200B42D39 /* ShadowRenderer.swift in Sources */,
+				60331358217649EB00B42D39 /* ViewDescriptor.swift in Sources */,
+				60331381217649F300B42D39 /* RenderEncodable.swift in Sources */,
+				6033138D217649FC00B42D39 /* GameObjectPrimitive.swift in Sources */,
+				6033138B217649FC00B42D39 /* GameObjectComponent.swift in Sources */,
+				60331373217649F300B42D39 /* RenderPass.swift in Sources */,
+				6033137B217649F300B42D39 /* ShaderType.swift in Sources */,
+				60331389217649FC00B42D39 /* GameObjectTag.swift in Sources */,
+				60331372217649F300B42D39 /* RenderTargetType.swift in Sources */,
+				60331382217649F300B42D39 /* Registrable.swift in Sources */,
+				60331380217649F300B42D39 /* MeshLoader.swift in Sources */,
+				60331370217649F300B42D39 /* UniformBuffer.swift in Sources */,
+				6033138A217649FC00B42D39 /* GameObject.swift in Sources */,
+				603313332176483300B42D39 /* PhantomTouchKitTests.swift in Sources */,
+				6033137F217649F300B42D39 /* Mesh.swift in Sources */,
+				6033134A217649D900B42D39 /* Quaternion.swift in Sources */,
+				6033139A21764A0200B42D39 /* MeshRenderer.swift in Sources */,
+				60331376217649F300B42D39 /* PostEffectRenderPass.swift in Sources */,
+				60331378217649F300B42D39 /* Material.swift in Sources */,
+				6033139C21764A0200B42D39 /* Light.swift in Sources */,
+				60331377217649F300B42D39 /* Drawable.swift in Sources */,
+				60331346217649D900B42D39 /* Math.swift in Sources */,
+				60331379217649F300B42D39 /* Shader.swift in Sources */,
+				60331347217649D900B42D39 /* MatrixTransform.swift in Sources */,
+				6033137A217649F300B42D39 /* ShaderLoader.swift in Sources */,
+				6033134D217649E500B42D39 /* Weak.swift in Sources */,
+				6033139821764A0200B42D39 /* Camera.swift in Sources */,
+				6033137D217649F300B42D39 /* TextureType.swift in Sources */,
+				60331371217649F300B42D39 /* AntialiasingMode.swift in Sources */,
+				60331356217649EB00B42D39 /* ApplicationPublic.swift in Sources */,
+				6033136F217649F300B42D39 /* TripleBuffer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		607206E720538ABE0068F691 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -884,6 +1224,7 @@
 				607206F120538ABE0068F691 /* GameViewController.swift in Sources */,
 				60652FE720F0B1720054C962 /* SampleBehaviour.swift in Sources */,
 				607206EF20538ABE0068F691 /* AppDelegate.swift in Sources */,
+				604B5C092178C5B700F39035 /* Shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,14 +1247,7 @@
 				60E5CB10208AE60500AE6090 /* AppDelegate.swift in Sources */,
 				60652FE920F0B1720054C962 /* SampleBehaviour.swift in Sources */,
 				60652FEC20F0B1720054C962 /* SampleApplication.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		60E6B3C520F9864B00F3AE02 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60E6B3CE20F986DA00F3AE02 /* Shaders.metal in Sources */,
+				604B5C0A2178C6F100F39035 /* Shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,10 +1269,20 @@
 			target = 601A9DFA2088F4F2002045DA /* PhantomKit */;
 			targetProxy = 601A9E0E2088F4F2002045DA /* PBXContainerItemProxy */;
 		};
-		60449C0F2104C20000E2C910 /* PBXTargetDependency */ = {
+		6033132E2176483300B42D39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 60E6B3C620F9864B00F3AE02 /* DefaultShaders */;
-			targetProxy = 60449C0E2104C20000E2C910 /* PBXContainerItemProxy */;
+			target = 603313222176483300B42D39 /* PhantomTouchKit */;
+			targetProxy = 6033132D2176483300B42D39 /* PBXContainerItemProxy */;
+		};
+		603313302176483300B42D39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 607206EA20538ABE0068F691 /* Phantom iOS */;
+			targetProxy = 6033132F2176483300B42D39 /* PBXContainerItemProxy */;
+		};
+		603313372176483300B42D39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 603313222176483300B42D39 /* PhantomTouchKit */;
+			targetProxy = 603313362176483300B42D39 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1058,7 +1402,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = Phantom/BridgingHeaders/Uniform.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phantom.app/Contents/MacOS/Phantom";
 			};
 			name = Debug;
@@ -1081,8 +1425,112 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = Phantom/BridgingHeaders/Uniform.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phantom.app/Contents/MacOS/Phantom";
+			};
+			name = Release;
+		};
+		6033133A2176483300B42D39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4M5A36G82A;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PhantomTouchKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = haijian.PhantomTouchKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/BridgingHeaders/Uniform.h;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6033133B2176483300B42D39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4M5A36G82A;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PhantomTouchKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = haijian.PhantomTouchKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Phantom/BridgingHeaders/Uniform.h;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6033133C2176483300B42D39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4M5A36G82A;
+				INFOPLIST_FILE = PhantomTouchKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = haijian.PhantomTouchKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phantom.app/Phantom";
+			};
+			name = Debug;
+		};
+		6033133D2176483300B42D39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4M5A36G82A;
+				INFOPLIST_FILE = PhantomTouchKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = haijian.PhantomTouchKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phantom.app/Phantom";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1193,18 +1641,19 @@
 		6072072420538ABE0068F691 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = iOSAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1212,18 +1661,19 @@
 		6072072520538ABE0068F691 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = iOSAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4M5A36G82A;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = haijian.Phantom;
 				PRODUCT_NAME = Phantom;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1304,30 +1754,6 @@
 			};
 			name = Release;
 		};
-		60E6B3CB20F9864B00F3AE02 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M5A36G82A;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		60E6B3CC20F9864B00F3AE02 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M5A36G82A;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1345,6 +1771,24 @@
 			buildConfigurations = (
 				601A9E172088F4F2002045DA /* Debug */,
 				601A9E182088F4F2002045DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6033133E2176483300B42D39 /* Build configuration list for PBXNativeTarget "PhantomTouchKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6033133A2176483300B42D39 /* Debug */,
+				6033133B2176483300B42D39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		603313402176483300B42D39 /* Build configuration list for PBXNativeTarget "PhantomTouchKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6033133C2176483300B42D39 /* Debug */,
+				6033133D2176483300B42D39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1381,15 +1825,6 @@
 			buildConfigurations = (
 				6072072A20538ABE0068F691 /* Debug */,
 				6072072B20538ABE0068F691 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		60E6B3CD20F9864B00F3AE02 /* Build configuration list for PBXNativeTarget "DefaultShaders" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				60E6B3CB20F9864B00F3AE02 /* Debug */,
-				60E6B3CC20F9864B00F3AE02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
