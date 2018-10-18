@@ -18,7 +18,6 @@ class ShadowMapRenderPass: RenderPass {
 		let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: ShaderType.shadowMap.depthAttachmentPixelFormat, width: 512, height: 512, mipmapped: false)
 		textureDescriptor.usage = [.shaderRead, .renderTarget]
 		textureDescriptor.resourceOptions = .storageModePrivate
-		print(textureDescriptor)
 		guard let newTexture = depthStencilState.device.makeTexture(descriptor: textureDescriptor) else { return }
 		targets.append(newTexture)
 		
@@ -41,7 +40,7 @@ class ShadowMapRenderPass: RenderPass {
 		// Encode camera.
 		guard let camera = Camera.shadow else { return }
 		camera.encode(to: renderCommandEncoder)
-
+		
 		// render behaviours.
 		for renderableBehaviour in renderableBehaviours { renderableBehaviour.reference?.encode(to: renderCommandEncoder) }
 		
