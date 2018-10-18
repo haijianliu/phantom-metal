@@ -104,7 +104,9 @@ fragment float4 standardFragment(ColorInOut in [[stage_in]], StandardFragmentPar
 	// Recieve shadows.
 	if (recieve_shadow) {
 		// Shadow sampler.
-		constexpr sampler shadowSampler(coord::normalized, filter::linear, address::clamp_to_border, compare_func::less);
+		// TODO: pass platform constants.
+//		constexpr sampler shadowSampler(coord::normalized, filter::linear, address::clamp_to_border, compare_func::less);
+		constexpr sampler shadowSampler(coord::normalized, filter::linear, compare_func::less);
 		// Fragment positions in light (shadowmap camera) space.
 		float4 lightSpacePosition = parameter.shadowbuffer.viewProjectionMatrix * float4(in.worldPosition, 1);
 		// Fragment texcoord in light (shadowmap camera) space.
@@ -165,7 +167,9 @@ fragment float4 postEffectFragment(ColorInOut in [[stage_in]], StandardFragmentP
 	
 	if (has_base_color_map && recieve_shadow) {
 		constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
-		constexpr sampler depthSampler(coord::normalized, mip_filter::linear, mag_filter::linear, min_filter::linear, address::clamp_to_border, compare_func::less);
+		// TODO: pass platform constants.
+//		constexpr sampler depthSampler(coord::normalized, mip_filter::linear, mag_filter::linear, min_filter::linear, address::clamp_to_border, compare_func::less);
+		constexpr sampler depthSampler(coord::normalized, mip_filter::linear, mag_filter::linear, min_filter::linear, compare_func::less);
 		float closestDepth = parameter.shadowMap.sample(colorSampler, in.texcoord, level(0));
 		closestDepth = closestDepth * 100 - 99;
 		half3 colorSample = half3(0);
