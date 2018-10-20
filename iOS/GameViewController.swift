@@ -25,7 +25,28 @@ class GameViewController: UIViewController {
 		// Add this mtkview and set it as the current active display
 		Application.launch(view: mtkView, descriptor: descriptor)
 		
+		// Launch sample application.
 		let sampleApplication = SampleApplication()
 		Application.launch(application: sampleApplication)
+	}
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesBegan(touches, with: event)
+		Application.touchesBegan(touches, with: event)
+	}
+	
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesMoved(touches, with: event)
+		Application.touchesMoved(touches, with: event)
+	}
+	
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesEnded(touches, with: event)
+		Application.touchesEnded(touches, with: event)
+	}
+	
+	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesCancelled(touches, with: event)
+		Application.touchesCancelled(touches, with: event)
 	}
 }
