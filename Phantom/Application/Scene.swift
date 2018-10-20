@@ -11,9 +11,13 @@ class Scene {
 	
 	// TODO: clean up nil reference.
 	// TODO: in view delegate.
+	// TODO: test using of Set<...>
 	/// A [contiguous array](http://jordansmith.io/on-performant-arrays-in-swift/) to update behaviour weak reference list in real time, reserving a capacity of 256 elements.
 	var updatableBehaviours = ContiguousArray<Weak<Updatable>>()
 	var lightableBehaviours = ContiguousArray<Weak<Lightable>>()
+	#if os(iOS)
+	var touchableBehaviours = ContiguousArray<Weak<Touchabe>>()
+	#endif
 	
 	init?(device: MTLDevice) {
 		// TODO: use library settings.
@@ -40,6 +44,11 @@ class Scene {
 			if let lightableBehaviour = component.value as? Lightable {
 				lightableBehaviours.append(Weak(reference: lightableBehaviour))
 			}
+			#if os(iOS)
+			if let touchableBehaviour = component.value as? Touchabe {
+				touchableBehaviours.append(Weak(reference: touchableBehaviour))
+			}
+			#endif
 		}
 		
 		// TODO: generic add functions.
@@ -81,3 +90,27 @@ class Scene {
 		renderCommandEncoder.setFragmentBuffer(lightUniformBuffer.buffer, offset: lightUniformBuffer.offset, index: BufferIndex.lightBuffer.rawValue)
 	}
 }
+
+#if os(iOS)
+
+import UIKit
+
+extension Scene {
+	func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		for touchableBehaviour in touchableBehaviours { touchableBehaviour.reference?.touchesBegan?(touches, with: event) }
+	}
+	
+	func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		for touchableBehaviour in touchableBehaviours { touchableBehaviour.reference?.touchesMoved?(touches, with: event) }
+	}
+	
+	func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		for touchableBehaviour in touchableBehaviours { touchableBehaviour.reference?.touchesEnded?(touches, with: event) }
+	}
+	
+	func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+		for touchableBehaviour in touchableBehaviours { touchableBehaviour.reference?.touchesCancelled?(touches, with: event) }
+	}
+}
+
+#endif

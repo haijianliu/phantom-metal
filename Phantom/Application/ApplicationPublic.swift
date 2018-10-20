@@ -35,6 +35,9 @@ extension Application {
 		view.clearDepth = descriptor.clearDepth
 		view.clearStencil = descriptor.clearStencil
 		view.framebufferOnly = false
+		#if os(iOS)
+		view.isMultipleTouchEnabled = descriptor.isMultipleTouchEnabled
+		#endif
 		Application.sharedInstance.view = view
 		
 		// TODO: This will be a Display process
@@ -67,4 +70,47 @@ extension Application {
 		// Recurve add all children.
 		for child in gameObjcet.children { addGameObject(child) }
 	}
+	
+	#if os(iOS)
+	
+	// TODO: inout parameters
+	// https://github.com/apple/swift-evolution/blob/master/proposals/0003-remove-var-parameters.md
+	
+	/// Tells this object that one or more new touches occurred in a view or window.
+	///
+	/// - Parameters:
+	///   - touches: A set of UITouch instances that represent the touches for the starting phase of the event, which is represented by event.
+	///   - event: The event to which the touches belong.
+	public static func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		Application.sharedInstance.scene?.touchesBegan(touches, with: event)
+	}
+	
+	/// Tells the responder when one or more touches associated with an event changed.
+	///
+	/// - Parameters:
+	///   - touches: A set of UITouch instances that represent the touches for the starting phase of the event, which is represented by event.
+	///   - event: The event to which the touches belong.
+	public static func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		Application.sharedInstance.scene?.touchesMoved(touches, with: event)
+	}
+	
+	/// Tells the responder when one or more fingers are raised from a view or window.
+	///
+	/// - Parameters:
+	///   - touches: A set of UITouch instances that represent the touches for the starting phase of the event, which is represented by event.
+	///   - event: The event to which the touches belong.
+	public static func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		Application.sharedInstance.scene?.touchesEnded(touches, with: event)
+	}
+	
+	/// Tells the responder when a system event (such as a system alert) cancels a touch sequence.
+	///
+	/// - Parameters:
+	///   - touches: A set of UITouch instances that represent the touches for the starting phase of the event, which is represented by event.
+	///   - event: The event to which the touches belong.
+	public static func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+		Application.sharedInstance.scene?.touchesCancelled(touches, with: event)
+	}
+	
+	#endif
 }
