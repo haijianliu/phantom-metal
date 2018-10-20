@@ -87,6 +87,7 @@
 		604B5C092178C5B700F39035 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
 		604B5C0A2178C6F100F39035 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 607206E320538ABE0068F691 /* Shaders.metal */; };
 		604B5C0B2178C71E00F39035 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A9D7282176545200EA91B0 /* Metal.framework */; };
+		6050774E217AE964009743A7 /* Touchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6050774D217AE964009743A7 /* Touchable.swift */; };
 		6051E346208B1DCC00C4E8AA /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E344208B1D1300C4E8AA /* Space.swift */; };
 		6051E34A208B3F1700C4E8AA /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E348208B3D4C00C4E8AA /* Quaternion.swift */; };
 		6051E359208B4FFC00C4E8AA /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051E351208B4F7E00C4E8AA /* Behaviour.swift */; };
@@ -198,6 +199,7 @@
 		603F760D206953CE00E9922F /* MatrixTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTransform.swift; sourceTree = "<group>"; };
 		603F76112069577D00E9922F /* Trigonometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigonometry.swift; sourceTree = "<group>"; };
 		603F7615206958B300E9922F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6050774D217AE964009743A7 /* Touchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touchable.swift; sourceTree = "<group>"; };
 		6051E344208B1D1300C4E8AA /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
 		6051E348208B3D4C00C4E8AA /* Quaternion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
 		6051E351208B4F7E00C4E8AA /* Behaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behaviour.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				6051E355208B4F8B00C4E8AA /* Updatable.swift */,
 				60379D78210F60B5008DA867 /* Lightable.swift */,
 				608856B82090D3D500F69621 /* Renderable.swift */,
+				6050774D217AE964009743A7 /* Touchable.swift */,
 			);
 			path = Behaviours;
 			sourceTree = "<group>";
@@ -784,6 +787,7 @@
 				6004DF772178D8AF007C4302 /* Camera.swift in Sources */,
 				6004DF502178D8A0007C4302 /* Texture.swift in Sources */,
 				6004DF432178D8A0007C4302 /* AntialiasingMode.swift in Sources */,
+				6050774E217AE964009743A7 /* Touchable.swift in Sources */,
 				6004DF492178D8A0007C4302 /* Drawable.swift in Sources */,
 				6004DF372178D899007C4302 /* ApplicationDelegate.swift in Sources */,
 				6004DF752178D8AF007C4302 /* Component.swift in Sources */,
