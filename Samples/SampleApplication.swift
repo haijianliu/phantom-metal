@@ -9,6 +9,7 @@ class SampleApplication: ApplicationDelegate {
 			guard let gameObject = GameObject.createBox(withDimensions: Vector3(2, 2, 2)) else { break cube }
 			gameObject.transform.position = Vector3(x: 2.5, y: 2.5, z: 0)
 			gameObject.material?.texture = Texture(name: "UV_Grid_Lrg", type: TextureType.color) // Set material.
+			guard let _: SampleTouchBehaviour = gameObject.addComponent() else { break cube }
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
 
