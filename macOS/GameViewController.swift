@@ -24,5 +24,9 @@ class GameViewController: NSViewController {
 		
 		// Add this mtkview and set it as the current active display
 		Application.launch(view: mtkView, descriptor: descriptor)
+		
+		// Launch sample application.
+		let sampleApplication = SampleApplication()
+		Application.launch(application: sampleApplication)
 	}
 }
