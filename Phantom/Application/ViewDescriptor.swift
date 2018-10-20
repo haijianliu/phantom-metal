@@ -47,5 +47,14 @@ public struct ViewDescriptor {
 	/// If uses posteffects. The default value is false.
 	public var usePostEffect: Bool = false
 	
+	#if os(iOS)
+	
+	/// A Boolean value that indicates whether the view receives more than one touch at a time.
+	///
+	/// When set to true, the view receives all touches associated with a multi-touch sequence and starting within the view's bounds. When set to false, the view receives only the first touch event in a multi-touch sequence that start within the view's bounds. The default value of this property is **true**.
+	public var isMultipleTouchEnabled: Bool = true
+	
+	#endif
+	
 	public init() { }
 }
