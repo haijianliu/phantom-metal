@@ -8,12 +8,12 @@ import MetalKit
 public class Transform: Component, Updatable, RenderEncodable {
 	// TODO: refactor.
 	private var transformUniformBuffer: TripleBuffer<NodeBuffer>
-	
+
 	// TODO: dirty protocol?
 	/// True if the associated properties is modifed. Initialized value is true.
 	private var dirty = true {
 		didSet { if dirty == true { for child in gameObject.children { child.transform.dirty = true } } } }
-	
+
 	// TODO: Use local, lossy, world transform. https://docs.unity3d.com/ScriptReference/Transform.html
 
 	// TODO: setter getter dirty
@@ -21,7 +21,7 @@ public class Transform: Component, Updatable, RenderEncodable {
 	///
 	/// The position member can be accessed by the Game code. Setting this value can be used to animate the GameObject. The example below makes an attached sphere bounce by updating the position. This bouncing slowly comes to an end. The position can also be use to determine where in 3D space the transform.
 	public var position = Vector3(0) { didSet { dirty = true } }
-	
+
 	/// The scale of the transform relative to the parent.
 	public var scale = Vector3(1) { didSet { dirty = true } }
 
@@ -30,18 +30,18 @@ public class Transform: Component, Updatable, RenderEncodable {
 	/// To rotate an object, use Transform.rotate.
 	/// TODO: Use Transform.eulerAngles for setting the rotation as euler angles. Transform.rotation will provide or accept the rotation using a Quaternion.
 	public var rotation = Quaternion(real: 1, imag: Vector3(0)) { didSet { dirty = true } }
-	
+
 	/// Storage of the local to world matrix.
 	/// When dirty flag is true, this value will be updated when first time the local to world matrix is called.
 	private var currentLocalToWorldMatrix = Matrix4x4(1)
-	
+
 	/// The position of the transform in world space (Read Only).
 	public var worldPosition: Vector3 {
 		// TODO: Vector extension
 		let vector = localToWorldMatrix * Vector4(0, 0, 0, 1)
 		return Vector3(vector.x, vector.y, vector.z)
 	}
-	
+
 	/// Matrix that transforms a point from local space into world space (Read Only).
 	var localToWorldMatrix: Matrix4x4 {
 		if dirty {
@@ -53,21 +53,21 @@ public class Transform: Component, Updatable, RenderEncodable {
 		}
 		return currentLocalToWorldMatrix
 	}
-	
+
 	required public init?(_ gameObject: GameObject) {
 		guard let device = Application.sharedInstance.device else { return nil }
 		// TODO: init dynamic semaphore value
 		guard let newBuffer = TripleBuffer<NodeBuffer>(device) else { return nil }
 		transformUniformBuffer = newBuffer
-		
+
 		super.init(gameObject)
 	}
-	
+
 	public func update() {
 		transformUniformBuffer.data.update(by: self)
 		transformUniformBuffer.endWritting()
 	}
-	
+
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		renderCommandEncoder.setVertexBuffer(transformUniformBuffer.buffer, offset: transformUniformBuffer.offset, index: BufferIndex.nodeBuffer.rawValue)
 	}

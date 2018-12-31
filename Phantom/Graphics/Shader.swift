@@ -7,11 +7,11 @@ import MetalKit
 class Shader {
 	var shaderType = ShaderType.standard
 	var renderPipelineState: MTLRenderPipelineState?
-	
+
 	/// An object that describes how vertex data is organized and mapped to a vertex function.
 	var vertexDescriptor = MTLVertexDescriptor()
 	var pipelineDescriptor = MTLRenderPipelineDescriptor()
-	
+
 	var vertexFunction: MTLFunction?
 	var fragmentFunction: MTLFunction?
 }

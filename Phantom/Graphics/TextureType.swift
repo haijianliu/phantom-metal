@@ -3,7 +3,7 @@
 public enum TextureType {
 	case color
 	case shadow
-	
+
 	internal var textureIndex: Int {
 		switch self {
 		case .color:

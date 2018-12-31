@@ -4,16 +4,16 @@ import MetalKit
 
 // TODO: refactor shader type values varys from different renderpasses.
 public enum ShaderType {
-	
+
 	case standard
 	case shadowMap
 	case normalColor
 	case postEffect
-	
+
 	internal var label: String {
 		return String(describing: self)
 	}
-	
+
 	internal var vertex: String? {
 		switch self {
 		case .standard, .shadowMap, .normalColor:
@@ -22,7 +22,7 @@ public enum ShaderType {
 			return "directVertex"
 		}
 	}
-	
+
 	internal var fragment: String? {
 		switch self {
 		case .standard:
@@ -35,7 +35,7 @@ public enum ShaderType {
 			return "postEffectFragment"
 		}
 	}
-	
+
 	internal var colorAttachmentsPixelFormat: [MTLPixelFormat] {
 		switch self {
 		case .standard, .normalColor, .postEffect:
@@ -46,7 +46,7 @@ public enum ShaderType {
 			return formats
 		}
 	}
-	
+
 	internal var depthAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
 		case .postEffect, .standard, .normalColor:
@@ -55,7 +55,7 @@ public enum ShaderType {
 			return MTLPixelFormat.depth32Float
 		}
 	}
-	
+
 	internal var stencilAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
 		case .postEffect, .standard, .normalColor:
@@ -64,7 +64,7 @@ public enum ShaderType {
 			return MTLPixelFormat.invalid
 		}
 	}
-	
+
 	internal var sampleCount: Int {
 		switch self {
 		case .standard, .normalColor:
@@ -75,7 +75,7 @@ public enum ShaderType {
 			return AntialiasingMode.none.rawValue
 		}
 	}
-	
+
 	private var functionConstants: ContiguousArray<Bool> {
 		var functionContants = ContiguousArray<Bool>(repeating: false, count: FunctionConstant.count.rawValue)
 		switch self {
@@ -92,7 +92,7 @@ public enum ShaderType {
 		}
 		return functionContants
 	}
-	
+
 	internal var functionConstantValues: MTLFunctionConstantValues {
 		var functionConstants = self.functionConstants
 		let functionConstantValues = MTLFunctionConstantValues()

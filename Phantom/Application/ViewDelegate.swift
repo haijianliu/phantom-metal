@@ -15,29 +15,29 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 	// TODO: in metal library.
 	/// Allow cpu to go 2 steps ahead GPU, before GPU finishes its current command.
 	let semaphore = DispatchSemaphore(value: 3)
-	
+
 	/// Renderpass references.
 	var renderPasses = [String: RenderPass]()
 	/// Renderpass drawable behaviours.
 	private var drawables = ContiguousArray<Weak<Drawable>>()
-	
+
 	override init() {
 		super.init()
 		drawables.reserveCapacity(0xF)
 	}
-	
+
 	/// Initialize renderpasses.
 	func launch() {
 		// TODO: order.
 		guard let shadowMapRenderPass: ShadowMapRenderPass = addRenderPass() else { return }
 		guard let mainRenderPass: MainRenderPass = addRenderPass() else { return }
 		guard let _: PostEffectRenderPass = addRenderPass() else { return }
-		
+
 		// Set shadowmap renderpass target to main renderpass texture.
 		// TODO: target type?
 		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
 	}
-	
+
 	/// Add renderpasses.
 	private func addRenderPass<RenderPassType: RenderPass>() -> RenderPassType? {
 		let typeName = String(describing: RenderPassType.self)
@@ -50,7 +50,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		}
 		return renderPasses[typeName] as? RenderPassType
 	}
-	
+
 	// TODO: only render render pass here.
 	public func draw(in view: MTKView) {
 		// Updatable behaviours.
@@ -80,7 +80,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 		// TODO: refactor.
 		guard let shadow: Camera = Camera.shadow else { return }
 		shadow.projectionMatrix = Math.perspective(fovyRadians: shadow.fieldOfView, aspect: aspect, near: shadow.nearClipPlane, far: shadow.farClipPlane)
-		
+
 		renderPasses[String(describing: PostEffectRenderPass.self)]?.isViewDirty = true
 	}
 }

@@ -13,7 +13,7 @@ extension Application {
 		guard let view = Application.sharedInstance.view else { return }
 		Application.sharedInstance.viewDelegate.mtkView(view, drawableSizeWillChange: view.drawableSize)
 	}
-	
+
 	/// Add a mtkView to views and set it as the current active view (since only supported for one view by now)
 	public static func launch(view: MTKView, descriptor: ViewDescriptor = ViewDescriptor()) {
 		// Select the default device to render with.
@@ -22,7 +22,7 @@ extension Application {
 			return
 		}
 		Application.sharedInstance.device = defaultDevice
-		
+
 		// Set MTKView.
 		// TODO: refactor.
 		view.device = defaultDevice
@@ -39,25 +39,25 @@ extension Application {
 		view.isMultipleTouchEnabled = descriptor.isMultipleTouchEnabled
 		#endif
 		Application.sharedInstance.view = view
-		
+
 		// TODO: This will be a Display process
 		// Set MTKViewDelegate to current Renderer instance
 		// TODO: multiple command queues
 		Application.sharedInstance.viewDelegate.commandQueue = defaultDevice.makeCommandQueue()
-		
+
 		view.delegate = Application.sharedInstance.viewDelegate
-		
+
 		// TODO: load xml.
 		// Initialize scenes.
 		Application.sharedInstance.scene = Scene(device: defaultDevice)
-		
+
 		// TODO: build library according to application delegate.
 		Application.sharedInstance.library = defaultDevice.makeDefaultLibrary()
-		
+
 		// Initialize renderpasses.
 		Application.sharedInstance.viewDelegate.launch()
 	}
-	
+
 	// TODO: in Scene
 	// TODO: when add twice.
 	/// Add gameobjects to application.
@@ -70,12 +70,12 @@ extension Application {
 		// Recurve add all children.
 		for child in gameObjcet.children { addGameObject(child) }
 	}
-	
+
 	#if os(iOS)
-	
+
 	// TODO: inout parameters
 	// https://github.com/apple/swift-evolution/blob/master/proposals/0003-remove-var-parameters.md
-	
+
 	/// Tells this object that one or more new touches occurred in a view or window.
 	///
 	/// - Parameters:
@@ -84,7 +84,7 @@ extension Application {
 	public static func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		Application.sharedInstance.scene?.touchesBegan(touches, with: event)
 	}
-	
+
 	/// Tells the responder when one or more touches associated with an event changed.
 	///
 	/// - Parameters:
@@ -93,7 +93,7 @@ extension Application {
 	public static func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		Application.sharedInstance.scene?.touchesMoved(touches, with: event)
 	}
-	
+
 	/// Tells the responder when one or more fingers are raised from a view or window.
 	///
 	/// - Parameters:
@@ -102,7 +102,7 @@ extension Application {
 	public static func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		Application.sharedInstance.scene?.touchesEnded(touches, with: event)
 	}
-	
+
 	/// Tells the responder when a system event (such as a system alert) cancels a touch sequence.
 	///
 	/// - Parameters:
@@ -111,6 +111,6 @@ extension Application {
 	public static func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
 		Application.sharedInstance.scene?.touchesCancelled(touches, with: event)
 	}
-	
+
 	#endif
 }

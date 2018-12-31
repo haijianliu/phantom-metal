@@ -6,10 +6,10 @@ class Mesh {
 	/// A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app.
 	var mtkMesh: MTKMesh?
 	var mdlMesh: MDLMesh?
-	
+
 	/// Stroed vertex attribuite indices array for render encoding.
 	var vertexBufferIndices = ContiguousArray<Int>()
-	
+
 	/// The vertex winding rule that determines a front-facing primitive (Default: counter-clockwise).
 	var winding: MTLWinding = MTLWinding.counterClockwise
 }

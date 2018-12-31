@@ -4,7 +4,7 @@ import MetalKit
 
 // MARK: - MTLDataType type mapping extension.
 extension MTLDataType {
-	
+
 	/// Values that specify the organization of function vertex data.
 	var format: MTLVertexFormat {
 		switch self {
@@ -16,7 +16,7 @@ extension MTLDataType {
 			return MTLVertexFormat.invalid
 		}
 	}
-	
+
 	/// The distance, in bytes, between the attribute data of two vertices in the buffer.
 	var stride: Int {
 		switch self {

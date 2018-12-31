@@ -4,7 +4,7 @@
 ///
 /// Requires that class inherits from Behaviour
 @objc public protocol Updatable: Behaviour {
-	
+
 	/// Update is called every frame, if the Behaviour is enabled.
 	///
 	/// In order to get the elapsed time since last call to Update, use Time.deltaTime. This function is only called if the Behaviour is enabled. Override this function in order to provide your component's functionality.

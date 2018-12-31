@@ -16,7 +16,7 @@ extension GameObject {
 			return nil // TODO: return exists.
 		}
 	}
-	
+
 	/// Get a component instance attached to the game object by component type. Calling this function during real time updating is not recommended.
 	/// - Returns: Component instance of component type if the game object has one attached, nil if it doesn't.
 	public func getComponent<ComponentType: Component>() -> ComponentType? {

@@ -11,6 +11,6 @@ extension GameObject {
 		children.append(gameObject)
 		gameObject.parent = self
 	}
-	
+
 	// TODO: delete parent and child.
 }
