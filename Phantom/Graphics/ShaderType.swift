@@ -2,6 +2,17 @@
 
 import MetalKit
 
+extension ContiguousArray where Element == Bool {
+    fileprivate subscript(fc: FunctionConstant) -> Bool {
+        get {
+            return self[fc.rawValue]
+        }
+        set {
+            self[fc.rawValue] = newValue
+        }
+    }
+}
+
 // TODO: refactor shader type values varys from different renderpasses.
 public enum ShaderType {
 
@@ -78,15 +89,15 @@ public enum ShaderType {
 		var functionContants = ContiguousArray<Bool>(repeating: false, count: FunctionConstant.count.rawValue)
 		switch self {
 		case .standard:
-			functionContants[FunctionConstant.hasBaseColorMap.rawValue] = true
-			functionContants[FunctionConstant.hasLight.rawValue] = true
-			functionContants[FunctionConstant.recieveShadow.rawValue] = true // TODO: if recieve shadows.
+			functionContants[.hasBaseColorMap] = true
+			functionContants[.hasLight] = true
+			functionContants[.recieveShadow] = true // TODO: if recieve shadows.
 		case .shadowMap: break
 		case .postEffect:
-			functionContants[FunctionConstant.hasBaseColorMap.rawValue] = true
-			functionContants[FunctionConstant.recieveShadow.rawValue] = true // TODO: if recieve shadows.
+			functionContants[.hasBaseColorMap] = true
+			functionContants[.recieveShadow] = true // TODO: if recieve shadows.
 		case .normalColor:
-			functionContants[FunctionConstant.hasNormal.rawValue] = true // for debug shadera.
+			functionContants[.hasNormal] = true // for debug shadera.
 		}
 		return functionContants
 	}
