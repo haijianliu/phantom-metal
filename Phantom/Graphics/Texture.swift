@@ -26,9 +26,9 @@ public class Texture {
 
 		let textureLoader = MTKTextureLoader(device: device)
 
-		let textureLoaderOptions = [
-			MTKTextureLoader.Option.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
-			MTKTextureLoader.Option.textureStorageMode: NSNumber(value: MTLStorageMode.private.rawValue)
+        let textureLoaderOptions: [MTKTextureLoader.Option: Any] = [
+			.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
+			.textureStorageMode: NSNumber(value: MTLStorageMode.private.rawValue)
 		]
 
 		return try textureLoader.newTexture(name: textureName, scaleFactor: 1.0, bundle: nil, options: textureLoaderOptions)

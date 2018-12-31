@@ -20,7 +20,7 @@ extension Math {
 
 	/// Builds a translation 4 * 4 matrix created from 3 scalars.
 	public static func translate(_ translationX: Float, _ translationY: Float, _ translationZ: Float) -> Matrix4x4 {
-		return Matrix4x4.init(columns:(Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(translationX, translationY, translationZ, 1)))
+		return Matrix4x4(columns:(Vector4(1, 0, 0, 0), Vector4(0, 1, 0, 0), Vector4(0, 0, 1, 0), Vector4(translationX, translationY, translationZ, 1)))
 	}
 
 	/// Builds a scale 4 * 4 matrix created from 3 scalars.
@@ -98,7 +98,7 @@ extension Math {
 		let ys = 1 / tanf(fovy * 0.5)
 		let xs = ys / aspect
 		let zs = far / (near - far)
-		return Matrix4x4.init(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
+		return Matrix4x4(columns:(Vector4(xs,0, 0, 0), Vector4( 0, ys, 0, 0), Vector4( 0,  0, zs, -1), Vector4( 0, 0, zs * near, 0)))
 	}
 
 	/// Build a right handed look at view matrix.

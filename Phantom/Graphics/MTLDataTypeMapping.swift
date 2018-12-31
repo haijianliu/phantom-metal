@@ -8,12 +8,9 @@ extension MTLDataType {
 	/// Values that specify the organization of function vertex data.
 	var format: MTLVertexFormat {
 		switch self {
-		case .float2:
-			return MTLVertexFormat.float2
-		case .float3:
-			return MTLVertexFormat.float3
-		default:
-			return MTLVertexFormat.invalid
+		case .float2: return .float2
+		case .float3: return .float3
+		default: return .invalid
 		}
 	}
 

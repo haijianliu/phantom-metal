@@ -27,7 +27,7 @@ extension Shader {
 				vertexDescriptor.attributes[attribute.attributeIndex].bufferIndex = index
 				vertexDescriptor.layouts[index].stride = attribute.attributeType.stride
 				vertexDescriptor.layouts[index].stepRate = 1
-				vertexDescriptor.layouts[index].stepFunction = MTLVertexStepFunction.perVertex
+				vertexDescriptor.layouts[index].stepFunction = .perVertex
 			}
 		}
 

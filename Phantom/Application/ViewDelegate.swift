@@ -35,7 +35,7 @@ class ViewDelegate: NSObject, MTKViewDelegate {
 
 		// Set shadowmap renderpass target to main renderpass texture.
 		// TODO: target type?
-		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: MTLPixelFormat.depth32Float)
+		mainRenderPass.shadowMap = shadowMapRenderPass.targets[0].makeTextureView(pixelFormat: .depth32Float)
 	}
 
 	/// Add renderpasses.

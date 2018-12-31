@@ -12,7 +12,8 @@ public class Transform: Component, Updatable, RenderEncodable {
 	// TODO: dirty protocol?
 	/// True if the associated properties is modifed. Initialized value is true.
 	private var dirty = true {
-		didSet { if dirty == true { for child in gameObject.children { child.transform.dirty = true } } } }
+		didSet { if dirty { gameObject.children.forEach { $0.transform.dirty = true } } }
+    }
 
 	// TODO: Use local, lossy, world transform. https://docs.unity3d.com/ScriptReference/Transform.html
 
@@ -82,6 +83,6 @@ extension Transform {
 	///   - axis: The axis to rotate around.
 	///   - relativeTo: TODO: If relativeTo is not specified or set to Space.local the rotation is applied around the transform's local axes. If relativeTo is set to Space.World the rotation is applied around the world x, y, z axes.
 	public func rotate(angle: Radian, axis: Vector3, relativeTo: Space = Space.local) {
-		rotation = Quaternion.init(angle: angle, axis: axis) * rotation
+		rotation = Quaternion(angle: angle, axis: axis) * rotation
 	}
 }

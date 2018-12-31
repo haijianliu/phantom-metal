@@ -40,7 +40,7 @@ struct TripleBuffer<DataType: UniformBuffer> {
 			print("The Data size of triple buffer must be less than 4KB ( current: \(bufferLength) bytes ).")
 			return nil
 		}
-		guard let mtlBuffer = device.makeBuffer(length: bufferLength, options: MTLResourceOptions.storageModeShared) else { return nil }
+		guard let mtlBuffer = device.makeBuffer(length: bufferLength, options: .storageModeShared) else { return nil }
 		buffer = mtlBuffer
 		buffer.label = String(describing: DataType.self)
 		pointer = UnsafeMutableRawPointer(buffer.contents()).bindMemory(to: DataType.self, capacity: 1)

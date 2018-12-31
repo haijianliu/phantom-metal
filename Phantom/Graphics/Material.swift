@@ -7,8 +7,8 @@ import MetalKit
 /// All properties from a material.
 public class Material {
 	public var texture: Texture?
-	public var cullMode: MTLCullMode = MTLCullMode.back
-	public var fillMode: MTLTriangleFillMode = MTLTriangleFillMode.fill
+	public var cullMode: MTLCullMode = .back
+	public var fillMode: MTLTriangleFillMode = .fill
 	/// The shader used by the material.
 	let shader = Shader()
 }

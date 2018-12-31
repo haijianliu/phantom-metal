@@ -11,7 +11,7 @@ class Mesh {
 	var vertexBufferIndices = ContiguousArray<Int>()
 
 	/// The vertex winding rule that determines a front-facing primitive (Default: counter-clockwise).
-	var winding: MTLWinding = MTLWinding.counterClockwise
+	var winding: MTLWinding = .counterClockwise
 }
 
 extension Mesh: RenderEncodable {
