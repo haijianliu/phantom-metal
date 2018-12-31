@@ -14,8 +14,8 @@ extension Math {
 	///   - vector: Coordinates of a translation vector.
 	public static func translate(from matrix: Matrix4x4 = Matrix4x4(1), _ vector: Vector3) -> Matrix4x4 {
 		var result = matrix
-		result[3] = matrix[0] * vector[0] + matrix[1] * vector[1] + matrix[2] * vector[2] + matrix[3];
-		return result;
+		result[3] = matrix[0] * vector[0] + matrix[1] * vector[1] + matrix[2] * vector[2] + matrix[3]
+		return result
 	}
 
 	/// Builds a translation 4 * 4 matrix created from 3 scalars.
@@ -30,12 +30,12 @@ extension Math {
 	///   - matrix: Input matrix multiplied by this translation matrix. Default value is `Matrix4x4(1)`.
 	///   - scale: Ratio of scaling for each axis.
 	public static func scale(from matrix: Matrix4x4 = Matrix4x4(1), _ scale: Vector3) -> Matrix4x4 {
-		var Result = Matrix4x4(1);
-		Result[0] = matrix[0] * scale[0];
-		Result[1] = matrix[1] * scale[1];
-		Result[2] = matrix[2] * scale[2];
-		Result[3] = matrix[3];
-		return Result;
+		var Result = Matrix4x4(1)
+		Result[0] = matrix[0] * scale[0]
+        Result[1] = matrix[1] * scale[1]
+		Result[2] = matrix[2] * scale[2]
+		Result[3] = matrix[3]
+		return Result
 	}
 
 	/// Builds a rotation 4 * 4 matrix created from an axis vector and an angle.
@@ -86,11 +86,11 @@ extension Math {
 	public static func rotate(_ matrix4x4: Matrix4x4, _ angle: Radian, _ axis: Vector3) -> Matrix4x4 {
 		let Rotate = Math.rotate(angle, axis)
 		var Result = simd_float4x4()
-		Result[0] = matrix4x4[0] * Rotate[0][0] + matrix4x4[1] * Rotate[0][1] + matrix4x4[2] * Rotate[0][2];
-		Result[1] = matrix4x4[0] * Rotate[1][0] + matrix4x4[1] * Rotate[1][1] + matrix4x4[2] * Rotate[1][2];
-		Result[2] = matrix4x4[0] * Rotate[2][0] + matrix4x4[1] * Rotate[2][1] + matrix4x4[2] * Rotate[2][2];
-		Result[3] = matrix4x4[3];
-		return Result;
+		Result[0] = matrix4x4[0] * Rotate[0][0] + matrix4x4[1] * Rotate[0][1] + matrix4x4[2] * Rotate[0][2]
+		Result[1] = matrix4x4[0] * Rotate[1][0] + matrix4x4[1] * Rotate[1][1] + matrix4x4[2] * Rotate[1][2]
+		Result[2] = matrix4x4[0] * Rotate[2][0] + matrix4x4[1] * Rotate[2][1] + matrix4x4[2] * Rotate[2][2]
+		Result[3] = matrix4x4[3]
+		return Result
 	}
 
 	/// Creates a matrix for a symetric perspective-view frustum. (Right hand)
