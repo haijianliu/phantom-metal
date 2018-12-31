@@ -2,18 +2,29 @@
 
 import MetalKit
 
+extension ContiguousArray where Element == Bool {
+    fileprivate subscript(fc: FunctionConstant) -> Bool {
+        get {
+            return self[fc.rawValue]
+        }
+        set {
+            self[fc.rawValue] = newValue
+        }
+    }
+}
+
 // TODO: refactor shader type values varys from different renderpasses.
 public enum ShaderType {
-	
+
 	case standard
 	case shadowMap
 	case normalColor
 	case postEffect
-	
+
 	internal var label: String {
 		return String(describing: self)
 	}
-	
+
 	internal var vertex: String? {
 		switch self {
 		case .standard, .shadowMap, .normalColor:
@@ -22,7 +33,7 @@ public enum ShaderType {
 			return "directVertex"
 		}
 	}
-	
+
 	internal var fragment: String? {
 		switch self {
 		case .standard:
@@ -35,36 +46,34 @@ public enum ShaderType {
 			return "postEffectFragment"
 		}
 	}
-	
+
 	internal var colorAttachmentsPixelFormat: [MTLPixelFormat] {
 		switch self {
 		case .standard, .normalColor, .postEffect:
-			let formats: [MTLPixelFormat] = [MTLPixelFormat.bgra8Unorm_srgb]
-			return formats
+			return [.bgra8Unorm_srgb]
 		case .shadowMap:
-			let formats: [MTLPixelFormat] = [MTLPixelFormat.invalid]
-			return formats
+			return [.invalid]
 		}
 	}
-	
+
 	internal var depthAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
 		case .postEffect, .standard, .normalColor:
-			return MTLPixelFormat.depth32Float_stencil8
+			return .depth32Float_stencil8
 		case .shadowMap:
-			return MTLPixelFormat.depth32Float
+			return .depth32Float
 		}
 	}
-	
+
 	internal var stencilAttachmentPixelFormat: MTLPixelFormat {
 		switch self {
 		case .postEffect, .standard, .normalColor:
-			return MTLPixelFormat.depth32Float_stencil8
+			return .depth32Float_stencil8
 		case .shadowMap:
-			return MTLPixelFormat.invalid
+			return .invalid
 		}
 	}
-	
+
 	internal var sampleCount: Int {
 		switch self {
 		case .standard, .normalColor:
@@ -75,24 +84,24 @@ public enum ShaderType {
 			return AntialiasingMode.none.rawValue
 		}
 	}
-	
+
 	private var functionConstants: ContiguousArray<Bool> {
 		var functionContants = ContiguousArray<Bool>(repeating: false, count: FunctionConstant.count.rawValue)
 		switch self {
 		case .standard:
-			functionContants[FunctionConstant.hasBaseColorMap.rawValue] = true
-			functionContants[FunctionConstant.hasLight.rawValue] = true
-			functionContants[FunctionConstant.recieveShadow.rawValue] = true // TODO: if recieve shadows.
+			functionContants[.hasBaseColorMap] = true
+			functionContants[.hasLight] = true
+			functionContants[.recieveShadow] = true // TODO: if recieve shadows.
 		case .shadowMap: break
 		case .postEffect:
-			functionContants[FunctionConstant.hasBaseColorMap.rawValue] = true
-			functionContants[FunctionConstant.recieveShadow.rawValue] = true // TODO: if recieve shadows.
+			functionContants[.hasBaseColorMap] = true
+			functionContants[.recieveShadow] = true // TODO: if recieve shadows.
 		case .normalColor:
-			functionContants[FunctionConstant.hasNormal.rawValue] = true // for debug shadera.
+			functionContants[.hasNormal] = true // for debug shadera.
 		}
 		return functionContants
 	}
-	
+
 	internal var functionConstantValues: MTLFunctionConstantValues {
 		var functionConstants = self.functionConstants
 		let functionConstantValues = MTLFunctionConstantValues()

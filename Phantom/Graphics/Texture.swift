@@ -5,7 +5,7 @@ import MetalKit
 public class Texture {
 	var mtlTexture: MTLTexture?
 	var type: TextureType?
-	
+
 	// TODO: load defer.
 	public init?(name: String, type: TextureType? = nil) {
 		do {
@@ -16,21 +16,21 @@ public class Texture {
 		}
 		self.type = type
 	}
-	
+
 	static func load(textureName: String) throws -> MTLTexture {
 		// Load texture data with optimal parameters for sampling
-		
+
 		guard let device = Application.sharedInstance.device else {
 			throw RendererError.badVertexDescriptor // TODO: new error
 		}
-		
+
 		let textureLoader = MTKTextureLoader(device: device)
-		
-		let textureLoaderOptions = [
-			MTKTextureLoader.Option.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
-			MTKTextureLoader.Option.textureStorageMode: NSNumber(value: MTLStorageMode.private.rawValue)
+
+        let textureLoaderOptions: [MTKTextureLoader.Option: Any] = [
+			.textureUsage: NSNumber(value: MTLTextureUsage.shaderRead.rawValue),
+			.textureStorageMode: NSNumber(value: MTLStorageMode.private.rawValue)
 		]
-		
+
 		return try textureLoader.newTexture(name: textureName, scaleFactor: 1.0, bundle: nil, options: textureLoaderOptions)
 	}
 }

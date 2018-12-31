@@ -7,17 +7,17 @@ class RenderPass: Drawable, Registrable {
 	// TODO: color attachments dictionary.
 	// TODO: double textures for asyc render?
 	var targets = [MTLTexture]()
-	
+
 	var renderableBehaviours = ContiguousArray<Weak<Renderable>>()
-	
+
 	var renderPassDescriptor = MTLRenderPassDescriptor()
-	
+
 	var depthStencilState: MTLDepthStencilState
-	
+
 	var isViewDirty = false
-	
+
 	private var viewTargets = [MTLTexture?](repeating: nil, count: RenderTargetType.allCases.count)
-	
+
 	private func getViewTarget(targetType: RenderTargetType, mipmapped: Bool) -> MTLTexture? {
 		// Dispath init view textures.
 		if viewTargets[targetType.rawValue] == nil {
@@ -31,12 +31,12 @@ class RenderPass: Drawable, Registrable {
 		}
 		return viewTargets[targetType.rawValue]
 	}
-	
+
 	required convenience init?(device: MTLDevice) {
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
 		self.init(device: device, depthStencilDescriptor: depthStencilDescriptor)
 	}
-	
+
 	init?(device: MTLDevice, depthStencilDescriptor: MTLDepthStencilDescriptor) {
 		guard let newDepthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor) else { return nil }
 		depthStencilState = newDepthStencilState
@@ -44,21 +44,21 @@ class RenderPass: Drawable, Registrable {
 	}
 
 	func register() { }
-	
+
 	func draw(in view: MTKView, by commandBuffer: MTLCommandBuffer) { }
-	
+
 	func blitViewTarget(by blitCommandEncoder: MTLBlitCommandEncoder, targetType: RenderTargetType, mipmapped: Bool) -> MTLTexture? {
 		// Dispath init view textures.
 		guard let destinationTexture = getViewTarget(targetType: targetType, mipmapped: mipmapped) else {
 			blitCommandEncoder.endEncoding()
 			return nil
 		}
-		
+
 		guard let sourceTexture = Application.currentViewTarget(targetType: targetType) else {
 			blitCommandEncoder.endEncoding()
 			return nil
 		}
-		
+
 		// Encode blit command.
 		if !isViewDirty && sourceTexture.width == destinationTexture.width && sourceTexture.height == destinationTexture.height {
 			let origin = MTLOrigin(x: 0, y: 0, z: 0)
@@ -72,7 +72,7 @@ class RenderPass: Drawable, Registrable {
 			viewTargets[targetType.rawValue] = nil
 			isViewDirty = true
 		}
-		
+
 		return viewTargets[targetType.rawValue]
 	}
 }

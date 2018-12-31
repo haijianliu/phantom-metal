@@ -8,7 +8,7 @@ import MetalKit
 ///
 /// Adding a third dynamic data buffer is the ideal solution when considering processor idle time, memory overhead, and frame latency.
 struct TripleBuffer<DataType: UniformBuffer> {
-	
+
 	/// Shared storgame mode MTLBuffer which can be sent to GPU using:
 	///
 	/// `setVertexBuffer(_ buffer: MTLBuffer?, offset: Int, index: Int)`
@@ -26,7 +26,7 @@ struct TripleBuffer<DataType: UniformBuffer> {
 	private var index = 0
 	/// Pointer pointing to current data
 	private var pointer: UnsafeMutablePointer<DataType>
-	
+
 	/// Create a triple buffer.
 	///
 	/// Allocates a new zero-filled MTLBuffer of a three times length with a `storageModeShared` storage mode which can be both CPU and GPU accessible.
@@ -40,7 +40,7 @@ struct TripleBuffer<DataType: UniformBuffer> {
 			print("The Data size of triple buffer must be less than 4KB ( current: \(bufferLength) bytes ).")
 			return nil
 		}
-		guard let mtlBuffer = device.makeBuffer(length: bufferLength, options: MTLResourceOptions.storageModeShared) else { return nil }
+		guard let mtlBuffer = device.makeBuffer(length: bufferLength, options: .storageModeShared) else { return nil }
 		buffer = mtlBuffer
 		buffer.label = String(describing: DataType.self)
 		pointer = UnsafeMutableRawPointer(buffer.contents()).bindMemory(to: DataType.self, capacity: 1)

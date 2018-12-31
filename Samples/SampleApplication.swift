@@ -20,7 +20,7 @@ class SampleApplication: ApplicationDelegate {
 			gameObject.material?.fillMode = .lines // Set fill mode.
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
-		
+
 		// Create ellipsoid.
 		ellipsoid: do {
 			guard let gameObject = GameObject.createEllipsoid(shaderType: ShaderType.normalColor) else { break ellipsoid }
@@ -28,7 +28,7 @@ class SampleApplication: ApplicationDelegate {
 			gameObject.transform.scale = Vector3(1.4)
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
-		
+
 		// Create camera.
 		camera: do {
 			// Root gameobject.
@@ -44,7 +44,7 @@ class SampleApplication: ApplicationDelegate {
 			// Add GameObject
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
-		
+
 		// TODO: convienice function.
 		// Create light.
 		light: do {
@@ -55,7 +55,7 @@ class SampleApplication: ApplicationDelegate {
 			// Add GameObject
 			Application.addGameObject(gameObject) // Register to renderer.
 		}
-		
+
 		// Create shadowmap camera.
 		shadowCamera: do {
 			// Root gameobject.

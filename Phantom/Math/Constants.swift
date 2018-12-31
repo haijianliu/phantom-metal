@@ -2,8 +2,8 @@
 
 // Constants
 extension Math {
-	
+
 	/// The mathematical constant pi.
 	/// pi = 3.14159265358979
-	public static let pi = Float.pi;
+	public static let pi = Float.pi
 }

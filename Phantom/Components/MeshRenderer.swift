@@ -8,16 +8,16 @@ class MeshRenderer: Renderer, Renderable, Registrable {
 	// TODO: multiple.
 	/// Mesh slot for rendering.
 	let mesh = Mesh()
-	
+
 	// TODO: didset.
 	// TODO: [shadowCastingMode](https://docs.unity3d.com/ScriptReference/Renderer-shadowCastingMode.html)
 	/// Does this object cast shadows?
 	var castShadows: Bool = true
-	
+
 	/// Does this object receive shadows?
 	/// Note that receive shadows flag is not used when using one of Deferred rendering paths; all objects receive shadows there. (TODO)
 	var receiveShadows: Bool = true
-	
+
 	func register() {
 		material.shader.load()
 		mesh.load(from: material.shader.vertexDescriptor)
@@ -29,7 +29,7 @@ class MeshRenderer: Renderer, Renderable, Registrable {
 			shadowRenderer.register()
 		}
 	}
-	
+
 	func encode(to renderCommandEncoder: MTLRenderCommandEncoder) {
 		// Material encoding: including texture and shader encoding.
 		material.encode(to: renderCommandEncoder)

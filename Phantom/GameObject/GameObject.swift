@@ -17,29 +17,29 @@ public class GameObject {
 			}
 		}
 	}
-	
+
 	// TODO: Observe changes of properties.
 	// TODO: Node system.
 	weak var parent: GameObject?
-	
+
 	// TODO: use fixed array.
 	/// The only strong references holder of child gameobjects.
 	var children = [GameObject]()
-	
+
 	/// Holds a list of strong references of components have attached.
 	var components = [String: Component]()
-	
+
 	// TODO: unowned reference?
 	/// The Transform attached to this GameObject.
 	lazy public private(set) var transform: Transform = {
 		return components[String(describing: Transform.self)] as! Transform
 	}()
-	
+
 	/// The material attached of MeshRenderer attached to this GameObject.
 	public var material: Material? { get {
 		let meshRenderer: MeshRenderer? = self.getComponent()
 		return meshRenderer?.material } }
-	
+
 	// TODO: named name.
 	/// Creates a new game object.
 	public init?() {

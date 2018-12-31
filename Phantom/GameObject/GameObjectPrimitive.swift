@@ -23,7 +23,7 @@ extension GameObject {
 		let mdlMesh = MDLMesh.newBox(withDimensions: dimensions, segments: segments, geometryType: geometryType, inwardNormals: inwardNormals, allocator: mtkMeshBufferAllocator)
 		return GameObject.createMeshGameObject(device, with: mdlMesh, shaderType: shaderType)
 	}
-	
+
 	/// Creates a primitive gameobject in the shape of an ellipsoid or sphere.
 	///
 	/// - Parameters:
